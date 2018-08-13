@@ -80,7 +80,7 @@ function previewFile(file) {
     let img = document.createElement('img')
     img.src = reader.result
     document.getElementById('fileUploadedBox').classList.remove('hidden')
-    
+
     if(document.getElementById('help-uploading')) {
       document.getElementById('cantUploadDetails').classList.add('hidden')  
       document.getElementById('help-uploading').classList.add('hidden')
@@ -89,7 +89,8 @@ function previewFile(file) {
     document.getElementById('drop-area').classList.add('hidden')
     
     document.getElementById('gallery').appendChild(img)
-    document.getElementById('theNameOfFile').value = file.name
+    document.getElementById('theNameOfFile').value = "File uploaded: " + file.name
+    document.getElementById('theNameOfFile').focus()  
   }
 }
 
