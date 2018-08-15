@@ -112,7 +112,7 @@ router.get('/check-eligibility/existing-badge/index-backend', function (req, res
       } else if (blueBadgeNumber.indexOf('3333') === 0 && blueBadgeNumber.lastIndexOf('3333') === blueBadgeNumber.length-4) {
         res.redirect('/apply-for-a-blue-badge/check-eligibility/existing-badge?show=errors&existing=yes');
       } else {
-        res.redirect('/apply-for-a-blue-badge/check-eligibility/existing-badge/not-for-review-with-eligibility-questions');
+        res.redirect('/apply-for-a-blue-badge/check-eligibility/decision-renew');
       }
       break;
     case "new":
