@@ -17,6 +17,7 @@ const documentationRoutes = require('./docs/documentation_routes.js')
 const packageJson = require('./package.json')
 const routes = require('./app/routes.js')
 const apply = require('./app/routes/apply.js')
+const replace = require('./app/routes/replace.js')
 const manage = require('./app/routes/manage.js')
 const utils = require('./lib/utils.js')
 
@@ -209,6 +210,7 @@ if (typeof (routes) !== 'function') {
 } else {
   app.use('/', routes)
   app.use('/apply-for-a-blue-badge', apply)
+  app.use('/replace-a-blue-badge', replace)
   app.use('/manage-blue-badges', manage)
 }
 

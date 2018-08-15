@@ -30,9 +30,9 @@
   {% include "includes/cookie-banner.html" %}
   {# Set serviceName in config.js. #}
   {{ govukHeader({
-    homepageUrl: "/apply-for-a-blue-badge/",
+    homepageUrl: homepageUrl,
     serviceName: serviceName,
-    serviceUrl: "/apply-for-a-blue-badge/",
+    serviceUrl: serviceUrl,
     containerClasses: "govuk-width-container",
     classes: 'hide-service-name-' + hideServiceName
   }) }}

@@ -1,0 +1,96 @@
+{% extends "layout.html" %}
+
+{% if data['applicant'] === 'organisation' %}
+  {% set pageHeading = "Enter your organisation's address" %}
+{% else %}
+  {% set pageHeading = "Enter " + your + " address" %}
+{% endif %}
+
+{% block pageTitle %}
+  {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block inner_content %}
+
+
+
+{% if data['postcode'] %}
+
+  {% set userPostcode = data['postcode'] | upper %}
+
+{% else %}
+
+  {% set userPostcode = "SW1A 4AA" %}
+
+{% endif %}
+
+<!-- <h1 class="govuk-heading-l">{{pageHeading}}</h1> -->
+
+<form action="{{formAction}}">
+  {% call govukFieldset({
+    "legend": {
+        "text": pageHeading,
+        "classes": "govuk-fieldset__legend--l",
+        "isPageHeading": true
+      }
+  }) %}
+
+    {{ govukInput({
+      "label": {
+        "html": 'Building and street <span class="govuk-visually-hidden">line 1 of 2</span>'
+      },
+      "id": "address-line-1",
+      "name": "address-line-1",
+      "value": data['premises']
+    }) }}
+
+    {{ govukInput({
+      "label": {
+        "html": '<span class="govuk-visually-hidden">Building and street line 2 of 2</span>'
+      },
+      "id": "address-line-2",
+      "name": "address-line-2"
+    }) }}
+
+    {{ govukInput({
+      "label": {
+        "html": 'Town or city'
+      },
+      "classes": 'govuk-!-width-two-thirds',
+      "id": "address-town",
+      "name": "address-town"
+    }) }}
+
+    {{ govukInput({
+      "label": {
+        "html": 'County'
+      },
+      "classes": 'govuk-!-width-two-thirds',
+      "id": "address-county",
+      "name": "address-county"
+    }) }}
+
+    {{ govukInput({
+      "label": {
+        "html": 'Postcode'
+      },
+      "classes": 'govuk-input--width-10',
+      "id": "address-postcode",
+      "name": "address-postcode",
+      "value": userPostcode
+    }) }}
+
+  {% endcall %}
+  
+  {{ govukButton({
+    "text": submitLabel
+  }) }}
+
+  <!-- Has save -->
+</form>
+
+      
+
+
+
+{% endblock %}

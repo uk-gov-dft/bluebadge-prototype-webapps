@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% set pageHeading = 'Pay for your replacement Blue Badge' %}
+
+{% block pageTitle %}
+  {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block inner_content %}
+
+
+
+<h1 class="govuk-heading-l">{{pageHeading}}</h1>
+
+<p class="govuk-body-l">{{you | capitalize}}'ll have to pay a £10 issue fee for {{ your }} replacement Blue Badge.</p>
+
+<form action="{{ formAction }}" novalidate="">
+
+  {{ govukButton({
+    "text": "Pay online now"
+  }) }}
+
+  <p class="govuk-body">
+    <a href="{{ formAction }}?pay-when=later">Submit {{application}} and pay later</a>
+  </p>
+
+</form>
+
+{% endblock %}

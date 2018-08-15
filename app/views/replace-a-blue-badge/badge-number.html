@@ -1,0 +1,69 @@
+{% extends "layout.html" %}
+
+{% set pageHeading = 'Do ' + you + ' know the badge number?' %}
+
+{% block pageTitle %}
+  {% if data["show"] === "errors" %} Error: {% endif %} {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block inner_content %}
+
+
+
+        
+<form action="{{ formAction }}">
+
+  {% set badgeHtml %}
+    {{ govukInput({
+      "label": {
+        "text": "Badge number"
+      },
+      "hint": {
+        "text": "For example, 0957X1114"
+      },
+      classes: "govuk-!-width-two-thirds",
+      errorMessage: errorArray.existingBadge,
+      id: "badge-number",
+      name: "badge-number"
+    }) }}
+  {% endset -%}
+
+
+  {{ govukRadios({
+    "idPrefix": "has-badge-number",
+    "name": "has-badge-number",
+    "fieldset": {
+      "legend": {
+        "text": pageHeading,
+        "isPageHeading": true,
+        "classes": 'govuk-fieldset__legend--l'
+      }
+    },
+    "hint": {
+      "html": "You can find the bagde number on the front of the badge or in letters or emails from your local council."
+    },
+    "items": [
+      {
+        "value": "yes",
+        "text": "Yes",
+        "checked": data['has-badge-number'] === "yes",
+        "id": "has-badge-number",
+        "conditional": {
+          "html": badgeHtml
+        }
+      },
+      {
+        "value": "no",
+        "text": "No",
+        "id": "has-badge-number"
+      }
+    ]
+  }) }}
+    
+  
+  {{ govukButton({
+    "text": "Continue"
+  }) }}
+</form>
+
+{% endblock %}

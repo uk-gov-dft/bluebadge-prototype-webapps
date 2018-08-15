@@ -3,6 +3,9 @@ const router = express.Router()
 
 // Set the right pronouns
 router.use(function(req, res, next) {
+  res.locals.serviceName = "Apply for a Blue Badge";
+  res.locals.homepageUrl = "/apply-for-a-blue-badge-blue-badge/";
+  res.locals.serviceUrl = "/apply-for-a-blue-badge/";
   var applicant = req.session.data['applicant'];
   res.locals.my = applicant === 'someone-else' ? 'their' : 'my';
   res.locals.you = applicant === 'someone-else' ? 'they' : 'you';
