@@ -17,6 +17,7 @@
       </h1>
 
       <ol class="app-task-list">
+        {% if data['renewal-or-new-application'] !== "renewal" %}
         <li>
           <h2 class="app-task-list__section">
             <span class="app-task-list__section-number">1. </span> Check before you start
@@ -36,9 +37,14 @@
             </li>
           </ul>
         </li>
+        {% endif %}
         <li>
           <h2 class="app-task-list__section">
+            {% if data['renewal-or-new-application'] === "renewal" %}
+            <span class="app-task-list__section-number">1. </span> Prepare to apply
+            {% else %}
             <span class="app-task-list__section-number">2. </span> Prepare to apply
+            {% endif %}
           </h2>
           <ul class="app-task-list__items">
             {% if data['applicant'] === 'organisation' %}
@@ -252,7 +258,7 @@
             {% endif %}
             <li class="app-task-list__item">
               <a class="app-task-list__task-name" href="provide-photo{% if data['photo-completed'] == 'true'%}?photo-done=true{% endif %}" aria-describedby="photo-completed">
-                Add a photo
+                Add a {{ "new" if data['renewal-or-new-application'] === "renewal" }} photo of {{yourself}}
               </a>
               {% if data['photo-completed'] == "true" %}
               {{ govukTag({
@@ -269,7 +275,11 @@
         </li>
         <li>
           <h2 class="app-task-list__section">
+            {% if data['renewal-or-new-application'] === "renewal" %}
+            <span class="app-task-list__section-number">2. </span> Apply
+            {% else %}
             <span class="app-task-list__section-number">3. </span> Apply
+            {% endif %}
           </h2>
           <ul class="app-task-list__items">
             <li class="app-task-list__item">

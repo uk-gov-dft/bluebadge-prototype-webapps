@@ -2,7 +2,11 @@
 {% set hasSaveClass = 'yes' %}
 {% import "apply-for-a-blue-badge/macros/upload-component-new.html" as uploadComponentWidget %}
 
-{% set pageHeading = "Add a photo" %}
+{% if data['renewal-or-new-application'] === "renewal" %}
+{% set pageHeading = "Add a new photo of " + yourself %}
+{% else %}
+{% set pageHeading = "Add a photo of " + yourself %}
+{% endif %}
 
 {% block pageTitle %}
   {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
@@ -12,8 +16,12 @@
 
 
 
-<h1 class="govuk-heading-l">Add a photo</h1>
+<h1 class="govuk-heading-l">{{pageHeading}}</h1>
+{% if data['renewal-or-new-application'] === "renewal" %}
+<p class="govuk-body">Upload a recent photo that's different from the one on {{your}} current badge.</p>
+{% else %}
 <p class="govuk-body">You need to add a photo to be printed on the back of {{ your }} badge.</p>
+{% endif %}
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-one-third">

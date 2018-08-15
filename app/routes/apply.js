@@ -11,6 +11,7 @@ router.use(function(req, res, next) {
   res.locals.you = applicant === 'someone-else' ? 'they' : 'you';
   res.locals.your = applicant === 'someone-else' ? 'their' : 'your';
   res.locals.youOrThem = applicant === 'someone-else' ? 'them' : 'you';
+  res.locals.yourself = applicant === 'someone-else' ? 'the applicant' : 'yourself';
 
   if (!req.session.data['council-name']) {
     res.locals.data['council-name'] = 'your local council';
