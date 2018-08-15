@@ -3,8 +3,6 @@
 // Note: prototype config can be overridden using environment variables (eg on heroku)
 
 module.exports = {
-  // Service name used in header. Eg: 'Renew your passport'
-  serviceName: 'Apply for a Blue Badge',
 
   // Service name used in header. Eg: 'Renew your passport'
   adminServiceName: 'Manage Blue Badges',

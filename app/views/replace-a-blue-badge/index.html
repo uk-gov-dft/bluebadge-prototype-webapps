@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+{% set hideBackLink = 'yes' %}
+{% block pageTitle %}
+  {% if serviceName %} {{ serviceName }} {% endif %} - GOV.UK prototype kit
+{% endblock %}
+
+{% block inner_content %}
+
+<h1 class="govuk-heading-xl">
+  {% if serviceName %} Replace a lost, stolen or damaged Blue Badge {% endif %}
+</h1>
+
+<p class="govuk-body">Get a replacement Blue Badge online from your local council if yours gets lost, stolen, damaged or destroyed.</p>
+
+<p class="govuk-body">There is another service to <a href="https://www.nidirect.gov.uk/articles/apply-or-renew-blue-badge">replace a Blue Badge in Northern Ireland</a>.</p>
+
+<p class="govuk-body">If your badge was due to expire in less than three months, you should <a href="/apply-for-a-blue-badge">renew your blue bagde</a>.</p>
+
+{{ govukButton({
+  "text": "Start now",
+  "href": formAction,
+  "classes": "govuk-button--start govuk-!-mt-r2 govuk-!-mb-r8"
+}) }}
+
+<p class="govuk-body">To replace your Blue Badge you'll need to:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+	<li>provide your National Insurance number</li>
+	<li>enter some personal details</li>
+	<li>pay a £10 fee with a debit or credit card</li>
+</ul>
+<h2 class="govuk-heading-m">Questions</h2>
+
+<p class="govuk-body">For questions about the Blue Badge scheme, <a href="/blue-badge-scheme-information-council">contact your local council</a> or the initial enquiry support service.</p>
+
+<p class="govuk-body">Last updated: 13 August 2018</p>
+
+
+{% endblock %}

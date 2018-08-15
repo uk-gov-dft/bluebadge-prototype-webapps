@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+
+{% set pageHeading = 'What\'s ' + your + ' National Insurance number?' %}
+
+{% block pageTitle %}
+  {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block inner_content %}
+
+<h1 class="govuk-heading-l">{{pageHeading}}</h1>
+<!-- <p class="govuk-body"></p> -->
+<form action="{{formAction}}">
+  {{ govukInput({
+    "label": {
+      "text": "National Insurance number"
+    },
+    "hint": {
+      "text": "It’s on your National Insurance card, benefit letter, payslip or P60. For example, ‘QQ 12 34 56 C’."
+    },
+    classes: "govuk-input--width-20 input-capitals",
+    id: "nino",
+    name: "nino",
+    value: data['nino'],
+    attributes: {
+      autocapitalize: "characters"
+    }
+  }) }}
+  
+  {{ govukButton({
+    "text": submitLabel
+  }) }}
+
+  <!-- Has save -->
+</form>
+
+      
+
+
+
+{% endblock %}

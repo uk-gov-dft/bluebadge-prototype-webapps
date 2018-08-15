@@ -1,0 +1,126 @@
+{% extends "layout.html" %}
+{% set isFullWidth = 'yes' %}
+{% set pageHeading = 'Check your details' %}
+
+{% block pageTitle %}
+  {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block inner_content %}
+<div class="govuk-grid-column-three-quarters">
+  <h1 class="govuk-heading-l">{{pageHeading}}</h1>
+  
+  <section class="split-section">
+    
+    <dl class="govuk-check-your-answers govuk-check-your-answers--short">
+
+      <div class="govuk-check-your-answers__contents">
+        <dt class="govuk-check-your-answers__question">
+          Local council
+        </dt>
+        <dd class="govuk-check-your-answers__answer">
+          {{data['council-name']}}
+        </dd>
+        <dd class="govuk-check-your-answers__change">
+          <a href="/replace-a-blue-badge/badge-number?change=true">
+            Change<span class="govuk-visually-hidden"> local council</span>
+          </a>
+        </dd>
+      </div>
+
+      <div class="govuk-check-your-answers__contents">
+        <dt class="govuk-check-your-answers__question">
+          What happened to the badge?
+        </dt>
+        <dd class="govuk-check-your-answers__answer">
+          {{data['what-happened']}} {% if data['crime-number'] %} {{ data['crime-number'] }} {% endif %}
+        </dd>
+        <dd class="govuk-check-your-answers__change">
+          <a href="/replace-a-blue-badge/what-happened?change=true">
+            Change<span class="govuk-visually-hidden"> what happened</span>
+          </a>
+        </dd>
+      </div>
+  
+      <div class="govuk-check-your-answers__contents">
+        <dt class="govuk-check-your-answers__question">
+          Full name
+        </dt>
+        <dd class="govuk-check-your-answers__answer">
+          {{ data['fullName'] }}
+        </dd>
+        <dd class="govuk-check-your-answers__change">
+          <a href="/replace-a-blue-badge/name?change=true">
+            Change<span class="govuk-visually-hidden"> name</span>
+          </a>
+        </dd>
+      </div>
+    
+      <div class="govuk-check-your-answers__contents">
+        <dt class="govuk-check-your-answers__question">
+          Date of birth
+        </dt>
+        <dd class="govuk-check-your-answers__answer">
+          {{ data['dob-day'] }} {{ data['dob-month'] | month }} {{ data['dob-year'] }}
+        </dd>
+        <dd class="govuk-check-your-answers__change">
+          <a href="/replace-a-blue-badge/dob?change=true">
+            Change<span class="govuk-visually-hidden"> date of birth</span>
+          </a>
+        </dd>
+      </div>
+    
+      <div class="govuk-check-your-answers__contents">
+        <dt class="govuk-check-your-answers__question">
+          National Insurance number
+        </dt>
+        <dd class="govuk-check-your-answers__answer">
+          {{data['nino']}}
+        </dd>
+        <dd class="govuk-check-your-answers__change">
+          <a href="/replace-a-blue-badge/nino?change=true">
+            Change<span class="govuk-visually-hidden"> national insurance number</span>
+          </a>
+        </dd>
+      </div>
+    
+      <div class="govuk-check-your-answers__contents">
+        <dt class="govuk-check-your-answers__question">
+          Address
+        </dt>
+        <dd class="govuk-check-your-answers__answer">
+          {{ data['address'] }}
+        </dd>
+        <dd class="govuk-check-your-answers__change">
+          <a href="/replace-a-blue-badge/personal-details/enter-address?change=true">
+            Change<span class="govuk-visually-hidden"> address</span>
+          </a>
+        </dd>
+      </div>
+    
+      <div class="govuk-check-your-answers__contents">
+        <dt class="govuk-check-your-answers__question">
+          Contact details
+        </dt>
+        <dd class="govuk-check-your-answers__answer">
+          {% if data['contact-full-name'] %}{{ data['contact-full-name'] }}<br />{% endif %}
+          {{ data['primary-phone-number'] }}<br />
+          {{ data['secondary-phone-number'] }}<br />
+          {% if data['email-address'] %}{{ data['email-address'] }}{% endif %}
+        </dd>
+        <dd class="govuk-check-your-answers__change">
+          <a href="/replace-a-blue-badge/personal-details/contact-details?change=true">
+            Change<span class="govuk-visually-hidden"> contact details</span>
+          </a>
+        </dd>
+      </div>
+     
+    </dl>
+  </section>
+  
+  {{ govukButton({
+    "text": "Continue",
+    "href": '/replace-a-blue-badge/declaration'
+  }) }}
+</div>
+{% endblock %}
