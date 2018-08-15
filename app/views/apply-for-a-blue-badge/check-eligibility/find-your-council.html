@@ -41,6 +41,12 @@
              </div>
              ' 
   }) }}
+
+  <div id="councilChosen" class="hidden">
+    <p class="govuk-body" aria-live="polite">
+      The council managing {{your}} application is <br> <b id="councilNamePopulated"></b>.
+    </p>
+  </div>
   
   {{ govukButton({
     "text": "Continue"
@@ -49,6 +55,8 @@
   <input id="council-website" name="council-website" type="hidden" value="www.manchester.gov.uk">
   <input id="council-phone" name="council-phone" type="hidden" value="0161 205 7321">
 </form>
+
+
   
 
 {% endblock %}
@@ -59,7 +67,17 @@
       govukGovernmentOrganisationsAutocomplete({
         defaultValue: '',
         selectElement: document.getElementById('councilPicker'),
+        onConfirm: (query) => {
+          // Mimick the default onConfirm event that enhanceSelectElement would otherwise set up
+          const requestedOption = [].filter.call(document.querySelector('#councilPicker-select').options, option => (option.textContent || option.innerText) === query)[0]
+          if (requestedOption) { requestedOption.selected = true }
+
+          $('#councilChosen').removeClass('hidden');
+          $('#councilNamePopulated').text(document.querySelector("#councilPicker-select").value);
+          document.querySelector('#councilChosen').focus();
+        }
       })
+
     });
   </script>
 {% endblock %}

@@ -71,7 +71,7 @@
     <div class="upload-section-text">
       <p class="govuk-body">
         <span class="drag-drop-text">You can drag and drop the file here <br> <b>or</b> <br></span>
-        <input type="file" id="fileElem" multiple accept="image/*" onchange="handleFiles(this.files)">
+        <input type="file" class="govuk-visually-hidden" id="fileElem" multiple accept="image/*" onchange="handleFiles(this.files)">
         <label class="govuk-button upload-label" for="fileElem">
           <span class="tablet-upload-text">Upload a file from this computer</span>
           <span class="mobile-upload-text">Take a photo or upload a file using this device</span>
@@ -87,7 +87,6 @@
 
 <div id="fileUploadedBox" class="hidden">
   <h3 class="govuk-heading-m">This is your uploaded file</h3>
-
   <div id="gallery"/></div>
   {% if triggerForDummy === "true" %}
   <span id="dummiesToShow" data-trigger={{triggerForDummy}}></span>
@@ -103,7 +102,7 @@
   </p>
   <input type="hidden" name="{{provideType}}" value="upload">
 
-  <input type="hidden" id="theNameOfFile" name="{{nameOfDataItem}}" value="">
+  <input type="text" class="govuk-visually-hidden" readonly id="theNameOfFile" name="{{nameOfDataItem}}" value="">
   
   {% if (askIfUploadShowAddress==='yes') %}
     {{ govukRadios({
@@ -159,7 +158,7 @@
       <p class="govuk-body">Your local council will contact you about other ways for you to {{ aboutHowTo }} after you submit this application.</p>
       <p class="govuk-body">You can still submit this application using this service, but it will take longer for the council to make a decision.</p>
       <p class="govuk-body">
-        <a href="{{notUploadingUrl}}" class="govuk-button-secondary">Continue without uploading</a>
+        <a href="{{notUploadingUrl}}" class="govuk-button-secondary" role="button">Continue without uploading</a>
       </p>
     </div>
   </details>
