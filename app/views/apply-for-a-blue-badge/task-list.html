@@ -41,7 +41,7 @@
         <li>
           <h2 class="app-task-list__section">
             {% if data['renewal-or-new-application'] === "renewal" %}
-            <span class="app-task-list__section-number">1. </span> Prepare to apply
+            <span class="app-task-list__section-number">1. </span> Prepare to renew
             {% else %}
             <span class="app-task-list__section-number">2. </span> Prepare to apply
             {% endif %}
@@ -133,7 +133,7 @@
                   text: 'Completed',
                   classes: 'app-task-list__task-completed',
                   attributes: {
-                    'id': 'benefit-completed'
+                    'id': 'bulky-completed'
                   }
                 }) }}
                 {% endif %}
@@ -151,7 +151,7 @@
                   text: 'Completed',
                   classes: 'app-task-list__task-completed',
                   attributes: {
-                    'id': 'benefit-completed'
+                    'id': 'child-completed'
                   }
                 }) }}
                 {% endif %}
@@ -177,7 +177,7 @@
             </li>
             {% endif %}
 
-            {% if data['benefit'] !== 'none' %}
+            {% if data['benefit'] !== 'none' and data['renewal-or-new-application'] !== "renewal" %}
             <li class="app-task-list__item">
               <a class="app-task-list__task-name" href="prove-benefit{% if data['benefit-completed'] == 'true'%}?benefit-done=true{% endif %}" aria-describedby="benefit-completed">
                 Provide proof of benefit
