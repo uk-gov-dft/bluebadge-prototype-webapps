@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+{% set pageHeading = 'How many points did ' + you + ' score in the "moving around" activity of ' + your + ' assessment?' %}
+
+{% block pageTitle %}
+  {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block inner_content %}
+    
+  <form action="pip-moving-backend">
+  
+    {{ govukRadios({
+      "idPrefix": "pip-moving",
+      "name": "pip-moving",
+      "attributes": {
+          "data-catchoption-label": true
+        },
+      "fieldset": {
+        "legend": {
+          "text": pageHeading,
+          "isPageHeading": true,
+          "classes": 'govuk-fieldset__legend--l'
+        }
+      },
+      "items": [
+          {
+            "value": "more-than-8",
+            "text": '8 points or more'
+          },
+          {
+            "value": "less-than-8",
+            "text": '7 points or less'
+          }
+        ]
+    }) }}
+  
+    <div id="hiddenCaughtInputs"></div>
+    
+    
+    {{ govukButton({
+      "text": "Continue"
+    }) }}
+  </form>
+
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+{% set pageHeading = 'Were ' + you + ' awarded the higher rate of the mobility component?' %}
+
+{% block pageTitle %}
+  {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block inner_content %}
+    
+  <form action="dla-higher-backend">
+  
+    {{ govukRadios({
+      "idPrefix": "dla-higher",
+      "name": "dla-higher",
+      "attributes": {
+          "data-catchoption-label": true
+        },
+      "fieldset": {
+        "legend": {
+          "text": pageHeading,
+          "isPageHeading": true,
+          "classes": 'govuk-fieldset__legend--l'
+        }
+      },
+      "items": [
+          {
+            "value": "yes",
+            "text": 'Yes'
+          },
+          {
+            "value": "no",
+            "text": 'No'
+          }
+        ]
+    }) }}
+  
+    <div id="hiddenCaughtInputs"></div>
+    
+    
+    {{ govukButton({
+      "text": "Continue"
+    }) }}
+  </form>
+
+{% endblock %}

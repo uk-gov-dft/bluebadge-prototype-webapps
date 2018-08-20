@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+{% set pageHeading = 'Have ' + you + ' received a lump sum payment within tariff levels 1 to 8 of the Armed Forces Compensation Scheme?' %}
+
+{% block pageTitle %}
+  {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block inner_content %}
+    
+  <form action="afcs-lump-backend">
+  
+    {{ govukRadios({
+      "idPrefix": "afcs-lump",
+      "name": "afcs-lump",
+      "attributes": {
+          "data-catchoption-label": true
+        },
+      "fieldset": {
+        "legend": {
+          "text": pageHeading,
+          "isPageHeading": true,
+          "classes": 'govuk-fieldset__legend--l'
+        }
+      },
+      "items": [
+          {
+            "value": "yes",
+            "text": 'Yes'
+          },
+          {
+            "value": "no",
+            "text": 'No'
+          }
+        ]
+    }) }}
+  
+    <div id="hiddenCaughtInputs"></div>
+    
+    
+    {{ govukButton({
+      "text": "Continue"
+    }) }}
+  </form>
+
+{% endblock %}
