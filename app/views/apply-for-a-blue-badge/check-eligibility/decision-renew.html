@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Decision - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block inner_content %}
+  <!-- Doesn't receive a benefit and doesn't have a recognizes disability = needs assessing -->
+  <h1 class="govuk-heading-l">Renew {{ your }} Blue Badge</h1>
+  <p class="govuk-body">We've found the badge <b>{{ data['existing-blue-badge-number'] }}</b>. {{ you | capitalize }} have to reapply for a Blue Badge as part of the renewal process.</p>
+  <p class="govuk-body">This is so that {{data['council-name']}} can:</p>
+  <ul class="govuk-list govuk-list--bullet">
+    <li>make sure {{your}} details are up to date</li>
+    <li>issue Blue Badges to people that need them</li>
+    <li>cancel or refuse applications for Blue Badges that are no longer needed</li>
+  </ul>
+
+  <h2 class="govuk-heading-m">What next</h2>
+  {% if data['nation'] !== "wales" %}
+  <p class="govuk-body">The badge issue fee is {{feePrice}}.</li>
+  {% endif %}
+  <p class="govuk-body">It can take up to 4 weeks for the council to issue a new badge</p>
+  {{ govukButton({
+    "text": "Start " + application,
+    "href": '/apply-for-a-blue-badge/task-list'
+  }) }}
+
+  <h2 class="govuk-heading-m">Don't want to apply online?</h2>
+
+  <p class="govuk-body">Contact {{data['council-name']}} to find out about other ways to apply.
+  </p>
+
+<ul class="govuk-list">
+  <li>Website: <a href="#">www.{{data['council-name'] | lower}}.gov.uk</a></li>
+  <li>Email: <a href="#">bluebadge@{{data['council-name'] | lower}}.gov.uk</a></li>
+  <li>Phone: 0161 205 7321</li>
+</ul>
+  
+
+{% endblock %}
