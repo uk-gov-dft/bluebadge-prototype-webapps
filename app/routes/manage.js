@@ -49,27 +49,27 @@ router.get('/new-applications', function (req, res) {
 })
 
 router.get('/new-application', function (req, res) {
-  res.render('manage-blue-badges/new-application', {'title':'New application','app_class':'active'})
+  res.render('manage-blue-badges/new-application', {'title':'View new application','app_class':'active'})
 })
 
 router.get('/new-application-walking', function (req, res) {
-  res.render('manage-blue-badges/new-application-walking', {'title':'New application','app_class':'active'})
+  res.render('manage-blue-badges/new-application-walking', {'title':'View new application','app_class':'active'})
 })
 
 router.get('/new-application-walking-2', function (req, res) {
-  res.render('manage-blue-badges/new-application-walking-2', {'title':'New application','app_class':'active'})
+  res.render('manage-blue-badges/new-application-walking-2', {'title':'View new application','app_class':'active'})
 })
 
 router.get('/new-application-arms', function (req, res) {
-  res.render('manage-blue-badges/new-application-arms', {'title':'New application','app_class':'active'})
+  res.render('manage-blue-badges/new-application-arms', {'title':'View new application','app_class':'active'})
 })
 
 router.get('/new-application-child-bulky', function (req, res) {
-  res.render('manage-blue-badges/new-application-child-bulky', {'title':'New application','app_class':'active'})
+  res.render('manage-blue-badges/new-application-child-bulky', {'title':'View new application','app_class':'active'})
 })
 
 router.get('/new-application-child-near', function (req, res) {
-  res.render('manage-blue-badges/new-application-child-near', {'title':'New application','app_class':'active'})
+  res.render('manage-blue-badges/new-application-child-near', {'title':'View new application','app_class':'active'})
 })
 
 router.get('/manage-users', function (req, res) {
@@ -161,6 +161,15 @@ router.get('/view-badge-external', function (req, res) {
   res.render('manage-blue-badges/view-badge-external', {'title':'View badge','search_class':'active'})
 })
 
+router.get('/replacements', function (req, res) {
+  res.render('manage-blue-badges/replacements', {'title':'Replacements','replace_class':'active'})
+})
+
+router.get('/view-replacement', function (req, res) {
+  res.render('manage-blue-badges/replacement-request', {'title':'View replacement','replace_class':'active'})
+})
+
+
 router.get('/replace-badge', function (req, res) {
   res.render('manage-blue-badges/replace-badge', {'title':'Order a replacement badge','search_class':'active'})
 })
@@ -184,6 +193,11 @@ router.get('/view-my-details', function (req, res) {
 router.get('/renewals', function (req, res) {
   res.render('manage-blue-badges/renewals', {'title':'Renewals','renewals_class':'active'})
 })
+
+router.get('/renewal-walking', function (req, res) {
+  res.render('manage-blue-badges/renewal-walking', {'title':'View renewal','renewals_class':'active'})
+})
+
 
 router.get('/replacements', function (req, res) {
   res.render('manage-blue-badges/replacements', {'title':'Replacements','replacements_class':'active'})

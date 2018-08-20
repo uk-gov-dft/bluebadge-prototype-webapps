@@ -1,0 +1,154 @@
+{% extends "admin_layout.html" %}
+
+
+{% block back_link %}
+  <div class="back-link-container">
+    {{ govukBackLink({
+      "text": "Back",
+      "href": "javascript: window.history.go(-1)"
+    }) }}
+  </div>
+{% endblock %}
+
+{% block page_header %}
+  <div class="check-answers-heading-with-change">
+    <div class="check-answers-heading">
+      <p class="subtitle">1234334523</p>
+      <h1>{{title}}</h1>
+    </div>
+  </div>
+  
+{% endblock %}
+
+{% block content %}
+
+<section class="split-section">
+  <h2 class="govuk-heading-m">
+    Personal details
+  </h2>
+  
+  <dl class="govuk-check-your-answers govuk-check-your-answers--short">
+    <div class="govuk-check-your-answers__contents">
+      <dt class="govuk-check-your-answers__question">
+        Full name
+      </dt>
+      <dd class="govuk-check-your-answers__answer">
+        Gerry Louis Peterson
+      </dd>
+    </div>
+
+    <div class="govuk-check-your-answers__contents">
+      <dt class="govuk-check-your-answers__question">
+        Date of birth
+      </dt>
+      <dd class="govuk-check-your-answers__answer">
+        12 May 1962
+      </dd>
+    </div>
+
+    <div class="govuk-check-your-answers__contents">
+      <dt class="govuk-check-your-answers__question">
+        National insurance number
+      </dt>
+      <dd class="govuk-check-your-answers__answer">
+        JR 80 82 61A
+      </dd>
+    </div>
+  
+    <div class="govuk-check-your-answers__contents">
+      <dt class="govuk-check-your-answers__question">
+        Home address
+      </dt>
+      <dd class="govuk-check-your-answers__answer">
+        114 Mansfield Road, Crumpsall, Manchester, M8 ITG
+      </dd>
+    </div>
+  
+    <div class="govuk-check-your-answers__contents">
+      <dt class="govuk-check-your-answers__question">
+        Contact details
+      </dt>
+      <dd class="govuk-check-your-answers__answer">
+        01331 252 22
+      </dd>
+    </div>
+  
+    <div class="govuk-check-your-answers__contents">
+      <dt class="govuk-check-your-answers__question">
+        Reason for replacement
+      </dt>
+      <dd class="govuk-check-your-answers__answer">
+        Lost
+      </dd>
+    </div>
+
+  </dl>
+</section>
+
+
+
+<section class="split-section" id="applicationDetails">
+  <h2 class="govuk-heading-m">
+    Application details
+  </h2>
+
+  <dl class="govuk-check-your-answers govuk-check-your-answers--short">
+    <div class="govuk-check-your-answers__contents">
+      <dt class="govuk-check-your-answers__question">
+        Reference
+      </dt>
+      <dd class="govuk-check-your-answers__answer">
+        1234542525
+      </dd>
+    </div>
+
+    <div class="govuk-check-your-answers__contents">
+      <dt class="govuk-check-your-answers__question">
+        Type
+      </dt>
+      <dd class="govuk-check-your-answers__answer">
+        Replacement
+      </dd>
+    </div>
+  
+    <div class="govuk-check-your-answers__contents">
+      <dt class="govuk-check-your-answers__question">
+        Submitted
+      </dt>
+      <dd class="govuk-check-your-answers__answer">
+        13 June 2018 at 13:04
+      </dd>
+    </div>
+
+    <div class="govuk-check-your-answers__contents">
+      <dt class="govuk-check-your-answers__question">
+        Applicant
+      </dt>
+      <dd class="govuk-check-your-answers__answer">
+        Themself
+      </dd>
+    </div>
+  </dl>
+</section>
+
+{{ govukButton({
+    "text": "Order a replacement",
+    "href": "order-a-badge/processing"
+  }) }}
+
+<p><a href="">Export application</a></p>
+
+  {{ govukDetails({
+    "summaryText": "Delete application",
+    "html": '
+              <form action="all-applications">
+                <p>Are you sure you want to delete this application?</p>
+                <input id="success" name="success" type="hidden" value="Application deleted">
+                <input value="Yes, delete application" type="submit" class="govuk-button">
+              </form>
+              <p class="govuk-body">
+                <a href="#">No, don\'t delete the application</a>
+              </p>' 
+  }) }}
+
+{% endblock %}
