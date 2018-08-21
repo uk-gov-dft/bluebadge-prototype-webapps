@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+{% set hasSaveClass = 'yes' %}
+
+{% if data['mobility-aids-array'].length %}
+{% set pageHeading = 'Name somewhere ' + you + ' can walk to using a mobility aid' %}
+{% else %}
+{% set pageHeading = 'Name somewhere ' + you + ' can walk to' %}
+{% endif %}
+
+{% block pageTitle %}
+  {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block inner_content %}
+
+
+
+        
+<form action="{{ formAction }}">
+  <h1 class="govuk-heading-l">{{pageHeading}}</h1>
+
+  {{ govukInput({
+    label: {
+      text: "Place you can walk to"
+    },
+    hint: {
+      text: 'This could be a building or a landmark. For example, "The post office"'
+    },
+    id: "walk-location",
+    name: "walk-location",
+    value: data['walk-location']
+  }) }}
+  
+  {{ govukButton({
+    "text": submitLabel
+  }) }}
+
+  <!-- Has save -->
+</form>
+
+      
+
+
+
+{% endblock %}

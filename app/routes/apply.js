@@ -676,8 +676,13 @@ router.get('/prove-eligibility/walking-time-backend', function(req, res) {
   if (req.session.data['how-long-walk'] === 'cant-walk') {
     res.redirect(proveEligibilityPath+'describe-conditions');
   } else {
-    res.redirect(proveEligibilityPath+'how-quickly-do-you-walk');
+    res.redirect(proveEligibilityPath+'where-can-you-walk');
   }
+});
+
+router.get('/prove-eligibility/where-can-you-walk', function(req, res) {
+  Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/apply-for-a-blue-badge/prove-eligibility/how-quickly-do-you-walk','check-walking'))
+  res.render(proveEligibilityTemplatePath+'where-can-you-walk');
 });
 
 router.get('/prove-eligibility/how-quickly-do-you-walk', function(req, res) {
