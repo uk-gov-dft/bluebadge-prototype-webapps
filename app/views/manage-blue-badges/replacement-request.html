@@ -48,7 +48,7 @@
 
     <div class="govuk-check-your-answers__contents">
       <dt class="govuk-check-your-answers__question">
-        National insurance number
+        National Insurance number
       </dt>
       <dd class="govuk-check-your-answers__answer">
         JR 80 82 61A
@@ -66,19 +66,28 @@
   
     <div class="govuk-check-your-answers__contents">
       <dt class="govuk-check-your-answers__question">
-        Contact details
+        Primary contact number
       </dt>
       <dd class="govuk-check-your-answers__answer">
-        01331 252 22
+        01331 252 226
+      </dd>
+    </div>
+
+    <div class="govuk-check-your-answers__contents">
+      <dt class="govuk-check-your-answers__question">
+        Secondary contact number
+      </dt>
+      <dd class="govuk-check-your-answers__answer">
+        01331 252 226
       </dd>
     </div>
   
     <div class="govuk-check-your-answers__contents">
       <dt class="govuk-check-your-answers__question">
-        Reason for replacement
+        Email address
       </dt>
       <dd class="govuk-check-your-answers__answer">
-        Lost
+        g.louis@gmail.com
       </dd>
     </div>
 
@@ -107,7 +116,7 @@
         Type
       </dt>
       <dd class="govuk-check-your-answers__answer">
-        Replacement
+        Replacement (Lost)
       </dd>
     </div>
   
@@ -131,10 +140,21 @@
   </dl>
 </section>
 
-{{ govukButton({
-    "text": "Order a replacement",
-    "href": "order-a-badge/processing"
-  }) }}
+
+
+
+<form action="search-results" target="_blank">
+
+  <input type="hidden" name="search-by" value="name"/>
+  <input type="hidden" name="searchValue" value="Gerry Louis Peterson"/>
+
+  {{ 
+    govukButton({
+      "text": "Find badge"
+    }) 
+  }}
+
+</form>
 
 <p><a href="">Export application</a></p>
 

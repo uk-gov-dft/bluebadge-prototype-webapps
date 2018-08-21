@@ -51,6 +51,46 @@
   </div>
 {% endblock %}
 
+
+      {% if  data['search-by'] === "name" %}
+    
+      {% set name = data['searchValue'] %}
+      
+      {% else %}
+
+      {% set name = 'Phillip Powell' %}
+
+      {% endif %}
+
+
+      {% if  data['search-by'] === "badge-number" %}
+    
+      {% set badgeNumber = data['searchValue'] %}
+      
+      {% else %}
+
+      {% set badgeNumber = 'eb56Yq' %}
+
+      {% endif %}
+
+      {% if  data['search-by'] === "postcode" %}
+    
+      {% set postcode = data['searchValue'] %}
+      
+      {% else %}
+
+      {% set postcode = 'M1 1BS' %}
+
+      {% endif %}
+
+
+
+if () {
+  set name = data['searchValue']; 
+} else {
+  name =  "Phillip Powell";
+}
+
 {% block content %}
   {{ govukTable({
     "firstCellIsHeader": false,
@@ -77,13 +117,13 @@
     "rows": [
       [
         {
-          "html": "<a href='view-badge'>E5B1AF</a>"
+          "html": "<a href='view-badge'>"+badgeNumber+"</a>"
         },
         {
-          "text": "Phillip Powell"
+          "text": name
         },
         {
-          "text": "M1 WPS"
+          "text": postcode
         },
         {
           "html": "<a href=''>  Manchester City Council</a>"
