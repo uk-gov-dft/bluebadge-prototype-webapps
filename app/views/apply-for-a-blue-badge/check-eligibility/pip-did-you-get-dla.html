@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+{% set pageHeading = 'Have ' + you + ' received Disability Living Allowance (DLA) in the past?' %}
+
+{% block pageTitle %}
+  {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block inner_content %}
+    
+  <form action="pip-dla-backend">
+  
+    {{ govukRadios({
+      "idPrefix": "pip-dla",
+      "name": "pip-dla",
+      "attributes": {
+          "data-catchoption-label": true
+        },
+      "fieldset": {
+        "legend": {
+          "text": pageHeading,
+          "isPageHeading": true,
+          "classes": 'govuk-fieldset__legend--l'
+        }
+      },
+      "items": [
+          {
+            "value": "yes",
+            "text": 'Yes, and ' + iThey + ' received the higher rate for the mobility component'
+          },
+          {
+            "value": "no",
+            "text": 'No'
+          }
+        ]
+    }) }}
+  
+    <div id="hiddenCaughtInputs"></div>
+    
+    
+    {{ govukButton({
+      "text": "Continue"
+    }) }}
+  </form>
+
+{% endblock %}

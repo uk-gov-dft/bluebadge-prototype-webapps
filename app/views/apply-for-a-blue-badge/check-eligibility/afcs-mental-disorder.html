@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+{% set pageHeading = 'Do ' + you + ' receive tariff level 6 of the Armed Forces Compensation Scheme for a permanent mental disorder?' %}
+
+{% block pageTitle %}
+  {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block inner_content %}
+    
+  <form action="afcs-mental-backend">
+  
+    {{ govukRadios({
+      "idPrefix": "afcs-mental",
+      "name": "afcs-mental",
+      "attributes": {
+          "data-catchoption-label": true
+        },
+      "fieldset": {
+        "legend": {
+          "text": pageHeading,
+          "isPageHeading": true,
+          "classes": 'govuk-fieldset__legend--l'
+        }
+      },
+      "items": [
+          {
+            "value": "yes",
+            "text": 'Yes'
+          },
+          {
+            "value": "no",
+            "text": 'No'
+          }
+        ]
+    }) }}
+  
+    <div id="hiddenCaughtInputs"></div>
+    
+    
+    {{ govukButton({
+      "text": "Continue"
+    }) }}
+  </form>
+
+{% endblock %}

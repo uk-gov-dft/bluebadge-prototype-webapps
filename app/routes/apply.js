@@ -12,6 +12,7 @@ router.use(function(req, res, next) {
   res.locals.your = applicant === 'someone-else' ? 'their' : 'your';
   res.locals.youOrThem = applicant === 'someone-else' ? 'them' : 'you';
   res.locals.yourself = applicant === 'someone-else' ? 'the applicant' : 'yourself';
+  res.locals.iThey = applicant === 'someone-else' ? 'they' : 'I';
 
   if (!req.session.data['council-name']) {
     res.locals.data['council-name'] = 'your local council';
@@ -143,10 +144,125 @@ router.get('/check-eligibility/existing-badge/review-backend', function (req, re
 
 
 router.get('/check-eligibility/benefits-backend', function (req, res) {
-  if (req.query.benefit === 'none') {
-    res.render('apply-for-a-blue-badge/check-eligibility/disability');
+  switch (req.session.data['benefit']) {
+    case "none":
+      res.render('apply-for-a-blue-badge/check-eligibility/disability');
+      break;
+    case "war-pensioners":
+      res.redirect('/apply-for-a-blue-badge/check-eligibility/decision');
+      break;
+    case "pip":
+      if(req.session.data['nation'] === "scotland") {
+        res.redirect('/apply-for-a-blue-badge/check-eligibility/pip-did-you-get-dla');
+      } else if(req.session.data['council-name'] == 'Northern Ireland') {
+        res.redirect('/apply-for-a-blue-badge/check-eligibility/decision');  
+      } else  {
+        res.redirect('/apply-for-a-blue-badge/check-eligibility/pip-how-many-moving');  
+      }
+      break;
+    case "dla":
+      res.redirect('/apply-for-a-blue-badge/check-eligibility/dla-higher-rate');
+      break;
+    case "armed-forces": 
+      res.redirect('/apply-for-a-blue-badge/check-eligibility/afcs-received-lump');
+      break;
+    }
+});
+
+router.get('/check-eligibility/pip-dla-backend', function (req, res) {
+  switch (req.session.data['pip-dla']) {
+    case "yes":
+      res.redirect('/apply-for-a-blue-badge/check-eligibility/decision');
+      break;
+    case "no":
+      res.redirect('/apply-for-a-blue-badge/check-eligibility/pip-how-many-moving');
+      break;
+    }
+});
+
+router.get('/check-eligibility/pip-moving-backend', function (req, res) {
+  switch (req.session.data['pip-moving']) {
+    case "more-than-8":
+      res.redirect('/apply-for-a-blue-badge/check-eligibility/decision');
+      break;
+    case "less-than-8":
+      res.redirect('/apply-for-a-blue-badge/check-eligibility/pip-how-many-planning-following');
+      break;
+    }
+});
+
+router.get('/check-eligibility/pip-planning-backend', function (req, res) {
+  switch (req.session.data['pip-planning']) {
+    case "more-than-12":
+      res.redirect('/apply-for-a-blue-badge/check-eligibility/decision');
+      break;
+    case "less-than-12":
+      res.redirect('/apply-for-a-blue-badge/check-eligibility/disability');
+      break;
+    }
+});
+
+router.get('/check-eligibility/dla-higher-backend', function (req, res) {
+  switch (req.session.data['dla-higher']) {
+    case "yes":
+      res.redirect('/apply-for-a-blue-badge/check-eligibility/decision');
+      break;
+    case "no":
+      res.redirect('/apply-for-a-blue-badge/check-eligibility/disability');
+      break;
+    }
+});
+
+router.get('/check-eligibility/afcs-lump-backend', function (req, res) {
+  switch (req.session.data['afcs-lump']) {
+    case "yes":
+      res.redirect('/apply-for-a-blue-badge/check-eligibility/afcs-permanent-substantial');
+      break;
+    case "no":
+      if(req.session.data['nation'] === "wales") {
+        res.redirect('/apply-for-a-blue-badge/check-eligibility/afcs-mental-disorder');
+      } else {
+        res.redirect('/apply-for-a-blue-badge/check-eligibility/disability');
+      }
+      break;
+    }
+});
+
+router.get('/check-eligibility/afcs-permanent-backend', function (req, res) {
+  switch (req.session.data['afcs-permanent']) {
+    case "yes":
+      res.redirect('/apply-for-a-blue-badge/check-eligibility/decision');
+      break;
+    case "no":
+      if(req.session.data['nation'] === "wales") {
+        res.redirect('/apply-for-a-blue-badge/check-eligibility/afcs-mental-disorder');
+      } else {
+        res.redirect('/apply-for-a-blue-badge/check-eligibility/disability');
+      }
+      break;
+    }
+});
+
+router.get('/check-eligibility/afcs-mental-backend', function (req, res) {
+  switch (req.session.data['afcs-mental']) {
+    case "yes":
+      res.redirect('/apply-for-a-blue-badge/check-eligibility/decision');
+      break;
+    case "no":
+      res.redirect('/apply-for-a-blue-badge/check-eligibility/disability');
+      break;
+    }
+});
+
+router.get('/check-eligibility/pip-did-you-get-dla', function (req, res) {
+  res.render(checkEligibilityTemplatePath+'pip-did-you-get-dla');
+});
+
+router.get('/check-eligibility/disability-backend', function (req, res) {
+  if (req.session.data['disability'] === 'problems-walking') {
+    res.redirect('/apply-for-a-blue-badge/check-eligibility/walking');
   } else {
-    res.redirect('/apply-for-a-blue-badge/check-eligibility/decision');
+    res.render(checkEligibilityTemplatePath+'decision');
   }
 });
 
@@ -560,8 +676,13 @@ router.get('/prove-eligibility/walking-time-backend', function(req, res) {
   if (req.session.data['how-long-walk'] === 'cant-walk') {
     res.redirect(proveEligibilityPath+'describe-conditions');
   } else {
-    res.redirect(proveEligibilityPath+'how-quickly-do-you-walk');
+    res.redirect(proveEligibilityPath+'where-can-you-walk');
   }
+});
+
+router.get('/prove-eligibility/where-can-you-walk', function(req, res) {
+  Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/apply-for-a-blue-badge/prove-eligibility/how-quickly-do-you-walk','check-walking'))
+  res.render(proveEligibilityTemplatePath+'where-can-you-walk');
 });
 
 router.get('/prove-eligibility/how-quickly-do-you-walk', function(req, res) {

@@ -8,9 +8,6 @@
 
 {% block inner_content %}
 
-
-
-
 <form action="disability-backend">
   {% set disabilityNoneHtml %}
     {{ govukTextarea({
@@ -22,121 +19,113 @@
     }) }}
   {% endset -%}
 
-    {% if  data['nation'] === "wales" or data['nation'] === "scotland" %}
+  {% if  data['nation'] === "wales" or data['nation'] === "scotland" or data['council-name'] == 'Northern Ireland' %}
 
-    {% set problemsWalkingText = you | capitalize + " have a substantial disability that will last for at least 12 months that means " + you + " cannot walk or find walking very difficult"  %}
+  {% set problemsWalkingText = you | capitalize + " have a substantial disability that will last for at least 12 months that means " + you + " cannot walk or find walking very difficult"  %}
 
-    {% else %}
+  {% else %}
 
-    {% set problemsWalkingText = you | capitalize + " have a permanent disability which means " + you + " can not walk or find walking very difficult"  %}
+  {% set problemsWalkingText = you | capitalize + " have a permanent disability which means " + you + " can not walk or find walking very difficult"  %}
 
-    {% endif %}
+  {% endif %}
 
-    {% if  data['age'] > 16 %}
+  {% set sightImpairedReason = {
+      "value": "blind",
+      "text": you | capitalize + "'re severely sight impaired (blind)"
+    }
+  %}
 
-      {% set differentOptions = [
-        {
-          "value": "blind",
-          "text": you | capitalize + "'re severely sight impaired (blind)"
-        },
-        {
-          "value": "terminal",
-          "text": you | capitalize + " have a terminal illness and are expected to live less than 6 months"
-        },
-        {
-          "value": "problems-walking",
-          "text": problemsWalkingText
-        },
-        {
-          "value": "arms",
-          "text": you | capitalize + " have a severe disability in both arms and drive regularly, but can not operate parking meters"
-        },
-        {
-          "value": "none",
-          "text": "None of these reasons",
-          "id": "disability-none",
-          "conditional": {
-            "html": disabilityNoneHtml
-          }
-        }
-      ]
-      %}
+  {% set terminalReason = {
+      "value": "terminal",
+      "text": you | capitalize + " have a terminal illness and are expected to live less than 6 months"
+    }
+  %}
 
-    {% elif data['age'] <= 2 %}
+  {% set walkReason = {
+      "value": "problems-walking",
+      "text": problemsWalkingText
+    }
+  %}
 
-    {% set differentOptions = [
-        {
-          "value": "blind",
-          "text": you | capitalize + "'re severely sight impaired (blind)"
-        },
-        {
-          "value": "terminal",
-          "text": you | capitalize + " have a terminal illness and are expected to live less than 6 months"
-        },
-        {
-          "value": "child-bulky-equipment",
-          "text": you | capitalize + " need to be accompanied by bulky medical equipment"
-        },
-        {
-          "value": "child-close-to-vehicle",
-          "text": you | capitalize + " need to be near a vehicle to receive or be taken for treatment"
-        },
-        {
-          "value": "none",
-          "text": "None of these describe " + you + " medical condition or disability",
-          "id": "disability-none",
-          "conditional": {
-            "html": disabilityNoneHtml
-          }
-        }
-      ]
-    %}
+  {% set armsReason = {
+      "value": "arms",
+      "text": you | capitalize + " have a severe disability in both arms and drive regularly, but can not operate parking meters"
+    }
+  %}
 
-    {% else %}
+  {% set childBulkyReason = {
+      "value": "child-bulky-equipment",
+      "text": you | capitalize + " need to be accompanied by bulky medical equipment"
+    }
+  %}
+
+  {% set childNearReason = {
+      "value": "child-close-to-vehicle",
+      "text": you | capitalize + " need to be near a vehicle to receive or be taken for treatment"
+    }
+  %}
+
+  {% set noneReason = {
+      "value": "none",
+      "text": "None of these reasons",
+      "id": "disability-none",
+      "conditional": {
+        "html": disabilityNoneHtml
+      }
+    }
+  %}
+
+  {% if  data['age'] > 16 %}
 
     {% set differentOptions = [
-        {
-          "value": "blind",
-          "text": you | capitalize + "'re severely sight impaired (blind)"
-        },
-        {
-          "value": "terminal",
-          "text": you | capitalize + " have a terminal illness and are expected to live less than 6 months"
-        },
-        {
-          "value": "problems-walking",
-          "text": you | capitalize + " have a " + walesPermanent + " disability which means " + you + " can not walk or find walking very difficult" 
-        },
-        {
-          "value": "none",
-          "text": "None of these reasons",
-          "id": "disability-none",
-          "conditional": {
-            "html": disabilityNoneHtml
-          }
-        }
-      ]
+      sightImpairedReason,
+      terminalReason,
+      walkReason,
+      armsReason,
+      noneReason
+    ]
     %}
 
-    {% endif %}
-    
-    {{ govukRadios({
-      "idPrefix": "disability",
-      "name": "disability",
-      "attributes": {
-        "data-catchoption-label": true
-      },
-      "fieldset": {
-        "legend": {
-          "text": pageHeading,
-          "isPageHeading": true,
-          "classes": 'govuk-fieldset__legend--l'
-        }
-      },
-      "items": differentOptions
-    }) }}
+  {% elif data['age'] <= 2 %}
 
-    <div id="hiddenCaughtInputs"></div>
+  {% set differentOptions = [
+      sightImpairedReason,
+      terminalReason,
+      childBulkyReason,
+      childNearReason,
+      noneReason
+    ]
+  %}
+
+  {% else %}
+
+  {% set differentOptions = [
+      sightImpairedReason,
+      terminalReason,
+      walkReason,
+      noneReason
+    ]
+  %}
+
+  {% endif %}
+  
+  {{ govukRadios({
+    "idPrefix": "disability",
+    "name": "disability",
+    "attributes": {
+      "data-catchoption-label": true
+    },
+    "fieldset": {
+      "legend": {
+        "text": pageHeading,
+        "isPageHeading": true,
+        "classes": 'govuk-fieldset__legend--l'
+      }
+    },
+    "items": differentOptions
+  }) }}
+
+  <div id="hiddenCaughtInputs"></div>
   
   
   {{ govukButton({
