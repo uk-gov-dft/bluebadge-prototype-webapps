@@ -154,7 +154,9 @@ router.get('/check-eligibility/benefits-backend', function (req, res) {
     case "pip":
       if(req.session.data['nation'] === "scotland") {
         res.redirect('/apply-for-a-blue-badge/check-eligibility/pip-did-you-get-dla');
-      } else {
+      } else if(req.session.data['council-name'] == 'Northern Ireland') {
+        res.redirect('/apply-for-a-blue-badge/check-eligibility/decision');  
+      } else  {
         res.redirect('/apply-for-a-blue-badge/check-eligibility/pip-how-many-moving');  
       }
       break;

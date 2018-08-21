@@ -12,6 +12,55 @@
 
 
 <form action="decision">
+
+  
+  {% if  data['nation'] === "wales" %}
+
+  {% set differentOptions = [
+    {
+      "value": "help",
+      "text": you | capitalize + " can not walk without help from someone else, an animal or walking aids"
+    },
+    {
+      "value": "cognitive",
+      "text": you | capitalize + "'re unable to follow any journey, and require constant supervision because " + you + " have a condition that that severely affects " + your + " thinking, communication, understanding or memory"
+    },
+    {
+      "value": "pain",
+      "text": you | capitalize + " find walking very difficult due to pain, breathlessness or the time it takes"
+    },
+    {
+      "value": "dangerous",
+      "text": "Walking is dangerous to the health and safety of others"
+    },
+    {
+      "value": "none",
+      "text": "None of these describe " + your + " walking ability"
+    }
+  ] %}
+
+  {% else %}
+
+  {% set differentOptions = [
+    {
+      "value": "help",
+      "text": you | capitalize + " can not walk without help from someone else, an animal or walking aids"
+    },
+    {
+      "value": "pain",
+      "text": you | capitalize + " find walking very difficult due to pain, breathlessness or the time it takes"
+    },
+    {
+      "value": "dangerous",
+      "text": "Walking is dangerous to the health and safety of others"
+    },
+    {
+      "value": "none",
+      "text": "None of these describe " + your + " walking ability"
+    }
+  ] %}
+
+  {% endif %}
     
     {{ govukRadios({
       "idPrefix": "disability-walking",
@@ -26,24 +75,7 @@
           "classes": 'govuk-fieldset__legend--l'
         }
       },
-      "items": [
-        {
-          "value": "help",
-          "text": you | capitalize + " can not walk without help from someone else, an animal or walking aids"
-        },
-        {
-          "value": "pain",
-          "text": you | capitalize + " find walking very difficult due to pain, breathlessness or the time it takes"
-        },
-        {
-          "value": "dangerous",
-          "text": "Walking is dangerous to the health and safety of others"
-        },
-        {
-          "value": "none",
-          "text": "None of these describe " + your + " walking ability"
-        }
-      ]
+      "items": differentOptions
     }) }}
 
     <div id="hiddenCaughtInputs"></div>
