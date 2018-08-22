@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% set hasSaveClass = 'yes' %}
 
-{% set pageHeading = 'What\'s ' + your + ' gender?' %}
+{% set pageHeading = 'What is ' + your + ' gender?' %}
 
 {% block pageTitle %}
   {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
@@ -12,9 +12,22 @@
 
 
 <form action="{{formAction}}">
+  {% set identifyHTML %}
+  {{ govukInput({
+        label: {
+          text: "What gender do you identify with?"
+        },
+        id: "gender-identity",
+        name: "gender-identity"
+      }) }}
+  {% endset -%}
+
   {{ govukRadios({
     "idPrefix": "gender",
     "name": "gender",
+    "attributes": {
+          "data-catchoption-label": true
+        },
     "fieldset": {
       "legend": {
         "text": pageHeading,
@@ -24,23 +37,28 @@
     },
     "items": [
       {
-        "value": "female",
-        "text": "Female",
-          "checked": data['gender'] === 'female'
-      },
-      {
         "value": "male",
-        "text": "Male",
+        "text": "Man",
         "checked": data['gender'] === 'male'
       },
       {
+        "value": "female",
+        "text": "Woman",
+          "checked": data['gender'] === 'female'
+      },
+      {
         "value": "unspecified",
-        "text": "Unspecified",
-        "checked": data['gender'] === 'unspecified'
+        "text": "I identify in a different way",
+        "checked": data['gender'] === 'unspecified',
+        "conditional": {
+          "html": identifyHTML
+        }
       }
 
     ]
   }) }}
+
+  <div id="hiddenCaughtInputs"></div>
   
   {{ govukButton({
     "text": submitLabel
