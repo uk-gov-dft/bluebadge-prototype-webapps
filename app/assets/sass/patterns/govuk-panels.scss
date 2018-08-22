@@ -105,7 +105,20 @@
 	}
 }
 
-.mobile-upload-text {
+.mobile-upload-alternative-text {
+	display: none;
+}
+
+.hide-take-photo-text {
+	.mobile-upload-alternative-text {
+		display: block;	
+	}
+	.mobile-upload-text {
+		display: none;
+	}
+}
+
+.mobile-upload-text, .mobile-upload-alternative-text {
 	.is-desktop & {
 		display: none;
 	}
