@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Decision - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block inner_content %}
+
+{% if data['applicant'] === 'organisation' %}
+
+    <h1 class="govuk-heading-l">Based on your answers, your organisation isn't eligible for a Blue Badge</h1>
+    <p class="govuk-body">Blue Badges are only given to organisations who transport and care for people who need a Blue Badge.</p>
+    <p class="govuk-body">If you think that your organisation is eligible you should contact {{ data["council-name"] }} directly:</p>
+
+{% else %}
+
+	<h1 class="govuk-heading-l">{{ you | capitalize }}'re not eligible for a Blue Badge</h1>
+	<p class="govuk-body">Based on {{ your }} answers, {{ you }}'re not eligible for get a Blue Badge.</p>
+	<p class="govuk-body">If you still think that {{ you }} are, you can contact {{ data["council-name"] }}:
+
+{% endif %}
+
+<ul class="govuk-list">
+  <li>Website: <a href="#">www.{{data['council-name'] | lower}}.gov.uk</a></li>
+  <li>Email: <a href="#">bluebadge@{{data['council-name'] | lower}}.gov.uk</a></li>
+  <li>Phone: 0161 205 7321</li>
+</ul>
+  
+
+{% endblock %}

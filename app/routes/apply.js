@@ -262,21 +262,23 @@ router.get('/check-eligibility/disability-backend', function (req, res) {
   if (req.session.data['disability'] === 'problems-walking') {
     res.redirect('/apply-for-a-blue-badge/check-eligibility/walking');
   } else {
+    if(req.session.data['disability'] === 'none') {
+      res.render(checkEligibilityTemplatePath+'decision-not-eligible');
+    } else {
+      res.render(checkEligibilityTemplatePath+'decision');  
+    }
+    
+  }
+});
+
+router.get('/check-eligibility/walking-backend', function (req, res) {
+  if (req.session.data['disability-walking'] !== 'none') {
     res.render(checkEligibilityTemplatePath+'decision');
-  }
-});
-
-router.get('/check-eligibility/disability-backend', function (req, res) {
-  if (req.session.data['disability'] === 'problems-walking') {
-    res.redirect('/apply-for-a-blue-badge/check-eligibility/walking');
   } else {
-  	res.render(checkEligibilityTemplatePath+'decision');
+    res.render(checkEligibilityTemplatePath+'decision-not-eligible');
   }
 });
 
-// router.get('/check-eligibility/walking-backend', function (req, res) {
-//   res.render('apply-for-a-blue-badge/check-eligibility/decision');
-// });
 
 router.get('/check-eligibility/existing-badge/not-for-review/', function (req, res) {
   res.locals.formAction = '/apply-for-a-blue-badge/prepare';
@@ -291,13 +293,23 @@ router.get('/check-eligibility/enter-age', function (req, res) {
   }
 });
 
-router.get('/check-eligibility/org-transport', function (req, res) {
+
+router.get('/check-eligibility/org-care-for-backend', function (req, res) {
   if (req.session.data['org-care-for'] === 'no') {
-    res.redirect('/apply-for-a-blue-badge/check-eligibility/decision');
+    res.render(checkEligibilityTemplatePath+'decision-not-eligible');
   } else {
     res.render(checkEligibilityTemplatePath+'org-transport');
   }
 });
+
+router.get('/check-eligibility/org-transport-backend', function (req, res) {
+  if (req.session.data['org-transport'] === 'no') {
+    res.render(checkEligibilityTemplatePath+'decision-not-eligible');
+  } else {
+    res.render(checkEligibilityTemplatePath+'decision');
+  }
+});
+
 
 router.get('/check-eligibility/existing-badge/not-for-review-with-eligibility-questions', function (req, res) {
   res.locals.formAction = '/apply-for-a-blue-badge/check-eligibility/enter-age';
