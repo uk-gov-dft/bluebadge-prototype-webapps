@@ -44,6 +44,8 @@
   <div class="hidden-mouse">
     <form action="{{formAction}}">
       <p class="govuk-body">You can use the camera on your device to take a photo of your face and shoulders.</p>
+
+      <input type="hidden" id="change" name="photo-completed" value="true">
       
       {{ uploadComponentWidget.uploadComponent(
         '',
