@@ -30,6 +30,37 @@
 
 {% block content %}
 
+  {% if  data['search-by'] === "name" %}
+
+  {% set name = data['searchValue'] %}
+  
+  {% else %}
+
+  {% set name = 'Phillip Powell' %}
+
+  {% endif %}
+
+
+  {% if  data['search-by'] === "badge-number" %}
+
+  {% set badgeNumber = data['searchValue'] %}
+  
+  {% else %}
+
+  {% set badgeNumber = 'eb56Yq' %}
+
+  {% endif %}
+
+  {% if  data['search-by'] === "postcode" %}
+
+  {% set postcode = data['searchValue'] %}
+  
+  {% else %}
+
+  {% set postcode = 'M1 1BS' %}
+
+  {% endif %}
+
 <section class="split-section">
   <h2 class="govuk-heading-m">
     Personal details
@@ -42,7 +73,7 @@
         Full name
       </dt>
       <dd class="govuk-check-your-answers__answer">
-        Phillip Powell
+        {{ name }}
       </dd>
     </div>
 
@@ -78,7 +109,7 @@
         Address
       </dt>
       <dd class="govuk-check-your-answers__answer">
-        114 Mansfield Road, Crumpsall, Manchester, M8 ITG
+        114 Mansfield Road, Crumpsall, Manchester, {{ postcode }}
       </dd>
     </div>
 
@@ -87,7 +118,7 @@
         Contact full name
       </dt>
       <dd class="govuk-check-your-answers__answer">
-        Phillip Powell
+        {{ name }}
       </dd>
     </div>
   
@@ -114,7 +145,7 @@
         Email address
       </dt>
       <dd class="govuk-check-your-answers__answer">
-        p.powell@gmail.com
+        footie_4_lyf@gmail.com
       </dd>
     </div>
   
@@ -158,7 +189,7 @@
         Badge number
       </dt>
       <dd class="govuk-check-your-answers__answer">
-        E5B1AF
+        {{ data['badgeNumber'] }}
       </dd>
     </div>
   

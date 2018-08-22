@@ -1,0 +1,83 @@
+{% extends "admin_layout.html" %}
+
+{% block page_header %}
+  <h1>{{title}}</h1><p class="count">2</p>
+  <div class="search-box-container">
+    <form action="" class="search-box">
+      {% include "includes/search.html" %}
+    </form>
+    <div class="search-box__options">
+      <a href="/public/images/new-applications.csv">Export all</a>
+    </div>
+  </div>
+{% endblock %}
+
+{% block content %}
+  {{ govukTable({
+    "firstCellIsHeader": false,
+    "head": [
+      {
+        "text": "Reference"
+      },
+      {
+        "text": "Name"
+      },
+      {
+        "text": "NI number"
+      },
+      {
+        "text": "DoB"
+      },
+      {
+        "text": "Reason"
+      },
+      {
+        "text": "Submitted date",
+        "format": "sorted-desc"
+      }
+    ],
+    "rows": [
+      [
+        {
+          "html": "<a href='view-replacement'>1234334523</a>"
+        },
+        {
+          "text": "Gerry Louis Peterson"
+        },
+        {
+          "text": "JR808261A"
+        },
+        {
+          "text": "12 May 1962"
+        },
+        {
+          "text": "Stolen"
+        },
+        {
+          "text": "13/01/17 13:04"
+        }
+      ],
+      [
+        {
+          "html": "<a href=''>1234334523</a>"
+        },
+        {
+          "text": "Theodore Charles David McDougall"
+        },
+        {
+          "text": "JR318821C"
+        },
+        {
+          "text": "3 Jan 1944"
+        },
+        {
+          "text": "Lost"
+        },
+        {
+          "text": "13/01/17 08:24"
+        }
+      ]
+    ]
+  }) }}
+
+{% endblock %}
