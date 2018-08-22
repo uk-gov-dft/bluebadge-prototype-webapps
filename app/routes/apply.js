@@ -765,6 +765,12 @@ router.get('/prove-eligibility/check-child', function(req, res) {
 });
 
 
+router.get('/upload-medical-evidence', function (req, res) {
+  res.locals.formAction = 'task-list?medical-evidence-completed=true';
+  res.locals.submitLabel = 'Continue';
+  res.locals.change = req.query.change;
+  res.render(proveEligibilityTemplatePath+'upload-medical-evidence')
+});
 
 
 // List treatments
