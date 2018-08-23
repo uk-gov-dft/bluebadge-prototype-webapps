@@ -2,9 +2,9 @@
 {% set hasSaveClass = 'yes' %}
 
 {% if data['mobility-aids-array'].length %}
-{% set pageHeading = 'Name somewhere ' + you + ' can walk to using a mobility aid' %}
+{% set pageHeading = 'Name a place that ' + you + ' regularly walk to using a mobility aid' %}
 {% else %}
-{% set pageHeading = 'Name somewhere ' + you + ' can walk to' %}
+{% set pageHeading = 'Name a place that ' + you + ' regularly walk to' %}
 {% endif %}
 
 {% block pageTitle %}
@@ -21,10 +21,10 @@
 
   {{ govukInput({
     label: {
-      text: "Place you can walk to"
+      text: "This could be a building or landmark"
     },
     hint: {
-      text: 'This could be a building or a landmark. For example, "The post office"'
+      text: 'For example, “from your home to the Post office on the High Street"'
     },
     id: "walk-location",
     name: "walk-location",
