@@ -29,12 +29,6 @@
 
   {% endif %}
 
-  {% set sightImpairedReason = {
-      "value": "blind",
-      "text": you | capitalize + "'re severely sight impaired (blind)"
-    }
-  %}
-
   {% set terminalReason = {
       "value": "terminal",
       "text": you | capitalize + " have a terminal illness and are expected to live less than 6 months"
@@ -78,7 +72,6 @@
   {% if  data['age'] > 16 %}
 
     {% set differentOptions = [
-      sightImpairedReason,
       terminalReason,
       walkReason,
       armsReason,
@@ -89,7 +82,6 @@
   {% elif data['age'] <= 2 %}
 
   {% set differentOptions = [
-      sightImpairedReason,
       terminalReason,
       childBulkyReason,
       childNearReason,
@@ -100,7 +92,6 @@
   {% else %}
 
   {% set differentOptions = [
-      sightImpairedReason,
       terminalReason,
       walkReason,
       noneReason

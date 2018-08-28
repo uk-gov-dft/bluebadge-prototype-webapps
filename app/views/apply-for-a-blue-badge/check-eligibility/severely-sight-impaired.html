@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+{% set pageHeading = 'Are ' + you + ' severely sight impaired (blind)?' %}
+
+{% block pageTitle %}
+  {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block inner_content %}
+    
+  <form action="blind-backend">
+  
+    {{ govukRadios({
+      "idPrefix": "disability",
+      "name": "disability",
+      "attributes": {
+          "data-catchoption-label": true
+        },
+      "fieldset": {
+        "legend": {
+          "text": pageHeading,
+          "isPageHeading": true,
+          "classes": 'govuk-fieldset__legend--l'
+        }
+      },
+      "items": [
+        {
+          "value": "blind",
+          "text": 'Yes'
+        },
+        {
+          "value": "not-blind",
+          "text": 'No'
+        }]
+    }) }}
+  
+    <div id="hiddenCaughtInputs"></div>
+    
+    
+    {{ govukButton({
+      "text": "Continue"
+    }) }}
+  </form>
+
+{% endblock %}

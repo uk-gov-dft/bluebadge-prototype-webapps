@@ -287,6 +287,14 @@ router.get('/check-eligibility/enter-age', function (req, res) {
   }
 });
 
+router.get('/check-eligibility/blind-backend', function (req, res) {
+  if (req.session.data['disability'] === 'blind') {
+    res.render(checkEligibilityTemplatePath+'decision');
+  } else {
+    res.render(checkEligibilityTemplatePath+'benefits');
+  }
+});
+
 
 router.get('/check-eligibility/org-care-for-backend', function (req, res) {
   if (req.session.data['org-care-for'] === 'no') {
