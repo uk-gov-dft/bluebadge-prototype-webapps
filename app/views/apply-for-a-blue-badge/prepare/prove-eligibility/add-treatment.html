@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% set hasSaveClass = 'yes' %}
 
-{% set pageHeading = 'Add a treatment' %}
+{% set pageHeading = 'Add treatment' %}
 
 {% block pageTitle %}
   {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
@@ -16,7 +16,7 @@
 <form action="{{formAction}}">
   {{ govukInput({
     "label": {
-      "text": "Describe the treatment"
+      "text": "Describe this treatment"
     },
     "name": "treatment-description"
   }) }}
@@ -38,11 +38,11 @@
   }) }}
 
   {{ govukButton({
-    "text": "Add this treatment"
+    "text": "Add treatment"
   }) }}
 
   <div class="govuk-info-panel">
-    <p class="govuk-body">You can add another treatment afterwards, if required.</p>
+    <p class="govuk-body">You can add more treatments on the next page if you need to.</p>
   </div>
 
   <!-- Has save -->

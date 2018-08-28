@@ -8,6 +8,7 @@ router.use(function(req, res, next) {
   res.locals.serviceUrl = "/apply-for-a-blue-badge/";
   var applicant = req.session.data['applicant'];
   res.locals.my = applicant === 'someone-else' ? 'their' : 'my';
+  res.locals.me = applicant === 'someone-else' ? 'them' : 'me';
   res.locals.you = applicant === 'someone-else' ? 'they' : 'you';
   res.locals.your = applicant === 'someone-else' ? 'their' : 'your';
   res.locals.youOrThem = applicant === 'someone-else' ? 'them' : 'you';

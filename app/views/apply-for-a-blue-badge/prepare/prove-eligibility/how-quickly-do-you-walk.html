@@ -4,13 +4,13 @@
 {% if data['variant'] == 'B' %}
   {% set comparedTo = 'someone who doesn\'t have walking difficulties' %}
 {% else %}
-  {% set comparedTo = 'other people' %}
+  {% set comparedTo = 'others' %}
 {% endif %}
 
 {% if data['mobility-aids-array'].length %}
-  {% set pageHeading = 'How quickly can ' + you + ' walk using mobility aids, compared to ' + comparedTo + ' ?' %}
+  {% set pageHeading = 'What\'s ' + your + ' walking speed with a mobility aid, compared to ' + comparedTo + ' ?' %}
 {% else %}
-  {% set pageHeading = 'How quickly can ' + you + ' walk, compared to ' + comparedTo + '?' %}
+  {% set pageHeading = 'What\'s ' + your + ' walking speed, compared to ' + comparedTo + '?' %}
 {% endif %}
 
 
