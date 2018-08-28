@@ -35,9 +35,9 @@
 
   {% else %}
       
-    <p class="govuk-body-l">For this {{application}}, you'll need:</p>
+    <p class="govuk-body-l">What you'll need to provide</p>
 
-    <p class="govuk-body">A photo or scan of:</p>
+    <p class="govuk-body">A photo or scan that shows:</p>
 
     <ul class="govuk-list govuk-list--bullet">
       {% if data['benefit'] === 'pip' %}
@@ -56,19 +56,21 @@
           <br>(hospital letter or prescriptions)</li>
 
       {% endif %}
-      <li>{{your}} proof of identity</li>
-      <li>{{your}} proof of address <br>
-          (this could be on {{your}} benefit award letter)</li>
+      <li>proof of {{your}} identity (passport, birth certificate, driving licence)</li>
+      <li>proof of {{your}} address (dated within the last 12 months)</li>
       
     </ul>
 
-    <p class="govuk-body">{{you | capitalize}}'ll also need:</p>
+    <p class="govuk-body">{{you | capitalize}}'ll also need to provide:</p>
 
     <ul class="govuk-list govuk-list--bullet">
-        <li>contact details (phone number or email address)</li>
+        <li>contact details (phone number and email address)</li>
         <li>a recent digital photo of {{your}} face and shoulders</li>
       {% if data['disability'] === 'blind' %}
-        <li>either the name of the council {{you}}'re registered as severely sight impaired with <br> <b>or</b> a photo (or scan) of {{your}} CVI form</li>
+        <li>either the name of the council {{you}}'re registered as severely sight impaired with <br> <b>or</b> a photo (or scan) of part 1 of {{your}} CVI form</li>
+      {% endif %}
+      {% if data['nation'] !== "wales" %}
+      <li>a credit or debit card to pay a {{feePrice}} issue fee. The fee will be refunded if {{your}} application is not successful</li>
       {% endif %}
     </ul>
 
@@ -76,8 +78,6 @@
       "text": "Start " + application,
       "href": '/apply-for-a-blue-badge/task-list'
     }) }}
-
-    <p class="govuk-body">There's a {{feePrice}} badge issue fee, which will be refunded if {{your}} application is not successful.</p>
 
     <p class="govuk-body">{{data['council-name']}} can take up to 4 weeks to make a decision.</p>
 

@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 
-{% set pageHeading = 'How would ' + you + ' describe ' + your + ' walking ability?' %}
+{% set pageHeading = 'What makes walking difficult for ' + you + '?' %}
 
 {% block pageTitle %}
   {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
@@ -19,7 +19,7 @@
   {% set differentOptions = [
     {
       "value": "help",
-      "text": you | capitalize + " can not walk without help from someone else, an animal or walking aids"
+      "text": you | capitalize + " cannot walk without help from someone else or using walking aids"
     },
     {
       "value": "pain",
@@ -27,7 +27,7 @@
     },
     {
       "value": "dangerous",
-      "text": "Walking is dangerous to the health and safety of others"
+      "text": "Walking is dangerous to " + your + " health and safety or the health and safety of others"
     },
     {
       "value": "none",
@@ -40,7 +40,7 @@
   {% set differentOptions = [
     {
       "value": "help",
-      "text": you | capitalize + " can not walk without help from someone else, an animal or walking aids"
+      "text": you | capitalize + " cannot walk without help from someone else or using walking aids"
     },
     {
       "value": "cognitive",
@@ -52,7 +52,7 @@
     },
     {
       "value": "dangerous",
-      "text": "Walking is dangerous to the health and safety of others"
+      "text": "Walking is dangerous to " + your + " health and safety or the health and safety of others"
     },
     {
       "value": "none",
