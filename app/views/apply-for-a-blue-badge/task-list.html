@@ -249,6 +249,8 @@
               {% endif %}
             </li>
             {% endif %}
+
+            {% if data['renewal-or-new-application'] !== "renewal" %}
             <li class="app-task-list__item">
               <a class="app-task-list__task-name" href="prove-your-identity{% if data['identity-completed'] == 'true'%}?identity-done=true{% endif %}" aria-describedby="identity-completed">
                 Prove identity
@@ -263,6 +265,7 @@
               }) }}
               {% endif %}
             </li>
+            {% endif %}
             {% if (data['your-identity-file-upload-shows-current-address'] === 'no' and 
                     data['benefit-proof-file-upload-shows-current-address'] === 'no') or 
                   (data['your-identity-file-upload-shows-current-address'] === 'no' and
