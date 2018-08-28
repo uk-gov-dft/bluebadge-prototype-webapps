@@ -110,8 +110,6 @@ router.get('/check-eligibility/existing-badge/index-backend', function (req, res
       var blueBadgeNumber = req.session.data['existing-blue-badge-number'];
       if (blueBadgeNumber.indexOf('1111') === 0 && blueBadgeNumber.lastIndexOf('1111') === blueBadgeNumber.length-4) {
         res.redirect('/apply-for-a-blue-badge/check-eligibility/existing-badge/not-for-renewal');
-      } else if (blueBadgeNumber.indexOf('2222') === 0 && blueBadgeNumber.lastIndexOf('2222') === blueBadgeNumber.length-4) {
-        res.redirect('/apply-for-a-blue-badge/check-eligibility/existing-badge/not-for-review');
       } else if (blueBadgeNumber.indexOf('3333') === 0 && blueBadgeNumber.lastIndexOf('3333') === blueBadgeNumber.length-4) {
         res.redirect('/apply-for-a-blue-badge/check-eligibility/existing-badge?show=errors&existing=yes');
       } else {
@@ -281,11 +279,6 @@ router.get('/check-eligibility/walking-backend', function (req, res) {
 });
 
 
-router.get('/check-eligibility/existing-badge/not-for-review/', function (req, res) {
-  res.locals.formAction = '/apply-for-a-blue-badge/prepare';
-  res.render(checkEligibilityTemplatePath+'existing-badge/not-for-review.html');
-});
-
 router.get('/check-eligibility/enter-age', function (req, res) {
   if (req.session.data['applicant'] === 'organisation') {
     res.redirect('/apply-for-a-blue-badge/check-eligibility/org-care-for');
@@ -310,13 +303,6 @@ router.get('/check-eligibility/org-transport-backend', function (req, res) {
     res.render(checkEligibilityTemplatePath+'decision');
   }
 });
-
-
-router.get('/check-eligibility/existing-badge/not-for-review-with-eligibility-questions', function (req, res) {
-  res.locals.formAction = '/apply-for-a-blue-badge/check-eligibility/enter-age';
-  res.render(checkEligibilityTemplatePath+'existing-badge/not-for-review');
-});
-
 
 /* 
   ---------------------------------------------------------------
