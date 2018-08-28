@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% set hasSaveClass = 'yes' %}
 
-{% set pageHeading = 'What is ' + your + ' gender?' %}
+{% set pageHeading = 'What\'s ' + your + ' gender?' %}
 
 {% block pageTitle %}
   {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
@@ -9,7 +9,17 @@
 
 {% block inner_content %}
 
+{% if data['age'] < 16 %}
 
+{% set genderMaleLabel = 'Boy' %}
+{% set genderFemaleLabel = 'Girl' %}
+
+{% else %}
+
+{% set genderMaleLabel = 'Man' %}
+{% set genderFemaleLabel = 'Woman' %}
+
+{% endif %}
 
 <form action="{{formAction}}">
   {% set identifyHTML %}
@@ -38,17 +48,17 @@
     "items": [
       {
         "value": "male",
-        "text": "Man",
+        "text": genderMaleLabel,
         "checked": data['gender'] === 'male'
       },
       {
         "value": "female",
-        "text": "Woman",
+        "text": genderFemaleLabel,
           "checked": data['gender'] === 'female'
       },
       {
         "value": "unspecified",
-        "text": "I identify in a different way",
+        "text": iThey | capitalize + " identify in a different way",
         "checked": data['gender'] === 'unspecified',
         "conditional": {
           "html": identifyHTML

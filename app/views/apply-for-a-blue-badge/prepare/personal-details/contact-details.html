@@ -21,7 +21,7 @@
       "text": "Full name"
     },
     "hint": {
-      "text": "This should be the name of the main point of contact"
+      "text": "Your name or the name of the person that manages their affairs"
     },
     id: "contact-full-name",
     name: "contact-full-name",
@@ -36,7 +36,7 @@
       "text": "Main phone number"
     },
     "hint": {
-      "text": "This should be a mobile number. We'll call this number first to speak to " + you + " about " + your + " " + application + " or to check if we suspect that someone else is using " + your + " badge."
+      "text": "This should ideally be a mobile number"
     },
     classes: "govuk-input--width-20",
     id: "primary-phone-number",
@@ -45,12 +45,14 @@
     value: data['primary-phone-number']
   }) }}
 
+  {{ govukDetails({
+    summaryText: "Why do we need a phone number?",
+    text: "We will call the phone number entered here to speak to " + youOrThem + " about " + your + " " + application + " or to check if we suspect that someone else is using " + your + " badge."
+  }) }}
+
   {{ govukInput({
     "label": {
       "text": "Alternative phone number (optional)"
-    },
-    "hint": {
-      "text": "We'll use this number if we're unable to reach " + you + " on " + your + " main phone number."
     },
     classes: "govuk-input--width-20",
     id: "secondary-phone-number",
@@ -64,7 +66,7 @@
       "text": "Email address (optional)"
     },
     "hint": {
-      "text": "We'll only use this to contact " + you + " about this " + application
+      "text": "For updates about this " + application
     },
     id: "email-address",
     name: "email-address",

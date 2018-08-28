@@ -16,12 +16,19 @@
 <form action="{{ formAction }}">
   <input type="hidden" id="change" name="identity-completed" value="true">
   <p class="govuk-body">You need to upload a copy of a document which proves {{ your }} identity such as:</p>
+
   <ul class="govuk-list govuk-list--bullet">
-      <li>the photo page of {{ your }} passport</li>
+    <li>the photo page of {{ your }} passport</li>
+    <li>{{ your }} birth or adoption certificate</li>
+    
+    {% if data['real-age'] >= 16 %}
+      {% if data['disability'] !== 'blind' %}
       <li>{{ your }} driving licence</li>
-      <li>{{ your }} birth or adoption certificate</li>
-      <li>{{ your }} marriage, civil partnership, divorce or dissolution certificate</li>
+      {% endif %}
+    <li>{{ your }} marriage, civil partnership, divorce or dissolution certificate</li>
+    {% endif %}
   </ul>
+  
 
   {{ uploadComponentWidget.uploadComponent(
     'prove-your-identity',
