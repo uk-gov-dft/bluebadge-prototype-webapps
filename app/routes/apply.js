@@ -532,7 +532,7 @@ const proveEligibilityPath = '/apply-for-a-blue-badge/prove-eligibility/';
 const proveEligibilityTemplatePath = 'apply-for-a-blue-badge/prepare/prove-eligibility/';
 
 router.get('/prove-eligibility', function(req, res) {
-  if (req.session.data['benefit'] !== 'none') {
+  if (req.session.data['benefit'] !== 'none' && req.session.data['disability'] !== 'blind') {
   	res.redirect('/apply-for-a-blue-badge/prove-benefit');
   } else if (req.session.data['disability'] === 'blind') {
     res.redirect(proveEligibilityPath+'are-you-registered-blind');

@@ -139,7 +139,8 @@
 
             
 
-            {% if data['disability'] === 'child-bulky-equipment' or data['disability'] === 'child-close-to-vehicle'  %}
+            {% if data['disability'] === 'child-bulky-equipment' or 
+                  data['disability'] === 'child-close-to-vehicle'  %}
               <li class="app-task-list__item">
                 <a class="app-task-list__task-name" href="prove-eligibility/{% if data['child-completed'] == 'true'%}check-child{%else%}describe-conditions{% endif %}" aria-describedby="child-completed">
                   Describe their condition
@@ -175,7 +176,9 @@
 
             {% endif %}
 
-            {% if data['disability'] === 'problems-walking' or data['disability'] === 'child-bulky-equipment' or data['disability'] === 'child-close-to-vehicle'  %}
+            {% if data['disability'] === 'problems-walking' or 
+                  data['disability'] === 'child-bulky-equipment' or 
+                  data['disability'] === 'child-close-to-vehicle'  %}
 
             <li class="app-task-list__item">
               <a class="app-task-list__task-name" href="prove-eligibility/list-healthcare-professionals{% if data['hcp-completed'] == 'true'%}?hcp-done=true{% endif %}" aria-describedby="hcp-completed">
@@ -195,7 +198,9 @@
 
 
 
-            {% if data['benefit'] !== 'none' and data['renewal-or-new-application'] !== "renewal" %}
+            {% if data['benefit'] !== 'none' and 
+                  data['renewal-or-new-application'] !== "renewal" and
+                  data['disability'] !== "blind" %}
             <li class="app-task-list__item">
               <a class="app-task-list__task-name" href="prove-benefit{% if data['benefit-completed'] == 'true'%}?benefit-done=true{% endif %}" aria-describedby="benefit-completed">
                 Provide proof of benefit
@@ -258,7 +263,10 @@
               }) }}
               {% endif %}
             </li>
-            {% if (data['your-identity-file-upload-shows-current-address'] === 'no' and data['benefit-proof-file-upload-shows-current-address'] === 'no') or ( data['your-identity-file-upload-shows-current-address'] === 'no' and data['benefit'] === 'none') %}
+            {% if (data['your-identity-file-upload-shows-current-address'] === 'no' and 
+                    data['benefit-proof-file-upload-shows-current-address'] === 'no') or 
+                  (data['your-identity-file-upload-shows-current-address'] === 'no' and
+                    data['benefit'] === 'none') %}
             <li class="app-task-list__item">
               <a class="app-task-list__task-name" href="prove-your-address{% if data['address-completed'] == 'true'%}?address-done=true{% endif %}" aria-describedby="address-completed">
                 Prove address
