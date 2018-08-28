@@ -19,6 +19,20 @@
 
       <div class="govuk-check-your-answers__contents">
         <dt class="govuk-check-your-answers__question">
+          Description of condition
+        </dt>
+        <dd class="govuk-check-your-answers__answer">
+          {{data['describe-condition']}}
+        </dd>
+        <dd class="govuk-check-your-answers__change">
+          <a href="describe-conditions?change=true">
+            Change<span class="govuk-visually-hidden"> description of condition</span>
+          </a>
+        </dd>
+      </div>
+      
+      <div class="govuk-check-your-answers__contents">
+        <dt class="govuk-check-your-answers__question">
           Walking difficulty
         </dt>
         <dd class="govuk-check-your-answers__answer">
@@ -94,20 +108,6 @@
         <dd class="govuk-check-your-answers__change">
           <a href="how-quickly-do-you-walk?change=true">
             Change<span class="govuk-visually-hidden"> walking speed</span>
-          </a>
-        </dd>
-      </div>
-
-      <div class="govuk-check-your-answers__contents">
-        <dt class="govuk-check-your-answers__question">
-          Description of condition
-        </dt>
-        <dd class="govuk-check-your-answers__answer">
-          {{data['describe-condition']}}
-        </dd>
-        <dd class="govuk-check-your-answers__change">
-          <a href="describe-conditions?change=true">
-            Change<span class="govuk-visually-hidden"> description of condition</span>
           </a>
         </dd>
       </div>

@@ -17,6 +17,8 @@
     
     <dl class="govuk-check-your-answers govuk-check-your-answers--short">
       
+      
+      
       {% if data['disability'] === 'blind' %}
       
         {% set whichCompleted = 'blind-completed=true' %}
@@ -44,6 +46,20 @@
       {% if (data['disability'] === 'arms') %}
 
         {% set whichCompleted = 'arms-completed=true' %}
+
+        <div class="govuk-check-your-answers__contents">
+          <dt class="govuk-check-your-answers__question">
+            Description of condition
+          </dt>
+          <dd class="govuk-check-your-answers__answer">
+            {{data['describe-condition']}}
+          </dd>
+          <dd class="govuk-check-your-answers__change">
+            <a href="describe-conditions?change=true">
+              Change<span class="govuk-visually-hidden"> description of condition</span>
+            </a>
+          </dd>
+        </div>
 
         <div class="govuk-check-your-answers__contents">
           <dt class="govuk-check-your-answers__question">
@@ -93,20 +109,6 @@
           </div>
         {% endif %}
       {% endif %}
-
-      <div class="govuk-check-your-answers__contents">
-        <dt class="govuk-check-your-answers__question">
-          Description of condition
-        </dt>
-        <dd class="govuk-check-your-answers__answer">
-          {{data['describe-condition']}}
-        </dd>
-        <dd class="govuk-check-your-answers__change">
-          <a href="describe-conditions?change=true">
-            Change<span class="govuk-visually-hidden"> description of condition</span>
-          </a>
-        </dd>
-      </div>
 
       
     </dl>
