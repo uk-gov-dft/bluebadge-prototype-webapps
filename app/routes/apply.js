@@ -397,7 +397,7 @@ router.get('/personal-details/your-address', function (req, res) {
   } else {
     res.locals.formAction = 'select-address';
   }
-  res.locals.submitLabel = 'Continue';
+  res.locals.submitLabel = 'Find address';
   res.render(personDetailsTemplatePath+'your-address');
 })
 
