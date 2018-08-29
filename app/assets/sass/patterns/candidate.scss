@@ -156,3 +156,12 @@
     margin-bottom: 0;
   }
 }
+
+.task-list-deactivated-item {
+  p {
+    margin-bottom: 0;
+  }
+  + a {
+    display: none;
+  }
+}

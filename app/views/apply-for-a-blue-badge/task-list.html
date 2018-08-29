@@ -312,6 +312,7 @@
           </h2>
           <ul class="app-task-list__items">
             <li class="app-task-list__item">
+              <div class="task-list-deactivated-item"><p class="govuk-body-s">Read declaration</p></div>
               <a class="app-task-list__task-name" href="apply/declaration" aria-describedby="declaration-completed">
                 Read declaration
               </a>
@@ -327,6 +328,7 @@
             </li>
             {% if data['nation'] !== "wales" %}
             <li class="app-task-list__item">
+              <div class="task-list-deactivated-item"><p class="govuk-body-s">Submit and pay</p></div>
               <a class="app-task-list__task-name" href="apply/paying-for-your-blue-badge" aria-describedby="pay-completed">
                 Submit and pay
               </a>
@@ -342,6 +344,7 @@
             </li>
             {% else %}
             <li class="app-task-list__item">
+              <div class="task-list-deactivated-item"><p class="govuk-body-s">Submit</p></div>
               <a class="app-task-list__task-name" href="apply/submit-wales" aria-describedby="submit-completed">
                 Submit
               </a>
@@ -362,5 +365,18 @@
 
     </div>
   </div>
+
+{% endblock %}
+
+{% block pageScripts %}
+
+  <script>
+    var visibleAnchors = $('.app-task-list__item a:visible'),
+        visibleTags = $('.app-task-list__task-completed:visible');
+
+    if(visibleAnchors.length === visibleTags.length) {
+      $('.task-list-deactivated-item').remove();
+    }
+  </script>
 
 {% endblock %}
