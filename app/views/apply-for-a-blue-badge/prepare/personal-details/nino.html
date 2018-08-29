@@ -27,6 +27,11 @@
       autocapitalize: "characters"
     }
   }) }}
+
+  {{ govukDetails({
+    summaryText: "I don't have a National Insurance number",
+    html: "If " + you + " don't have a National Insurance number, " + you + " can still apply. <a href='" + formAction + "'>Continue without a National Insurance number</a>."
+  }) }}
   
   {{ govukButton({
     "text": submitLabel
