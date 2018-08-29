@@ -66,6 +66,7 @@
     $(document).ready(function () {
       govukGovernmentOrganisationsAutocomplete({
         defaultValue: '',
+        autoselect: true,
         selectElement: document.getElementById('councilPicker'),
         onConfirm: (query) => {
           // Mimick the default onConfirm event that enhanceSelectElement would otherwise set up
