@@ -16,13 +16,15 @@
         {{pageHeading}}
       </h1>
 
+      <a href="#next-section-to-complete" class="govuk-skip-link">Skip to next incomplete section</a>
+
       <ol class="app-task-list">
         {% if data['renewal-or-new-application'] !== "renewal" %}
         <li>
           <h2 class="app-task-list__section">
             <span class="app-task-list__section-number">1. </span> Check before you start
           </h2>
-          <ul class="app-task-list__items">
+          <ul class="app-task-list__items complete-before-submit">
             <li class="app-task-list__item">
               <a class="app-task-list__task-name" href="check-eligibility/warning" aria-describedby="eligibility-completed">
                 Check eligibility
@@ -46,7 +48,7 @@
             <span class="app-task-list__section-number">2. </span> Prepare to apply
             {% endif %}
           </h2>
-          <ul class="app-task-list__items">
+          <ul class="app-task-list__items complete-before-submit">
             {% if data['applicant'] === 'organisation' %}
             <li class="app-task-list__item">
               <a class="app-task-list__task-name" href="organisation-details/{% if data['organisation-completed'] == 'true'%}check-organisation{% endif %}" aria-describedby="organisation-completed">
@@ -371,10 +373,30 @@
 {% block pageScripts %}
 
   <script>
-    var visibleAnchors = $('.app-task-list__item a:visible'),
-        visibleTags = $('.app-task-list__task-completed:visible');
+    var visibleAnchors = $('.complete-before-submit .app-task-list__item a:visible'),
+        visibleTags = $('.complete-before-submit .app-task-list__task-completed:visible');
 
+    if(visibleAnchors.length === visibleTags.length) {    
       $('.task-list-deactivated-item').remove();
+    }
+
+    var $lastCompleteTag = $('.app-task-list__task-completed:last-of-type');
+
+    if($lastCompleteTag.closest('li').next('li').length) {
+      $lastCompleteTag
+      .closest('li')
+      .next('li')
+      .find('a')
+      .attr('id', 'next-section-to-complete');
+    } else {
+      $lastCompleteTag
+      .closest('ul')
+      .closest('li')
+      .next('li')
+      .find('.app-task-list__item:first-of-type a')
+      .attr('id', 'next-section-to-complete');
+    }
+
   </script>
 
 {% endblock %}
