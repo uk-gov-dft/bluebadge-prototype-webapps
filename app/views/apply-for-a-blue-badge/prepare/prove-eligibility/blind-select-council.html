@@ -13,11 +13,11 @@
 
 <h1 class="govuk-heading-l">{{pageHeading}}</h1>
 
-<p class="govuk-body">We'll contact your local council to confirm your details on their register.</p>
+<p class="govuk-body">We'll contact {{your}} local council to confirm {{your}} details on their register.</p>
 
 <form action="{{ formAction }}">
   <div class="govuk-form-group">
-    <label for="councilPicker" class="govuk-label">Start typing and select your council</label>
+    <label for="councilPicker" class="govuk-label">Start typing and select {{your}} council</label>
     <select name="blind-council-name" class="enhanced-select" id="councilPicker">
       {% include "includes/councils-options.html" %}
     </select>

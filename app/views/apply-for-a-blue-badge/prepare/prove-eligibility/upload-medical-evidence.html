@@ -17,13 +17,13 @@
   <input type="hidden" id="change" name="medical-evidence-completed" value="true">
   <h1 class="govuk-heading-l">{{pageHeading}}</h1>
   
-  <p class="govuk-body">This can be from your GP, Hospital or healthcare professional.</p>
+  <p class="govuk-body">This can be from {{your}} GP, Hospital or healthcare professional.</p>
   <p class="govuk-body">Take a photo of documents that show proof of treatments, medications or appointments.</p>
   <p class="govuk-body">These could be:</p>
 
   <ul class="govuk-list govuk-list--bullet">
     <li>prescriptions</li>
-    <li>appointment letters from your GP, Hospital or healthcare professional</li>
+    <li>appointment letters from {{your}} GP, Hospital or healthcare professional</li>
   </ul>
 
   {{ uploadComponentWidget.uploadComponent(
