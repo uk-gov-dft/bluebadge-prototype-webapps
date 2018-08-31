@@ -70,12 +70,12 @@
     </div>
     <div class="upload-section-text">
       <p class="govuk-body">
-        <span class="drag-drop-text">You can drag and drop the file here <br> <b>or</b> <br></span>
+        <span class="drag-drop-text">You can drag and drop the photo here <br> <b>or</b> <br></span>
         <input type="file" class="govuk-visually-hidden" id="fileElem" multiple accept="image/*" onchange="handleFiles(this.files)">
         <label class="govuk-button upload-label" for="fileElem">
-          <span class="tablet-upload-text">Upload a file from this computer</span>
-          <span class="mobile-upload-text">Take a photo or upload a file using this device</span>
-          <span class="mobile-upload-alternative-text">Upload a file using this device</span>
+          <span class="tablet-upload-text">Upload a photo from this computer</span>
+          <span class="mobile-upload-text">Take a photo or upload one using this device</span>
+          <span class="mobile-upload-alternative-text">Upload a photo using this device</span>
         </label>
       </p>
     </div>
@@ -87,7 +87,7 @@
 </div>
 
 <div id="fileUploadedBox" class="hidden">
-  <h3 class="govuk-heading-m">This is your uploaded file</h3>
+  <h3 class="govuk-heading-m">This is your upload</h3>
   <div id="gallery"/></div>
   {% if triggerForDummy === "true" %}
   <span id="dummiesToShow" data-trigger={{triggerForDummy}}></span>
@@ -99,7 +99,7 @@
   </div>
   {% endif %}
   <p class="govuk-body">
-    <a href="?{{triggerName}}=false">Upload a different file</a>
+    <a href="?{{triggerName}}=false">Use a different photo</a>
   </p>
   <input type="hidden" name="{{provideType}}" value="upload">
 
@@ -111,7 +111,7 @@
       "name": nameOfDataItem + "-shows-current-address",
       "fieldset": {
         "legend": {
-          "text": 'Does this file show ' + your + ' current address?',
+          "text": 'Does this photo show ' + your + ' current address?',
           "isPageHeading": false,
           "classes": 'govuk-fieldset__legend--m'
         }
