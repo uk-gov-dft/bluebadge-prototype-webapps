@@ -675,7 +675,7 @@ router.get('/prove-eligibility/walking-time', function(req, res) {
 
 router.get('/prove-eligibility/walking-time-backend', function(req, res) {
   if (req.session.data['how-long-walk'] === 'cant-walk') {
-    res.redirect(proveEligibilityPath+'describe-conditions');
+    res.redirect(proveEligibilityPath+'check-walking');
   } else {
     res.redirect(proveEligibilityPath+'where-can-you-walk');
   }

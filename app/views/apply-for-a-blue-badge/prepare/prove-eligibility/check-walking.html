@@ -83,7 +83,8 @@
           </a>
         </dd>
       </div>
-
+      
+      {% if data['how-long-walk'] !== 'cant-walk' %}
       <div class="govuk-check-your-answers__contents">
         <dt class="govuk-check-your-answers__question">
           Place that you regularly walk to
@@ -111,7 +112,7 @@
           </a>
         </dd>
       </div>
-
+      {% endif %}
       
     </dl>
   </section>
