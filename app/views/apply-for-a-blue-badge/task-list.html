@@ -54,7 +54,8 @@
               <a class="app-task-list__task-name" href="organisation-details/{% if data['organisation-completed'] == 'true'%}check-organisation{% endif %}" aria-describedby="organisation-completed">
                 Enter organisation details
               </a>
-              {% if data['organisation-completed'] == "true" %}
+              {% if data['organisation-completed'] == "true" or 
+                    data['all-completed'] == "true" %}
               {{ govukTag({
                 text: 'Completed',
                 classes: 'app-task-list__task-completed',
@@ -69,7 +70,8 @@
               <a class="app-task-list__task-name" href="personal-details/{% if data['personal-completed'] == 'true'%}check-personal{% endif %}" aria-describedby="personal-completed">
                 Enter personal details
               </a>
-              {% if data['personal-completed'] == "true" %}
+              {% if data['personal-completed'] == "true" or 
+                    data['all-completed'] == "true" %}
               {{ govukTag({
                 text: 'Completed',
                 classes: 'app-task-list__task-completed',
@@ -85,7 +87,8 @@
               <a class="app-task-list__task-name" href="prove-eligibility{% if data['walking-completed'] == 'true'%}/check-walking{% endif %}" aria-describedby="walking-completed">
                 Describe walking ability
               </a>
-              {% if data['walking-completed'] == "true" %}
+              {% if data['walking-completed'] == "true" or 
+                    data['all-completed'] == "true" %}
               {{ govukTag({
                 text: 'Completed',
                 classes: 'app-task-list__task-completed',
@@ -99,7 +102,8 @@
               <a class="app-task-list__task-name" href="upload-medical-evidence{% if data['medical-evidence-completed'] == 'true'%}?medical-evidence-done=true{% endif %}" aria-describedby="medical-evidence-completed">
                 Provide medical evidence
               </a>
-              {% if data['medical-evidence-completed'] == "true" %}
+              {% if data['medical-evidence-completed'] == "true" or 
+                    data['all-completed'] == "true" %}
               {{ govukTag({
                 text: 'Completed',
                 classes: 'app-task-list__task-completed',
@@ -113,7 +117,8 @@
               <a class="app-task-list__task-name" href="prove-eligibility/list-treatments{% if data['treatments-completed'] == 'true'%}?treatments-done=true{% endif %}" aria-describedby="treatments-completed">
                 List treatments
               </a>
-              {% if data['treatments-completed'] == "true" %}
+              {% if data['treatments-completed'] == "true" or 
+                    data['all-completed'] == "true" %}
               {{ govukTag({
                 text: 'Completed',
                 classes: 'app-task-list__task-completed',
@@ -127,7 +132,8 @@
               <a class="app-task-list__task-name" href="prove-eligibility/list-medication{% if data['medication-completed'] == 'true'%}?medication-done=true{% endif %}" aria-describedby="medication-completed">
                 List medication
               </a>
-              {% if data['medication-completed'] == "true" %}
+              {% if data['medication-completed'] == "true" or 
+                    data['all-completed'] == "true" %}
               {{ govukTag({
                 text: 'Completed',
                 classes: 'app-task-list__task-completed',
@@ -147,7 +153,8 @@
                 <a class="app-task-list__task-name" href="prove-eligibility/{% if data['child-completed'] == 'true'%}check-child{%else%}describe-conditions{% endif %}" aria-describedby="child-completed">
                   Describe their condition
                 </a>
-                {% if data['child-completed'] == "true" %}
+                {% if data['child-completed'] == "true" or 
+                      data['all-completed'] == "true" %}
                 {{ govukTag({
                   text: 'Completed',
                   classes: 'app-task-list__task-completed',
@@ -165,7 +172,8 @@
                 <a class="app-task-list__task-name" href="prove-eligibility/{% if data['bulky-completed'] == 'true'%}check-child{%else%}medical-equipment{% endif %}" aria-describedby="bulky-completed">
                   List medical equipment
                 </a>
-                {% if data['bulky-completed'] == "true" %}
+                {% if data['bulky-completed'] == "true" or 
+                    data['all-completed'] == "true" %}
                 {{ govukTag({
                   text: 'Completed',
                   classes: 'app-task-list__task-completed',
@@ -186,7 +194,8 @@
               <a class="app-task-list__task-name" href="prove-eligibility/list-healthcare-professionals{% if data['hcp-completed'] == 'true'%}?hcp-done=true{% endif %}" aria-describedby="hcp-completed">
                 List healthcare professionals
               </a>
-              {% if data['hcp-completed'] == "true" %}
+              {% if data['hcp-completed'] == "true" or 
+                    data['all-completed'] == "true" %}
               {{ govukTag({
                 text: 'Completed',
                 classes: 'app-task-list__task-completed',
@@ -207,7 +216,8 @@
               <a class="app-task-list__task-name" href="prove-benefit{% if data['benefit-completed'] == 'true'%}?benefit-done=true{% endif %}" aria-describedby="benefit-completed">
                 Provide proof of benefit
               </a>
-              {% if data['benefit-completed'] == "true" %}
+              {% if data['benefit-completed'] == "true" or 
+                    data['all-completed'] == "true" %}
               {{ govukTag({
                 text: 'Completed',
                 classes: 'app-task-list__task-completed',
@@ -224,7 +234,8 @@
               <a class="app-task-list__task-name" href="prove-eligibility/{% if data['blind-completed'] == 'true'%}check-arms-blind{% endif %}" aria-describedby="blind-completed">
                 Provide proof of visual impairment
               </a>
-              {% if data['blind-completed'] == "true" %}
+              {% if data['blind-completed'] == "true" or 
+                    data['all-completed'] == "true" %}
               {{ govukTag({
                 text: 'Completed',
                 classes: 'app-task-list__task-completed',
@@ -240,7 +251,8 @@
               <a class="app-task-list__task-name" href="prove-eligibility/{% if data['arms-completed'] == 'true'%}check-arms-blind{% endif %}" aria-describedby="arms-completed">
                 Describe {{your}} condition
               </a>
-              {% if data['arms-completed'] == "true" %}
+              {% if data['arms-completed'] == "true" or 
+                    data['all-completed'] == "true" %}
               {{ govukTag({
                 text: 'Completed',
                 classes: 'app-task-list__task-completed',
@@ -257,7 +269,8 @@
               <a class="app-task-list__task-name" href="prove-your-identity{% if data['identity-completed'] == 'true'%}?identity-done=true{% endif %}" aria-describedby="identity-completed">
                 Prove identity
               </a>
-              {% if data['identity-completed'] == "true" %}
+              {% if data['identity-completed'] == "true" or 
+                    data['all-completed'] == "true" %}
               {{ govukTag({
                 text: 'Completed',
                 classes: 'app-task-list__task-completed',
@@ -276,7 +289,8 @@
               <a class="app-task-list__task-name" href="prove-your-address{% if data['address-completed'] == 'true'%}?address-done=true{% endif %}" aria-describedby="address-completed">
                 Prove address
               </a>
-              {% if data['address-completed'] == "true" %}
+              {% if data['address-completed'] == "true" or 
+                    data['all-completed'] == "true" %}
               {{ govukTag({
                 text: 'Completed',
                 classes: 'app-task-list__task-completed',
@@ -291,7 +305,8 @@
               <a class="app-task-list__task-name" href="provide-photo{% if data['photo-completed'] == 'true'%}?photo-done=true{% endif %}" aria-describedby="photo-completed">
                 Add a {{ "new" if data['renewal-or-new-application'] === "renewal" }} photo of {{yourself}}
               </a>
-              {% if data['photo-completed'] == "true" %}
+              {% if data['photo-completed'] == "true" or 
+                    data['all-completed'] == "true" %}
               {{ govukTag({
                 text: 'Completed',
                 classes: 'app-task-list__task-completed',
@@ -318,7 +333,8 @@
               <a class="app-task-list__task-name" href="apply/declaration" aria-describedby="declaration-completed">
                 Read declaration
               </a>
-              {% if data['declaration-completed'] == "true" %}
+              {% if data['declaration-completed'] == "true" or 
+                    data['all-completed'] == "true" %}
               {{ govukTag({
                 text: 'Completed',
                 classes: 'app-task-list__task-completed',
@@ -334,15 +350,6 @@
               <a class="app-task-list__task-name" href="apply/paying-for-your-blue-badge" aria-describedby="pay-completed">
                 Submit and pay
               </a>
-              {% if data['pay-completed'] == "true" %}
-              {{ govukTag({
-                text: 'Completed',
-                classes: 'app-task-list__task-completed',
-                attributes: {
-                  'id': 'pay-completed'
-                }
-              }) }}
-              {% endif %}
             </li>
             {% else %}
             <li class="app-task-list__item">
@@ -350,15 +357,6 @@
               <a class="app-task-list__task-name" href="apply/submit-wales" aria-describedby="submit-completed">
                 Submit
               </a>
-              {% if data['submit-completed'] == "true" %}
-              {{ govukTag({
-                text: 'Completed',
-                classes: 'app-task-list__task-completed',
-                attributes: {
-                  'id': 'submit-completed'
-                }
-              }) }}
-              {% endif %}
             </li>
             {% endif %}
           </ul>

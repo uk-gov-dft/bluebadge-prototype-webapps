@@ -33,6 +33,15 @@
 
   <input type="hidden" name="{{shouldchangename}}" value="{{shouldchangevalue}}">
 
+  {% if data['nation'] == "scotland" %}
+
+  {% set socialWording = 'Social Work' %}
+
+  {% else %}
+
+  {% set socialWording = 'Social Services' %}
+
+  {% endif %}
 
   {{ govukRadios({
     "idPrefix": "mobility-aid-source",
@@ -53,8 +62,8 @@
         "text": "Bought privately"
       },
       {
-        "value": "Social Services",
-        "text": "Provided by Social Services"
+        "value": socialWording,
+        "text": "Provided by " + socialWording
       }
     ]
   }) }}

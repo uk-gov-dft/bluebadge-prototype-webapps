@@ -38,12 +38,15 @@
         "text": "Existing badge number"
       },
       "hint": {
-        "text": "For example, 0957X1114"
+        "text": "For example, 242G48 0 0101Y0616"
       },
-      classes: "govuk-!-width-two-thirds",
+      classes: "govuk-!-width-two-thirds input-capitals",
       errorMessage: errorArray.existingBadge,
       id: formIDs.existingBadge.id,
-      name: formIDs.existingBadge.id
+      name: formIDs.existingBadge.id,
+      attributes: {
+        autocapitalize: "characters"
+      }
     }) }}
   {% endset -%}
 
