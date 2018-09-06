@@ -151,9 +151,7 @@ router.get('/check-eligibility/benefits-backend', function (req, res) {
       res.redirect('/apply-for-a-blue-badge/check-eligibility/decision');
       break;
     case "pip":
-      if(req.session.data['nation'] === "scotland") {
-        res.redirect('/apply-for-a-blue-badge/check-eligibility/pip-did-you-get-dla');
-      } else if(req.session.data['council-name'] == 'Northern Ireland') {
+      if(req.session.data['council-name'] == 'Northern Ireland') {
         res.redirect('/apply-for-a-blue-badge/check-eligibility/decision');  
       } else  {
         res.redirect('/apply-for-a-blue-badge/check-eligibility/pip-how-many-moving');  
@@ -174,7 +172,7 @@ router.get('/check-eligibility/pip-dla-backend', function (req, res) {
       res.redirect('/apply-for-a-blue-badge/check-eligibility/decision');
       break;
     case "no":
-      res.redirect('/apply-for-a-blue-badge/check-eligibility/pip-how-many-moving');
+      res.redirect('/apply-for-a-blue-badge/check-eligibility/disability');
       break;
     }
 });
@@ -185,7 +183,11 @@ router.get('/check-eligibility/pip-moving-backend', function (req, res) {
       res.redirect('/apply-for-a-blue-badge/check-eligibility/decision');
       break;
     case "less-than-8":
-      res.redirect('/apply-for-a-blue-badge/check-eligibility/pip-how-many-planning-following');
+      if(req.session.data['nation'] === "scotland" || req.session.data['nation'] === "wales") {
+        res.redirect('/apply-for-a-blue-badge/check-eligibility/pip-how-many-planning-following');
+      } else {
+        res.redirect('/apply-for-a-blue-badge/check-eligibility/disability'); 
+      }
       break;
     }
 });
@@ -196,7 +198,11 @@ router.get('/check-eligibility/pip-planning-backend', function (req, res) {
       res.redirect('/apply-for-a-blue-badge/check-eligibility/decision');
       break;
     case "less-than-12":
-      res.redirect('/apply-for-a-blue-badge/check-eligibility/disability');
+      if(req.session.data['nation'] === "scotland") {
+        res.redirect('/apply-for-a-blue-badge/check-eligibility/pip-did-you-get-dla');
+      } else {
+        res.redirect('/apply-for-a-blue-badge/check-eligibility/disability');  
+      }
       break;
     }
 });

@@ -40,7 +40,9 @@
     <p class="govuk-body">A photo or scan that shows:</p>
 
     <ul class="govuk-list govuk-list--bullet">
-      {% if data['benefit'] === 'pip' %}
+      {% if (data['pip-dla'] === 'yes') %}
+        <li>both {{your}} PIP and DLA award letters</li>
+      {% elif data['benefit'] === 'pip' %}
         <li>{{your}} PIP award letter</li>
       {% elif data['benefit'] === 'dla' %}
         <li>{{your}} DLA award letter</li>

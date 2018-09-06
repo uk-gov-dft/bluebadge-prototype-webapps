@@ -2,13 +2,17 @@
 {% set hasSaveClass = 'yes' %}
 {% import "apply-for-a-blue-badge/macros/upload-component-new.html" as uploadComponentWidget %}
 
-{% if (data['benefit'] === 'dla') %}
+{% if (data['pip-dla'] === 'yes') %}
 
-{% set pageHeading = 'Upload the most recent letter from DWP about ' + your + ' DLA award' %}
+{% set pageHeading = 'Upload both of ' + your + ' PIP and DLA award letters' %}
+
+{% elif (data['benefit'] === 'dla') %}
+
+{% set pageHeading = 'Upload ' + your + ' DLA award letter from Department of Work and Pensions (DWP)' %}
 
 {% elif (data['benefit'] === 'pip') %}
 
-{% set pageHeading = 'Upload the most recent letter from DWP about ' + your + ' PIP award' %}
+{% set pageHeading = 'Upload ' + your + ' PIP award letter from Department of Work and Pensions (DWP)' %}
 
 {% elif (data['benefit'] === 'armed-forces') %}
 
@@ -27,13 +31,24 @@
 {% block inner_content %}
 
 
-
-
 <form action="{{ formAction }}">
   <input type="hidden" id="change" name="benefit-completed" value="true">
   <h1 class="govuk-heading-l">{{pageHeading}}</h1>
 
-  {% if data['benefit'] === 'dla' %}
+  {% if (data['pip-dla'] === 'yes') %}
+  
+  <p class="govuk-body">{{you | capitalize}} need to upload {{your}} PIP and DLA award letters from Department of Work and Pensions (DWP).</p>
+
+  <p class="govuk-body">The letters must include {{your}}:</p>
+
+  <ul class="govuk-list govuk-list--bullet">
+    <li>certificate of entitlement to Personal Independence Payment (PIP)</li>
+    <li>mobility rating (usually found on the first page of the DLA award letter)</li>
+    <li>certificate of entitlement to DLA (usually found on the last page of the DLA award letter)</li>
+  </ul>
+
+
+  {% elif data['benefit'] === 'dla' %}
 
     <p class="govuk-body">The letter must include {{your}}:</p>
 
@@ -50,7 +65,7 @@
 
     <ul class="govuk-list govuk-list--bullet">
       <li>mobility score</li>
-      <li>certificate of entitlement to Personal Independence Payment</li>
+      <li>certificate of entitlement to Personal Independence Payment (PIP)</li>
     </ul>
 
     {% set sampleBenefitLetter = 'pip-letter.jpg' %}
