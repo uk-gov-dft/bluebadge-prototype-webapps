@@ -15,7 +15,7 @@
 
 <p class="govuk-body">When you submit this {{ application }} {{ you }} agree that:</p>
 
-{% if data['applicant'] == 'yourself' or data['applicant'] == 'someone-else' %}
+{% if data['applicant'] !== 'organisation' %}
 
 <ul class="govuk-list govuk-list--bullet">
   <li>the details {{ you }}'ve provided are complete and accurate</li>
