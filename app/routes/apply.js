@@ -693,8 +693,17 @@ router.get('/prove-eligibility/where-can-you-walk', function(req, res) {
 });
 
 router.get('/prove-eligibility/how-quickly-do-you-walk', function(req, res) {
-  Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/apply-for-a-blue-badge/prove-eligibility/check-walking','check-walking'))
+  if(req.session.data['nation'] === "scotland" || req.session.data['nation'] === "wales") {
+    Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/apply-for-a-blue-badge/prove-eligibility/condition-improve','check-walking'))
+  } else {
+    Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/apply-for-a-blue-badge/prove-eligibility/check-walking','check-walking'))
+  }
   res.render(proveEligibilityTemplatePath+'how-quickly-do-you-walk');
+});
+
+router.get('/prove-eligibility/condition-improve', function(req, res) {
+  Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/apply-for-a-blue-badge/prove-eligibility/check-walking','check-walking'))
+  res.render(proveEligibilityTemplatePath+'condition-improve');
 });
 
 

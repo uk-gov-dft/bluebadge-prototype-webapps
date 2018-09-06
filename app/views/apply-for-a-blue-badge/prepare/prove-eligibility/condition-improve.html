@@ -1,0 +1,75 @@
+{% extends "layout.html" %}
+{% set hasSaveClass = 'yes' %}
+
+{% set pageHeading = 'Is ' + your + ' condition due to improve within the next 3 years?' %}
+
+
+{% block pageTitle %}
+  {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block inner_content %}
+
+
+
+<form action="{{ formAction }}">
+  {% set improveConditionHTML %}
+
+  {{ govukInput({
+    "label": {
+      "text": "When is " + your + " condition due to improve?"
+    },
+    "hint" : {
+      "text": "For example: In 2 years time or 12 May 2020"
+    },
+    "name": "condition-improve-date"
+  }) }}
+
+  {% endset -%}
+
+
+  {{ govukRadios({
+    "idPrefix": "condition-improve",
+    "name": "condition-improve",
+    "attributes": {
+      "data-catchoption-label": true
+    },
+    "fieldset": {
+      "legend": {
+        "text": pageHeading,
+        "isPageHeading": true,
+        "classes": 'govuk-fieldset__legend--l'
+      }
+    },
+    "items": [
+      {
+        "value": "yes",
+        "text": "Yes",
+        "checked": data['walking-speed'] === 'yes',
+        "conditional": {
+          "html": improveConditionHTML
+        }
+      },
+      {
+        "value": "no",
+        "text": "No",
+        "checked": data['walking-speed'] === 'no'
+      }
+
+    ]
+  }) }}
+
+  <div id="hiddenCaughtInputs"></div>
+  
+  {{ govukButton({
+    "text": submitLabel
+  }) }}
+
+  <!-- Has save -->
+</form>
+
+      
+
+
+
+{% endblock %}
