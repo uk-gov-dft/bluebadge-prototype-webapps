@@ -1,0 +1,39 @@
+{% extends "admin_layout.html" %}
+
+{% block page_header %}
+
+  <h1 class="govuk-heading-xl">{{title}}</h1>
+  
+{% endblock %}
+
+{% block content %}
+
+
+<form action="view-badge-enforcer" novalidate>
+  {{ govukInput({
+    "label": {
+      "text": "This is a 6-character code"
+    },
+    "hint": {
+      "text": "For example, X5GH66"
+    },
+    classes: "govuk-!-width-one-half input-capitals",
+    id: "badge-search",
+    name: "badge-search",
+    type: "mixed",
+    attributes: {
+      autocapitalize: "characters",
+      autocorrect: "off",
+      autocomplete: "off",
+      maxlength: "6"
+    }
+  }) }}
+
+
+  {{ govukButton({
+    "text": "Search"
+  }) }}
+
+</form>
+
+{% endblock %}

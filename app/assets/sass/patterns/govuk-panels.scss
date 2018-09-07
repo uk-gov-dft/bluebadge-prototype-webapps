@@ -46,9 +46,11 @@
 
 .form-section, .split-section {
 	border-bottom: 1px solid govuk-colour(grey-3);
-	margin-bottom: govuk-spacing(6);
 	padding-top: 1rem;
 	padding-bottom: 1rem;
+	@include mq($from: tablet) {
+		margin-bottom: govuk-spacing(6);
+	}
 	&:last-of-type {
 		border: none;
 		margin-bottom: 0;
