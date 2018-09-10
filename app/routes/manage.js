@@ -26,8 +26,10 @@ router.get('/sign-in', function (req, res) {
 });
 
 router.get('/sign-in-backend', function (req, res) {
-  if (req.session.data['sign-in-email'].includes ('enforce')) {
+  if (req.session.data['sign-in-email'].includes ('enforce1')) {
     res.redirect('/manage-blue-badges/find-by-badge-number');
+  } else if (req.session.data['sign-in-email'].includes ('enforce2')) {
+    res.redirect('/manage-blue-badges/search-for-a-badge');
   } else {
     res.redirect('/manage-blue-badges/new-applications');
   }
@@ -70,6 +72,16 @@ router.get('/view-badge-full', (req, res) => {
   res.render('manage-blue-badges/view-badge-full', 
   {'title':'Badge details','search_class':'active'})
 
+})
+
+router.get('/search-results-backend', (req, res) => {
+  const search = req.session.data['badge-search'].replace(/ /g,'').toUpperCase()
+  const badgeholder = req.session.data['badgeholders'].filter(badgeholder => badgeholder.shortcode === search)
+
+  res.locals.badgeholder = badgeholder[0]
+
+  res.render('manage-blue-badges/search-results', 
+    {'title':'Badge details','search_class':'active'})
 })
 
 router.get('/reset***REMOVED***', function (req, res) {

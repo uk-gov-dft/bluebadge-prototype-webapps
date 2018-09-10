@@ -12,6 +12,9 @@
 {% block page_header %}
   <h1>{{title}}</h1>
   <div class="search-box-container">
+    <div class="search-box__options">
+      1 Result: <a href="javascript: window.history.go(-1)">Clear</a>
+    </div>
     <div class="search-filter-container">
       {% block search_extras %}
         {{ govukSelect({
@@ -45,16 +48,13 @@
     <form action="" class="search-box">
       {% include "includes/search.html" %}
     </form>
-    <div class="search-box__options">
-      1 Result: <a href="javascript: window.history.go(-1)">Clear</a>
-    </div>
   </div>
 {% endblock %}
 
 
       {% if  data['search-by'] === "name" %}
     
-      {% set name = data['searchValue'] %}
+      {% set name = data['badge-search'] %}
       
       {% else %}
 
@@ -65,7 +65,7 @@
 
       {% if  data['search-by'] === "badge-number" %}
     
-      {% set badgeNumber = data['searchValue'] %}
+      {% set badgeNumber = data['badge-search'] %}
       
       {% else %}
 
@@ -75,7 +75,7 @@
 
       {% if  data['search-by'] === "postcode" %}
     
-      {% set postcode = data['searchValue'] %}
+      {% set postcode = data['badge-search'] %}
       
       {% else %}
 
@@ -86,54 +86,85 @@
 
 
 if () {
-  set name = data['searchValue']; 
+  set name = data['badge-search']; 
 } else {
   name =  "Phillip Powell";
 }
 
 {% block content %}
-  {{ govukTable({
-    "firstCellIsHeader": false,
-    "head": [
+
+{% if  data['search-by'] === "badge-number" %}
+
+<table class="govuk-table">
+  <thead class="govuk-table__head">
+    <tr class="govuk-table__row">
+      <th class="govuk-table__header" scope="col">Badge number</th>
+      <th class="govuk-table__header" scope="col">Name</th>
+      <th class="govuk-table__header" scope="col">Postcode</th>
+      <th class="govuk-table__header" scope="col">Local authority</th>
+      <th class="govuk-table__header" scope="col">Expiry date</th>
+      <th class="govuk-table__header" scope="col">Status</th>
+    </tr>
+  </thead>
+  <tbody class="govuk-table__body">
+    <tr class="govuk-table__row">
+      <th class="govuk-table__header" scope="row"><a href="view-badge-full">{{badgeholder.shortcode}}</a></th>
+      <td class="govuk-table__cell ">{{badgeholder.fullName}}</td>
+      <td class="govuk-table__cell ">{{badgeholder.address.postcode}}</td>
+      <td class="govuk-table__cell ">{{data['current-council']}}</td>
+      <td class="govuk-table__cell ">{{badgeholder.badgeExpiry}}</td>
+      <td class="govuk-table__cell ">{{badgeholder.badgeStatus}}</td>
+    </tr>
+  </tbody>
+</table>
+
+{% else %}
+
+{{ govukTable({
+  "firstCellIsHeader": false,
+  "head": [
+    {
+      "text": "Badge number"
+    },
+    {
+      "text": "Name"
+    },
+    {
+      "text": "Postcode"
+    },
+    {
+      "text": "Local authority"
+    },
+    {
+      "text": "Expiry date"
+    },
+    {
+      "text": "Status"
+    }
+  ],
+  "rows": [
+    [
       {
-        "text": "Badge number"
+        "html": "<a href='view-badge'>"+badgeholder.fullName+"</a>"
       },
       {
-        "text": "Name"
+        "text": name
       },
       {
-        "text": "Postcode"
+        "text": postcode
       },
       {
-        "text": "Local authority"
+        "html": "<a href=''>  Manchester City Council</a>"
       },
       {
-        "text": "Expiry date"
+        "text": "13/01/22"
       },
       {
-        "text": "Status"
+        "text": "Active"
       }
-    ],
-    "rows": [
-      [
-        {
-          "html": "<a href='view-badge'>"+badgeNumber+"</a>"
-        },
-        {
-          "text": name
-        },
-        {
-          "text": postcode
-        },
-        {
-          "html": "<a href=''>  Manchester City Council</a>"
-        },
-        {
-          "text": "13/01/22"
-        },
-        {
-          "text": "Active"
-        }
-      ]
     ]
-  }) }}{% endblock %}
+  ]
+}) }}
+
+{% endif %}
+{% endblock %}
