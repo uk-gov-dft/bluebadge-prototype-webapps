@@ -13,8 +13,8 @@
 {% block page_header %}
   <div class="check-answers-heading-with-change">
     <div class="check-answers-heading">
-      <p class="subtitle">{{data['badge-search']}}</p>
-      <h1>{{title}}</h1>
+      <p class="subtitle">{{badgeholder.shortcode}}</p>
+      <h1 class="govuk-heading-xl">{{title}}</h1>
     </div>
   </div>
   
@@ -25,24 +25,24 @@
 <div class="mobile-grid align-middle">
   <div class="mobile-grid-cell grid-cell-1-2">
     <div class="enforcer-view-image">
-      <img src="/public/images/phillip.png" alt="Photo of Phillip Powell">
+      <img src="/public/images/{{badgeholder.photoPath}}" alt="Photo of Badge Holder">
     </div>
   </div>
   <div class="mobile-grid-cell grid-cell-1-2">
     <dl class="labels-with-heading">
       <div class="label-with-heading">
         <dt class="label">Age</dt>
-        <dd class="heading">54</dd>
+        <dd class="heading">{{badgeholder.age}}</dd>
       </div>
 
       <div class="label-with-heading">
         <dt class="label">Badge expiry</dt>
-        <dd class="heading">24 Oct '21</dd>
+        <dd class="heading">{{badgeholder.badgeExpiryShort}}</dd>
       </div>
 
       <div class="label-with-heading">
         <dt class="label">Badge status</dt>
-        <dd class="heading">Active</dd>
+        <dd class="heading">{{badgeholder.badgeStatus}}</dd>
       </div>
     </dl>
   </div>
@@ -52,7 +52,7 @@
   <dl class="labels-with-heading">
     <div class="label-with-heading">
       <dt class="label">Badge holder</dt>
-      <dd class="heading">Jonathan Smith</dd>
+      <dd class="heading">{{badgeholder.fullName}}</dd>
     </div>
   
     <div class="label-with-heading">
@@ -62,7 +62,7 @@
   
     <div class="label-with-heading">
       <dt class="label">Badge number</dt>
-      <dd class="heading">{{data['badge-search']}} 09 GH22182</dd>
+      <dd class="heading">{{badgeholder.fullBadgeNumber}}</dd>
     </div>
   </dl>
 </div>
@@ -71,7 +71,7 @@
 
 {{ govukButton({
   "text": "View more details",
-  "href": 'view-badge'
+  "href": 'view-badge-full'
 }) }}
 
 

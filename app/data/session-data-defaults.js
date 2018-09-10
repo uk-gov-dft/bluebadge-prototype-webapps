@@ -19,6 +19,166 @@ Example usage:
 
 module.exports = {
 
-  // Insert values here
+  // "statuses": ["Preparation", "Notified", "Claimed", "Deferred", "Exempt", "Extended", "Not claimed"],
 
+  "badgeholders": [
+    {
+      "shortcode": "72B9HA",
+      "fullName": "Fred Michael Jones",
+      "age": "2",
+      "dateOfBirth": "12 May 2016",
+      "address": {
+        "street": "23 River View",
+        "street2": "",
+        "city": "Bedlington",
+        "postcode": "NE2 5LS"
+      },
+      "contactName": "Sarah Jones",
+      "mainPhoneNumber": "01331 252 226",
+      "altPhoneNumber": "07938 232 989",
+      "emailAddress": "sarah.jones@gmail.com",
+      "badgeExpiryShort": "24 Jun '21",
+      "badgeStatus": "Active",
+      "fullBadgeNumber": "72B9HA 09 GH22128",
+      "eligibility": "Child that needs to be accompanied by bulky medical equipment",
+      "photoPath": "adam.png",
+      "badgeExpiry": "24 Jun 2021",
+      "badgeStart": "24 Jun 2018",
+      "applicationDate": "12 May 2018",
+      "applicationChannel": "Online",
+      "laReference": "123456432"
+    },
+
+    {
+      "shortcode": "34JK3F",
+      "fullName": "Maggie Smith",
+      "age": "32",
+      "dateOfBirth": "2 June 1986",
+      "address": {
+        "street": "2 Church Terrace",
+        "street2": "",
+        "city": "Bromley",
+        "postcode": "SE23 3KD"
+      },
+      "mainPhoneNumber": "01331 252 226",
+      "altPhoneNumber": "07938 232 989",
+      "emailAddress": "maggie.smith@gmail.com",
+      "nationalInsurance": "JR 12 34 56 A",
+      "badgeExpiryShort": "24 Jun '21",
+      "badgeStatus": "Cancelled (Stolen)",
+      "fullBadgeNumber": "34JK3F 09 GEGEG2",
+      "eligibility": "PIP",
+      "photoPath": "rita.png",
+      "badgeExpiry": "24 Jun 2021",
+      "badgeStart": "24 Jun 2018",
+      "applicationDate": "12 May 2018",
+      "applicationChannel": "Online",
+      "laReference": "123456432"
+    },
+
+    {
+      "shortcode": "45FGK2",
+      "fullName": "Edward John Garth",
+      "age": "82",
+      "dateOfBirth": "1 Jan 1936",
+      "address": {
+        "street": "23 Barnes Square",
+        "street2": "",
+        "city": "Chelsea",
+        "postcode": "SW5 3JD"
+      },
+      "mainPhoneNumber": "01331 252 226",
+      "altPhoneNumber": "07938 232 989",
+      "nationalInsurance": "JR 12 34 56 A",
+      "badgeExpiryShort": "24 Jun '21",
+      "badgeStatus": "Cancelled (Deceased)",
+      "fullBadgeNumber": "45FGK2 09 GH22128",
+      "eligibility": "PIP",
+      "photoPath": "edward.jpg",
+      "badgeExpiry": "24 Jun 2021",
+      "badgeStart": "24 Jun 2018",
+      "applicationDate": "12 May 2018",
+      "applicationChannel": "Phone",
+      "laReference": "123456432"
+    },
+
+    {
+      "shortcode": "56FG25",
+      "fullName": "Sarah Dickinson",
+      "age": "3",
+      "dateOfBirth": "1 Mar 2015",
+      "address": {
+        "street": "2 Church Road",
+        "street2": "",
+        "city": "Hammersmith",
+        "postcode": "W4 2KD"
+      },
+      "contactName": "Graham Dickinson",
+      "mainPhoneNumber": "07938 232 989",
+      "emailAddress": "graham.dickinson@gmail.com",
+      "badgeExpiryShort": "24 Jun '21",
+      "badgeStatus": "Cancelled (Lost)",
+      "fullBadgeNumber": "56FG25 09 GH22128",
+      "eligibility": "PIP",
+      "photoPath": "lucy.png",
+      "badgeExpiry": "24 Jun 2021",
+      "badgeStart": "24 Jun 2018",
+      "applicationDate": "12 May 2018",
+      "applicationChannel": "Online",
+      "laReference": "123456432"
+    },
+
+    {
+      "shortcode": "67FE38",
+      "fullName": "Tracey Florence Smith",
+      "age": "40",
+      "dateOfBirth": "16 Sep 1978",
+      "address": {
+        "street": "4 Lark Lane",
+        "street2": "",
+        "city": "Kensington",
+        "postcode": "SW5 9KD"
+      },
+      "mainPhoneNumber": "01331 252 226",
+      "emailAddress": "tracey.smith@gmail.com",
+      "nationalInsurance": "JR 12 34 56 A",
+      "badgeExpiryShort": "24 Jun '21",
+      "badgeStatus": "Active",
+      "fullBadgeNumber": "67FE38 09 GH22128",
+      "eligibility": "Can not walk or finds walking very difficult",
+      "photoPath": "tracey.png",
+      "badgeExpiry": "24 Jun 2021",
+      "badgeStart": "24 Jun 2018",
+      "applicationDate": "12 May 2018",
+      "applicationChannel": "Online",
+      "laReference": "123456432"
+    },
+
+    {
+      "shortcode": "9KD23F",
+      "fullName": "Sally Grace Hart",
+      "age": "65",
+      "dateOfBirth": "1 Oct 1953",
+      "address": {
+        "street": "23 Barnes Square",
+        "street2": "",
+        "city": "Chelsea",
+        "postcode": "SW5 3JD"
+      },
+      "mainPhoneNumber": "01331 252 226",
+      "altPhoneNumber": "07938 232 989",
+      "emailAddress": "tracey.smith@gmail.com",
+      "nationalInsurance": "JR 12 34 56 A",
+      "badgeExpiryShort": "24 Jun '21",
+      "badgeStatus": "Active",
+      "fullBadgeNumber": "9KD23F 09 GH22128",
+      "eligibility": "Severely Sight Impaired",
+      "photoPath": "sarah.jpg",
+      "badgeExpiry": "24 Jun 2021",
+      "badgeStart": "24 Jun 2018",
+      "applicationDate": "12 May 2018",
+      "applicationChannel": "Phone",
+      "laReference": "123456432"
+    }
+  ]
 }

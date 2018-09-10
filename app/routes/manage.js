@@ -43,6 +43,31 @@ router.get('/view-badge-enforcer', function (req, res) {
     {'title':'Badge details','search_class':'active'})
 })
 
+router.get('/enforcer-search-backend', (req, res) => {
+  const search = req.session.data['badge-search'].replace(/ /g,'').toUpperCase()
+  const badgeholder = req.session.data['badgeholders'].filter(badgeholder => badgeholder.shortcode === search)
+
+  res.locals.badgeholder = badgeholder[0]
+
+  if (badgeholder == false) {
+    res.render('manage-blue-badges/badge-results')
+  } else {
+    res.render('manage-blue-badges/view-badge-enforcer', 
+    {'title':'Badge details','search_class':'active'})
+  }
+})
+
+router.get('/view-badge-full', (req, res) => {
+  const search = req.session.data['badge-search'].replace(/ /g,'').toUpperCase()
+  const badgeholder = req.session.data['badgeholders'].filter(badgeholder => badgeholder.shortcode === search)
+
+  res.locals.badgeholder = badgeholder[0]
+
+  res.render('manage-blue-badges/view-badge-full', 
+  {'title':'Badge details','search_class':'active'})
+
+})
+
 router.get('/reset***REMOVED***', function (req, res) {
   res.locals.formAction = '/manage-blue-badges/reset-email-sent';
   req.session.data['show'] = undefined;
