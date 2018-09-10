@@ -3,7 +3,7 @@ const router = express.Router()
 
 router.use(function(req, res, next) {
   if (!req.session.data['current-council']) {
-    res.locals.data['current-council'] = 'Manchester City Council';
+    res.locals.data['current-council'] = 'Royal Borough of Kensington and Chelsea';
   }
 
   if (req.session.data['sign-in-email']) {
