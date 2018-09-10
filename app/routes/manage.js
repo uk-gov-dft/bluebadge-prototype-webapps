@@ -49,8 +49,12 @@ router.get('/enforcer-search-backend', (req, res) => {
 
   res.locals.badgeholder = badgeholder[0]
 
-  if (badgeholder == false) {
-    res.render('manage-blue-badges/badge-results')
+  if(search == "F4G3D3") {
+    res.render('manage-blue-badges/badge-results', 
+    {'title':'Multiple badges found','search_class':'active'})
+  } else if (badgeholder == false) {
+    res.render('manage-blue-badges/no-results', 
+    {'title':'No results found','search_class':'active'})
   } else {
     res.render('manage-blue-badges/view-badge-enforcer', 
     {'title':'Badge details','search_class':'active'})

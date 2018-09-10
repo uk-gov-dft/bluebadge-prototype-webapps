@@ -1,0 +1,91 @@
+{% extends "admin_layout.html" %}
+
+{% block back_link %}
+  <div class="back-link-container">
+    {{ govukBackLink({
+      "text": "Back",
+      "href": "javascript: window.history.go(-1)"
+    }) }}
+  </div>
+{% endblock %}
+
+{% block page_header %}
+  <h1>{{title}}</h1>
+  
+{% endblock %}
+
+{% block content %}
+
+  {{ govukTable({
+    "firstCellIsHeader": false,
+    "head": [
+      {
+        "text": "Badge number"
+      },
+      {
+        "text": "Name"
+      },
+      {
+        "text": "Local authority"
+      },
+      {
+        "text": "Expiry date"
+      },
+      {
+        "text": "Status"
+      }
+    ],
+    "rows": [
+      [
+        {
+          "html": "<a href=''>F4G3D3</a>"
+        },
+        {
+          "text": "Jonathan Smith"
+        },
+        {
+          "html": "<a href=''>" + data['current-council'] + "</a>"
+        },
+        {
+          "text": "13/01/22"
+        },
+        {
+          "text": "Active"
+        }
+      ],
+      [
+        {
+          "html": "<a href=''>F4G3D3</a>"
+        },
+        {
+          "text": "Jonathan Smith"
+        },
+        {
+          "html": "<a href=''>" + data['current-council'] + "</a>"
+        },
+        {
+          "text": "19/04/21"
+        },
+        {
+          "text": "Cancelled (Lost)"
+        }
+      ],
+      [
+        {
+          "html": "<a href=''>F4G3D3</a>"
+        },
+        {
+          "text": "Jonathan Smith"
+        },
+        {
+          "html": "<a href=''>" + data['current-council'] + "</a>"
+        },
+        {
+          "text": "11/09/20"
+        },
+        {
+          "text": "Cancelled (Lost)"
+        }
+      ]
+    ]
+  }) }}{% endblock %}
