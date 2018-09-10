@@ -44,7 +44,7 @@
 
   <div id="councilChosen" class="hidden">
     <p class="govuk-body" aria-live="polite">
-      Blue Badges are managed by <b id="councilNamePopulated"></b> in your area.
+      Blue Badges are managed by <b id="councilNamePopulated"></b> in {{your}} area.
     </p>
   </div>
   
@@ -66,6 +66,7 @@
     $(document).ready(function () {
       govukGovernmentOrganisationsAutocomplete({
         defaultValue: '',
+        autoselect: true,
         selectElement: document.getElementById('councilPicker'),
         onConfirm: (query) => {
           // Mimick the default onConfirm event that enhanceSelectElement would otherwise set up

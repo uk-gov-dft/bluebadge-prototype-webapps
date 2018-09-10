@@ -1,0 +1,26 @@
+{% extends "admin_layout.html" %}
+
+{% block back_link %}
+  <div class="back-link-container">
+    {{ govukBackLink({
+      "text": "Back",
+      "href": "javascript: window.history.go(-1)"
+    }) }}
+  </div>
+{% endblock %}
+
+{% block page_header %}
+  <h1>{{title}}</h1>
+  
+{% endblock %}
+
+{% block content %}
+
+<p class="govuk-body">
+  We can't find any badges with that badge number.
+</p> 
+<p class="govuk-body">
+  <a href="find-by-badge-number">Try searching again</a>.
+</p>
+
+{% endblock %}

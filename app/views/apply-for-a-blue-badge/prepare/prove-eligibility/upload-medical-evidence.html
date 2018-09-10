@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+{% set hasSaveClass = 'yes' %}
+{% import "apply-for-a-blue-badge/macros/upload-component-new.html" as uploadComponentWidget %}
+
+{% set pageHeading = "Upload evidence of " + your + " walking difficulties" %}
+
+{% block pageTitle %}
+  {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block inner_content %}
+
+
+
+
+<form action="{{ formAction }}?proofOfAdapted=upload">
+  <input type="hidden" id="change" name="medical-evidence-completed" value="true">
+  <h1 class="govuk-heading-l">{{pageHeading}}</h1>
+  
+  <p class="govuk-body">This should something {{you}}'ve already received from {{your}} GP, Hospital or healthcare professional.</p>
+  <p class="govuk-body">Take a photo of documents that show proof of treatments, medications or appointments. These could be:</p>
+
+  <ul class="govuk-list govuk-list--bullet">
+    <li>prescriptions</li>
+    <li>appointment letters from {{your}} GP, Hospital or healthcare professional</li>
+  </ul>
+
+  {{ uploadComponentWidget.uploadComponent(
+    'prove-eligibility/upload-medical-evidence',
+    'proofOfAdapted', 
+    formAction + '?arms-completed=true&proofOfAdapted=notProvided&medical-proof-file-upload=',
+    your, 
+    'provide medical evidence', 
+    change, 
+    'no',
+    'medical-proof-file-upload',
+    'no',
+    'medical-evidence.jpg',
+    data['medical-evidence-done'],
+    'medical-evidence-done'
+  )}}
+
+  <!-- Has save -->
+</form>
+
+      
+
+
+
+{% endblock %}
+
+{% block pageScripts %}
+  <script src="{{ asset_path }}javascripts/upload-file.js"></script>
+{% endblock %}

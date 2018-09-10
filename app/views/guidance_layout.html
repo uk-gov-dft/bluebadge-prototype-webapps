@@ -5,10 +5,12 @@
 <div class="guidance-layout">
     <section class="guidance-container">
 	  	<div class="guidance-titles-wrapper">
+	  		{% if hidesSteps !== "true" %}
 	  		<div class="guidance-title-wrapper">
 				<h1 class="guidance-title">{{pageHeading}}</h1>
 				<span class="guidance-step-count">Step {{guidancePageCount}}</span>
 			</div>
+			{% endif %}
 	  		<div class="guidance-page-title-wrapper">
 	  			<h2 class="govuk-heading-l">{{guidanceTitle}}</h2>
 	  		</div>

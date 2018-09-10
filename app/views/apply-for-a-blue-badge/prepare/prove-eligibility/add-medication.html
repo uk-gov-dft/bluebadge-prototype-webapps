@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% set hasSaveClass = 'yes' %}
 
-{% set pageHeading = 'Add a medication' %}
+{% set pageHeading = 'Add medication or pain relief' %}
 
 {% block pageTitle %}
   {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
@@ -16,7 +16,7 @@
 <form action="{{formAction}}">
   {{ govukInput({
     "label": {
-      "text": "What’s the name of this medication?"
+      "text": "What's the name of this medicine or pain relief?"
     },
     "name": "medication-name"
   }) }}
@@ -26,7 +26,7 @@
     "name": "medication-type",
     "fieldset": {
       "legend": {
-        "text": 'Is it prescribed?',
+        "text": 'Has it been prescribed for ' + you +'?',
         "classes": 'govuk-fieldset__legend--s'
       }
     },
@@ -44,21 +44,10 @@
 
   {{ govukInput({
     "label": {
-      "text": "How often do you take it?"
+      "text": "How much and how often do " + you + " take this (Dosage)?"
     },
     "hint": {
-      "html": "For example, every 4 hours, twice a day, once a week"
-    },
-    "classes": 'govuk-!-width-two-thirds',
-    "name": "medication-regularity"
-  }) }}
-
-  {{ govukInput({
-    "label": {
-      "text": "How much do you take at a time?"
-    },
-    "hint": {
-      "html": "For example, 500mg, 50ml, 2 tablets"
+      "html": "For example: 2 tablets twice a day, when in severe pain"
     },
     "classes": 'govuk-!-width-two-thirds',
     "name": "medication-dosage"
@@ -69,7 +58,7 @@
   }) }}
 
   <div class="govuk-info-panel">
-    <p class="govuk-body">You can add another medication afterwards, if required.</p>
+    <p class="govuk-body">You can add more medication or pain relief on the next page if you need to.</p>
   </div>
 
   <!-- Has save -->

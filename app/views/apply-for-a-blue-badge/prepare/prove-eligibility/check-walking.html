@@ -19,6 +19,20 @@
 
       <div class="govuk-check-your-answers__contents">
         <dt class="govuk-check-your-answers__question">
+          Description of condition
+        </dt>
+        <dd class="govuk-check-your-answers__answer">
+          {{data['describe-condition']}}
+        </dd>
+        <dd class="govuk-check-your-answers__change">
+          <a href="describe-conditions?change=true">
+            Change<span class="govuk-visually-hidden"> description of condition</span>
+          </a>
+        </dd>
+      </div>
+      
+      <div class="govuk-check-your-answers__contents">
+        <dt class="govuk-check-your-answers__question">
           Walking difficulty
         </dt>
         <dd class="govuk-check-your-answers__answer">
@@ -69,10 +83,11 @@
           </a>
         </dd>
       </div>
-
+      
+      {% if data['how-long-walk'] !== 'cant-walk' %}
       <div class="govuk-check-your-answers__contents">
         <dt class="govuk-check-your-answers__question">
-          Somewhere you can walk to
+          Place that you regularly walk to
         </dt>
         <dd class="govuk-check-your-answers__answer">
           {{data['walk-location']}}
@@ -97,21 +112,28 @@
           </a>
         </dd>
       </div>
+      {% endif %}
 
+      {% if data['nation'] === 'scotland' or data['nation'] === 'wales' %}
       <div class="govuk-check-your-answers__contents">
         <dt class="govuk-check-your-answers__question">
-          Description of condition
+          Is {{your}} condition due to improve?
         </dt>
         <dd class="govuk-check-your-answers__answer">
-          {{data['describe-condition']}}
+          {{data['condition-improve'] | capitalize}}
+          {% if data['condition-improve'] === 'yes' %}
+          - 
+          {{data['condition-improve-date']}}
+
+          {% endif %}
         </dd>
         <dd class="govuk-check-your-answers__change">
-          <a href="describe-conditions?change=true">
-            Change<span class="govuk-visually-hidden"> description of condition</span>
+          <a href="condition-improve?change=true">
+            Change<span class="govuk-visually-hidden"> answer to whether condition is due to improve</span>
           </a>
         </dd>
       </div>
-
+      {% endif %}
       
     </dl>
   </section>

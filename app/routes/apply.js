@@ -8,6 +8,7 @@ router.use(function(req, res, next) {
   res.locals.serviceUrl = "/apply-for-a-blue-badge/";
   var applicant = req.session.data['applicant'];
   res.locals.my = applicant === 'someone-else' ? 'their' : 'my';
+  res.locals.me = applicant === 'someone-else' ? 'them' : 'me';
   res.locals.you = applicant === 'someone-else' ? 'they' : 'you';
   res.locals.your = applicant === 'someone-else' ? 'their' : 'your';
   res.locals.youOrThem = applicant === 'someone-else' ? 'them' : 'you';
@@ -109,8 +110,6 @@ router.get('/check-eligibility/existing-badge/index-backend', function (req, res
       var blueBadgeNumber = req.session.data['existing-blue-badge-number'];
       if (blueBadgeNumber.indexOf('1111') === 0 && blueBadgeNumber.lastIndexOf('1111') === blueBadgeNumber.length-4) {
         res.redirect('/apply-for-a-blue-badge/check-eligibility/existing-badge/not-for-renewal');
-      } else if (blueBadgeNumber.indexOf('2222') === 0 && blueBadgeNumber.lastIndexOf('2222') === blueBadgeNumber.length-4) {
-        res.redirect('/apply-for-a-blue-badge/check-eligibility/existing-badge/not-for-review');
       } else if (blueBadgeNumber.indexOf('3333') === 0 && blueBadgeNumber.lastIndexOf('3333') === blueBadgeNumber.length-4) {
         res.redirect('/apply-for-a-blue-badge/check-eligibility/existing-badge?show=errors&existing=yes');
       } else {
@@ -152,9 +151,7 @@ router.get('/check-eligibility/benefits-backend', function (req, res) {
       res.redirect('/apply-for-a-blue-badge/check-eligibility/decision');
       break;
     case "pip":
-      if(req.session.data['nation'] === "scotland") {
-        res.redirect('/apply-for-a-blue-badge/check-eligibility/pip-did-you-get-dla');
-      } else if(req.session.data['council-name'] == 'Northern Ireland') {
+      if(req.session.data['council-name'] == 'Northern Ireland') {
         res.redirect('/apply-for-a-blue-badge/check-eligibility/decision');  
       } else  {
         res.redirect('/apply-for-a-blue-badge/check-eligibility/pip-how-many-moving');  
@@ -175,7 +172,7 @@ router.get('/check-eligibility/pip-dla-backend', function (req, res) {
       res.redirect('/apply-for-a-blue-badge/check-eligibility/decision');
       break;
     case "no":
-      res.redirect('/apply-for-a-blue-badge/check-eligibility/pip-how-many-moving');
+      res.redirect('/apply-for-a-blue-badge/check-eligibility/disability');
       break;
     }
 });
@@ -186,7 +183,11 @@ router.get('/check-eligibility/pip-moving-backend', function (req, res) {
       res.redirect('/apply-for-a-blue-badge/check-eligibility/decision');
       break;
     case "less-than-8":
-      res.redirect('/apply-for-a-blue-badge/check-eligibility/pip-how-many-planning-following');
+      if(req.session.data['nation'] === "scotland" || req.session.data['nation'] === "wales") {
+        res.redirect('/apply-for-a-blue-badge/check-eligibility/pip-how-many-planning-following');
+      } else {
+        res.redirect('/apply-for-a-blue-badge/check-eligibility/disability'); 
+      }
       break;
     }
 });
@@ -197,7 +198,11 @@ router.get('/check-eligibility/pip-planning-backend', function (req, res) {
       res.redirect('/apply-for-a-blue-badge/check-eligibility/decision');
       break;
     case "less-than-12":
-      res.redirect('/apply-for-a-blue-badge/check-eligibility/disability');
+      if(req.session.data['nation'] === "scotland") {
+        res.redirect('/apply-for-a-blue-badge/check-eligibility/pip-did-you-get-dla');
+      } else {
+        res.redirect('/apply-for-a-blue-badge/check-eligibility/disability');  
+      }
       break;
     }
 });
@@ -262,26 +267,23 @@ router.get('/check-eligibility/disability-backend', function (req, res) {
   if (req.session.data['disability'] === 'problems-walking') {
     res.redirect('/apply-for-a-blue-badge/check-eligibility/walking');
   } else {
+    if(req.session.data['disability'] === 'none') {
+      res.render(checkEligibilityTemplatePath+'decision-not-eligible');
+    } else {
+      res.render(checkEligibilityTemplatePath+'decision');  
+    }
+    
+  }
+});
+
+router.get('/check-eligibility/walking-backend', function (req, res) {
+  if (req.session.data['disability-walking'] !== 'none') {
     res.render(checkEligibilityTemplatePath+'decision');
-  }
-});
-
-router.get('/check-eligibility/disability-backend', function (req, res) {
-  if (req.session.data['disability'] === 'problems-walking') {
-    res.redirect('/apply-for-a-blue-badge/check-eligibility/walking');
   } else {
-  	res.render(checkEligibilityTemplatePath+'decision');
+    res.render(checkEligibilityTemplatePath+'decision-not-eligible');
   }
 });
 
-// router.get('/check-eligibility/walking-backend', function (req, res) {
-//   res.render('apply-for-a-blue-badge/check-eligibility/decision');
-// });
-
-router.get('/check-eligibility/existing-badge/not-for-review/', function (req, res) {
-  res.locals.formAction = '/apply-for-a-blue-badge/prepare';
-  res.render(checkEligibilityTemplatePath+'existing-badge/not-for-review.html');
-});
 
 router.get('/check-eligibility/enter-age', function (req, res) {
   if (req.session.data['applicant'] === 'organisation') {
@@ -291,19 +293,30 @@ router.get('/check-eligibility/enter-age', function (req, res) {
   }
 });
 
-router.get('/check-eligibility/org-transport', function (req, res) {
+router.get('/check-eligibility/blind-backend', function (req, res) {
+  if (req.session.data['disability'] === 'blind') {
+    res.render(checkEligibilityTemplatePath+'decision');
+  } else {
+    res.render(checkEligibilityTemplatePath+'benefits');
+  }
+});
+
+
+router.get('/check-eligibility/org-care-for-backend', function (req, res) {
   if (req.session.data['org-care-for'] === 'no') {
-    res.redirect('/apply-for-a-blue-badge/check-eligibility/decision');
+    res.render(checkEligibilityTemplatePath+'decision-not-eligible');
   } else {
     res.render(checkEligibilityTemplatePath+'org-transport');
   }
 });
 
-router.get('/check-eligibility/existing-badge/not-for-review-with-eligibility-questions', function (req, res) {
-  res.locals.formAction = '/apply-for-a-blue-badge/check-eligibility/enter-age';
-  res.render(checkEligibilityTemplatePath+'existing-badge/not-for-review');
+router.get('/check-eligibility/org-transport-backend', function (req, res) {
+  if (req.session.data['org-transport'] === 'no') {
+    res.render(checkEligibilityTemplatePath+'decision-not-eligible');
+  } else {
+    res.render(checkEligibilityTemplatePath+'decision');
+  }
 });
-
 
 /* 
   ---------------------------------------------------------------
@@ -390,7 +403,7 @@ router.get('/personal-details/your-address', function (req, res) {
   } else {
     res.locals.formAction = 'select-address';
   }
-  res.locals.submitLabel = 'Continue';
+  res.locals.submitLabel = 'Find address';
   res.render(personDetailsTemplatePath+'your-address');
 })
 
@@ -525,16 +538,10 @@ const proveEligibilityPath = '/apply-for-a-blue-badge/prove-eligibility/';
 const proveEligibilityTemplatePath = 'apply-for-a-blue-badge/prepare/prove-eligibility/';
 
 router.get('/prove-eligibility', function(req, res) {
-  if (req.session.data['benefit'] !== 'none') {
+  if (req.session.data['benefit'] !== 'none' && req.session.data['disability'] !== 'blind') {
   	res.redirect('/apply-for-a-blue-badge/prove-benefit');
   } else if (req.session.data['disability'] === 'blind') {
     res.redirect(proveEligibilityPath+'are-you-registered-blind');
-  } else if (req.session.data['disability'] === 'problems-walking') {
-    res.redirect(proveEligibilityPath+'what-makes-walking-difficult');
-  } else if (req.session.data['disability'] === 'child-bulky-equipment') {
-    res.redirect(proveEligibilityPath+'medical-equipment');
-  } else if (req.session.data['disability'] === 'arms') {
-    res.redirect(proveEligibilityPath+'how-often-drive');
   } else {
     res.redirect(proveEligibilityPath+'describe-conditions');
   }
@@ -589,7 +596,7 @@ router.get('/prove-eligibility/blind-consent-backend', function(req, res) {
 });
 
 router.get('/prove-eligibility/blind-select-council', function(req, res) {
-  res.locals.formAction = proveEligibilityPath+'describe-conditions';
+  res.locals.formAction = proveEligibilityPath+'check-arms-blind';
   res.render(proveEligibilityTemplatePath+'blind-select-council');
 });
 
@@ -674,7 +681,7 @@ router.get('/prove-eligibility/walking-time', function(req, res) {
 
 router.get('/prove-eligibility/walking-time-backend', function(req, res) {
   if (req.session.data['how-long-walk'] === 'cant-walk') {
-    res.redirect(proveEligibilityPath+'describe-conditions');
+    res.redirect(proveEligibilityPath+'check-walking');
   } else {
     res.redirect(proveEligibilityPath+'where-can-you-walk');
   }
@@ -686,8 +693,17 @@ router.get('/prove-eligibility/where-can-you-walk', function(req, res) {
 });
 
 router.get('/prove-eligibility/how-quickly-do-you-walk', function(req, res) {
-  Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/apply-for-a-blue-badge/prove-eligibility/describe-conditions','check-walking'))
+  if(req.session.data['nation'] === "scotland" || req.session.data['nation'] === "wales") {
+    Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/apply-for-a-blue-badge/prove-eligibility/condition-improve','check-walking'))
+  } else {
+    Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/apply-for-a-blue-badge/prove-eligibility/check-walking','check-walking'))
+  }
   res.render(proveEligibilityTemplatePath+'how-quickly-do-you-walk');
+});
+
+router.get('/prove-eligibility/condition-improve', function(req, res) {
+  Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/apply-for-a-blue-badge/prove-eligibility/check-walking','check-walking'))
+  res.render(proveEligibilityTemplatePath+'condition-improve');
 });
 
 
@@ -707,7 +723,7 @@ router.get('/prove-eligibility/drive-adapted-backend', function(req, res) {
   if (req.session.data['drive-adapted-vehicle'] == 'yes') {
     res.redirect(proveEligibilityPath+'upload-adapted-evidence');
   } else {
-    res.redirect(proveEligibilityPath+'describe-conditions');
+    res.redirect(proveEligibilityPath+'check-arms-blind');
   }
 });
 
@@ -718,7 +734,7 @@ router.get('/prove-eligibility/drive-adapted-backend', function(req, res) {
 
 
 router.get('/prove-eligibility/upload-adapted-evidence', function (req, res) {
-  res.locals.formAction = 'describe-conditions';
+  res.locals.formAction = 'check-arms-blind';
   res.locals.submitLabel = 'Continue';
   res.locals.change = req.query.change;
   res.render(proveEligibilityTemplatePath+'upload-adapted-evidence')
@@ -727,7 +743,7 @@ router.get('/prove-eligibility/upload-adapted-evidence', function (req, res) {
 // Under 3
 
 router.get('/prove-eligibility/medical-equipment', function(req, res) {
-  Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/apply-for-a-blue-badge/prove-eligibility/describe-conditions','check-child'))
+  Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/apply-for-a-blue-badge/prove-eligibility/check-child','check-child'))
   res.render(proveEligibilityTemplatePath+'medical-equipment');
 });
 
@@ -735,17 +751,24 @@ router.get('/prove-eligibility/medical-equipment', function(req, res) {
 // Describe condition
 
 router.get('/prove-eligibility/describe-conditions', function(req, res) {
-  var thisFormAction = '';
+  var thisFormAction = '',
+      thisCheckPage = '';
 
   if (req.session.data['disability'] == 'problems-walking') {
-    thisFormAction = '/apply-for-a-blue-badge/prove-eligibility/check-walking';
-  } else if (req.session.data['disability'] == 'child-bulky-equipment' || req.session.data['disability'] == 'child-close-to-vehicle'){
+    thisFormAction = '/apply-for-a-blue-badge/prove-eligibility/what-makes-walking-difficult';
+    thisCheckPage = '/apply-for-a-blue-badge/prove-eligibility/check-walking';
+  } else if (req.session.data['disability'] == 'child-bulky-equipment') {
+    thisFormAction = '/apply-for-a-blue-badge/prove-eligibility/medical-equipment';
+    thisCheckPage = '/apply-for-a-blue-badge/prove-eligibility/check-child';
+  } else if (req.session.data['disability'] == 'child-close-to-vehicle') {
     thisFormAction = '/apply-for-a-blue-badge/prove-eligibility/check-child';
+    thisCheckPage = '/apply-for-a-blue-badge/prove-eligibility/check-child';
   } else {
-    thisFormAction = '/apply-for-a-blue-badge/prove-eligibility/check-arms-blind';
+    thisFormAction = '/apply-for-a-blue-badge/prove-eligibility/how-often-drive';
+    thisCheckPage = '/apply-for-a-blue-badge/prove-eligibility/check-arms-blind';
   }
 
-  Object.assign(res.locals,sendBackToCheckAnswers(req.query,thisFormAction,thisFormAction))
+  Object.assign(res.locals,sendBackToCheckAnswers(req.query,thisFormAction,thisCheckPage))
   
   res.render(proveEligibilityTemplatePath+'describe-conditions');
 });
@@ -765,6 +788,12 @@ router.get('/prove-eligibility/check-child', function(req, res) {
 });
 
 
+router.get('/upload-medical-evidence', function (req, res) {
+  res.locals.formAction = 'task-list?medical-evidence-completed=true';
+  res.locals.submitLabel = 'Continue';
+  res.locals.change = req.query.change;
+  res.render(proveEligibilityTemplatePath+'upload-medical-evidence')
+});
 
 
 // List treatments

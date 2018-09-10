@@ -17,7 +17,7 @@
       "text": "National Insurance number"
     },
     "hint": {
-      "text": "It’s on your National Insurance card, benefit letter, payslip or P60. For example, ‘QQ 12 34 56 C’."
+      "text": "It's on " + your + " National Insurance card, benefit letter, payslip or P60. For example, ‘QQ 12 34 56 C’."
     },
     classes: "govuk-input--width-20 input-capitals",
     id: "nino",
@@ -26,6 +26,11 @@
     attributes: {
       autocapitalize: "characters"
     }
+  }) }}
+
+  {{ govukDetails({
+    summaryText: you | capitalize + " don't have a National Insurance number",
+    html: "If " + you + " don't have a National Insurance number, " + you + " can still apply. <a href='" + formAction + "'>Continue without a National Insurance number</a>."
   }) }}
   
   {{ govukButton({

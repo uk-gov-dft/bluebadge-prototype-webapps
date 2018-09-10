@@ -1,15 +1,88 @@
 const express = require('express')
 const router = express.Router()
 
+router.use(function(req, res, next) {
+  if (!req.session.data['current-council']) {
+    res.locals.data['current-council'] = 'Royal Borough of Kensington and Chelsea';
+  }
+
+  if (req.session.data['sign-in-email']) {
+    if (req.session.data['sign-in-email'].includes ('enforce')) {
+      res.locals.enforcerClass = 'enforcer-view';
+    }
+  }
+
+  next();
+});
+
 router.get('/', function (req, res) {
   res.redirect('manage-blue-badges/sign-in');
 });
 
 router.get('/sign-in', function (req, res) {
-  res.locals.formAction = '/manage-blue-badges/new-applications';
+  res.locals.formAction = '/manage-blue-badges/sign-in-backend';
   res.render('manage-blue-badges/sign-in', {'title':'Sign in'})
   req.session.destroy()
 });
+
+router.get('/sign-in-backend', function (req, res) {
+  if (req.session.data['sign-in-email'].includes ('enforce1')) {
+    res.redirect('/manage-blue-badges/find-by-badge-number');
+  } else if (req.session.data['sign-in-email'].includes ('enforce2')) {
+    res.redirect('/manage-blue-badges/search-for-a-badge');
+  } else {
+    res.redirect('/manage-blue-badges/new-applications');
+  }
+});
+
+router.get('/find-by-badge-number', function (req, res) {
+  res.render('manage-blue-badges/find-by-badge-number', 
+    {'title':'Enter badge number','search_class':'active', 'enforcerClass': 'enforcer-view'})
+})
+
+router.get('/view-badge-enforcer', function (req, res) {
+  res.render('manage-blue-badges/view-badge-enforcer', 
+    {'title':'Badge details','search_class':'active'})
+})
+
+router.get('/enforcer-search-backend', (req, res) => {
+  const search = req.session.data['badge-search'].replace(/ /g,'').toUpperCase()
+  const badgeholder = req.session.data['badgeholders'].filter(badgeholder => badgeholder.shortcode === search)
+
+  res.locals.badgeholder = badgeholder[0]
+
+  if(search == "F4G3D3") {
+    res.render('manage-blue-badges/badge-results', 
+    {'title':'Multiple badges found','search_class':'active'})
+  } else if (badgeholder == false) {
+    res.render('manage-blue-badges/no-results', 
+    {'title':'No results found','search_class':'active'})
+  } else {
+    res.render('manage-blue-badges/view-badge-enforcer', 
+    {'title':'Badge details','search_class':'active'})
+  }
+})
+
+router.get('/view-badge-full', (req, res) => {
+  const search = req.session.data['badge-search'].replace(/ /g,'').toUpperCase()
+  const badgeholder = req.session.data['badgeholders'].filter(badgeholder => badgeholder.shortcode === search)
+
+  res.locals.badgeholder = badgeholder[0]
+
+  res.render('manage-blue-badges/view-badge-full', 
+  {'title':'Badge details','search_class':'active'})
+
+})
+
+router.get('/search-results-backend', (req, res) => {
+  const search = req.session.data['badge-search'].replace(/ /g,'').toUpperCase()
+  const badgeholder = req.session.data['badgeholders'].filter(badgeholder => badgeholder.shortcode === search)
+
+  res.locals.badgeholder = badgeholder[0]
+
+  res.render('manage-blue-badges/search-results', 
+    {'title':'Badge details','search_class':'active'})
+})
 
 router.get('/reset***REMOVED***', function (req, res) {
   res.locals.formAction = '/manage-blue-badges/reset-email-sent';

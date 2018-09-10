@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% set hasSaveClass = 'yes' %}
 
-{% set pageHeading = 'What makes walking difficult for ' + youOrThem + '?' %}
+{% set pageHeading = 'How does ' + your + ' health condition make walking difficult for ' + youOrThem + '?' %}
 
 {% block pageTitle %}
   {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
@@ -52,6 +52,11 @@
         "value": "balance",
         "text": "Balance or coordination",
         "checked": checked('difficulty', 'balance')
+      },
+      {
+        "value": "longtime",
+        "text": "It takes " + me + " a long time" ,
+        "checked": checked('difficulty', 'longtime')
       },
       {
         "value": "dangerous",

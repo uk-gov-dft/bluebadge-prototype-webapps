@@ -12,10 +12,18 @@
 		color: govuk-colour(white);
 		max-width: 40rem;
 	}
+	a, a:visited, a:link {
+		color: white;
+	}
 	p.govuk-body, label, li {
 		@include govuk-font(24);
 	}
-	.govuk-button {
+	.middle-start-page {
+		p.govuk-body, label, li {
+			@include govuk-font(19);
+		}
+	}
+	a.govuk-button, .govuk-button {
 		background-color: govuk-colour(white);
 		color: govuk-colour(blue);
 		box-shadow: darken(govuk-colour(blue), 20%) 0px 2px 0px 0px;

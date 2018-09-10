@@ -1,0 +1,78 @@
+{% extends "admin_layout.html" %}
+
+
+{% block back_link %}
+  <div class="back-link-container">
+    {{ govukBackLink({
+      "text": "Back",
+      "href": "javascript: window.history.go(-1)"
+    }) }}
+  </div>
+{% endblock %}
+
+{% block page_header %}
+  <div class="check-answers-heading-with-change">
+    <div class="check-answers-heading">
+      <p class="subtitle">{{badgeholder.shortcode}}</p>
+      <h1 class="govuk-heading-xl">{{title}}</h1>
+    </div>
+  </div>
+  
+{% endblock %}
+
+{% block content %}
+
+<div class="mobile-grid align-middle">
+  <div class="mobile-grid-cell grid-cell-1-2">
+    <div class="enforcer-view-image">
+      <img src="/public/images/{{badgeholder.photoPath}}" alt="Photo of Badge Holder">
+    </div>
+  </div>
+  <div class="mobile-grid-cell grid-cell-1-2">
+    <dl class="labels-with-heading">
+      <div class="label-with-heading">
+        <dt class="label">Age</dt>
+        <dd class="heading">{{badgeholder.age}}</dd>
+      </div>
+
+      <div class="label-with-heading">
+        <dt class="label">Badge expiry</dt>
+        <dd class="heading">{{badgeholder.badgeExpiryShort}}</dd>
+      </div>
+
+      <div class="label-with-heading">
+        <dt class="label">Badge status</dt>
+        <dd class="heading">{{badgeholder.badgeStatus}}</dd>
+      </div>
+    </dl>
+  </div>
+</div>
+
+<div class="mobile-grid">
+  <dl class="labels-with-heading">
+    <div class="label-with-heading">
+      <dt class="label">Badge holder</dt>
+      <dd class="heading">{{badgeholder.fullName}}</dd>
+    </div>
+  
+    <div class="label-with-heading">
+      <dt class="label">Issued by</dt>
+      <dd class="heading">{{data['current-council']}}</dd>
+    </div>
+  
+    <div class="label-with-heading">
+      <dt class="label">Badge number</dt>
+      <dd class="heading">{{badgeholder.fullBadgeNumber}}</dd>
+    </div>
+  </dl>
+</div>
+
+<br>
+
+{{ govukButton({
+  "text": "View more details",
+  "href": 'view-badge-full'
+}) }}
+
+
+{% endblock %}

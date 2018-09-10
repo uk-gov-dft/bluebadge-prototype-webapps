@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% set hasSaveClass = 'yes' %}
 
-{% set pageHeading = "Have " + you + " had any treatments?" %}
+{% set pageHeading = "Have " + you + " had any treatments for your condition?" %}
 
 {% block pageTitle %}
   {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
@@ -65,7 +65,7 @@
       }
     },
     "hint": {
-      "text": "List any surgeries, treatments or clinics " + you + "’ve had for your condition"
+      "text": "List any surgeries, treatments or clinics " + you + "'ve attended for " + your + " condition"
     },
     "items": [
       {

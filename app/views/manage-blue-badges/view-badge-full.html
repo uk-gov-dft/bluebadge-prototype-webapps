@@ -13,15 +13,8 @@
 {% block page_header %}
   <div class="check-answers-heading-with-change">
     <div class="check-answers-heading">
-      <p class="subtitle">E5B1AF</p>
+      <p class="subtitle">{{badgeholder.shortcode}}</p>
       <h1>{{title}}</h1>
-    </div>
-  
-    <div class="check-answers-change hide-enforcer">
-      <p>
-        <a href="replace-badge">Order a replacement</a><br>
-        <a href="cancel-badge">Cancel badge</a>
-      </p>
     </div>
   
   </div>
@@ -29,37 +22,6 @@
 {% endblock %}
 
 {% block content %}
-
-  {% if  data['search-by'] === "name" %}
-
-  {% set name = data['searchValue'] %}
-  
-  {% else %}
-
-  {% set name = 'Phillip Powell' %}
-
-  {% endif %}
-
-
-  {% if  data['search-by'] === "badge-number" %}
-
-  {% set badgeNumber = data['searchValue'] %}
-  
-  {% else %}
-
-  {% set badgeNumber = 'eb56Yq' %}
-
-  {% endif %}
-
-  {% if  data['search-by'] === "postcode" %}
-
-  {% set postcode = data['searchValue'] %}
-  
-  {% else %}
-
-  {% set postcode = 'M1 1BS' %}
-
-  {% endif %}
 
 <section class="split-section">
   <h2 class="govuk-heading-m">
@@ -73,16 +35,7 @@
         Full name
       </dt>
       <dd class="govuk-check-your-answers__answer">
-        {{ name }}
-      </dd>
-    </div>
-
-    <div class="govuk-check-your-answers__contents">
-      <dt class="govuk-check-your-answers__question">
-        Gender
-      </dt>
-      <dd class="govuk-check-your-answers__answer">
-        Man
+        {{badgeholder.fullName}}
       </dd>
     </div>
   
@@ -91,16 +44,27 @@
         Date of birth
       </dt>
       <dd class="govuk-check-your-answers__answer">
-        12 May 1968
+        {{badgeholder.dateOfBirth}}
       </dd>
     </div>
 
+    {% if badgeholder.nationalInsurance %}
     <div class="govuk-check-your-answers__contents">
       <dt class="govuk-check-your-answers__question">
         N.I number
       </dt>
       <dd class="govuk-check-your-answers__answer">
-        JR 12 34 56 A
+        {{badgeholder.nationalInsurance}}
+      </dd>
+    </div>
+    {% endif %}
+
+    <div class="govuk-check-your-answers__contents">
+      <dt class="govuk-check-your-answers__question">
+        Gender
+      </dt>
+      <dd class="govuk-check-your-answers__answer">
+        {{badgeholder.gender}}
       </dd>
     </div>
   
@@ -109,52 +73,63 @@
         Address
       </dt>
       <dd class="govuk-check-your-answers__answer">
-        114 Mansfield Road, Crumpsall, Manchester, {{ postcode }}
+        {{ badgeholder.address.street }},
+        {% if badgeholder.address.street2 %}
+          {{ badgeholder.address.street2 }},
+        {% endif %}
+        {{ badgeholder.address.city }},
+        {{ badgeholder.address.postcode }}
       </dd>
     </div>
-
-    <div class="govuk-check-your-answers__contents">
-      <dt class="govuk-check-your-answers__question">
-        Contact full name
-      </dt>
-      <dd class="govuk-check-your-answers__answer">
-        {{ name }}
-      </dd>
-    </div>
+    
+    {% if badgeholder.contactName %}
+      <div class="govuk-check-your-answers__contents">
+        <dt class="govuk-check-your-answers__question">
+          Contact full name
+        </dt>
+        <dd class="govuk-check-your-answers__answer">
+          {{ badgeholder.contactName }}
+        </dd>
+      </div>
+    {% endif %}
   
     <div class="govuk-check-your-answers__contents">
       <dt class="govuk-check-your-answers__question">
-        Primary contact number
+        Main contact number
       </dt>
       <dd class="govuk-check-your-answers__answer">
-        01331 252 226
+        {{ badgeholder.mainPhoneNumber}}
       </dd>
     </div>
 
+    {% if badgeholder.altPhoneNumber %}
     <div class="govuk-check-your-answers__contents">
       <dt class="govuk-check-your-answers__question">
-        Secondary contact number
+        Alternative contact number
       </dt>
       <dd class="govuk-check-your-answers__answer">
-        01331 252 226
+        {{ badgeholder.altPhoneNumber}}
       </dd>
     </div>
-  
+    {% endif %}
+
+    {% if badgeholder.emailAddress %}
     <div class="govuk-check-your-answers__contents">
       <dt class="govuk-check-your-answers__question">
         Email address
       </dt>
       <dd class="govuk-check-your-answers__answer">
-        footie_4_lyf@gmail.com
+        {{ badgeholder.emailAddress}}
       </dd>
     </div>
+    {% endif %}
   
     <div class="govuk-check-your-answers__contents">
       <dt class="govuk-check-your-answers__question">
         Eligibility
       </dt>
       <dd class="govuk-check-your-answers__answer">
-        PIP
+        {{ badgeholder.eligibility}}
       </dd>
     </div>
   
@@ -163,7 +138,7 @@
         Photo
       </dt>
       <dd class="govuk-check-your-answers__answer">
-        <img src="/public/images/phillip.png" alt="Photo of Phillip Powell">
+        <img src="/public/images/{{ badgeholder.photoPath}}" alt="Photo of Badge Holder">
       </dd>
     </div>
   </dl>
@@ -180,7 +155,7 @@
         Status
       </dt>
       <dd class="govuk-check-your-answers__answer">
-        Valid
+        {{ badgeholder.badgeStatus}}
       </dd>
     </div>
   
@@ -189,16 +164,7 @@
         Badge number
       </dt>
       <dd class="govuk-check-your-answers__answer">
-        {{ badgeNumber }}
-      </dd>
-    </div>
-
-     <div class="govuk-check-your-answers__contents">
-      <dt class="govuk-check-your-answers__question">
-        Issue number
-      </dt>
-      <dd class="govuk-check-your-answers__answer">
-        1
+        {{ badgeholder.fullBadgeNumber}}
       </dd>
     </div>
   
@@ -207,7 +173,7 @@
         Issued by
       </dt>
       <dd class="govuk-check-your-answers__answer">
-        Manchester City Council
+        {{data['current-council']}}
       </dd>
     </div>
   
@@ -216,7 +182,7 @@
         Badge start date
       </dt>
       <dd class="govuk-check-your-answers__answer">
-        12 May 2019
+        {{ badgeholder.badgeStart}}
       </dd>
     </div>
   
@@ -225,16 +191,7 @@
         Badge expiry date
       </dt>
       <dd class="govuk-check-your-answers__answer">
-        12 May 2022
-      </dd>
-    </div>
-
-    <div class="govuk-check-your-answers__contents">
-      <dt class="govuk-check-your-answers__question">
-        Needs reassessing?
-      </dt>
-      <dd class="govuk-check-your-answers__answer">
-        Yes
+        {{ badgeholder.badgeExpiry}}
       </dd>
     </div>
   
@@ -243,7 +200,7 @@
         Local authority reference
       </dt>
       <dd class="govuk-check-your-answers__answer">
-        1234455242
+        {{ badgeholder.laReference}}
       </dd>
     </div>
   
@@ -252,7 +209,7 @@
         Application date
       </dt>
       <dd class="govuk-check-your-answers__answer">
-        12 May 2019
+        {{ badgeholder.applicationDate}}
       </dd>
     </div>
 
@@ -261,7 +218,7 @@
         Application channel
       </dt>
       <dd class="govuk-check-your-answers__answer">
-        Online
+        {{ badgeholder.applicationChannel}}
       </dd>
     </div>
   </dl>

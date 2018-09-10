@@ -9,12 +9,35 @@
 
 {% block inner_content %}
 
+{% if data['age'] < 16 %}
 
+{% set genderMaleLabel = 'Boy' %}
+{% set genderFemaleLabel = 'Girl' %}
+
+{% else %}
+
+{% set genderMaleLabel = 'Man' %}
+{% set genderFemaleLabel = 'Woman' %}
+
+{% endif %}
 
 <form action="{{formAction}}">
+  {% set identifyHTML %}
+  {{ govukInput({
+        label: {
+          text: "What gender do " + you + " identify with?"
+        },
+        id: "gender-identity",
+        name: "gender-identity"
+      }) }}
+  {% endset -%}
+
   {{ govukRadios({
     "idPrefix": "gender",
     "name": "gender",
+    "attributes": {
+          "data-catchoption-label": true
+        },
     "fieldset": {
       "legend": {
         "text": pageHeading,
@@ -24,23 +47,28 @@
     },
     "items": [
       {
-        "value": "female",
-        "text": "Female",
-          "checked": data['gender'] === 'female'
-      },
-      {
         "value": "male",
-        "text": "Male",
+        "text": genderMaleLabel,
         "checked": data['gender'] === 'male'
       },
       {
+        "value": "female",
+        "text": genderFemaleLabel,
+          "checked": data['gender'] === 'female'
+      },
+      {
         "value": "unspecified",
-        "text": "Unspecified",
-        "checked": data['gender'] === 'unspecified'
+        "text": iThey | capitalize + " identify in a different way",
+        "checked": data['gender'] === 'unspecified',
+        "conditional": {
+          "html": identifyHTML
+        }
       }
 
     ]
   }) }}
+
+  <div id="hiddenCaughtInputs"></div>
   
   {{ govukButton({
     "text": submitLabel

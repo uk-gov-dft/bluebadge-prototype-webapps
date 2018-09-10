@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% set hasSaveClass = 'yes' %}
 
-{% set pageHeading = 'Add a mobility aid' %}
+{% set pageHeading = 'Add mobility aid' %}
 
 {% block pageTitle %}
   {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
@@ -16,27 +16,39 @@
 <form action="{{formAction}}">
   {{ govukInput({
     "label": {
-      "text": "Name of the mobility aid"
+      "text": "Type of mobility aid"
     },
     "name": "mobility-aid-name"
   }) }}
 
   {{ govukInput({
     "label": {
-      "text": "How often do you use this mobility aid?"
+      "text": "How do " + you + ", typically, use this?"
+    },
+    "hint" : {
+      "text": "For example: Specific occasions such as hospital visits or shopping."
     },
     "name": "mobility-aid-usage"
   }) }}
 
   <input type="hidden" name="{{shouldchangename}}" value="{{shouldchangevalue}}">
 
+  {% if data['nation'] == "scotland" %}
+
+  {% set socialWording = 'Social Work' %}
+
+  {% else %}
+
+  {% set socialWording = 'Social Services' %}
+
+  {% endif %}
 
   {{ govukRadios({
     "idPrefix": "mobility-aid-source",
     "name": "mobility-aid-source",
     "fieldset": {
       "legend": {
-        "text": 'How was this mobility aid provided?',
+        "text": 'How did ' + you + ' get this mobility aid?',
         "classes": 'govuk-fieldset__legend--s'
       }
     },
@@ -50,17 +62,17 @@
         "text": "Bought privately"
       },
       {
-        "value": "Social Services",
-        "text": "Provided by Social Services"
+        "value": socialWording,
+        "text": "Provided by " + socialWording
       }
     ]
   }) }}
   {{ govukButton({
-    "text": "Add this mobility aid"
+    "text": "Add mobility aid"
   }) }}
 
   <div class="govuk-info-panel">
-    <p class="govuk-body">You can add another mobility aid afterwards, if required.</p>
+    <p class="govuk-body">You can add more mobility aids on the next page if you need to.</p>
   </div>
 
   <!-- Has save -->

@@ -17,6 +17,20 @@
     
     <dl class="govuk-check-your-answers govuk-check-your-answers--short">
       
+      <div class="govuk-check-your-answers__contents">
+        <dt class="govuk-check-your-answers__question">
+          Description of condition
+        </dt>
+        <dd class="govuk-check-your-answers__answer">
+          {{data['describe-condition']}}
+        </dd>
+        <dd class="govuk-check-your-answers__change">
+          <a href="describe-conditions?change=true">
+            Change<span class="govuk-visually-hidden"> description of condition</span>
+          </a>
+        </dd>
+      </div>
+      
       {% if (data['disability'] === 'child-bulky-equipment') %}
         {% set whichCompleted = 'bulky-completed=true&child-completed=true'%}
 
@@ -38,20 +52,6 @@
       {% if (data['disability'] === 'child-close-to-vehicle') %}
         {% set whichCompleted = 'child-completed=true'%}
       {% endif %}
-
-      <div class="govuk-check-your-answers__contents">
-        <dt class="govuk-check-your-answers__question">
-          Description of condition
-        </dt>
-        <dd class="govuk-check-your-answers__answer">
-          {{data['describe-condition']}}
-        </dd>
-        <dd class="govuk-check-your-answers__change">
-          <a href="describe-conditions?change=true">
-            Change<span class="govuk-visually-hidden"> description of condition</span>
-          </a>
-        </dd>
-      </div>
 
       
     </dl>

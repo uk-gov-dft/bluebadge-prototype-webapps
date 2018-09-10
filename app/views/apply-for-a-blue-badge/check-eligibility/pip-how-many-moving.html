@@ -1,5 +1,5 @@
 {% extends "layout.html" %}
-{% set pageHeading = 'How many points did ' + you + ' score in the "moving around" activity of ' + your + ' assessment?' %}
+{% set pageHeading = "How many points did " + you + " score in the 'moving around' activity of " + your + " assessment?" %}
 
 {% block pageTitle %}
   {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
@@ -25,11 +25,23 @@
       "items": [
           {
             "value": "more-than-8",
-            "text": '8 points or more'
+            "text": '12 points'
+          },
+          {
+            "value": "more-than-8",
+            "text": '10 points'
+          },
+          {
+            "value": "more-than-8",
+            "text": '8 points'
           },
           {
             "value": "less-than-8",
-            "text": '7 points or less'
+            "text": '4 points'
+          },
+          {
+            "value": "less-than-8",
+            "text": '0 points'
           }
         ]
     }) }}

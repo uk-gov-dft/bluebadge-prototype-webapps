@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% set hasSaveClass = 'yes' %}
 
-{% set pageHeading = "Do " + you + " use a mobility aid?" %}
+{% set pageHeading = "Do " + you + " use mobility aids outside of " + your + " home?" %}
 
 {% block pageTitle %}
   {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
@@ -20,7 +20,7 @@
               "text": "Name"
             },
             {
-              "text": "Usage"
+              "text": "When used"
             },
             {
               "text": ""
@@ -39,7 +39,7 @@
           "text": "Name"
         },
         {
-          "text": "Usage"
+          "text": "When used"
         },
         {
           "text": ""
@@ -64,7 +64,7 @@
       }
     },
     "hint": {
-      "text": "List any mobility aids " + you + " use such as wheelchairs, prosthetic legs or crutches"
+      "html": "List any mobility aids such as wheelchairs and scooters or walking aids such as zimmer frames and crutches."
     },
     "items": [
       {
