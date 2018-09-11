@@ -6,6 +6,10 @@ router.use(function(req, res, next) {
     res.locals.data['current-council'] = 'London Borough of Ealing';
   }
 
+  if (!req.session.data['find-badge-url']) {
+    res.locals.data['find-badge-url'] = 'search-for-a-badge';
+  }
+
   if (req.session.data['sign-in-email']) {
     if (req.session.data['sign-in-email'].includes ('enforce')) {
       res.locals.enforcerClass = 'enforcer-view';
@@ -27,9 +31,9 @@ router.get('/sign-in', function (req, res) {
 
 router.get('/sign-in-backend', function (req, res) {
   if (req.session.data['sign-in-email'].includes ('enforce1')) {
-    res.redirect('/manage-blue-badges/find-by-badge-number');
+    res.redirect('/manage-blue-badges/find-by-badge-number?find-badge-url=find-by-badge-number');
   } else if (req.session.data['sign-in-email'].includes ('enforce2')) {
-    res.redirect('/manage-blue-badges/search-for-a-badge');
+    res.redirect('/manage-blue-badges/search-for-a-badge?find-badge-url=search-for-a-badge');
   } else {
     res.redirect('/manage-blue-badges/new-applications');
   }
