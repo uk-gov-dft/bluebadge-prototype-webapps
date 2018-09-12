@@ -3,7 +3,7 @@ const router = express.Router()
 
 router.use(function(req, res, next) {
   if (!req.session.data['current-council']) {
-    res.locals.data['current-council'] = 'London Borough of Ealing';
+    res.locals.data['current-council'] = 'Buckinghamshire County Council';
   }
 
   if (!req.session.data['find-badge-url']) {
