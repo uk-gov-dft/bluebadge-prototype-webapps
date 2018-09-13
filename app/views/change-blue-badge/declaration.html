@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+
+{% set pageHeading = 'Declaration' %}
+
+{% block pageTitle %}
+  {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block inner_content %}
+
+
+
+<h1 class="govuk-heading-l">{{pageHeading}}</h1>
+
+<p class="govuk-body">When you submit these details {{ you }} agree that:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+  <li>the details {{ you }}'ve provided are complete and accurate</li>
+  <li>{{ you }}'ll return the Blue Badge to {{data['council-name']}} if you find it</li></li>
+  <li>{{data['council-name']}} can check any information they already have about {{ youOrThem }} so that they can process {{ your }} {{ application }}</li>
+</ul>
+
+
+<form novalidate="" action="{{ formAction }}">
+  {{ govukCheckboxes({
+    "idPrefix": "agree",
+    "name": "agree",
+    "fieldset": {
+      "legend": {
+        "text": 'Do you agree to this declaration?',
+        "isPageHeading": false,
+        "classes": 'govuk-visually-hidden'
+      }
+    },
+    "items": [
+      {
+        "value": "true",
+        "text": "I agree to this declaration",
+        "checked": checked('agree', 'true')
+      }
+    ]
+  }) }}
+
+  <input type="hidden" name="declaration-completed" value="true">
+
+  {{ govukButton({
+    "text": "Continue"
+  }) }}
+
+</form>
+
+{% endblock %}

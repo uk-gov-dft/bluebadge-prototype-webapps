@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+
+{% if data['applicant'] === 'organisation' %}
+  {% set pageHeading = "What's your organisation's address?" %}
+{% else %}
+  {% set pageHeading = "What's " + your + " address?" %}
+{% endif %}
+
+{% block pageTitle %}
+  {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block inner_content %}
+
+
+<h1 class="govuk-heading-l">{{pageHeading}}</h1>
+
+<form action="{{formAction}}">
+  {{ govukInput({
+    "label": {
+      "html": 'Building number or name'
+    },
+    "hint": {
+      "text": "For example, 11A"
+    },
+    "classes": 'govuk-!-width-two-thirds',
+    "id": "address-line-1",
+    "name": "address-line-1"
+  }) }}
+
+  {{ govukInput({
+    "label": {
+      "html": 'Postcode'
+    },
+    "hint": {
+      "text": "For example, SW1A 1AA"
+    },
+    "classes": 'govuk-input--width-10',
+    "id": "address-postcode",
+    "name": "address-postcode",
+    "value": userPostcode
+  }) }}
+
+  {{ govukButton({
+    "text": submitLabel
+  }) }}
+
+  <p class="govuk-body">Or you can <a href="enter-address">enter {{your}} address manually</a></p>
+  
+  
+
+  <!-- Has save -->
+</form>
+
+      
+
+
+
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% set pageHeading = 'Changes submitted' %}
+
+{% block pageTitle %}
+  {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block inner_content %}
+
+{{ govukPanel({
+  "titleHtml": '<h1 class="govuk-panel__title govuk-!-f-36">' + pageHeading + '</h1>',
+  "html": '<span class="govuk-!-f-27">Your reference number is<br><strong>HDJ2123F</strong></span>'
+})
+}}
+
+<p class="govuk-body">We've sent confirmation of your request to 
+  <strong>{% if data['email-address'] %}{{ data['email-address'] }}{% else %}yourname@email.com{% endif %}</strong>.
+</p>
+
+
+<h2 class="govuk-heading-m">What happens next</h2>
+
+<div id="all-evidence-present">
+  <p class="govuk-body">{{data['council-name'] | title}} may contact {{ you }} to ask for more information.</p>
+</div>
+
+<p class="govuk-body">It's now safe to close this window.</p>
+
+<h2 class="govuk-heading-m">{{data['council-name'] | title}} contact details</h2>
+<p class="govuk-body">
+  {{data['council-name'] | title}}
+  <br/>Church Lane
+  <br/>Manchester
+  <br/>M1 4AA
+  <br/>
+</p>
+<p class="govuk-body">
+  Email: <a href="mailto:bluebadge@manchester.gov.uk">bluebadge@council.gov.uk</a>
+  <br/>Telephone: 0161 277 5919
+</p>
+
+{% endblock %}

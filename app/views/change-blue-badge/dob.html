@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+{% set pageHeading = 'What\'s ' + your + ' date of birth?' %}
+
+{% block pageTitle %}
+  {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block inner_content %}
+
+
+
+<!-- <p class="govuk-body"></p> -->
+<form action="{{formAction}}">
+  {{ govukDateInput({
+    "fieldset": {
+        "legend": {
+          "text": pageHeading,
+          "isPageHeading": true,
+          "classes": 'govuk-fieldset__legend--l'
+        }
+      },
+    "hint": {
+      "text": 'For example, 31 3 1980'
+    },
+    id: 'dob',
+    name: 'dob',
+    items:[
+      {
+        name: 'day',
+        value: data['dob-day']
+      },
+      {
+        name: 'month',
+        value: data['dob-month']
+      },
+      {
+        name: 'year',
+        value: data['dob-year']
+      }
+    ]
+    })
+  }}
+  
+  {{ govukButton({
+    "text": submitLabel
+  }) }}
+
+  <!-- Has save -->
+</form>
+
+      
+
+
+
+{% endblock %}

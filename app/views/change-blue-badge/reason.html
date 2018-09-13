@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% set pageHeading = 'Descibe the changes you want to make' %}
+
+{% block pageTitle %}
+  {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block inner_content %}
+
+<h1 class="govuk-heading-l">{{pageHeading}}</h1>
+
+<form action="{{ formAction }}">
+  {{ govukTextarea({
+    "name": "change-reason",
+    "id": "change-reason",
+    "value": data['change-reason']
+  }) }}
+  
+  {{ govukButton({
+    "text": submitLabel
+  }) }}
+
+  <!-- Has save -->
+</form>
+
+{% endblock %}

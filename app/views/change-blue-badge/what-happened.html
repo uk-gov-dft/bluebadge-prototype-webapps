@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+
+{% set pageHeading = 'What happened to ' + your + ' Blue Badge?' %}
+
+{% block pageTitle %}
+  {% if data["show"] === "errors" %} Error: {% endif %} {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block inner_content %}
+      
+<form action="{{ formAction }}">
+
+  {% set stolenHtml %}
+    {{ govukInput({
+      "label": {
+        "text": "Crime reference number"
+      },
+      classes: "govuk-!-width-two-thirds",
+      errorMessage: errorArray.existingBadge,
+      id: formIDs.existingBadge.id,
+      name: formIDs.existingBadge.id
+    }) }}
+  {% endset -%}
+    
+    {{ govukRadios({
+      "idPrefix": "what-happened",
+      "name": "what-happened",
+      "attributes": {
+        "data-catchoption-label": true
+      },
+      "fieldset": {
+        "legend": {
+          "text": pageHeading,
+          "isPageHeading": true,
+          "classes": 'govuk-fieldset__legend--l'
+        }
+      },
+      "items": [
+        {
+          "value": "Lost",
+          "text": "Lost"
+        },
+        {
+          "value": "Stolen",
+          "text": "Stolen",
+          "conditional": {
+            "html": stolenHtml
+          }
+        },
+        {
+          "value": "Damaged",
+          "text": "Damaged"
+        }
+      ]
+    }) }}
+
+    
+  
+  {{ govukButton({
+    "text": "Continue"
+  }) }}
+</form>
+
+{% endblock %}
