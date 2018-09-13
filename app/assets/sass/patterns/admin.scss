@@ -176,6 +176,17 @@
 			width: 8rem;
 		}
 	}
+	.enforcer-view {
+		@include mq($until: tablet) {
+			.govuk-check-your-answers__question{
+				@include govuk-font(19, $weight: bold);
+			}
+			.govuk-check-your-answers__answer,
+			.govuk-check-your-answers__change {
+				@include govuk-font(19);
+			}
+		}
+	}
 	.search-filter {
 		display: inline-block;
 	}

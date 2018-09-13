@@ -54,25 +54,62 @@
       <dt class="label">Badge holder</dt>
       <dd class="heading">{{badgeholder.fullName}}</dd>
     </div>
-  
+    {% if badgeholder.contactName %}
+      <div class="label-with-heading">
+        <dt class="label">Contact full name</dt>
+        <dd class="heading">{{badgeholder.contactName}}</dd>
+      </div>
+    {% endif %}
+    <div class="label-with-heading">
+      <dt class="label">Main contact number</dt>
+      <dd class="heading"><a href="tel:{{ badgeholder.mainPhoneNumber}}">{{ badgeholder.mainPhoneNumber}}</a></dd>
+    </div>
+    {% if badgeholder.altPhoneNumber %}
+    <div class="label-with-heading">
+      <dt class="label">Alternative contact number</dt>
+      <dd class="heading"><a href="tel:{{ badgeholder.altPhoneNumber}}">{{badgeholder.altPhoneNumber}}</a></dd>
+    </div>
+    {% endif %}
+
+    <div class="label-with-heading">
+      <dt class="label">Address</dt>
+      <dd class="heading">
+        {{ badgeholder.address.street }},
+        {% if badgeholder.address.street2 %}
+          {{ badgeholder.address.street2 }},
+        {% endif %}
+        {{ badgeholder.address.city }},
+        {{ badgeholder.address.postcode }}
+      </dd>
+    </div>
+
+    {% if badgeholder.emailAddress %}
+    <div class="label-with-heading">
+      <dt class="label">Email address</dt>
+      <dd class="heading">{{badgeholder.emailAddress}}</dd>
+    </div>
+    {% endif %}
+
+    <div class="label-with-heading">
+      <dt class="label">Date of birth</dt>
+      <dd class="heading">{{badgeholder.dateOfBirth}}</dd>
+    </div>
+
+    <div class="label-with-heading">
+      <dt class="label">Full badge number</dt>
+      <dd class="heading">{{badgeholder.fullBadgeNumber}}</dd>
+    </div>
+
     <div class="label-with-heading">
       <dt class="label">Issued by</dt>
       <dd class="heading">{{data['current-council']}}</dd>
-    </div>
-  
-    <div class="label-with-heading">
-      <dt class="label">Badge number</dt>
-      <dd class="heading">{{badgeholder.fullBadgeNumber}}</dd>
     </div>
   </dl>
 </div>
 
 <br>
 
-{{ govukButton({
-  "text": "View more details",
-  "href": 'view-badge-full'
-}) }}
+<p class="govuk-body-l"><a href="/manage-blue-badges/{{data['find-badge-url']}}">Find another badge</a></p>
 
 
 {% endblock %}

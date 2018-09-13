@@ -24,12 +24,28 @@
 {% block content %}
 
 <section class="split-section">
-  <h2 class="govuk-heading-m">
-    Personal details
-  </h2>
   
   <dl class="govuk-check-your-answers govuk-check-your-answers--short">
+
+    <dl class="govuk-check-your-answers govuk-check-your-answers--short">
+      <div class="govuk-check-your-answers__contents">
+        <dt class="govuk-check-your-answers__question">
+          Status
+        </dt>
+        <dd class="govuk-check-your-answers__answer">
+          {{ badgeholder.badgeStatus}}
+        </dd>
+      </div>
   
+    <div class="govuk-check-your-answers__contents">
+      <dt class="govuk-check-your-answers__question">
+        Photo
+      </dt>
+      <dd class="govuk-check-your-answers__answer">
+        <img src="/public/images/{{ badgeholder.photoPath}}" alt="Photo of Badge Holder">
+      </dd>
+    </div>
+
     <div class="govuk-check-your-answers__contents">
       <dt class="govuk-check-your-answers__question">
         Full name
@@ -48,40 +64,6 @@
       </dd>
     </div>
 
-    {% if badgeholder.nationalInsurance %}
-    <div class="govuk-check-your-answers__contents">
-      <dt class="govuk-check-your-answers__question">
-        N.I number
-      </dt>
-      <dd class="govuk-check-your-answers__answer">
-        {{badgeholder.nationalInsurance}}
-      </dd>
-    </div>
-    {% endif %}
-
-    <div class="govuk-check-your-answers__contents">
-      <dt class="govuk-check-your-answers__question">
-        Gender
-      </dt>
-      <dd class="govuk-check-your-answers__answer">
-        {{badgeholder.gender}}
-      </dd>
-    </div>
-  
-    <div class="govuk-check-your-answers__contents">
-      <dt class="govuk-check-your-answers__question">
-        Address
-      </dt>
-      <dd class="govuk-check-your-answers__answer">
-        {{ badgeholder.address.street }},
-        {% if badgeholder.address.street2 %}
-          {{ badgeholder.address.street2 }},
-        {% endif %}
-        {{ badgeholder.address.city }},
-        {{ badgeholder.address.postcode }}
-      </dd>
-    </div>
-    
     {% if badgeholder.contactName %}
       <div class="govuk-check-your-answers__contents">
         <dt class="govuk-check-your-answers__question">
@@ -92,7 +74,7 @@
         </dd>
       </div>
     {% endif %}
-  
+
     <div class="govuk-check-your-answers__contents">
       <dt class="govuk-check-your-answers__question">
         Main contact number
@@ -123,6 +105,40 @@
       </dd>
     </div>
     {% endif %}
+
+    {% if badgeholder.nationalInsurance %}
+    <div class="govuk-check-your-answers__contents hide-enforcer">
+      <dt class="govuk-check-your-answers__question">
+        N.I number
+      </dt>
+      <dd class="govuk-check-your-answers__answer">
+        {{badgeholder.nationalInsurance}}
+      </dd>
+    </div>
+    {% endif %}
+
+    <!-- <div class="govuk-check-your-answers__contents">
+      <dt class="govuk-check-your-answers__question">
+        Gender
+      </dt>
+      <dd class="govuk-check-your-answers__answer">
+        {{badgeholder.gender}}
+      </dd>
+    </div> -->
+  
+    <div class="govuk-check-your-answers__contents">
+      <dt class="govuk-check-your-answers__question">
+        Address
+      </dt>
+      <dd class="govuk-check-your-answers__answer">
+        {{ badgeholder.address.street }},
+        {% if badgeholder.address.street2 %}
+          {{ badgeholder.address.street2 }},
+        {% endif %}
+        {{ badgeholder.address.city }},
+        {{ badgeholder.address.postcode }}
+      </dd>
+    </div>
   
     <div class="govuk-check-your-answers__contents">
       <dt class="govuk-check-your-answers__question">
@@ -132,15 +148,7 @@
         {{ badgeholder.eligibility}}
       </dd>
     </div>
-  
-    <div class="govuk-check-your-answers__contents">
-      <dt class="govuk-check-your-answers__question">
-        Photo
-      </dt>
-      <dd class="govuk-check-your-answers__answer">
-        <img src="/public/images/{{ badgeholder.photoPath}}" alt="Photo of Badge Holder">
-      </dd>
-    </div>
+
   </dl>
 </section>
 
