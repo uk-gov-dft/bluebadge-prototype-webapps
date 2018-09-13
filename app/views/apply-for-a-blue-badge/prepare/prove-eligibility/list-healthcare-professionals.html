@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% set hasSaveClass = 'yes' %}
 
-{% set pageHeading = "Do " + you + " know the details of " + your +  " healthcare professionals?" %}
+{% set pageHeading = "Do you know the details of " + your +  " healthcare professionals?" %}
 
 {% block pageTitle %}
   {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
@@ -56,6 +56,16 @@
   {% endif %}
 {% endset -%}
 
+{% if data['disability'] === 'child-bulky-equipment' or
+      data['disability'] === 'child-close-to-vehicle' %}
+  {% set hcpHint = "Give the details of all healthcare professionals involved in the child's treatment.<br />For example, " + your + " surgeon, physiotherapist, GP" %}
+
+{% else %}
+
+{% set hcpHint = "Give the details of all healthcare professionals involved in the treatment of " + your + " condition.<br />For example, " + your + " surgeon, physiotherapist, GP" %}
+
+{% endif %}
+
   {{ govukRadios({
     "idPrefix": "hcp-details",
     "name": "hcp-details",
@@ -67,7 +77,7 @@
       }
     },
     "hint": {
-      "html": "Give the details of all healthcare professional involved in the treatment of " + your + " condition.<br />For example, " + your + " surgeon, physiotherapist, GP."
+      "html": hcpHint
     },
     "items": [
       {
