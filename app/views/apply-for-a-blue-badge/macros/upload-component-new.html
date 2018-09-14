@@ -70,13 +70,13 @@
     </div>
     <div class="upload-section-text">
       <p class="govuk-body">
-        <span class="drag-drop-text">You can drag and drop the photo here <br> <b>or</b> <br></span>
         <input type="file" class="govuk-visually-hidden" id="fileElem" multiple accept="image/*" onchange="handleFiles(this.files)">
         <label class="govuk-button upload-label" for="fileElem">
-          <span class="tablet-upload-text">Upload a photo from this computer</span>
-          <span class="mobile-upload-text">Take a photo or upload one using this device</span>
-          <span class="mobile-upload-alternative-text">Upload a photo using this device</span>
+          <span class="tablet-upload-text">Upload photo(s) from this computer</span>
+          <span class="mobile-upload-text">Take photo(s) or upload using this device</span>
+          <span class="mobile-upload-alternative-text">Upload photo(s) using this device</span>
         </label>
+        <span>(You can upload multiple photos)</span>
       </p>
     </div>
   </div>
@@ -87,7 +87,7 @@
 </div>
 
 <div id="fileUploadedBox" class="hidden">
-  <h3 class="govuk-heading-m">This is your upload</h3>
+  <h3 class="govuk-heading-m" id="thisUploadHeading">This is your upload</h3>
   <div id="gallery"/></div>
   {% if triggerForDummy === "true" %}
   <span id="dummiesToShow" data-trigger={{triggerForDummy}}></span>
@@ -98,8 +98,14 @@
     </div>
   </div>
   {% endif %}
+  <div class="upload-finished-button">
+    <input type="file" class="govuk-visually-hidden" id="fileElem" multiple accept="image/*" onchange="handleFiles(this.files)">
+    <label class="govuk-button upload-label" for="fileElem">
+      Add another photo
+    </label>
+  </div>
   <p class="govuk-body">
-    <a href="?{{triggerName}}=false">Use a different photo</a>
+    <a href="?{{triggerName}}=false">Use different photo(s)</a>
   </p>
   <input type="hidden" name="{{provideType}}" value="upload">
 
@@ -111,7 +117,7 @@
       "name": nameOfDataItem + "-shows-current-address",
       "fieldset": {
         "legend": {
-          "text": 'Does this photo show ' + your + ' current address?',
+          "text": 'Does your upload show ' + your + ' current address?',
           "isPageHeading": false,
           "classes": 'govuk-fieldset__legend--m'
         }

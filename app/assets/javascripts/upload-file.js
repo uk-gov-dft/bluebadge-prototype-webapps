@@ -54,6 +54,12 @@ function initializeProgress(numFiles) {
   document.getElementById('dragDropInstructions').classList.add('hidden')
   document.getElementById('progressContainer').classList.remove('hidden')
 
+  if(numFiles === 1) {
+
+  } else {
+    $('#thisUploadHeading').text('These are your uploads')
+  }
+
   for(let i = numFiles; i > 0; i--) {
     uploadProgress.push(0)
   }

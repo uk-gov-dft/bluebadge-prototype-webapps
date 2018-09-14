@@ -96,7 +96,13 @@
 	width: 70%;
 	.upload-label {
 		background-color: govuk-colour(blue);
-		margin-bottom: 0;
+		margin-bottom: 10px;
+	}
+}
+
+.upload-finished-button {
+	.upload-label {
+		background-color: govuk-colour(blue);
 	}
 }
 
