@@ -186,7 +186,7 @@ router.get('/check-eligibility/pip-moving-backend', function (req, res) {
       if(req.session.data['nation'] === "scotland" || req.session.data['nation'] === "wales") {
         res.redirect('/apply-for-a-blue-badge/check-eligibility/pip-how-many-planning-following');
       } else {
-        res.redirect('/apply-for-a-blue-badge/check-eligibility/disability'); 
+        res.redirect('/apply-for-a-blue-badge/check-eligibility/pip-10-distress'); 
       }
       break;
     }
@@ -203,6 +203,17 @@ router.get('/check-eligibility/pip-planning-backend', function (req, res) {
       } else {
         res.redirect('/apply-for-a-blue-badge/check-eligibility/disability');  
       }
+      break;
+    }
+});
+
+router.get('/check-eligibility/pip-10-distress-backend', function (req, res) {
+  switch (req.session.data['pip-10-distress']) {
+    case "10-in-distress":
+      res.redirect('/apply-for-a-blue-badge/check-eligibility/decision');
+      break;
+    case "not-10-in-distress":
+      res.redirect('/apply-for-a-blue-badge/check-eligibility/disability');
       break;
     }
 });
@@ -257,6 +268,10 @@ router.get('/check-eligibility/afcs-mental-backend', function (req, res) {
       res.redirect('/apply-for-a-blue-badge/check-eligibility/disability');
       break;
     }
+});
+
+router.get('/check-eligibility/pip-10-distress', function (req, res) {
+  res.render(checkEligibilityTemplatePath+'pip-10-distress');
 });
 
 router.get('/check-eligibility/pip-did-you-get-dla', function (req, res) {

@@ -1,0 +1,61 @@
+{% extends "layout.html" %}
+{% set pageHeading = "How many points did " + you + " score in the 'planning and following journeys' activity of " + your + " assessment?" %}
+
+{% block pageTitle %}
+  {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block inner_content %}
+    
+  <form action="pip-10-distress-backend">
+  
+    {{ govukRadios({
+      "idPrefix": "pip-10-distress",
+      "name": "pip-10-distress",
+      "attributes": {
+          "data-catchoption-label": true
+        },
+      "fieldset": {
+        "legend": {
+          "text": pageHeading,
+          "isPageHeading": true,
+          "classes": 'govuk-fieldset__legend--l'
+        }
+      },
+      "items": [
+          {
+            "value": "not-10-in-distress",
+            "html": '<b>12 points</b><br>Cannot follow the route of a familiar journey without another person, an assistance dog or an orientation aid.'
+          },
+          {
+            "value": "10-in-distress",
+            "html": '<b>10 points</b><br>Cannot undertake any journey because it would cause overwhelming psychological distress to the claimant.'
+          },
+          {
+            "value": "not-10-in-distress",
+            "html": '<b>10 points</b><br>Cannot follow the route of an unfamiliar journey without another person, assistance dog or orientation aid.'
+          },
+          {
+            "value": "not-10-in-distress",
+            "html": '<b>8 points</b><br>Cannot plan the route of a journey.'
+          },
+          {
+            "value": "not-10-in-distress",
+            "html": '<b>4 points</b><br>Needs prompting to be able to undertake any journey to avoid overwhelming psychological distress to the claimant.'
+          },
+          {
+            "value": "not-10-in-distress",
+            "html": '<b>0 points</b><br>Can plan and follow the route of a journey unaided.'
+          }
+        ]
+    }) }}
+  
+    <div id="hiddenCaughtInputs"></div>
+    
+    
+    {{ govukButton({
+      "text": "Continue"
+    }) }}
+  </form>
+
+{% endblock %}
