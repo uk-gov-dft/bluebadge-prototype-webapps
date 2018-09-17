@@ -1,0 +1,49 @@
+{% extends "guidance_layout.html" %}
+{% set hidesSteps = "true" %}
+
+
+{% set pageHeading =  "Your organisation may be eligible for a Blue Badge" %}
+
+{% block pageTitle %}
+  Decision - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block guidance_content %}
+
+<div class="middle-start-page">
+  <h1 class="govuk-heading-l">{{pageHeading}}</h1>
+  
+      
+  <p class="govuk-body-l">What you'll need to provide</p>
+
+  <ul class="govuk-list govuk-list--bullet">
+    <li>A photo or scan of something that proves {{your}} organisation's address (dated within the last 12 months)</li>
+    <li>contact details (phone number and email address)</li>
+    <li>a credit or debit card to pay a {{feePrice}} issue fee. The fee will be refunded if {{your}} application is not successful</li>
+  </ul>
+
+  {{ govukButton({
+    "text": "Start " + application,
+    "href": '/apply-for-a-blue-badge/task-list'
+  }) }}
+  
+  {% if data['benefit'] !== 'none' or data['disability'] === 'blind' %}
+  <p class="govuk-body">It can take up to 3 weeks for {{you}} to receive your badge from {{data['council-name']}}.</p>
+  {% else %}
+  <p class="govuk-body">It can take up to 4 weeks for {{you}} to receive your badge from {{data['council-name']}}, if {{your}} application is successful.</p>
+  {% endif %}
+  
+
+  <h2 class="govuk-heading-m">Don't want to apply online?</h2>
+
+  <p class="govuk-body">Contact {{data['council-name']}}:</p>
+
+  <ul class="govuk-list">
+    <li>Website: <a href="#">www.{{data['council-name'] | lower}}.gov.uk</a></li>
+    <li>Email: <a href="#">bluebadge@{{data['council-name'] | lower}}.gov.uk</a></li>
+    <li>Phone: 0161 205 7321</li>
+  </ul>
+
+</div>
+
+{% endblock %}

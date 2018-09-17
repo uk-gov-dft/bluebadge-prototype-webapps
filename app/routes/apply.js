@@ -329,7 +329,7 @@ router.get('/check-eligibility/org-transport-backend', function (req, res) {
   if (req.session.data['org-transport'] === 'no') {
     res.render(checkEligibilityTemplatePath+'decision-not-eligible');
   } else {
-    res.render(checkEligibilityTemplatePath+'decision');
+    res.render(checkEligibilityTemplatePath+'decision-organisation');
   }
 });
 

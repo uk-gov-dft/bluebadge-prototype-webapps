@@ -1,6 +1,10 @@
 {% extends "layout.html" %}
 
+{% if data['applicant'] === "organisation" %}
+{% set pageHeading = 'Does ' + your + ' organisation already have a Blue Badge?' %}
+{% else %}
 {% set pageHeading = 'Do ' + you + ' already have a Blue Badge?' %}
+{% endif %}
 
 {% block pageTitle %}
   {% if data["show"] === "errors" %} Error: {% endif %} {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
