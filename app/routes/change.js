@@ -52,8 +52,17 @@ function sendBackToCheckAnswers(query, nextAction, checkSection) {
 
 
 router.get('/', function (req, res) {
+  res.locals.hideServiceName = 'yes';
+  req.session.destroy();
   Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/change-blue-badge/who-does-the-badge-belong-to','check-answers'));
-  res.render('change-blue-badge/index.html')
+  res.render('change-blue-badge/index.html');
+});
+
+// Tactical start page 
+router.get('/v1', function (req, res) {
+  res.locals.hideServiceName = 'yes';
+  req.session.destroy();
+  res.render('change-blue-badge/index-v1.html');
 });
 
 router.get('/who-does-the-badge-belong-to', function (req, res) {

@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+{% set hideBackLink = 'yes' %}
+{% block pageTitle %}
+  {% if serviceName %} {{ serviceName }} {% endif %} - GOV.UK prototype kit
+{% endblock %}
+
+{% block inner_content %}
+
+<h1 class="govuk-heading-xl">
+  Change the details on your <br /> Blue Badge
+</h1>
+
+<p class="govuk-body">You need to contact your local council to change the details on your Blue Badge.</p>
+
+<form method="post" id="local-locator-form" class="find-location-for-service" action="https://www.gov.uk/blue-badge-scheme-information-council/leeds">
+    <fieldset style="border: none; background: #dee0e2; line-height: 2; margin: 2em 0; padding: 1em 0.75em 1em 1em;">
+      <legend class="govuk-visually-hidden">Postcode lookup</legend>
+
+      <div class="ask_location">
+        <label class="govuk-label--m" for="postcode">Enter a postcode</label>
+        <p>For example SW1A 2AA</p>
+        <input class="govuk-input govuk-input--width-10" id="postcode" name="postcode" type="text" aria-invalid="false" value="">
+        
+	 	<a class="gem-c-button govuk-button" href="https://www.gov.uk/blue-badge-scheme-information-council/leeds">Find</a>
+
+        <p>
+          <a target="_blank" id="postcode-finder-link" rel="external" href="http://www.royalmail.com/find-a-postcode">Find a postcode on Royal Mail's postcode finder</a>
+        </p>
+      </div>
+    </fieldset>
+
+    <p class="govuk-body">Last updated: 16 September 2018</p>
+</form>
+
+
+{% endblock %}
