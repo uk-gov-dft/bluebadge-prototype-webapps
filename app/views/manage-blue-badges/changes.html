@@ -1,0 +1,91 @@
+{% extends "admin_layout.html" %}
+
+{% block page_header %}
+  <h1>{{title}}</h1><p class="count">3</p>
+  <div class="search-box-container">
+    <form action="" class="search-box">
+      {% include "includes/search.html" %}
+    </form>
+    <div class="search-box__options">
+      <a href="/public/images/new-applications.csv">Export all</a>
+    </div>
+  </div>
+{% endblock %}
+
+{% block content %}
+  {{ govukTable({
+    "firstCellIsHeader": false,
+    "head": [
+      {
+        "text": "Reference"
+      },
+      {
+        "text": "Name"
+      },
+      {
+        "text": "NI number"
+      },
+      {
+        "text": "DoB"
+      },
+      {
+        "text": "Submitted date",
+        "format": "sorted-desc"
+      }
+    ],
+    "rows": [
+      [
+        {
+          "html": "<a href='view-change'>1234334523</a>"
+        },
+        {
+          "text": "Michelle Andrea Murphy"
+        },
+        {
+          "text": "JR808261A"
+        },
+        {
+          "text": "12 May 1962"
+        },
+        {
+          "text": "13/01/17 13:04"
+        }
+      ],
+      [
+        {
+          "html": "<a href=''>1234334523</a>"
+        },
+        {
+          "text": "Winston McDougall"
+        },
+        {
+          "text": "JR318821B"
+        },
+        {
+          "text": "3 Jan 1944"
+        },
+        {
+          "text": "13/01/17 08:24"
+        }
+      ],
+      [
+        {
+          "html": "<a href=''>1234334524</a>"
+        },
+        {
+          "text": "Carrie Leighton Hill"
+        },
+        {
+          "text": "JR318821C"
+        },
+        {
+          "text": "23 Oct 1955"
+        },
+        {
+          "text": "13/01/17 06:01"
+        }
+      ]
+    ]
+  }) }}
+
+{% endblock %}

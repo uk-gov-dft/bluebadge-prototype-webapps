@@ -1,0 +1,58 @@
+{% extends "layout.html" %}
+
+{% set pageHeading = 'Choose ' + your + ' local council' %}
+
+{% block pageTitle %}
+  {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block inner_content %}
+
+<h1 class="govuk-heading-l">{{pageHeading}}</h1>
+<p class="govuk-body">This should be the local council who issued {{ your }} Blue Badge.
+
+<form action="{{ formAction }}">
+  <div class="govuk-form-group">
+    <label for="councilPicker" class="govuk-label">Start typing and select your council</label>
+    <select name="council-name" class="enhanced-select" name="" id="councilPicker">
+      {% include "includes/councils-options.html" %}
+    </select>
+  </div>
+
+  {% if data['applicant'] === "organisation" %}
+    {% set postcodeLabel = "Enter your organisation's postcode" %}
+  {% else %}
+    {% set postcodeLabel = 'Enter ' + your + ' postcode' %}
+  {% endif %}    
+
+  {{ govukDetails({
+    "summaryText": "I don't know " + my + " local council",
+    "html": ' <div class="govuk-form-group"><label class="govuk-label" for="postcode">' + postcodeLabel + '<span class="govuk-hint">For example, SW1A 2AA</span>
+               
+             </label>
+             <input class="govuk-input govuk-input--width-10" id="postcode" name="postcode" type="text">
+             </div>
+             ' 
+  }) }}
+  
+  {{ govukButton({
+    "text": "Continue"
+  }) }}
+
+  <input id="council-website" name="council-website" type="hidden" value="www.manchester.gov.uk">
+  <input id="council-phone" name="council-phone" type="hidden" value="0161 205 7321">
+</form>
+  
+
+{% endblock %}
+
+{% block pageScripts %}
+  <script>
+    $(document).ready(function () {
+      govukGovernmentOrganisationsAutocomplete({
+        defaultValue: '',
+        selectElement: document.getElementById('councilPicker'),
+      })
+    });
+  </script>
+{% endblock %}

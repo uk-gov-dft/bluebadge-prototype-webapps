@@ -20,6 +20,7 @@
     <div class="check-answers-change hide-enforcer">
       <p>
         <a href="replace-badge">Order a replacement</a><br>
+        <a href="change-details">Change details</a><br>
         <a href="cancel-badge">Cancel badge</a>
       </p>
     </div>
@@ -31,34 +32,21 @@
 {% block content %}
 
   {% if  data['search-by'] === "name" %}
-
   {% set name = data['searchValue'] %}
-  
   {% else %}
-
   {% set name = 'Phillip Powell' %}
-
   {% endif %}
 
-
   {% if  data['search-by'] === "badge-number" %}
-
   {% set badgeNumber = data['searchValue'] %}
-  
   {% else %}
-
   {% set badgeNumber = 'eb56Yq' %}
-
   {% endif %}
 
   {% if  data['search-by'] === "postcode" %}
-
   {% set postcode = data['searchValue'] %}
-  
   {% else %}
-
   {% set postcode = 'M1 1BS' %}
-
   {% endif %}
 
 <section class="split-section">
@@ -77,6 +65,8 @@
       </dd>
     </div>
 
+    <input type="hidden" name="fullName" value="{{ name }}"/>
+
     <div class="govuk-check-your-answers__contents">
       <dt class="govuk-check-your-answers__question">
         Gender
@@ -85,6 +75,8 @@
         Man
       </dd>
     </div>
+
+    <input type="hidden" name="gender" value="Man"/>
   
     <div class="govuk-check-your-answers__contents">
       <dt class="govuk-check-your-answers__question">
@@ -112,6 +104,11 @@
         114 Mansfield Road, Crumpsall, Manchester, {{ postcode }}
       </dd>
     </div>
+
+    <input type="hidden" name="address-line-1" value="114 Mansfield Road"/>
+    <input type="hidden" name="address-line-2" value="Crumpsall,"/>
+    <input type="hidden" name="address-town" value="Manchester"/>
+    <input type="hidden" name="address-postcode" value="{{ postcode }}"/>
 
     <div class="govuk-check-your-answers__contents">
       <dt class="govuk-check-your-answers__question">
@@ -189,7 +186,16 @@
         Badge number
       </dt>
       <dd class="govuk-check-your-answers__answer">
-        {{ data['badgeNumber'] }}
+        {{ badgeNumber }}
+      </dd>
+    </div>
+
+     <div class="govuk-check-your-answers__contents">
+      <dt class="govuk-check-your-answers__question">
+        Issue number
+      </dt>
+      <dd class="govuk-check-your-answers__answer">
+        1
       </dd>
     </div>
   
@@ -217,6 +223,15 @@
       </dt>
       <dd class="govuk-check-your-answers__answer">
         12 May 2022
+      </dd>
+    </div>
+
+    <div class="govuk-check-your-answers__contents">
+      <dt class="govuk-check-your-answers__question">
+        Needs reassessing?
+      </dt>
+      <dd class="govuk-check-your-answers__answer">
+        Yes
       </dd>
     </div>
   
@@ -248,6 +263,8 @@
     </div>
   </dl>
 </section>
+
+
 
 
 {% endblock %}

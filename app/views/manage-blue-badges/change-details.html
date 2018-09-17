@@ -1,0 +1,178 @@
+{% extends "admin_layout.html" %}
+
+{% block back_link %}
+  <div class="back-link-container">
+    {{ govukBackLink({
+      "text": "Back",
+      "href": "javascript: window.history.go(-1)"
+    }) }}
+  </div>
+{% endblock %}
+
+{% block page_header %}
+
+  <p class="subtitle">E5B1AF</p>
+  <h1>{{title}}</h1>
+  
+{% endblock %}
+
+{% block content %}
+
+
+<form action="{{ formAction }}" method="post" class="form" novalidate>
+
+  <section class="form-section">
+
+    {{ govukInput({
+      "label": {
+        "text": "Full name"
+      },
+      classes: "govuk-!-width-one-half",
+      id: "fullName",
+      name: "fullName",
+      value: "Phillip Powell"
+    }) }}
+
+    {{ govukRadios({
+      "idPrefix": "gender",
+      "name": "gender",
+      "fieldset": {
+        "legend": {
+          "text": "Gender",
+          "isPageHeading": false,
+          "classes": 'govuk-fieldset__legend--s'
+        }
+      },
+      "items": [
+        {
+          "value": "Woman",
+          "text": "Woman",
+          "checked": "Woman"
+        },
+        {
+          "value": "Man",
+          "text": "Man"
+        },
+        {
+          "value": "Unspecified",
+          "text": "Unspecified"
+        }
+
+      ]
+    }) }}
+
+  </section>
+    
+  <section class="form-section">
+
+    <h2 class="govuk-heading-m">Address</h2>
+    
+    {% call govukFieldset({
+      "legendText": 'Address',
+      "classes": 'fieldset-with-inputs'
+    }) %}
+    
+      {{ govukInput({
+        "label": {
+          "html": 'Building and street <span class="govuk-visually-hidden">line 1 of 2</span>'
+        },
+        classes: "govuk-!-width-one-half",
+        "id": "address-line-1",
+        "name": "address-line-1",
+        "value": "114 Mansfield Road"
+      }) }}
+    
+      {{ govukInput({
+        "label": {
+          "html": '<span class="govuk-visually-hidden">Building and street line 2 of 2</span>'
+        },
+        classes: "govuk-!-width-one-half",
+        "id": "address-line-2",
+        "name": "address-line-2",
+        "value": "Crumpsall"
+      }) }}
+    
+      {{ govukInput({
+        "label": {
+          "html": 'Town or city'
+        },
+        classes: "govuk-!-width-one-half",
+        "id": "address-town",
+        "name": "address-town",
+        "value": "Manchester"
+      }) }}
+    
+      {{ govukInput({
+        "label": {
+          "html": 'Postcode'
+        },
+        "classes": 'govuk-input--width-10',
+        "id": "address-postcode",
+        "name": "address-postcode",
+        "value": "M1 1BS"
+      }) }}
+    
+    {% endcall %}
+
+    </section>
+    
+    <section class="form-section">
+
+      <h2 class="govuk-heading-m">Contact details</h2>
+
+  
+      {{ govukInput({
+          "label": {
+            "text": "Full name"
+          },
+          classes: "govuk-!-width-one-half",
+          id: "contact-name",
+          name: "contact-name",
+          type: "text",
+          value: "Phillip Powell"
+        })
+      }}
+    
+      {{ govukInput({
+        "label": {
+          "text": "Primary contact number"
+        },
+        classes: "govuk-!-width-one-half",
+        id: "primary-contact-number",
+        name: "primary-contact-number",
+        type: "tel",
+        value: "01233 524224"
+      }) }}
+
+      {{ govukInput({
+        "label": {
+          "text": "Secondary number"
+        },
+        classes: "govuk-!-width-one-half",
+        id: "secondary-contact-number",
+        name: "secondary-contact-number",
+        type: "tel",
+        value: ""
+      }) }}
+      
+      {{ govukInput({
+        "label": {
+          "text": "Email address (optional)"
+        },
+        classes: "govuk-!-width-one-half",
+        id: "email-address",
+        name: "email-address",
+        type: "email",
+        value: "footie_4_lyf@gmail.com"
+      }) }}
+  
+  </section>
+
+  {{ govukButton({
+    "text": "Save",
+    "href": "view-badge.html"
+  }) }}
+
+</form>
+
+{% endblock %}

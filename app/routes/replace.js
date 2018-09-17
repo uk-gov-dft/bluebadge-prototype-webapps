@@ -56,6 +56,13 @@ router.get('/', function (req, res) {
   res.render('replace-a-blue-badge/index.html')
 });
 
+// Tactical start page 
+router.get('/v1', function (req, res) {
+  res.locals.hideServiceName = 'yes';
+  req.session.destroy();
+  res.render('replace-a-blue-badge/index-v1.html');
+});
+
 router.get('/who-does-the-badge-belong-to', function (req, res) {
   Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/replace-a-blue-badge/choose-your-council','check-answers'));
   res.render('replace-a-blue-badge/who');

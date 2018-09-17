@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+{% set hideBackLink = 'yes' %}
+{% block pageTitle %}
+  {% if serviceName %} {{ serviceName }} {% endif %} - GOV.UK prototype kit
+{% endblock %}
+
+{% block inner_content %}
+
+<h1 class="govuk-heading-xl">
+  Change the details on a Blue Badge
+</h1>
+
+<p class="govuk-body">Use this service to change the details on your Blue Badge.
+
+<p class="govuk-body">There is another service to <a href="https://www.nidirect.gov.uk/articles/apply-or-renew-blue-badge">change the details on your Blue Badge in Northern Ireland</a>.</p>
+
+<p class="govuk-body">To change the details on your Blue Badge you'll need your National Insurance and Blue Badge number.</p>
+
+{{ govukButton({
+  "text": "Start now",
+  "href": formAction,
+  "classes": "govuk-button--start govuk-!-mt-r2 govuk-!-mb-r8"
+}) }}
+
+<h2 class="govuk-heading-m">Questions</h2>
+
+<p class="govuk-body">For questions about the Blue Badge scheme, <a href="/blue-badge-scheme-information-council">contact your local council</a> or the initial enquiry support service.</p>
+
+<p class="govuk-body">Last updated: 13 August 2018</p>
+
+
+{% endblock %}

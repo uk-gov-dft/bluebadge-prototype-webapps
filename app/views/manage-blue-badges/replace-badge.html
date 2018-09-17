@@ -47,10 +47,20 @@
     ]
   }) }}
 
+  {{ govukInput({
+    "label": {
+      "text": "Issue number"
+    },
+    classes: "govuk-!-width-one-quarter",
+    id: "issue-number",
+    name: "issue-number",
+    value: data['issue-number']
+  }) }}
+
   {{ govukRadios({
     "idPrefix": "deliver-to",
     "name": "deliver-to",
-    "classes": "govuk-radios--inline",
+    "classes": "govuk-radios",
     "fieldset": {
       "legend": {
         "text": 'Deliver to'
@@ -71,7 +81,7 @@
   {{ govukRadios({
     "idPrefix": "delivery-options",
     "name": "delivery-options",
-    "classes": "govuk-radios--inline",
+    "classes": "govuk-radios",
     "fieldset": {
       "legend": {
         "text": 'Delivery options'

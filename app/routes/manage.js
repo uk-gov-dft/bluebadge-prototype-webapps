@@ -246,13 +246,24 @@ router.get('/view-replacement', function (req, res) {
   res.render('manage-blue-badges/replacement-request', {'title':'View replacement','replace_class':'active'})
 })
 
-
 router.get('/replace-badge', function (req, res) {
   res.render('manage-blue-badges/replace-badge', {'title':'Order a replacement badge','search_class':'active'})
 })
 
 router.get('/replacement-ordered', function (req, res) {
   res.render('manage-blue-badges/replacement-ordered', {'title':'Replacement ordered','search_class':'active'})
+})
+
+router.get('/changes', function (req, res) {
+  res.render('manage-blue-badges/changes', {'title':'Changes','changes_class':'active'})
+})
+
+router.get('/view-change', function (req, res) {
+  res.render('manage-blue-badges/change-request', {'title':'View change request','change_class':'active'})
+})
+
+router.get('/change-details', function (req, res) {
+  res.render('manage-blue-badges/change-details', {'title':'Change badge details','change_class':'active'})
 })
 
 router.get('/cancel-badge', function (req, res) {
