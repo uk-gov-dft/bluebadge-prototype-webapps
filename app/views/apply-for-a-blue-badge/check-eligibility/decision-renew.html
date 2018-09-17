@@ -5,22 +5,42 @@
   Decision - {% if serviceName %} {{ serviceName }} {% endif %}
 {% endblock %}
 
+{% if data['applicant'] === 'organisation' %}
+
+{% set organisationPronoun = "organisation's" %}
+
+{% else %}
+
+{% set organisationPronoun = "" %}
+
+{% endif %}
+
 {% block guidance_content %}
 <div class="middle-start-page">
-  <h1 class="govuk-heading-l">Renew {{ your }} Blue Badge</h1>
+  <h1 class="govuk-heading-l">Renew {{ your }} {{organisationPronoun}} Blue Badge</h1>
+  
   <p class="govuk-body">We've found the badge <b>{{ data['existing-blue-badge-number'] }}</b>. {{ you | capitalize }} have to reapply for a Blue Badge as part of the renewal process.</p>
 
   <p class="govuk-body">This is so that {{data['council-name']}} can:</p>
   <ul class="govuk-list govuk-list--bullet">
-    <li>make sure {{your}} details are up to date</li>
-    <li>issue Blue Badges to people that need them</li>
+    <li>make sure {{your}} {{organisationPronoun}} details are up to date</li>
+    <li>issue Blue Badges to 
+      {% if data['applicant'] === 'organisation' %}
+      organisations 
+      {% else %}
+      people 
+      {% endif %}
+      that need them
+    </li>
     <li>cancel or refuse applications for Blue Badges that are no longer needed</li>
   </ul>
 
   <p class="govuk-body-l">What you'll need to provide</p>
 
   <ul class="govuk-list govuk-list--bullet">
+    {% if data['applicant'] !== 'organisation' %}
     <li>a recent digital photo of {{your}} face and shoulders</li>
+    {% endif %}
     <li>contact details (phone number and email address)</li>
     {% if data['nation'] !== "wales" %}
     <li>a credit or debit card to pay a {{feePrice}} issue fee. The fee will be refunded if {{your}} application is not successful</li>
