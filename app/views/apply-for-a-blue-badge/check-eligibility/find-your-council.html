@@ -14,8 +14,8 @@
 {% if data['applicant'] === "organisation" %}        
 <p class="govuk-body">Blue Badge applications are assessed by {{ your }} organisation's local council.</p> 
 {% else %}
-<p class="govuk-body">Blue Badge applications are assessed by {{ your }} local council. 
-<br> {{ you | capitalize }} can not get a Blue Badge if you live outside of the UK.</p>
+<p class="govuk-body">{{ your | capitalize }} local council is responsible for assessing applications for Blue Badges. 
+<br> {{ you | capitalize }} cannot get a Blue Badge if you live outside of the UK.</p>
 {% endif %}
 
 <form action="your-council-backend">
@@ -44,7 +44,7 @@
 
   <div id="councilChosen" class="hidden">
     <p class="govuk-body" aria-live="polite">
-      Blue Badges are managed by <b id="councilNamePopulated"></b> in {{your}} area.
+      <b id="councilNamePopulated"></b> will assess {{your}} Blue Badge application.
     </p>
   </div>
   

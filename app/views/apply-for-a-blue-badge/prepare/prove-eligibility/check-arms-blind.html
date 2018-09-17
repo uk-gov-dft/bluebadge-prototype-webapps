@@ -108,6 +108,20 @@
             </dd>
           </div>
         {% endif %}
+
+        <div class="govuk-check-your-answers__contents">
+          <dt class="govuk-check-your-answers__question">
+            Do {{you}} find it difficult to operate pay-and-display parking machines?
+          </dt>
+          <dd class="govuk-check-your-answers__answer">
+            {{data['difficulty-parking-meters']}}
+          </dd>
+          <dd class="govuk-check-your-answers__change">
+            <a href="/apply-for-a-blue-badge/prove-eligibility/how-often-drive?change=true">
+              Change<span class="govuk-visually-hidden"> answer to question around pay-and-display parking machines</span>
+            </a>
+          </dd>
+        </div>
       {% endif %}
 
       
