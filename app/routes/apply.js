@@ -54,7 +54,6 @@ const checkEligibilityTemplatePath = 'apply-for-a-blue-badge/check-eligibility/'
 router.get('/', function (req, res) {
   res.locals.hideServiceName = 'yes';
   res.render('apply-for-a-blue-badge/index.html');
-  req.session.destroy();
 });
 
 router.get('/apply-for-a-blue-badge/task-list', function (req, res) {
@@ -79,6 +78,7 @@ router.get('/apply-for-a-blue-badge/save-enter-code', function (req, res) {
 
 router.get('/check-eligibility/', function (req, res) {
   res.render(checkEligibilityTemplatePath+'index.html', {'title':'Who are you applying for?'})
+  req.session.destroy();
 });
 
 router.get('/check-eligibility/your-council-backend', function (req, res) {

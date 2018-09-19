@@ -14,8 +14,10 @@
 }}
 <p class="govuk-body">We've sent a message to 
   <strong>
-    {% if data['email-address'] %}
-    {{ data['email-address'] }}
+    {% if data['save-mobile-phone'] %}
+    {{ data['save-mobile-phone'] }}
+    {% elif data['save-email-address'] %}
+    {{ data['save-email-address'] }}
     {% else %}
     yourname@email.com
     {% endif %}
