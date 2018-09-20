@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% set pageHeading = "Sorry, you'll have to start again"  %}
+{% set hideBackLink = 'yes' %}
+
+{% block pageTitle %}
+  {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block inner_content %}
+
+<form action="task-list">
+  <h1 class="govuk-heading-xl">{{pageHeading}}</h1>
+  
+  <p class="govuk-body">Your session automatically ends if you stop using it for longer than an hour.</p>
+
+  <p class="govuk-body">We do this for your security. We haven't saved any personal information that you entered.</p>
+
+  {{ govukButton({
+    "text": "Start your application again",
+    "href": "/apply-for-a-blue-badge"
+  }) }}
+</form>
+
+{% endblock %}
