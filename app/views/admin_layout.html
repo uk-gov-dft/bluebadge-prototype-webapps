@@ -81,6 +81,12 @@
 
   <div class="main-container {{enforcerClass}}">
     <main role="main" id="adminContent" class="govuk-main-wrapper">
+      {{ govukPhaseBanner({
+        "tag": {
+          "text": "Beta"
+        },
+        "html": 'This is a new service, help us improve by <a href="">giving us feedback</a>.'
+      }) }}
       {% block success_panel %}
 
         <div class="success-panel">
