@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% set pageHeading = 'Enable cookies' %}
+{% set hideBackLink = 'yes' %}
+
+{% block pageTitle %}
+  {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block inner_content %}
+
+<form action="task-list">
+  <h1 class="govuk-heading-xl">{{pageHeading}}</h1>
+  
+  <p class="govuk-body">You can't currently access the service because your browser's cookies have been disabled.</p>
+
+  <p class="govuk-body"><a href="http://www.aboutcookies.org/default.aspx?page=1">Find out how to enable cookies</a></p>
+  <p class="govuk-body">Once you've enabled your cookies please refresh your browser to continue.</p>
+  
+  {{ govukButton({
+    "text": "I have enabled cookies",
+    "href": "/apply-for-a-blue-badge"
+  }) }}
+</form>
+
+{% endblock %}
