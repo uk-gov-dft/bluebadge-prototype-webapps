@@ -31,7 +31,7 @@
 
     <p class="govuk-body">The council will offer help that will make {{your}} application easier.</p>
 
-    <p class="govuk-body">Contact {{data['council-name']}}:</p>
+    <p class="govuk-body">You can find contact details on <a href="http://councilsite.gov.uk">{{data['council-name']}}'s website</a>.</p>
 
   {% else %}
       
@@ -90,15 +90,15 @@
 
     <h2 class="govuk-heading-m">Don't want to apply online?</h2>
 
-    <p class="govuk-body">Contact {{data['council-name']}}:</p>
+    <p class="govuk-body">Find out if there are other ways to apply on <a href="http://councilsite.gov.uk">{{data['council-name']}}'s website</a>.</p>
 
   {% endif %}
 
-  <ul class="govuk-list">
+  <!-- <ul class="govuk-list">
     <li>Website: <a href="#">www.{{data['council-name'] | lower}}.gov.uk</a></li>
     <li>Email: <a href="#">bluebadge@{{data['council-name'] | lower}}.gov.uk</a></li>
     <li>Phone: 0161 205 7321</li>
-  </ul>
+  </ul> -->
 
 </div>
 
