@@ -14,19 +14,51 @@
 <h1 class="govuk-heading-l">{{pageHeading}}</h1>
 <!-- <p class="govuk-body"></p> -->
 <form action="{{formAction}}">
+  {% set walkingType %}
+
   {{ govukInput({
     "label": {
-      "text": "Type of mobility aid"
+      "text": "What's the name of the walking aid?"
     },
     "name": "mobility-aid-name"
   }) }}
 
+  {% endset -%}
+
+  {{ govukRadios({
+    "idPrefix": "mobility-aid-type",
+    "name": "mobility-aid-type",
+    "fieldset": {
+      "legend": {
+        "text": 'Type of mobility aid',
+        "classes": 'govuk-fieldset__legend--s'
+      }
+    },
+    "items": [
+      {
+        "value": "Wheelchair",
+        "text": "Wheelchair"
+      },
+      {
+        "value": "Mobility Scooter",
+        "text": "Mobility Scooter"
+      },
+      {
+        "value": "walking-aid",
+        "text": "Walking aid",
+        "conditional": {
+          "html": walkingType
+        }
+      }
+    ]
+  }) }}
+
   {{ govukInput({
     "label": {
-      "text": "How do " + you + ", typically, use this?"
+      "text": "When do " + you + " use it?"
     },
     "hint" : {
-      "text": "For example: Specific occasions such as hospital visits or shopping."
+      "text": 'For example, "All the time" or "To get to the shops"'
     },
     "name": "mobility-aid-usage"
   }) }}
@@ -63,7 +95,7 @@
       },
       {
         "value": socialWording,
-        "text": "Provided by " + socialWording
+        "text": "Provided by " + socialWording + " or a charity"
       }
     ]
   }) }}

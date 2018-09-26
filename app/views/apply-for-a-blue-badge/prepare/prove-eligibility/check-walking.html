@@ -69,46 +69,18 @@
           </a>
         </dd>
       </div>
-    
-      <div class="govuk-check-your-answers__contents">
-        <dt class="govuk-check-your-answers__question">
-          Walking duration
-        </dt>
-        <dd class="govuk-check-your-answers__answer">
-          {{data['how-long-walk-chosen-value']}}
-        </dd>
-        <dd class="govuk-check-your-answers__change">
-          <a href="walking-time?change=true">
-            Change<span class="govuk-visually-hidden"> walking duration</span>
-          </a>
-        </dd>
-      </div>
       
-      {% if data['how-long-walk'] !== 'cant-walk' %}
+      {% if data['can-walk'] !== "no" %}
       <div class="govuk-check-your-answers__contents">
         <dt class="govuk-check-your-answers__question">
-          Place that you regularly walk to
+          Where {{you}} can walk
         </dt>
         <dd class="govuk-check-your-answers__answer">
-          {{data['walk-location']}}
+          "{{data['walk-location']}}" taking {{you}} {{data['how-long-walk-chosen-value']|lower}} to walk there
         </dd>
         <dd class="govuk-check-your-answers__change">
           <a href="where-can-you-walk?change=true">
             Change<span class="govuk-visually-hidden"> location you can walk to</span>
-          </a>
-        </dd>
-      </div>
-    
-      <div class="govuk-check-your-answers__contents">
-        <dt class="govuk-check-your-answers__question">
-          Walking speed
-        </dt>
-        <dd class="govuk-check-your-answers__answer">
-          {{data['walking-speed-chosen-value']}} than other people
-        </dd>
-        <dd class="govuk-check-your-answers__change">
-          <a href="how-quickly-do-you-walk?change=true">
-            Change<span class="govuk-visually-hidden"> walking speed</span>
           </a>
         </dd>
       </div>

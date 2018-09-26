@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% set hasSaveClass = 'yes' %}
 
-{% set pageHeading = "Do " + you + " use mobility aids outside of " + your + " home?" %}
+{% set pageHeading = "Do " + you + " use any mobility aids?" %}
 
 {% block pageTitle %}
   {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
@@ -17,7 +17,7 @@
         {{ govukTable({
           "head": [
             {
-              "text": "Name"
+              "text": "Type"
             },
             {
               "text": "When used"
@@ -36,7 +36,7 @@
     {{ govukTable({
       "head": [
         {
-          "text": "Name"
+          "text": "Type"
         },
         {
           "text": "When used"

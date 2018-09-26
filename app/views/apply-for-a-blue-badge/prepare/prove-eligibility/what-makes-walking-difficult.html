@@ -24,20 +24,9 @@
     }) }}
   {% endset -%}
 
-  {{ govukCheckboxes({
-    "idPrefix": "difficulty",
-    "name": "difficulty",
-    "attributes": {
-      "data-catchoption-label": true
-    },
-    "fieldset": {
-      "legend": {
-        "text": pageHeading,
-        "isPageHeading": true,
-        "classes": 'govuk-fieldset__legend--l'
-      }
-    },
-    "items": [
+  {% if data['nation'] === "scotland" or data['nation'] == "wales" %}
+
+  {% set differentOptions = [
       {
         "value": "pain",
         "text": "Excessive pain",
@@ -76,7 +65,64 @@
           "html": somethingHtml
         }
       }
-    ]
+    ] 
+  %}
+
+  {% else %}
+
+  {% set differentOptions = [
+      {
+        "value": "pain",
+        "text": "Excessive pain",
+        "checked": checked('difficulty', 'pain')
+      },
+      {
+        "value": "breathlessness",
+        "text": "Breathlessness",
+        "checked": checked('difficulty', 'breathlessness')
+      },
+      {
+        "value": "balance",
+        "text": "Balance or coordination",
+        "checked": checked('difficulty', 'balance')
+      },
+      {
+        "value": "longtime",
+        "text": "It takes " + me + " a long time" ,
+        "checked": checked('difficulty', 'longtime')
+      },
+      {
+        "value": "dangerous",
+        "text": "It's dangerous to my health and safety",
+        "checked": checked('difficulty', 'dangerous')
+      },
+      {
+        "value": "something",
+        "text": "Something else",
+        "checked": checked('difficulty', 'something'),
+        "conditional": {
+          "html": somethingHtml
+        }
+      }
+    ] 
+  %}
+
+  {% endif %}
+
+  {{ govukCheckboxes({
+    "idPrefix": "difficulty",
+    "name": "difficulty",
+    "attributes": {
+      "data-catchoption-label": true
+    },
+    "fieldset": {
+      "legend": {
+        "text": pageHeading,
+        "isPageHeading": true,
+        "classes": 'govuk-fieldset__legend--l'
+      }
+    },
+    "items": differentOptions
   }) }}
 
   <div id="hiddenCaughtInputs"></div>
