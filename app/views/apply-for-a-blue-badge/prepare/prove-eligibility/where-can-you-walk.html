@@ -23,50 +23,28 @@
 
   {{ govukInput({
     label: {
-      text: "Place " + you + " can walk to" + usingMobilityAid + " from " + your + " home"
+      text: "Name a place " + you + " can walk to" + usingMobilityAid + " from " + your + " home"
     },
     hint: {
-      text: 'For example, “to the Post office on the High Street"'
+      text: 'For example, to the Post office on the High Street'
     },
     id: "walk-location",
     name: "walk-location",
     value: data['walk-location']
   }) }}
 
-  {{ govukRadios({
-    "idPrefix": "how-long-walk",
-    "name": "how-long-walk",
-    "attributes": {
-      "data-catchoption-label": true
+  {{ govukInput({
+    label: {
+      text: "How long does it take " + youOrThem + "?"
     },
-    "fieldset": {
-      "legend": {
-        "text": "How long does it take " + youOrThem + "?",
-        "isPageHeading": true,
-        "classes": 'govuk-fieldset__legend--s'
-      }
+    hint: {
+      text: 'For example, 10 minutes'
     },
-    "items": [
-      {
-        "value": "less-than-a-minute",
-        "text": "Less than a minute",
-        "checked": data['how-long-walk'] === 'less-than-a-minute'
-      },
-      {
-        "value": "a-few-minutes",
-        "text": "A few minutes",
-        "checked": data['how-long-walk'] === 'a-few-minutes'
-      },
-      {
-        "value": "more-than-10",
-        "text": "More than 10 minutes",
-        "checked": data['how-long-walk'] === 'more-than-10'
-      }
-
-    ]
+    id: "how-long-walk",
+    name: "how-long-walk",
+    value: data['how-long-walk']
   }) }}
 
-  <div id="hiddenCaughtInputs"></div>
   
   {{ govukButton({
     "text": submitLabel
