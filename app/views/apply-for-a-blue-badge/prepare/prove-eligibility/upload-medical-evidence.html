@@ -17,13 +17,7 @@
   <input type="hidden" id="change" name="medical-evidence-completed" value="true">
   <h1 class="govuk-heading-l">{{pageHeading}}</h1>
   
-  <p class="govuk-body">This should something {{you}}'ve already received from {{your}} GP, Hospital or healthcare professional.</p>
-  <p class="govuk-body">Take a photo of documents that show proof of treatments, medications or appointments. These could be:</p>
-
-  <ul class="govuk-list govuk-list--bullet">
-    <li>prescriptions</li>
-    <li>appointment letters from {{your}} GP, Hospital or healthcare professional</li>
-  </ul>
+  <p class="govuk-body">For example, prescriptions or appointment letters from GPs, hospitals, healthcare or social care professionals.</p>
 
   {% set uploadHtml %}
     {{ uploadComponentWidget.uploadComponent(
