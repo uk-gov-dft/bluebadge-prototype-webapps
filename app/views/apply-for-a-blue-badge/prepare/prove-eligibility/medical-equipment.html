@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% set hasSaveClass = 'yes' %}
 
-{% set pageHeading = 'Which of the following medical equipment do they need to be near?' %}
+{% set pageHeading = 'Which medical equipment do they always need to be accompanied by?' %}
 
 {% block pageTitle %}
   {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
@@ -13,6 +13,19 @@
 
 <form action="{{ formAction }}">
 
+
+    {% set otherEquipHTML %}
+
+    {{ govukInput({
+      "label": {
+        "text": "Name of equipment"
+      },
+      "classes": 'govuk-!-width-two-thirds',
+      "name": "other-equipment"
+    }) }}
+
+    {%- endset %}
+  
     {{ govukCheckboxes({
       "idPrefix": "medical-equipment",
       "name": "medical-equipment",
@@ -68,9 +81,12 @@
           "checked": checked('medical-equipment', 'casts-assoc-med-equip')
         },
         {
-          "value": "dont-use",
-          "text": "None of these",
-          "checked": checked('medical-equipment', 'dont-use')
+          "value": "other",
+          "text": "Other",
+          "conditional" : {
+            "html": otherEquipHTML
+          },
+          "checked": checked('medical-equipment', 'other')
         }
         
       ]
