@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% set hasSaveClass = 'yes' %}
 
-{% set pageHeading = "Do " + you + " take any medication?" %}
+{% set pageHeading = "Do " + you + " take any medication for " + your + " condition?" %}
 
 {% block pageTitle %}
   {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}

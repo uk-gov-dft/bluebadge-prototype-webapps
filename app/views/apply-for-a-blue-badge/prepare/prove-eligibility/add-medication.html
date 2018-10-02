@@ -16,7 +16,7 @@
 <form action="{{formAction}}">
   {{ govukInput({
     "label": {
-      "text": "What's the name of this medicine or pain relief?"
+      "text": "Name of this medication or pain relief"
     },
     "name": "medication-name"
   }) }}
@@ -42,15 +42,27 @@
     ]
   }) }}
 
+
   {{ govukInput({
     "label": {
-      "text": "How much and how often do " + you + " take this (Dosage)?"
+      "text": "How much do " + you + " take at a time? (Dosage)"
     },
     "hint": {
-      "html": "For example: 2 tablets twice a day, when in severe pain"
+      "html": "For example, 500mg, 50ml, 2 tablets"
     },
     "classes": 'govuk-!-width-two-thirds',
     "name": "medication-dosage"
+  }) }}
+
+  {{ govukInput({
+    "label": {
+      "text": "How often do " + you + " take this?"
+    },
+    "hint": {
+      "html": "For example, every 4 hours, twice a day or only when in severe pain"
+    },
+    "classes": 'govuk-!-width-two-thirds',
+    "name": "medication-regularity"
   }) }}
 
   {{ govukButton({
