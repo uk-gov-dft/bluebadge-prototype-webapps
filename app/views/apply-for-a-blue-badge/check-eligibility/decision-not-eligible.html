@@ -1,10 +1,13 @@
-{% extends "layout.html" %}
+{% extends "guidance_layout.html" %}
+{% set hidesSteps = "true" %}
 
 {% block pageTitle %}
   Decision - {% if serviceName %} {{ serviceName }} {% endif %}
 {% endblock %}
 
-{% block inner_content %}
+{% block guidance_content %}
+
+<div class="middle-start-page">
 
 {% if data['applicant'] === 'organisation' %}
 
@@ -15,16 +18,12 @@
 {% else %}
 
 	<h1 class="govuk-heading-l">{{ you | capitalize }}'re not eligible for a Blue Badge</h1>
-	<p class="govuk-body">Based on {{ your }} answers, {{ you }}'re not eligible for get a Blue Badge.</p>
-	<p class="govuk-body">If you still think that {{ you }} are, you can contact {{ data["council-name"] }}:
+	<p class="govuk-body">Based on {{ your }} answers, {{ you }}'re not eligible for a Blue Badge.</p>
+	<p class="govuk-body">If you still think that {{ you }} are, contact {{data['council-name']}}:
 
 {% endif %}
 
-<ul class="govuk-list">
-  <li>Website: <a href="#">www.{{data['council-name'] | lower}}.gov.uk</a></li>
-  <li>Email: <a href="#">bluebadge@{{data['council-name'] | lower}}.gov.uk</a></li>
-  <li>Phone: 0161 205 7321</li>
-</ul>
+<p class="govuk-body">You can find contact details on <a href="http://councilsite.gov.uk">{{data['council-name']}}'s website</a>.</p>
   
-
+</div>
 {% endblock %}
