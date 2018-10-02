@@ -369,18 +369,18 @@ router.get('/personal-details', function (req, res) {
 })
 
 router.get('/personal-details/name', function (req, res) {
-  Object.assign(res.locals,sendBackToCheckAnswers(req.query,personDetailsPath+'gender','check-personal'))
+  Object.assign(res.locals,sendBackToCheckAnswers(req.query,personDetailsPath+'dob','check-personal'))
   res.render(personDetailsTemplatePath+'name')
 })
 
-router.get('/personal-details/gender', function (req, res) {
-  Object.assign(res.locals,sendBackToCheckAnswers(req.query,personDetailsPath+'dob','check-personal'))
-  res.render(personDetailsTemplatePath+'gender')
+router.get('/personal-details/dob', function (req, res) {
+  Object.assign(res.locals,sendBackToCheckAnswers(req.query,personDetailsPath+'gender','check-personal'))
+  res.render(personDetailsTemplatePath+'dob')
 })
 
-router.get('/personal-details/dob', function (req, res) {
+router.get('/personal-details/gender', function (req, res) {
   Object.assign(res.locals,sendBackToCheckAnswers(req.query,personDetailsPath+'nino','check-personal'))
-  res.render(personDetailsTemplatePath+'dob')
+  res.render(personDetailsTemplatePath+'gender')
 })
 
 function getAge(dateString) {
