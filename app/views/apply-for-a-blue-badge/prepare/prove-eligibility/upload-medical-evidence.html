@@ -2,7 +2,7 @@
 {% set hasSaveClass = 'yes' %}
 {% import "apply-for-a-blue-badge/macros/upload-component-new.html" as uploadComponentWidget %}
 
-{% set pageHeading = "Upload evidence of " + your + " walking difficulties" %}
+{% set pageHeading = "Evidence of " + your + " walking difficulties" %}
 
 {% block pageTitle %}
   {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
@@ -25,20 +25,56 @@
     <li>appointment letters from {{your}} GP, Hospital or healthcare professional</li>
   </ul>
 
-  {{ uploadComponentWidget.uploadComponent(
-    'prove-eligibility/upload-medical-evidence',
-    'proofOfAdapted', 
-    formAction + '?arms-completed=true&proofOfAdapted=notProvided&medical-proof-file-upload=',
-    your, 
-    'provide medical evidence', 
-    change, 
-    'no',
-    'medical-proof-file-upload',
-    'no',
-    'medical-evidence.jpg',
-    data['medical-evidence-done'],
-    'medical-evidence-done'
-  )}}
+  {% set uploadHtml %}
+    {{ uploadComponentWidget.uploadComponent(
+      'prove-eligibility/upload-medical-evidence',
+      'proofOfAdapted', 
+      formAction + '?medical-evidence-completed=true&proofOfAdapted=notProvided&medical-proof-file-upload=',
+      your, 
+      '', 
+      change, 
+      'no',
+      'medical-proof-file-upload',
+      'yes',
+      'medical-evidence.jpg',
+      data['medical-evidence-done'],
+      'medical-evidence-done'
+    )}}
+  {% endset -%}
+  {{ govukRadios({
+    "idPrefix": "medical-evidence-upload",
+    "name": "medical-evidence-upload",
+    "attributes": {
+      "data-catchoption-label": true
+    },
+    "fieldset": {
+      "legend": {
+        "text": "Do " + you + " have evidence to upload?",
+        "isPageHeading": false,
+        "classes": 'govuk-fieldset__legend--m'
+      }
+    },
+    "items": [
+      {
+        "value": "yes",
+        "text": "Yes",
+        "checked": data['medical-evidence-done'] === 'true',
+        "conditional": {
+          "html": uploadHtml
+        }
+      },
+      {
+        "value": "no",
+        "text": "No"
+      }
+
+    ]
+  }) }}
+
+  <div id="hiddenCaughtInputs"></div>
+  {{ govukButton({
+    "text": submitLabel
+  }) }}
 
   <!-- Has save -->
 </form>

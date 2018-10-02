@@ -17,10 +17,16 @@
     "label": {
       "text": "Enter age"
     },
-    classes: "govuk-input--width-10",
+    "hint": {
+      "text": "For example, 54"
+    },
+    classes: "govuk-input--width-4",
     id: "age",
     name: "age",
-    type: "tel"
+    type: "tel",
+    attributes: {
+      maxlength: "3"
+    }
   }) }}
   
   {{ govukButton({
