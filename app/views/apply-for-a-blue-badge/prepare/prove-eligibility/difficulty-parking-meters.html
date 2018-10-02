@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 
-{% set pageHeading = 'Do ' + you + ' find it difficult to operate pay-and-display parking machines?' %}
+{% set pageHeading = 'Explain how ' + you + ' find it difficult to operate pay-and-display parking machines' %}
 
 {% block pageTitle %}
   {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
@@ -12,30 +12,18 @@
 
 <form action="{{ formAction }}">
 
-  {{ govukRadios({
-    "idPrefix": "difficulty-parking-meters",
-    "name": "difficulty-parking-meters",
-    "fieldset": {
-      "legend": {
-        "text": pageHeading,
-        "isPageHeading": true,
-        "classes": 'govuk-fieldset__legend--l'
-      }
-    },
-    "items": [
-      {
-        "value": "Yes",
-        "text": "Yes",
-        "checked": data['difficulty-parking-meters'] === 'Yes'
-      },
-      {
-        "value": "No",
-        "text": "No",
-        "checked": data['difficulty-parking-meters'] === 'No'
-      }
+  <h1 class="govuk-heading-l">{{pageHeading}}</h1>
 
-    ]
-  }) }}  {{ govukButton({
+  {{ govukTextarea({
+    name: "difficulty-parking-meters",
+    id: "difficulty-parking-meters",
+    label: {
+      text: "Provide as much detail as possible"
+    }
+  }) }}
+
+
+  {{ govukButton({
     "text": "Continue"
   }) }}
 

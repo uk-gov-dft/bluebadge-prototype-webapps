@@ -1,9 +1,13 @@
 {% extends "layout.html" %}
 {% set hasSaveClass = 'yes' %}
 
-{% if (data['disability'] === 'problems-walking') %}
+{% if data['disability'] === 'problems-walking' %}
 
 {% set pageHeading = 'Describe any health conditions that affect ' + your + ' walking' %}
+
+{% elif data['disability'] === 'arms' %}
+
+{% set pageHeading = 'Describe any health conditions that affect ' + your + ' arms' %}
 
 {% else %}
 
