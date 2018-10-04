@@ -14,7 +14,28 @@
 <form action="walking-backend">
 
   
-  {% if  data['nation'] === "wales" %}
+  {% if data['nation'] !== "wales" and data['nation'] !== "scotland" %}
+
+  {% set differentOptions = [
+    {
+      "value": "help",
+      "text": you | capitalize + " cannot walk without help from someone else or using walking aids"
+    },
+    {
+      "value": "pain",
+      "text": you | capitalize + " find walking very difficult due to pain, breathlessness or the time it takes"
+    },
+    {
+      "value": "dangerous",
+      "text": "Walking is dangerous to " + your + " health and safety"
+    },
+    {
+      "value": "none",
+      "text": "None of these describe " + your + " walking ability"
+    }
+  ] %}
+
+  {% elif  data['nation'] === "wales" %}
 
   {% set differentOptions = [
     {
