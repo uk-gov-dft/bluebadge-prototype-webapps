@@ -20,7 +20,23 @@
     "label": {
       "text": "What's the name of the walking aid?"
     },
+    "id": "mobility-aid-name",
     "name": "mobility-aid-name"
+  }) }}
+
+  {% endset -%}
+
+  {% set withoutExplain %}
+
+  {{ govukInput({
+    "label": {
+      "text": "When do you need to use it?"
+    },
+    "hint": {
+      "text": "For example, for shopping trips"
+    },
+    "id": "mobility-aid-when",
+    "name": "mobility-aid-when"
   }) }}
 
   {% endset -%}
@@ -45,7 +61,7 @@
       },
       {
         "value": "walking-aid",
-        "text": "Walking aid",
+        "text": "Walking aid or prosthetic",
         "conditional": {
           "html": walkingType
         }
@@ -53,15 +69,39 @@
     ]
   }) }}
 
-  {{ govukInput({
+  {{ govukRadios({
+    "idPrefix": "can-walk-without",
+    "name": "can-walk-without",
+    "fieldset": {
+      "legend": {
+        "text": 'Can you walk without it?',
+        "classes": 'govuk-fieldset__legend--s'
+      }
+    },
+    "items": [
+      {
+        "value": "no",
+        "text": "No"
+      },
+      {
+        "value": "yes",
+        "text": "Yes",
+        "conditional": {
+          "html": withoutExplain
+        }
+      }
+    ]
+  }) }}
+
+  <!-- {{ govukInput({
     "label": {
       "text": "When do " + you + " use it?"
     },
     "hint" : {
-      "text": 'For example, "All the time" or "To get to the shops"'
+      "text": 'For example, to get to the shops'
     },
     "name": "mobility-aid-usage"
-  }) }}
+  }) }} -->
 
   <input type="hidden" name="{{shouldchangename}}" value="{{shouldchangevalue}}">
 

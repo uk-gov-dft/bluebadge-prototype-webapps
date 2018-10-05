@@ -664,11 +664,14 @@ router.get('/prove-eligibility/add-mobility-aid', function(req, res) {
 
 router.get('/prove-eligibility/create-mobility-aid', function(req, res) {
   var aidName = (req.session.data['mobility-aid-type'] === 'walking-aid') ? 
-                'Walking aid (' + req.session.data['mobility-aid-name'] + ')' : req.session.data['mobility-aid-type'];
+                req.session.data['mobility-aid-name'] : req.session.data['mobility-aid-type'];
+
+  var walkWithout = (req.session.data['can-walk-without'] === 'yes') ? 
+                req.session.data['mobility-aid-when'] : "Can't walk without it";              
 
   var mobilityAid = {
     "name": aidName,
-    "usage": req.session.data['mobility-aid-usage'],
+    "usage": walkWithout,
     "source": req.session.data['mobility-aid-source']
   }
 
