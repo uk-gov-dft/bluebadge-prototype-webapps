@@ -15,6 +15,14 @@
 
 {% endif %}
 
+{% if data['age'] > 15 and data['age'] < 65 %}
+  {% set advisedBenefit = 'Personal Independence Payment (PIP)' %}
+{% elif data['age'] < 16 %}
+  {% set advisedBenefit = 'Disability Living Allowance (DLA)' %}
+{% elif data['age'] > 64 %}
+  {% set advisedBenefit = 'Attendance Allowance' %}
+{% endif %}
+
 {% block pageTitle %}
   Decision - {% if serviceName %} {{ serviceName }} {% endif %}
 {% endblock %}
@@ -86,6 +94,32 @@
     {% else %}
     <p class="govuk-body">It can take up to 4 weeks for {{you}} to receive your badge from {{data['council-name']}}, if {{your}} application is successful.</p>
     {% endif %}
+
+    {% if data['disability'] === 'blind' %}
+
+    <h2 class="govuk-heading-m">Other benefits {{you}} may be eligible for</h2>
+
+    <p class="govuk-body">
+      As {{you}}'re severely sight impaired, {{you}}'re eligible to apply for {{advisedBenefit}}. This can help {{youOrThem}} with the extra costs caused by illness or disability.
+    </p>
+    <p class="govuk-body">
+       Visit the <a href="https://www.gov.uk/browse/benefits/disability" target="_blank">Department for Work and Pensions (DWP)'s website</a> to find out more.
+    </p>
+
+    {% endif %}
+
+    {% if data['disability'] === 'problems-walking' %}
+
+    <h2 class="govuk-heading-m">Applying for other benefits</h2>
+
+    <p class="govuk-body">
+      Based on {{your}} answers, {{you}} may be eligible to apply for {{advisedBenefit}}. This can help {{youOrThem}} with the extra costs caused by illness or disability. If {{you}} do successfully claim for {{advisedBenefit}}, this may help you with {{your}} Blue Badge application.  
+    </p>
+    <p class="govuk-body">
+       Visit the <a href="https://www.gov.uk/browse/benefits/disability" target="_blank">Department for Work and Pensions (DWP)'s website</a> to find out more.
+    </p>
+
+    {% endif %}
     
 
     <h2 class="govuk-heading-m">Don't want to apply online?</h2>
@@ -93,12 +127,6 @@
     <p class="govuk-body">Find out if there are other ways to apply on <a href="http://councilsite.gov.uk">{{data['council-name']}}'s website</a>.</p>
 
   {% endif %}
-
-  <!-- <ul class="govuk-list">
-    <li>Website: <a href="#">www.{{data['council-name'] | lower}}.gov.uk</a></li>
-    <li>Email: <a href="#">bluebadge@{{data['council-name'] | lower}}.gov.uk</a></li>
-    <li>Phone: 0161 205 7321</li>
-  </ul> -->
 
 </div>
 
