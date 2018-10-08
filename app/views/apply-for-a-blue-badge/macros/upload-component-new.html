@@ -46,6 +46,7 @@
 {% from 'radios/macro.njk' import govukRadios %}
 {% from "details/macro.njk" import govukDetails %}
 {% from 'button/macro.njk' import govukButton %}
+{% from "file-upload/macro.njk" import govukFileUpload %}
 
 {% macro chooseYourFile(
   originPage,
@@ -69,7 +70,7 @@
   {% set bracketS = '' %}
 {% endif %}
 
-<div id="drop-area">
+<div id="drop-area" class="hide-no-js">
   <div id="dragDropInstructions">
     <div class="upload-arrow-container">
       <div class="icon--upload-arrow">
@@ -96,6 +97,22 @@
     <h3 class="govuk-heading-s">Upload progress</h3>
     <progress id="progress-bar" max=100 value=0 class=""></progress>
   </div>
+</div>
+
+<div class="js-hidden">
+  {{ govukFileUpload({
+    id: "file-upload-1",
+    name: "file-upload-1",
+    label: {
+      text: "Upload photo or scan"
+    }
+  }) }}
+
+  {% if (isAnInlineUpload!=='yes') %}
+    {{ govukButton({
+      "text": "Continue"
+    }) }}
+  {% endif %}
 </div>
 
 <div id="fileUploadedBox" class="hidden">

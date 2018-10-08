@@ -11,6 +11,19 @@
 	}
 }
 
+.hide-no-js {
+  display: none;
+  .js-enabled & {
+    display: block;
+  }
+}
+
+.js-hidden {
+  .js-enabled & {
+    display: none;
+  }
+}
+
 .hidden {display: none;}
 
 .responsive-image {
