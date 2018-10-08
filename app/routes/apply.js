@@ -649,7 +649,7 @@ router.get('/prove-eligibility/list-mobility-aids', function(req, res) {
   }
 
   res.locals.tableRows = tableRows;
-  Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/apply-for-a-blue-badge/prove-eligibility/mobility-aid-backend','check-walking'))
+  Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/apply-for-a-blue-badge/prove-eligibility/walking-time','check-walking'))
   res.render(proveEligibilityTemplatePath+'list-mobility-aids');
 });
 
@@ -666,12 +666,9 @@ router.get('/prove-eligibility/create-mobility-aid', function(req, res) {
   var aidName = (req.session.data['mobility-aid-type'] === 'walking-aid') ? 
                 req.session.data['mobility-aid-name'] : req.session.data['mobility-aid-type'];
 
-  var walkWithout = (req.session.data['can-walk-without'] === 'yes') ? 
-                req.session.data['mobility-aid-when'] : "Can't walk without it";              
-
   var mobilityAid = {
     "name": aidName,
-    "usage": walkWithout,
+    "usage": req.session.data['mobility-aid-usage'],
     "source": req.session.data['mobility-aid-source']
   }
 
@@ -700,28 +697,12 @@ router.get('/prove-eligibility/walking-time', function(req, res) {
   res.render(proveEligibilityTemplatePath+'walking-time');
 });
 
-router.get('/prove-eligibility/mobility-aid-backend', function(req, res) {
-  if(req.session.data['mobility-aids-array']) {
-    var aidsArray = req.session.data['mobility-aids-array'],
-        arrayLength = aidsArray.length,
-        aidName = '';
-
-    for (var i = 0; i < arrayLength; i++) {
-      aidName = aidsArray[i].name;
-    }
-
-    if (aidName.includes('Walking aid')) {
-      res.redirect(proveEligibilityPath+'where-can-you-walk');
-      req.session.data['can-walk'] = 'yes';
-    } else {
-      req.session.data['can-walk'] = 'no';
-      res.redirect(proveEligibilityPath+'check-walking');
-    }
+router.get('/prove-eligibility/walking-time-backend', function(req, res) {
+  if (req.session.data['how-long-walk'] === 'cant-walk') {
+    res.redirect(proveEligibilityPath+'check-walking');
   } else {
     res.redirect(proveEligibilityPath+'where-can-you-walk');
   }
-
-  
 });
 
 router.get('/prove-eligibility/where-can-you-walk', function(req, res) {

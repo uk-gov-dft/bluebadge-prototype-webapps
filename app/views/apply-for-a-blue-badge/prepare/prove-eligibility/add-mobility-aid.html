@@ -26,21 +26,6 @@
 
   {% endset -%}
 
-  {% set withoutExplain %}
-
-  {{ govukInput({
-    "label": {
-      "text": "When do " + you + " need to use it?"
-    },
-    "hint": {
-      "text": "For example, for shopping trips"
-    },
-    "id": "mobility-aid-when",
-    "name": "mobility-aid-when"
-  }) }}
-
-  {% endset -%}
-
   {{ govukRadios({
     "idPrefix": "mobility-aid-type",
     "name": "mobility-aid-type",
@@ -69,39 +54,16 @@
     ]
   }) }}
 
-  {{ govukRadios({
-    "idPrefix": "can-walk-without",
-    "name": "can-walk-without",
-    "fieldset": {
-      "legend": {
-        "text": 'Can ' + you + ' walk without it?',
-        "classes": 'govuk-fieldset__legend--s'
-      }
-    },
-    "items": [
-      {
-        "value": "no",
-        "text": "No"
-      },
-      {
-        "value": "yes",
-        "text": "Yes",
-        "conditional": {
-          "html": withoutExplain
-        }
-      }
-    ]
-  }) }}
-
-  <!-- {{ govukInput({
+  {{ govukInput({
     "label": {
       "text": "When do " + you + " use it?"
     },
     "hint" : {
       "text": 'For example, to get to the shops'
     },
-    "name": "mobility-aid-usage"
-  }) }} -->
+    "name": "mobility-aid-usage",
+    "id": "mobility-aid-usage"
+  }) }}
 
   <input type="hidden" name="{{shouldchangename}}" value="{{shouldchangevalue}}">
 
