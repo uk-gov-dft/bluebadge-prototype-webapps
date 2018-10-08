@@ -7,6 +7,14 @@
   {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
 {% endblock %}
 
+{% if data['age'] > 15 and data['age'] < 65 %}
+  {% set advisedBenefit = 'Personal Independence Payment (PIP)' %}
+{% elif data['age'] < 16 %}
+  {% set advisedBenefit = 'Disability Living Allowance (DLA)' %}
+{% elif data['age'] > 64 %}
+  {% set advisedBenefit = 'Attendance Allowance' %}
+{% endif %}
+
 {% block inner_content %}
 
 {{ govukPanel({
@@ -67,6 +75,45 @@
 <p class="govuk-body"><a href="#">What did you think of this service?</a> (takes 30 seconds)</p>
 
 <p class="govuk-body">It's now safe to close this window.</p>
+
+{% if data['disability'] === 'blind' %}
+
+<h2 class="govuk-heading-m">Other benefits {{you}} may be eligible for</h2>
+
+<p class="govuk-body">
+  As {{you}}'re severely sight impaired, {{you}}'re eligible to apply for {{advisedBenefit}}. This can help {{youOrThem}} with the extra costs caused by illness or disability.
+</p>
+<p class="govuk-body">
+   Visit the <a href="https://www.gov.uk/browse/benefits/disability">Department for Work and Pensions (DWP)'s website</a> to find out more.
+</p>
+
+{% endif %}
+
+{% if data['disability'] === 'problems-walking' %}
+
+<h2 class="govuk-heading-m">Applying for other benefits</h2>
+
+<p class="govuk-body">
+  Based on {{your}} answers, {{you}} may be eligible to apply for {{advisedBenefit}}. This can help {{youOrThem}} with the extra costs caused by illness or disability.
+</p>
+<p class="govuk-body">
+   Visit the <a href="https://www.gov.uk/browse/benefits/disability">Department for Work and Pensions (DWP)'s website</a> to find out more.
+</p>
+
+{% endif %}
+
+{% if data['disability'] === 'child-bulky-equipment' or data['disability'] === 'child-close-to-vehicle' %}
+
+<h2 class="govuk-heading-m">Help if you have a disabled child</h2>
+
+<p class="govuk-body">
+  {{data['council-name']}} can provide help if you have a disabled child.
+</p>
+<p class="govuk-body">
+   Visit the <a href="https://www.gov.uk/help-for-disabled-child">Department for Work and Pensions (DWP)'s website</a> to find out more.
+</p>
+
+{% endif %}
 
 <h2 class="govuk-heading-m">{{data['council-name'] | title}} contact details</h2>
 <p class="govuk-body">
