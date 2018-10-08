@@ -15,6 +15,9 @@
   display: none;
   .js-enabled & {
     display: block;
+    &.hidden {
+      display: none;
+    }
   }
 }
 
