@@ -1,0 +1,207 @@
+{% extends "admin_layout.html" %}
+
+{% block page_header %}
+
+  <h1>{{title}}</h1>
+  
+{% endblock %}
+
+{% block content %}
+
+{% set govukPayHtml %}
+  {{ govukInput({
+    "label": {
+      "text": "What is your GOV.UK Pay API key?"
+    },
+    id: "govuk-pay-api-key",
+    name: "govuk-pay-api-key"
+  }) }}
+{% endset -%}
+
+{% set govukNotifyHtml %}
+  {{ govukInput({
+    "label": {
+      "text": "What is your GOV.UK Notify API key?"
+    },
+    id: "govuk-notify-api-key",
+    name: "govuk-notify-api-key"
+  }) }}
+  {{ govukInput({
+    "label": {
+      "text": "What is the ID of the 'Application submitted' template?"
+    },
+    id: "govuk-notify-api-key",
+    name: "govuk-notify-api-key"
+  }) }}
+{% endset -%}
+
+
+<form action="{{ formAction }}" method="post" class="form" novalidate>
+
+  <section class="form-section">
+
+    <h2 class="govuk-heading-m">GOV.UK integration</h2>
+
+    {{ govukRadios({
+      "idPrefix": "govuk-pay",
+      "name": "govuk-pay",
+      "fieldset": {
+        "legend": {
+          "text": "Do you have a GOV.UK Pay account?",
+          "isPageHeading": true,
+          "classes": 'govuk-fieldset__legend--l'
+        }
+      },
+      "items": [
+        {
+          "value": "yes",
+          "text": "Yes",
+          "conditional": {
+            "html": govukPayHtml
+          }
+        },
+        {
+          "value": "no",
+          "text": "No"
+        }
+      ]
+    }) }}
+
+    {{ govukRadios({
+      "idPrefix": "govuk-notify",
+      "name": "govuk-notify",
+      "fieldset": {
+        "legend": {
+          "text": "Do you have a GOV.UK Notify account?",
+          "isPageHeading": true,
+          "classes": 'govuk-fieldset__legend--l'
+        }
+      },
+      "items": [
+        {
+          "value": "nes",
+          "text": "Yes",
+          "conditional": {
+            "html": govukNotifyHtml
+          }
+        },
+        {
+          "value": "no",
+          "text": "No"
+        }
+      ]
+    }) }}
+
+  </section>
+    
+  <section class="form-section">
+
+      <h2 class="govuk-heading-m">Contact details</h2>
+
+      <p class="govuk-hint">Leave these blank if you don't users to see them in the online service.</p>
+
+      {{ govukInput({
+          "label": {
+            "text": "Website URL"
+          },
+          classes: "govuk-!-width-one-half",
+          id: "website-url",
+          name: "website-url",
+          type: "text",
+          value: data['website-url']
+        })
+      }}
+
+      {{ govukInput({
+          "label": {
+            "text": "Privacy policy URL (optional)"
+          },
+          classes: "govuk-!-width-one-half",
+          id: "privacy-url",
+          name: "privacy-url",
+          type: "text",
+          value: data['privacy-url']
+        })
+      }}
+
+      {{ govukInput({
+        "label": {
+          "text": "Contact number (optional)"
+        },
+        classes: "govuk-!-width-one-half",
+        id: "contact-number",
+        name: "contact-number",
+        type: "tel",
+        value: data['contact-number']
+      }) }}
+      
+      {{ govukInput({
+        "label": {
+          "text": "Email address (optional)"
+        },
+        classes: "govuk-!-width-one-half",
+        id: "email-address",
+        name: "email-address",
+        type: "email",
+        value: data['email-address']
+      }) }}
+
+      <h2 class="govuk-heading-m">Address</h2>
+
+      {% call govukFieldset({
+        "legendText": 'Address',
+        "classes": 'fieldset-with-inputs'
+      }) %}
+    
+      {{ govukInput({
+        "label": {
+          "html": 'Building and street <span class="govuk-visually-hidden">line 1 of 2</span>'
+        },
+        classes: "govuk-!-width-one-half",
+        "id": "address-line-1",
+        "name": "address-line-1",
+        "value": data['address-line-1']
+      }) }}
+    
+      {{ govukInput({
+        "label": {
+          "html": '<span class="govuk-visually-hidden">Building and street line 2 of 2</span>'
+        },
+        classes: "govuk-!-width-one-half",
+        "id": "address-line-2",
+        "name": "address-line-2",
+        "value": data['address-line-2']
+      }) }}
+    
+      {{ govukInput({
+        "label": {
+          "html": 'Town or city'
+        },
+        classes: "govuk-!-width-one-half",
+        "id": "address-town",
+        "name": "address-town",
+        "value": data['address-town']
+      }) }}
+    
+      {{ govukInput({
+        "label": {
+          "html": 'Postcode'
+        },
+        "classes": 'govuk-input--width-10',
+        "id": "address-postcode",
+        "name": "address-postcode",
+        "value": data['address-postcode']
+      }) }}
+    
+    {% endcall %}
+  
+
+  </section>
+
+  {{ govukButton({
+    "text": "Save"
+  }) }}
+
+</form>
+
+{% endblock %}
