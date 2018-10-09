@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% set pageHeading = "Proof of eligibility already submitted" %}
+
+{% block pageTitle %}
+  {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block inner_content %}
+
+<h1 class="govuk-heading-l">{{pageHeading}}</h1>
+
+<p class="govuk-body">The personal details {{you}} provided matched {{your}} badge record. {{you|capitalize}} don't need to provide proof of {{your}} eligibility.</p>
+
+<p class="govuk-body">If {{your}} circumstances have changed, you should <a href="councilwebsite.gov.uk">contact {{data['council-name']}}</a>.</p>
+
+{{ govukButton({
+  "text": "Continue",
+  "href": '/apply-for-a-blue-badge/task-list'
+}) }}
+
+{% endblock %}

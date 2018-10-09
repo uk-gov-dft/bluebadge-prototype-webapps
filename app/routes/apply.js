@@ -547,6 +547,10 @@ router.get('/prove-your-identity', function (req, res) {
   res.render('apply-for-a-blue-badge/prepare/prove-your-identity')
 })
 
+router.get('/proof-not-needed', function (req, res) {
+  res.render('apply-for-a-blue-badge/prepare/prove-eligibility/proof-not-needed');
+})
+
 // Prove eligibility
 
 const proveEligibilityPath = '/apply-for-a-blue-badge/prove-eligibility/';

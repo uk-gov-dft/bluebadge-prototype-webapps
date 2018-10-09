@@ -11,7 +11,7 @@
 {% endblock %}
 
 {% block inner_content %}
-        
+
 <form action="{{ formAction }}">
 
   {% set formIDs = {
@@ -52,6 +52,11 @@
         autocapitalize: "characters"
       }
     }) }}
+    
+    <br>
+    <p class="govuk-body">
+      <a href="{{ formAction }}?existing-blue-badge-number=none">{{iThey}} don't know the badge number</a>
+    </p>
   {% endset -%}
 
   {{ govukRadios({
