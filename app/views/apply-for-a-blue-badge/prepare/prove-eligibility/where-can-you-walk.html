@@ -4,7 +4,7 @@
 {% set pageHeading = 'Where can ' + you + ' walk to?' %}
 
 {% if data['mobility-aids-array'].length and data['use-mobility-aid'] !== 'no' %}
-{% set usingMobilityAid = ', using a mobility aid, ' %}
+{% set usingMobilityAid = ', using a mobility aid' %}
 {% else %}
 {% set usingMobilityAid = '' %}
 {% endif %}
@@ -23,10 +23,10 @@
 
   {{ govukInput({
     label: {
-      text: "Name a place " + you + " can walk to" + usingMobilityAid + " from " + your + " home"
+      text: "Describe somewhere " + you + " can walk to and from" + usingMobilityAid
     },
     hint: {
-      text: 'For example, to the Post office on the High Street'
+      text: 'For example, from my home to the Post office on the High Street'
     },
     id: "walk-location",
     name: "walk-location",
