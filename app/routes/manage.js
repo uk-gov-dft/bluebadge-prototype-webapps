@@ -286,6 +286,10 @@ router.get('/renewal-walking', function (req, res) {
   res.render('manage-blue-badges/renewal-walking', {'title':'View renewal','renewals_class':'active'})
 })
 
+router.get('/settings', function (req, res) {
+  res.render('manage-blue-badges/settings', {'title':'Settings','settings_class':'active'})
+})
+
 
 router.get('/replacements', function (req, res) {
   res.render('manage-blue-badges/replacements', {'title':'Replacements','replacements_class':'active'})
