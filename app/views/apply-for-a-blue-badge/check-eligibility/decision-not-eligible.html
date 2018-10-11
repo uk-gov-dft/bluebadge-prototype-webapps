@@ -13,17 +13,15 @@
 
     <h1 class="govuk-heading-l">Based on your answers, your organisation isn't eligible for a Blue Badge</h1>
     <p class="govuk-body">Blue Badges are only given to organisations who transport and care for people who need a Blue Badge.</p>
-    <p class="govuk-body">If you think that your organisation is eligible you should contact {{ data["council-name"] }} directly:</p>
+    <p class="govuk-body">If you think your organisation is eligible you should <a href="http://councilsite.gov.uk">contact {{ data["council-name"] }}</a>.</p>
 
 {% else %}
 
 	<h1 class="govuk-heading-l">{{ you | capitalize }}'re not eligible for a Blue Badge</h1>
 	<p class="govuk-body">Based on {{ your }} answers, {{ you }}'re not eligible for a Blue Badge.</p>
-	<p class="govuk-body">If you still think that {{ you }} are, contact {{data['council-name']}}:
+	<p class="govuk-body">If you still think {{ you }} are, you can <a href="http://councilsite.gov.uk">contact {{data['council-name']}}</a>.
 
 {% endif %}
 
-<p class="govuk-body">You can find contact details on <a href="http://councilsite.gov.uk">{{data['council-name']}}'s website</a>.</p>
-  
 </div>
 {% endblock %}
