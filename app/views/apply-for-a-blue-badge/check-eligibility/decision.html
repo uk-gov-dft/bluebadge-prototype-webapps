@@ -48,22 +48,24 @@
     <p class="govuk-body">A photo or scan that shows:</p>
 
     <ul class="govuk-list govuk-list--bullet">
-      {% if (data['pip-dla'] === 'yes') %}
-        <li>both {{your}} PIP and DLA award letters</li>
-      {% elif data['benefit'] === 'pip' %}
-        <li>{{your}} PIP award letter</li>
-      {% elif data['benefit'] === 'dla' %}
-        <li>{{your}} DLA award letter</li>
-      {% elif data['benefit'] === 'armed-forces' %}
-        <li>{{your}} AFCS award letter</li>
-      {% elif data['benefit'] === 'war-pensioners' %}
-        <li>{{your}} WPMS award letter</li>
-      {% elif data['disability'] === 'arms' %}
-        <li>proof of adapted vehicle (if {{you}} drive one)</li>
+      {% if data['existing-blue-badge-number'] !== "none" %}
+        {% if (data['pip-dla'] === 'yes') %}
+          <li>both {{your}} PIP and DLA award letters</li>
+        {% elif data['benefit'] === 'pip' %}
+          <li>{{your}} PIP award letter</li>
+        {% elif data['benefit'] === 'dla' %}
+          <li>{{your}} DLA award letter</li>
+        {% elif data['benefit'] === 'armed-forces' %}
+          <li>{{your}} AFCS award letter</li>
+        {% elif data['benefit'] === 'war-pensioners' %}
+          <li>{{your}} WPMS award letter</li>
+        {% elif data['disability'] === 'arms' %}
+          <li>proof of adapted vehicle (if {{you}} drive one)</li>
 
-      {% elif data['disability'] === 'problems-walking' %}
-        <li>evidence of {{your}} walking difficulties
-          <br>(hospital letter or prescriptions)</li>
+        {% elif data['disability'] === 'problems-walking' %}
+          <li>evidence of {{your}} walking difficulties
+            <br>(hospital letter or prescriptions)</li>
+      {% endif %}
 
       {% endif %}
       <li>proof of {{your}} identity (passport, birth certificate, driving licence)</li>
@@ -83,6 +85,31 @@
       <li>a credit or debit card to pay a {{feePrice}} issue fee. The fee will be refunded if {{your}} application is not successful</li>
       {% endif %}
     </ul>
+
+    {% if data['existing-blue-badge-number'] === "none" %}
+      <p class="govuk-body">We'll attempt to find {{your}} badge based on {{your}} personal details. If {{your}} personal details do not match our records, {{you}}'ll need to provide:</p>
+
+      <ul class="govuk-list govuk-list--bullet">
+
+      {% if (data['pip-dla'] === 'yes') %}
+        <li>both {{your}} PIP and DLA award letters</li>
+      {% elif data['benefit'] === 'pip' %}
+        <li>{{your}} PIP award letter</li>
+      {% elif data['benefit'] === 'dla' %}
+        <li>{{your}} DLA award letter</li>
+      {% elif data['benefit'] === 'armed-forces' %}
+        <li>{{your}} AFCS award letter</li>
+      {% elif data['benefit'] === 'war-pensioners' %}
+        <li>{{your}} WPMS award letter</li>
+      {% elif data['disability'] === 'arms' %}
+        <li>proof of adapted vehicle (if {{you}} drive one)</li>
+
+      {% elif data['disability'] === 'problems-walking' %}
+        <li>evidence of {{your}} walking difficulties
+          <br>(hospital letter or prescriptions)</li>
+      {% endif %}
+      </ul>
+    {% endif %}
 
     {{ govukButton({
       "text": "Start " + application,

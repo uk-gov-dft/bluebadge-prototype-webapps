@@ -17,6 +17,13 @@
 
 {% endif %}
 
+{% if data['personal-match'] == "false" and 
+        data['existing-blue-badge-number'] == "none" %}
+
+  {% set proofNotNeeded = false %}
+
+{% endif %}
+
 {% block content %}
 
   <div class="govuk-grid-row">
@@ -415,10 +422,38 @@
 
   </script>
 
+  {% if data['existing-blue-badge-number'] == "none" %}
+
+  <script>
+    $('[data-no-badge-link]').each(function() {
+      var $this = $(this),
+          thisText = $this.text();
+
+      $this.after('<div class="task-list-deactivated-item"><p class="govuk-body-s">' + thisText + '</p></div>');
+
+      $this.hide();
+    });
+  </script>
+
+  {% endif %}
+
+  {% if data['personal-match'] == "false" and 
+        data['existing-blue-badge-number'] == "none" %}
+
+  <script>
+    $('[data-no-badge-link] + .task-list-deactivated-item').remove();
+    $('[data-no-badge-link]').show().removeAttr('data-no-badge-link');
+
+  </script>
+
+  {% endif %}
+
   {% if proofNotNeeded == true %}
 
   <script>
     $('[data-no-badge-link]').attr('href', 'proof-not-needed');
+    $('[data-no-badge-link]').show();
+    $('[data-no-badge-link] + .task-list-deactivated-item').remove();
   </script>
 
   {% endif %}
