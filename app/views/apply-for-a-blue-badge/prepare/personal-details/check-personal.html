@@ -112,7 +112,7 @@
         <dd class="govuk-check-your-answers__answer">
           {% if data['contact-full-name'] %}{{ data['contact-full-name'] }}<br />{% endif %}
           {% if data['applicant'] === "someone-else" %}
-          ({{data['someone-relationship']}}) <br />
+          ({{data['applicant-relationship']}}) <br />
           {% endif %}
           {{ data['primary-phone-number'] }}<br />
           {% if data['secondary-phone-number'] %}{{ data['secondary-phone-number'] }}<br />{% endif %}

@@ -6,17 +6,6 @@
 
 {% block inner_content %}
 
-
-{% set someoneElseHtml %}
-  {{ govukInput({
-    "label": {
-      "text": "What is your relationship to the applicant?"
-    },
-    id: "someone-relationship",
-    name: "someone-relationship"
-  }) }}
-{% endset -%}
-
 <form action="find-your-council">
   {{ govukRadios({
     "idPrefix": "applicant",
@@ -35,10 +24,7 @@
       },
       {
         "value": "someone-else",
-        "text": "Someone else",
-        "conditional": {
-          "html": someoneElseHtml
-        }
+        "text": "Someone else"
       },
       {
         "value": "organisation",

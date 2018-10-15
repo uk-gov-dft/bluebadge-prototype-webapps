@@ -14,19 +14,34 @@
 <h1 class="govuk-heading-l">{{pageHeading}}</h1>
 <!-- <p class="govuk-body"></p> -->
 <form action="{{ formAction }}">
-  {% if  data['applicant'] === "someone-else" or data['applicant'] === "organisation"   %}
+
+  {% if data['applicant'] === "someone-else" or data['applicant'] === "organisation" %}
 
   {{ govukInput({
     "label": {
-      "text": "Full name"
+      "text": "Your full name"
     },
     "hint": {
-      "text": "Your name or the name of the person that manages their affairs"
+      "text": "So that we know who to speak to about the application"
     },
     id: "contact-full-name",
     name: "contact-full-name",
     type: "text",
     value: data['contact-full-name']
+  }) }}
+
+  {% endif %}
+
+  {% if data['applicant'] === "someone-else" %}
+
+  {{ govukInput({
+    "label": {
+      "text": "What's your relationship to the applicant?"
+    },
+    id: "applicant-relationship",
+    name: "applicant-relationship",
+    type: "text",
+    value: data['applicant-relationship']
   }) }}
 
   {% endif %}
