@@ -48,6 +48,17 @@ $(document).ready(function () {
 
   }
 
+  $('[data-controls-element] input').on('change', function() {
+    var $this = $(this),
+        $thisID = $this.attr('id'),
+        $theContainer = $this.closest('[data-control-group]'),
+        $thisControls = $('[data-controller-is="' + $thisID + '"]');
+
+    $theContainer.find('[data-controller-is]').addClass('hidden').find('input').prop('checked', false);
+    $thisControls.removeClass('hidden');
+
+  });
+
   // Radio options updating a hidden input
 
   $('[data-catchoption-label] input').on('change', function() {

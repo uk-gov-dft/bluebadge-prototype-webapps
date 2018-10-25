@@ -193,51 +193,67 @@
   <section class="form-section">
     <h2 class="govuk-heading-m">Delivery information</h2>
 
-    {{ govukRadios({
-      "idPrefix": "deliver-to",
-      "name": "deliver-to",
-      "classes": "govuk-radios",
-      "fieldset": {
-        "legend": {
-          "text": "Deliver to"
-        }
-      },
-      "items": [
-        {
-          "value": "Badge holder",
-          "text": "Badge holder",
-          "checked": data['deliver-to'] === 'Badge holder'
+    <div data-control-group>
+      {{ govukRadios({
+        "idPrefix": "deliver-to",
+        "name": "deliver-to",
+        "classes": "govuk-radios",
+        "attributes": {
+          "data-controls-element": "true"
         },
-        {
-          "value": "Manchester City Council",
-          "text": "Manchester City Council",
-          "checked": data['deliver-to'] === 'Manchester City Council'
-        }
-      ]
-    }) }}
-
-    {{ govukRadios({
-      "idPrefix": "delivery-options",
-      "name": "delivery-options",
-      "classes": "govuk-radios",
-      "fieldset": {
-        "legend": {
-          "text": "Delivery options"
-        }
-      },
-      "items": [
-        {
-          "value": "Standard delivery",
-          "text": "Standard delivery",
-          "checked": data['delivery-options'] === 'Standard delivery'
+        "fieldset": {
+          "legend": {
+            "text": "Deliver to"
+          }
         },
-        {
-          "value": "Fast track",
-          "text": "Fast track (more expensive)",
-          "checked": data['delivery-options'] === 'Fast track'
-        }
-      ]
-    }) }}
+        "items": [
+          {
+            "value": "Badge holder",
+            "text": "Badge holder",
+            "checked": data['deliver-to'] === 'Badge holder',
+            "id": "deliver-badge-holder"
+          },
+          {
+            "value": "Manchester City Council",
+            "text": "Manchester City Council",
+            "checked": data['deliver-to'] === 'Manchester City Council',
+            "id": "deliver-council"
+          }
+        ]
+      }) }}
+      
+      <div data-controller-is="deliver-badge-holder">
+        {{ govukRadios({
+          "idPrefix": "delivery-options",
+          "name": "delivery-options",
+          "classes": "govuk-radios",
+          "fieldset": {
+            "legend": {
+              "text": "Delivery options"
+            }
+          },
+          "items": [
+            {
+              "value": "Standard delivery",
+              "text": "Standard delivery",
+              "checked": data['delivery-options'] === 'Standard delivery'
+            },
+            {
+              "value": "Fast track",
+              "text": "Fast track (more expensive)",
+              "checked": data['delivery-options'] === 'Fast track'
+            }
+          ]
+        }) }}
+      </div>
+      
+      <div class="hidden" data-controller-is="deliver-council">
+        <h3 class="govuk-heading-s">Delivery</h3>
+        <div class="govuk-inset-text">
+          <p class="govuk-body">The badge will be sent by standard delivery to Manchester City Council.</p>
+        </div>
+      </div>
+    </div>
 
   </section>
 
