@@ -2,11 +2,13 @@
 
 
 {% block back_link %}
-  <div class="back-link-container">
-    {{ govukBackLink({
-      "text": "Back",
-      "href": "javascript: window.history.go(-1)"
-    }) }}
+  <div class="dft-headline-wrapper">
+    <div class="back-link-container">
+      {{ govukBackLink({
+        "text": "Back",
+        "href": "javascript: window.history.go(-1)"
+      }) }}
+    </div>
   </div>
 {% endblock %}
 
@@ -34,87 +36,87 @@
     Personal details
   </h2>
   
-  <dl class="govuk-check-your-answers govuk-check-your-answers--short">
-    <div class="govuk-check-your-answers__contents">
-      <dt class="govuk-check-your-answers__question">
+  <dl class="govuk-check-your-answers govuk-check-your-answers--short dft-data-list">
+    <div class="govuk-check-your-answers__contents dft-data-list__item">
+      <dt class="dft-data-list__dt govuk-check-your-answers__question">
         Full name
       </dt>
-      <dd class="govuk-check-your-answers__answer">
+      <dd class="dft-data-list__dd govuk-check-your-answers__answer">
         Margaret Miller
       </dd>
     </div>
 
-    <div class="govuk-check-your-answers__contents">
-      <dt class="govuk-check-your-answers__question">
+    <div class="govuk-check-your-answers__contents dft-data-list__item">
+      <dt class="dft-data-list__dt govuk-check-your-answers__question">
         Gender
       </dt>
-      <dd class="govuk-check-your-answers__answer">
+      <dd class="dft-data-list__dd govuk-check-your-answers__answer">
         Female
       </dd>
     </div>
 
-    <div class="govuk-check-your-answers__contents">
-      <dt class="govuk-check-your-answers__question">
+    <div class="govuk-check-your-answers__contents dft-data-list__item">
+      <dt class="dft-data-list__dt govuk-check-your-answers__question">
         Date of birth
       </dt>
-      <dd class="govuk-check-your-answers__answer">
+      <dd class="dft-data-list__dd govuk-check-your-answers__answer">
         12 May 1940
       </dd>
     </div>
 
-    <div class="govuk-check-your-answers__contents">
-      <dt class="govuk-check-your-answers__question">
+    <div class="govuk-check-your-answers__contents dft-data-list__item">
+      <dt class="dft-data-list__dt govuk-check-your-answers__question">
         National Insurance number
       </dt>
-      <dd class="govuk-check-your-answers__answer">
+      <dd class="dft-data-list__dd govuk-check-your-answers__answer">
         JR 12 34 56 A
       </dd>
     </div>
   
-    <div class="govuk-check-your-answers__contents">
-      <dt class="govuk-check-your-answers__question">
+    <div class="govuk-check-your-answers__contents dft-data-list__item">
+      <dt class="dft-data-list__dt govuk-check-your-answers__question">
         Home address
       </dt>
-      <dd class="govuk-check-your-answers__answer">
+      <dd class="dft-data-list__dd govuk-check-your-answers__answer">
         114 Mansfield Road, Crumpsall, Manchester, M8 ITG <br>
         (25 years)
       </dd>
     </div>
   
-    <div class="govuk-check-your-answers__contents">
-      <dt class="govuk-check-your-answers__question">
+    <div class="govuk-check-your-answers__contents dft-data-list__item">
+      <dt class="dft-data-list__dt govuk-check-your-answers__question">
         Contact details
       </dt>
-      <dd class="govuk-check-your-answers__answer">
+      <dd class="dft-data-list__dd govuk-check-your-answers__answer">
         Jake Gillings<br>
         01331 252 226 <br>
         jakegillings@nhs.uk
       </dd>
     </div>
   
-    <div class="govuk-check-your-answers__contents">
-      <dt class="govuk-check-your-answers__question">
+    <div class="govuk-check-your-answers__contents dft-data-list__item">
+      <dt class="dft-data-list__dt govuk-check-your-answers__question">
         Proof of identity
       </dt>
-      <dd class="govuk-check-your-answers__answer">
+      <dd class="dft-data-list__dd govuk-check-your-answers__answer">
         <a href="">driving_license.jpg</a>
       </dd>
     </div>
 
-    <div class="govuk-check-your-answers__contents">
-      <dt class="govuk-check-your-answers__question">
+    <div class="govuk-check-your-answers__contents dft-data-list__item">
+      <dt class="dft-data-list__dt govuk-check-your-answers__question">
         Proof of address
       </dt>
-      <dd class="govuk-check-your-answers__answer">
+      <dd class="dft-data-list__dd govuk-check-your-answers__answer">
         <a href="">council_tax.jpg</a>
       </dd>
     </div>
   
-    <div class="govuk-check-your-answers__contents">
-      <dt class="govuk-check-your-answers__question">
+    <div class="govuk-check-your-answers__contents dft-data-list__item">
+      <dt class="dft-data-list__dt govuk-check-your-answers__question">
         Photo
       </dt>
-      <dd class="govuk-check-your-answers__answer">
+      <dd class="dft-data-list__dd govuk-check-your-answers__answer">
         <img src="/public/images/margaret.png" alt="Photo of Margaret Miller">
       </dd>
     </div>
@@ -127,105 +129,105 @@
   </h2>
   
   <dl class="govuk-check-your-answers govuk-check-your-answers--short">
-    <div class="govuk-check-your-answers__contents">
-      <dt class="govuk-check-your-answers__question">
+    <div class="govuk-check-your-answers__contents dft-data-list__item">
+      <dt class="dft-data-list__dt govuk-check-your-answers__question">
         Reason for applying
       </dt>
-      <dd class="govuk-check-your-answers__answer">
+      <dd class="dft-data-list__dd govuk-check-your-answers__answer">
         Can not walk or finds walking very difficult
       </dd>
     </div>
   
-    <div class="govuk-check-your-answers__contents">
-      <dt class="govuk-check-your-answers__question">
+    <div class="govuk-check-your-answers__contents dft-data-list__item">
+      <dt class="dft-data-list__dt govuk-check-your-answers__question">
         Walking difficulty
       </dt>
-      <dd class="govuk-check-your-answers__answer">
+      <dd class="dft-data-list__dd govuk-check-your-answers__answer">
         Excessive pain,<br />
         Breathlessness
       </dd>
     </div>
 
-    <div class="govuk-check-your-answers__contents">
-      <dt class="govuk-check-your-answers__question">
+    <div class="govuk-check-your-answers__contents dft-data-list__item">
+      <dt class="dft-data-list__dt govuk-check-your-answers__question">
         Mobility aids
       </dt>
-      <dd class="govuk-check-your-answers__answer">
+      <dd class="dft-data-list__dd govuk-check-your-answers__answer">
           None
       </dd>
     </div>
 
-<!--     <div class="govuk-check-your-answers__contents">
-      <dt class="govuk-check-your-answers__question">
+<!--     <div class="govuk-check-your-answers__contents dft-data-list__item">
+      <dt class="dft-data-list__dt govuk-check-your-answers__question">
         How the mobility aids were provided
       </dt>
-      <dd class="govuk-check-your-answers__answer">
+      <dd class="dft-data-list__dd govuk-check-your-answers__answer">
         Prescribed <br>
         Social services
       </dd>
     </div> -->
     
-    <div class="govuk-check-your-answers__contents">
-      <dt class="govuk-check-your-answers__question">
+    <div class="govuk-check-your-answers__contents dft-data-list__item">
+      <dt class="dft-data-list__dt govuk-check-your-answers__question">
         Walking duration
       </dt>
-      <dd class="govuk-check-your-answers__answer">
+      <dd class="dft-data-list__dd govuk-check-your-answers__answer">
         A few minutes
       </dd>
     </div>
 
-    <div class="govuk-check-your-answers__contents">
-      <dt class="govuk-check-your-answers__question">
+    <div class="govuk-check-your-answers__contents dft-data-list__item">
+      <dt class="dft-data-list__dt govuk-check-your-answers__question">
         Place they regularly walk to
       </dt>
-      <dd class="govuk-check-your-answers__answer">
+      <dd class="dft-data-list__dd govuk-check-your-answers__answer">
         Local shops
       </dd>
     </div>
   
-    <div class="govuk-check-your-answers__contents">
-      <dt class="govuk-check-your-answers__question">
+    <div class="govuk-check-your-answers__contents dft-data-list__item">
+      <dt class="dft-data-list__dt govuk-check-your-answers__question">
         Walking speed
       </dt>
-      <dd class="govuk-check-your-answers__answer">
+      <dd class="dft-data-list__dd govuk-check-your-answers__answer">
         Much slower than other people
       </dd>
     </div>
   
-    <div class="govuk-check-your-answers__contents">
-      <dt class="govuk-check-your-answers__question">
+    <div class="govuk-check-your-answers__contents dft-data-list__item">
+      <dt class="dft-data-list__dt govuk-check-your-answers__question">
         Health condition
       </dt>
-      <dd class="govuk-check-your-answers__answer">
+      <dd class="dft-data-list__dd govuk-check-your-answers__answer">
         Arthritic kneees, quardruple heart bypass, high blood pressure and shortness or breath. Also suffer from chronic sleep Apnoea. Insulin dependent diabetic.
       </dd>
     </div>
 
-    <div class="govuk-check-your-answers__contents">
-      <dt class="govuk-check-your-answers__question">
+    <div class="govuk-check-your-answers__contents dft-data-list__item">
+      <dt class="dft-data-list__dt govuk-check-your-answers__question">
         Medical evidence
       </dt>
-      <dd class="govuk-check-your-answers__answer">
+      <dd class="dft-data-list__dd govuk-check-your-answers__answer">
         <a href="">my_prescriptions.jpg</a>
       </dd>
     </div>
 
-    <div class="govuk-check-your-answers__contents">
-      <dt class="govuk-check-your-answers__question">
+    <div class="govuk-check-your-answers__contents dft-data-list__item">
+      <dt class="dft-data-list__dt govuk-check-your-answers__question">
         Treatments
       </dt>
-      <dd class="govuk-check-your-answers__answer">
+      <dd class="dft-data-list__dd govuk-check-your-answers__answer">
         Quadruple heart bypass surgery, 20/04/2009<br />
         C-pap manchine used to breath when asleep, 20/08/1996<br />
         Stents inserted intp arteries, 10/01/2007
       </dd>
     </div>
 
-    <div class="govuk-check-your-answers__contents">
-      <dt class="govuk-check-your-answers__question">
+    <div class="govuk-check-your-answers__contents dft-data-list__item">
+      <dt class="dft-data-list__dt govuk-check-your-answers__question">
         Medication
       </dt>
-      <dd class="govuk-check-your-answers__answer">
+      <dd class="dft-data-list__dd govuk-check-your-answers__answer">
         Simvastatin, Prescribed 40mg, daily<br />
         Bisoprolol, Prescribed, 10mg, daily<br />
         Amlodipine, Prescibed, 10mg, daily<br />
@@ -239,11 +241,11 @@
       </dd>
     </div>
 
-    <div class="govuk-check-your-answers__contents">
-      <dt class="govuk-check-your-answers__question">
+    <div class="govuk-check-your-answers__contents dft-data-list__item">
+      <dt class="dft-data-list__dt govuk-check-your-answers__question">
         Healthcare professionals
       </dt>
-      <dd class="govuk-check-your-answers__answer">
+      <dd class="dft-data-list__dd govuk-check-your-answers__answer">
         Doctor Paul Bundy, Manchester Hospital <br>
         Doctor Michael Willington, Crumpsall Surgery
       </dd>
@@ -257,38 +259,38 @@
   </h2>
 
   <dl class="govuk-check-your-answers govuk-check-your-answers--short">
-    <div class="govuk-check-your-answers__contents">
-      <dt class="govuk-check-your-answers__question">
+    <div class="govuk-check-your-answers__contents dft-data-list__item">
+      <dt class="dft-data-list__dt govuk-check-your-answers__question">
         Reference
       </dt>
-      <dd class="govuk-check-your-answers__answer">
+      <dd class="dft-data-list__dd govuk-check-your-answers__answer">
         1234542525
       </dd>
     </div>
 
-    <div class="govuk-check-your-answers__contents">
-      <dt class="govuk-check-your-answers__question">
+    <div class="govuk-check-your-answers__contents dft-data-list__item">
+      <dt class="dft-data-list__dt govuk-check-your-answers__question">
         Type
       </dt>
-      <dd class="govuk-check-your-answers__answer">
+      <dd class="dft-data-list__dd govuk-check-your-answers__answer">
         New application
       </dd>
     </div>
   
-    <div class="govuk-check-your-answers__contents">
-      <dt class="govuk-check-your-answers__question">
+    <div class="govuk-check-your-answers__contents dft-data-list__item">
+      <dt class="dft-data-list__dt govuk-check-your-answers__question">
         Submitted
       </dt>
-      <dd class="govuk-check-your-answers__answer">
+      <dd class="dft-data-list__dd govuk-check-your-answers__answer">
         13 June 2018 at 13:04
       </dd>
     </div>
 
-    <div class="govuk-check-your-answers__contents">
-      <dt class="govuk-check-your-answers__question">
+    <div class="govuk-check-your-answers__contents dft-data-list__item">
+      <dt class="dft-data-list__dt govuk-check-your-answers__question">
         Applicant
       </dt>
-      <dd class="govuk-check-your-answers__answer">
+      <dd class="dft-data-list__dd govuk-check-your-answers__answer">
         Carer - On behalf of applicant
       </dd>
     </div>
