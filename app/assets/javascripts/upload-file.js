@@ -81,10 +81,20 @@ function handleFiles(files) {
 
 function previewFile(file) {
   let reader = new FileReader()
+
+  let fileType = file.type;
+  let fileName = file.name;
+
   reader.readAsDataURL(file)
   reader.onloadend = function() {
     let img = document.createElement('img')
-    img.src = reader.result
+
+    if(fileType.includes('image') ) {
+      img.src = reader.result
+    } else {
+      $('#gallery').append('<p class="govuk-body">'+fileName+'<br>(Preview unavailable)</p>')
+    }
+    
     document.getElementById('fileUploadedBox').classList.remove('hidden')
 
     if(document.getElementById('help-uploading')) {
@@ -94,7 +104,9 @@ function previewFile(file) {
     
     document.getElementById('drop-area').classList.add('hidden')
     
-    document.getElementById('gallery').appendChild(img)
+    if(fileType.includes('image') ) {
+      document.getElementById('gallery').appendChild(img)
+    }
     document.getElementById('theNameOfFile').value = "File uploaded: " + file.name
     document.getElementById('theNameOfFile').focus()  
   }

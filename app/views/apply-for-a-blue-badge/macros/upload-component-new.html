@@ -80,7 +80,7 @@
     </div>
     <div class="upload-section-text">
       <p class="govuk-body">
-        <input type="file" class="govuk-visually-hidden" id="fileElem" multiple accept="image/*" onchange="handleFiles(this.files)">
+        <input type="file" class="govuk-visually-hidden" id="fileElem" multiple accept="image/*,application/pdf" onchange="handleFiles(this.files)">
         <label class="govuk-button upload-label" for="fileElem">
           <span class="tablet-upload-text">Upload from this computer</span>
           <span class="mobile-upload-text">Take photo{{bracketS}} or upload using this device</span>
@@ -136,7 +136,7 @@
     </div>
   {% endif %}
   <p class="govuk-body">
-    <a href="?{{triggerName}}=false">Use different photo(s)</a>
+    <a href="?{{triggerName}}=false">Use different photo or scan</a>
   </p>
   <input type="hidden" name="{{provideType}}" value="upload">
 

@@ -16,11 +16,11 @@
 
 {% elif (data['benefit'] === 'armed-forces') %}
 
-{% set pageHeading = 'Upload the latest letter from Veterans UK about ' + your + ' AFCS award' %}
+{% set pageHeading = 'Upload the latest letter from Ministry of Defence about ' + your + ' AFCS award' %}
 
 {% elif (data['benefit'] === 'war-pensioners') %}
 
-{% set pageHeading = 'Upload the latest letter from Veterans UK about ' + your + ' WPMS award' %}
+{% set pageHeading = 'Upload the latest letter from Ministry of Defence about ' + your + ' WPMS award' %}
 
 {% endif %}
 
@@ -50,12 +50,19 @@
 
   {% elif data['benefit'] === 'dla' %}
 
-    <p class="govuk-body">The letter must include {{your}}:</p>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-one-third">
+      <div class="svg-container">{% include "includes/icon-letter-dla.html" %}</div>
+    </div>
+    <div class="govuk-grid-column-two-thirds">
+      <p class="govuk-body">The letter must include {{your}}:</p>
 
-    <ul class="govuk-list govuk-list--bullet">
-      <li>mobility rating (usually found on the first page)</li>
-      <li>certificate of entitlement to DLA (usually found on the last page)</li>
-    </ul>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>mobility rating</li>
+        <li>certificate of entitlement to DLA</li>
+      </ul>
+    </div>
+  </div>
 
     {% set sampleBenefitLetter = 'dla_letter.png' %}
 
@@ -72,13 +79,20 @@
 
   {% elif data['benefit'] === 'armed-forces' %}
 
-    <p class="govuk-body">This letter should confirm {{you}}:</p>
-
-    <ul class="govuk-list govuk-list--bullet">
-      <li>were injured in service on or after 6 April 2005</li>
-      <li>have been awarded a benefit by the Armed Forces Compensation Scheme, with a lump sum payment within Tariffs 1 to 8</li>
-      <li>are certified as having a permanent, substantial disability which causes inability to walk or very considerable difficulty in walking</li>
-    </ul>
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-one-third">
+        <div class="svg-container">{% include "includes/icon-letter-afcs.html" %}</div>
+      </div>
+      <div class="govuk-grid-column-two-thirds">
+        <p class="govuk-body">This letter should confirm {{you}}:</p>
+        
+        <ul class="govuk-list govuk-list--bullet">
+          <li>were injured in service on or after 6 April 2005</li>
+          <li>have been awarded a benefit by the Armed Forces Compensation Scheme, with a lump sum payment within Tariffs 1 to 8</li>
+          <li>are certified as having a permanent, substantial disability which causes inability to walk or very considerable difficulty in walking</li>
+        </ul>
+      </div>
+    </div>
 
     {% set sampleBenefitLetter = 'spva-letter.png' %}
 
@@ -94,6 +108,8 @@
     {% set sampleBenefitLetter = 'wpms-letter.png' %}
 
   {% endif %}
+
+  <br>
 
   {{ uploadComponentWidget.uploadComponent(
     'prove-eligibility/upload-benefit',
