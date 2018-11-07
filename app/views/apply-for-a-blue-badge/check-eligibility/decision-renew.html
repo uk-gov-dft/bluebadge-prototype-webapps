@@ -38,6 +38,7 @@
   <p class="govuk-body-l">What you'll need to provide</p>
 
   <ul class="govuk-list govuk-list--bullet">
+    <li>{{your | capitalize}} National Insurance number</li>
     {% if data['applicant'] !== 'organisation' %}
     <li>a recent digital photo of {{your}} face and shoulders</li>
     {% endif %}

@@ -65,17 +65,27 @@
         {% elif data['disability'] === 'problems-walking' %}
           <li>evidence of {{your}} walking difficulties
             <br>(hospital letter or prescriptions)</li>
-      {% endif %}
+        {% endif %}
 
       {% endif %}
       <li>proof of {{your}} identity (passport, birth certificate, driving licence)</li>
       <li>proof of {{your}} address (dated within the last 12 months)</li>
-      
     </ul>
+
+    {% if data['disability'] === 'problems-walking' and data['content'] === 'interim' %}
+
+      <p class="govuk-body">{{you | capitalize}}'ll need to provide further details if {{you}}:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>use any mobility aids</li>
+        <li>take any medication for {{your}} condition</li>
+        <li>have had any treatments for {{your}} condition and the names of the Healthcare professionals that have treated {{youOrThem}}</li>
+      </ul>
+    {% endif %}
 
     <p class="govuk-body">{{you | capitalize}}'ll also need to provide:</p>
 
     <ul class="govuk-list govuk-list--bullet">
+        <li>{{your}} National Insurance number</li>
         <li>contact details (phone number and email address)</li>
         <li>a recent digital photo of {{your}} face and shoulders</li>
       {% if data['disability'] === 'blind' %}
@@ -119,7 +129,7 @@
     {% if data['benefit'] !== 'none' or data['disability'] === 'blind' %}
     <p class="govuk-body">It can take up to 3 weeks for {{you}} to receive your badge from {{data['council-name']}}.</p>
     {% else %}
-    <p class="govuk-body">It can take up to 4 weeks for {{you}} to receive your badge from {{data['council-name']}}, if {{your}} application is successful.</p>
+    <p class="govuk-body">It can take between 4 to 8 weeks for {{you}} to receive your badge from {{data['council-name']}}, if {{your}} application is successful.</p>
     {% endif %}
 
     {% if data['disability'] === 'blind' %}
