@@ -12,15 +12,15 @@
 
 {% elif (data['benefit'] === 'pip') %}
 
-{% set pageHeading = 'Upload ' + your + ' PIP award letter from Department of Work and Pensions (DWP)' %}
+{% set pageHeading = 'Upload proof of ' + your + ' PIP award from Department of Work and Pensions (DWP)' %}
 
 {% elif (data['benefit'] === 'armed-forces') %}
 
-{% set pageHeading = 'Upload the latest letter from Veterans UK about ' + your + ' AFCS award' %}
+{% set pageHeading = 'Upload the latest letter from Ministry of Defence about ' + your + ' AFCS award' %}
 
 {% elif (data['benefit'] === 'war-pensioners') %}
 
-{% set pageHeading = 'Upload the latest letter from Veterans UK about ' + your + ' WPMS award' %}
+{% set pageHeading = 'Upload the latest letter from Ministry of Defence about ' + your + ' WPMS award' %}
 
 {% endif %}
 
@@ -50,35 +50,79 @@
 
   {% elif data['benefit'] === 'dla' %}
 
-    <p class="govuk-body">The letter must include {{your}}:</p>
+    <p class="govuk-body">The letter needs to be dated within the last 12 months and must include {{your}}:</p>
 
     <ul class="govuk-list govuk-list--bullet">
-      <li>mobility rating (usually found on the first page)</li>
-      <li>certificate of entitlement to DLA (usually found on the last page)</li>
+      <li>mobility rating</li>
+      <li>certificate of entitlement to DLA</li>
     </ul>
+
+    <details class="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">
+          What does the letter look like?
+        </span>
+      </summary>
+      <div class="govuk-details__text">
+        <p class="govuk-body">Make sure all of the information is clearly visible.</p>
+        <div class="svg-container single-letter">{% include "includes/icon-letter-dla.html" %}</div>
+      </div>
+    </details>
 
     {% set sampleBenefitLetter = 'dla_letter.png' %}
 
   {% elif data['benefit'] === 'pip' %}
 
-    <p class="govuk-body">The letter must include {{your}}:</p>
+    <p class="govuk-body">Choose either {{your}}:</p>
+    
+    <ul class="govuk-list govuk-list--bullet">
+      <li>'Statement of Entitlement' letter</li>
+      <li>'Looked at your award' letter</li>
+      <li>'Yearly update' letter</li>
+    </ul>
+
+    <p class="govuk-body">You need to upload all the pages of your letter (usually three pages). It must clearly show {{your}}:</p>
 
     <ul class="govuk-list govuk-list--bullet">
-      <li>mobility score</li>
-      <li>certificate of entitlement to Personal Independence Payment (PIP)</li>
+      <li>entitlement to PIP (usually on the front page)</li>
+      <li>mobility scores (usually on the last page)</li>
     </ul>
+    
+    <details class="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">
+          What does the letter look like?
+        </span>
+      </summary>
+      <div class="govuk-details__text">
+        <p class="govuk-body">Make sure you have all 3 pages and that all of the information is clearly visible.</p>
+        <div class="svg-container">{% include "includes/icon-letter-pip.html" %}</div>
+      </div>
+    </details>
 
     {% set sampleBenefitLetter = 'pip-letter.jpg' %}
 
   {% elif data['benefit'] === 'armed-forces' %}
 
     <p class="govuk-body">This letter should confirm {{you}}:</p>
-
+    
     <ul class="govuk-list govuk-list--bullet">
       <li>were injured in service on or after 6 April 2005</li>
       <li>have been awarded a benefit by the Armed Forces Compensation Scheme, with a lump sum payment within Tariffs 1 to 8</li>
       <li>are certified as having a permanent, substantial disability which causes inability to walk or very considerable difficulty in walking</li>
     </ul>
+
+    <details class="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">
+          What does the letter look like?
+        </span>
+      </summary>
+      <div class="govuk-details__text">
+        <p class="govuk-body">Make sure all of the information is clearly visible.</p>
+        <div class="svg-container single-letter">{% include "includes/icon-letter-afcs.html" %}</div>
+      </div>
+    </details>
 
     {% set sampleBenefitLetter = 'spva-letter.png' %}
 

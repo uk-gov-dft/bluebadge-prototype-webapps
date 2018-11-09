@@ -171,6 +171,12 @@
 //   display: none;
 // }
 
+.svg-container.single-letter {
+	svg {
+		max-width: 400px;
+	}
+}
+
 progress {
 	padding: 0;
 	border: none;
