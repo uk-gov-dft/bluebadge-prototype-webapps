@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% set pageHeading = data['council-name'] + ' uses a different service' %}
+
+{% block pageTitle %}
+  {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block inner_content %}
+
+<h1 class="govuk-heading-l">{{pageHeading}}</h1>
+
+<p class="govuk-body">To apply or reapply for a Blue Badge in {{data['council-name']}}, you need to use a different service.</p>
+
+<p class="govuk-body"><a href="http://other-service.gov.uk">Continue {{your}} {{application}} (this will open an external link)</a></p>
+
+{% endblock %}

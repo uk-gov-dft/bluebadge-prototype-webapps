@@ -43,9 +43,9 @@
 
   {% else %}
       
-    <p class="govuk-body-l">What you'll need to provide</p>
+    <!-- <p class="govuk-body-l">To continue with this application</p> -->
 
-    <p class="govuk-body">A photo or scan that shows:</p>
+    <p class="govuk-body">To apply, you'll need a photo or scan that shows:</p>
 
     <ul class="govuk-list govuk-list--bullet">
       {% if data['existing-blue-badge-number'] !== "none" %}
@@ -72,20 +72,12 @@
       <li>proof of {{your}} address (dated within the last 12 months)</li>
     </ul>
 
-    {% if data['disability'] === 'problems-walking' and data['content'] === 'interim' %}
+    <p class="govuk-body"><a href="#submittingDocuments">{{iThey}} can't upload these documents</a></p>
 
-      <p class="govuk-body">You'll need to provide further details if {{you}}:</p>
-      <ul class="govuk-list govuk-list--bullet">
-        <li>use any mobility aids</li>
-        <li>take any medication for {{your}} condition</li>
-        <li>have had any treatments for {{your}} condition and the names of the Healthcare professionals that have treated {{youOrThem}}</li>
-      </ul>
-    {% endif %}
-
-    <p class="govuk-body">You'll also need to provide:</p>
+    <p class="govuk-body">You'll also need:</p>
 
     <ul class="govuk-list govuk-list--bullet">
-        <li>{{your}} National Insurance number</li>
+        <li>{{your}} National Insurance number (if {{you}} have one)</li>
         <li>contact details (phone number and email address)</li>
         <li>a recent digital photo of {{your}} face and shoulders</li>
       {% if data['disability'] === 'blind' %}
@@ -95,6 +87,16 @@
       <li>a credit or debit card to pay a {{feePrice}} issue fee. The fee will be refunded if {{your}} application is not successful</li>
       {% endif %}
     </ul>
+
+    {% if data['disability'] === 'problems-walking' and data['content'] === 'interim' %}
+
+      <p class="govuk-body">You'll need to provide further details if {{you}}:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>use any mobility aids</li>
+        <li>take any medication for {{your}} condition</li>
+        <li>have had any treatments for {{your}} condition and the names of the healthcare professionals that have treated {{youOrThem}}</li>
+      </ul>
+    {% endif %}
 
     {% if data['existing-blue-badge-number'] === "none" %}
       <p class="govuk-body">We'll attempt to find {{your}} badge based on {{your}} personal details. If {{your}} personal details do not match our records, {{you}}'ll need to provide:</p>
@@ -178,6 +180,12 @@
     <h2 class="govuk-heading-m">Don't want to apply online?</h2>
 
     <p class="govuk-body">Find out if there are other ways to apply on <a href="http://councilsite.gov.uk">{{data['council-name']}}'s website</a>.</p>
+
+    <h2 class="govuk-heading-m" id="submittingDocuments">Submitting documents</h2>
+
+    <p class="govuk-body">It's easy to upload {{your}} documents using this service.</p>
+
+    <p class="govuk-body">If you're unable to upload the requested documents during the application, your local council will be able to help you. This could be via post or by visiting them in person.</p>
 
   {% endif %}
 
