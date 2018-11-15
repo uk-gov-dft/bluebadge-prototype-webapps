@@ -30,7 +30,7 @@
     <dl class="govuk-check-your-answers govuk-check-your-answers--short">
       <div class="govuk-check-your-answers__contents">
         <dt class="govuk-check-your-answers__question">
-          Status
+          Badge status
         </dt>
         <dd class="govuk-check-your-answers__answer">
           {{ badgeholder.badgeStatus}}
@@ -77,6 +77,15 @@
 
     <div class="govuk-check-your-answers__contents">
       <dt class="govuk-check-your-answers__question">
+        Gender
+      </dt>
+      <dd class="govuk-check-your-answers__answer">
+        {{badgeholder.gender}}
+      </dd>
+    </div>
+
+    <div class="govuk-check-your-answers__contents">
+      <dt class="govuk-check-your-answers__question">
         Main contact number
       </dt>
       <dd class="govuk-check-your-answers__answer">
@@ -95,6 +104,20 @@
     </div>
     {% endif %}
 
+    <div class="govuk-check-your-answers__contents">
+      <dt class="govuk-check-your-answers__question">
+        Address
+      </dt>
+      <dd class="govuk-check-your-answers__answer">
+        {{ badgeholder.address.street }},
+        {% if badgeholder.address.street2 %}
+          {{ badgeholder.address.street2 }},
+        {% endif %}
+        {{ badgeholder.address.city }},
+        {{ badgeholder.address.postcode }}
+      </dd>
+    </div>
+
     {% if badgeholder.emailAddress %}
     <div class="govuk-check-your-answers__contents">
       <dt class="govuk-check-your-answers__question">
@@ -109,36 +132,13 @@
     {% if badgeholder.nationalInsurance %}
     <div class="govuk-check-your-answers__contents hide-enforcer">
       <dt class="govuk-check-your-answers__question">
-        N.I number
+        National insurance number
       </dt>
       <dd class="govuk-check-your-answers__answer">
         {{badgeholder.nationalInsurance}}
       </dd>
     </div>
     {% endif %}
-
-    <!-- <div class="govuk-check-your-answers__contents">
-      <dt class="govuk-check-your-answers__question">
-        Gender
-      </dt>
-      <dd class="govuk-check-your-answers__answer">
-        {{badgeholder.gender}}
-      </dd>
-    </div> -->
-  
-    <div class="govuk-check-your-answers__contents">
-      <dt class="govuk-check-your-answers__question">
-        Address
-      </dt>
-      <dd class="govuk-check-your-answers__answer">
-        {{ badgeholder.address.street }},
-        {% if badgeholder.address.street2 %}
-          {{ badgeholder.address.street2 }},
-        {% endif %}
-        {{ badgeholder.address.city }},
-        {{ badgeholder.address.postcode }}
-      </dd>
-    </div>
   
     <div class="govuk-check-your-answers__contents">
       <dt class="govuk-check-your-answers__question">

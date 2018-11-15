@@ -74,7 +74,7 @@ router.get('/view-badge-full', (req, res) => {
   res.locals.badgeholder = badgeholder[0]
 
   res.render('manage-blue-badges/view-badge-full', 
-  {'title':'Badge details','search_class':'active'})
+  {'title':'View badge','search_class':'active'})
 
 })
 
