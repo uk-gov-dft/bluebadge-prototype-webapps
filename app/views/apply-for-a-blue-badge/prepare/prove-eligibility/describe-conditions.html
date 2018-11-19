@@ -25,6 +25,10 @@
 
 <h1 class="govuk-heading-l">{{pageHeading}}</h1>
 
+<div class="govuk-inset-text">
+  <p>Take your time and write as much detail as possible. Tell us everything that's relevant to {{youOrThem}} needing a Blue Badge.</p>
+</div>
+
 {% if (data['disability'] === 'child-bulky-equipment') %}
   {% set describeLabel = "Give details of the child's medical condition that means they'll always need to be accompanied by bulky medical equipment." %}
 {% elif (data['disability'] === 'child-close-to-vehicle') %}
@@ -40,6 +44,7 @@
     "label": {
       "text": describeLabel
     },
+    "rows": 8,
     "value": data['describe-condition']
   }) }}
   

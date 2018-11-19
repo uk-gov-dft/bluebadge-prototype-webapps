@@ -24,7 +24,7 @@
     }) }}
   {% endset -%}
 
-  {% if data['nation'] === "scotland" or data['nation'] == "wales" %}
+  {% if data['nation'] == "wales" %}
 
   {% set differentOptions = [
       {
@@ -49,13 +49,57 @@
       },
       {
         "value": "dangerous",
-        "text": "It's dangerous to the health and safety of myself or others",
+        "text": "It's dangerous to " + my + " health and safety or that of others",
         "checked": checked('difficulty', 'dangerous')
       },
       {
         "value": "planning",
-        "text": "I struggle planning or following a journey",
+        "text": iThey|capitalize + " struggle planning or following a journey",
         "checked": checked('difficulty', 'planning')
+      },
+      {
+        "value": "something",
+        "text": "Something else",
+        "checked": checked('difficulty', 'something'),
+        "conditional": {
+          "html": somethingHtml
+        }
+      }
+    ] 
+  %}
+
+  {% elif data['nation'] == "scotland" %}
+
+  {% set differentOptions = [
+      {
+        "value": "pain",
+        "text": "Excessive pain",
+        "checked": checked('difficulty', 'pain')
+      },
+      {
+        "value": "breathlessness",
+        "text": "Breathlessness",
+        "checked": checked('difficulty', 'breathlessness')
+      },
+      {
+        "value": "balance",
+        "text": "Balance or coordination",
+        "checked": checked('difficulty', 'balance')
+      },
+      {
+        "value": "longtime",
+        "text": "It takes " + me + " a long time" ,
+        "checked": checked('difficulty', 'longtime')
+      },
+      {
+        "value": "dangerous",
+        "text": "It's dangerous to " + my + " health and safety",
+        "checked": checked('difficulty', 'dangerous')
+      },
+      {
+        "value": "risk",
+        "text": iThey|capitalize + " have a condition which means " + iThey + " " + am + " a risk in traffic",
+        "checked": checked('difficulty', 'risk')
       },
       {
         "value": "something",
@@ -93,7 +137,7 @@
       },
       {
         "value": "dangerous",
-        "text": "It's dangerous to my health and safety",
+        "text": "It's dangerous to " + my + " health and safety",
         "checked": checked('difficulty', 'dangerous')
       },
       {
