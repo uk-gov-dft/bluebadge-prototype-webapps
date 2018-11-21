@@ -23,17 +23,17 @@
 
   {% if  data['nation'] === "wales" or data['nation'] === "scotland" or data['council-name'] == 'Northern Ireland' %}
 
-  {% set problemsWalkingText = you | capitalize + " have a substantial disability that will last for at least 12 months that means " + you + " cannot walk or find walking very difficult"  %}
+  {% set problemsWalkingText = iThey | capitalize + " have a substantial disability that will last for at least 12 months that means " + you + " cannot walk or find walking very difficult"  %}
 
   {% else %}
 
-  {% set problemsWalkingText = you | capitalize + " have a permanent disability which means " + you + " cannot walk or find walking very difficult"  %}
+  {% set problemsWalkingText = iThey | capitalize + " have a permanent disability which means " + iThey + " cannot walk or find walking very difficult"  %}
 
   {% endif %}
 
   {% set terminalReason = {
       "value": "terminal",
-      "text": you | capitalize + " have a terminal illness and have been issued with a DS 1500 form"
+      "text": iThey | capitalize + " have a terminal illness and have been issued with a DS 1500 form"
     }
   %}
 
@@ -45,19 +45,19 @@
 
   {% set armsReason = {
       "value": "arms",
-      "text": you | capitalize + " have a severe disability in both arms and drive regularly, but cannot operate pay-and-display parking machines"
+      "text": iThey | capitalize + " have a severe disability in both arms and drive regularly, but cannot operate pay-and-display parking machines"
     }
   %}
 
   {% set childBulkyReason = {
       "value": "child-bulky-equipment",
-      "text": you | capitalize + " need to be accompanied by bulky medical equipment"
+      "text": iThey | capitalize + " need to be accompanied by bulky medical equipment"
     }
   %}
 
   {% set childNearReason = {
       "value": "child-close-to-vehicle",
-      "text": you | capitalize + " need to be near a vehicle to receive or be taken for treatment"
+      "text": iThey | capitalize + " need to be near a vehicle to receive or be taken for treatment"
     }
   %}
 
