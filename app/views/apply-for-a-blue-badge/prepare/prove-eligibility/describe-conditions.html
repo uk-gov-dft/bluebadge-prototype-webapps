@@ -3,15 +3,15 @@
 
 {% if data['disability'] === 'problems-walking' %}
 
-{% set pageHeading = 'Describe any health conditions that affect ' + your + ' walking' %}
+{% set pageHeading = 'Describe any health conditions or disabilities that affect ' + your + ' walking' %}
 
 {% elif data['disability'] === 'arms' %}
 
-{% set pageHeading = 'Describe any health conditions that affect ' + your + ' arms' %}
+{% set pageHeading = 'Describe any health conditions or disabilities that affect ' + your + ' arms' %}
 
 {% else %}
 
-{% set pageHeading = 'Describe ' + your + ' health conditions' %}
+{% set pageHeading = 'Describe ' + your + ' health conditions or disabilities' %}
 
 {% endif %}
 
@@ -26,7 +26,10 @@
 <h1 class="govuk-heading-l">{{pageHeading}}</h1>
 
 <div class="govuk-inset-text">
-  <p>Take your time and write as much detail as possible. Tell us everything that's relevant to {{youOrThem}} needing a Blue Badge.</p>
+  <p>
+    <!-- Take your time and write as much detail here as possible. <br> -->
+    {{your|capitalize}} local council will use this information, along with {{your}} other answers, to help them make a decision about {{your}} {{application}}.
+  </p>
 </div>
 
 {% if (data['disability'] === 'child-bulky-equipment') %}
@@ -44,7 +47,7 @@
     "label": {
       "text": describeLabel
     },
-    "rows": 8,
+    "rows": 10,
     "value": data['describe-condition']
   }) }}
   
