@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% set hasSaveClass = 'yes' %}
 
-{% set pageHeading = "Do " + you + " use any mobility aids?" %}
+{% set pageHeading = "Do " + you + " have help to get around?" %}
 
 {% block pageTitle %}
   {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
@@ -17,7 +17,7 @@
         {{ govukTable({
           "head": [
             {
-              "text": "Type"
+              "text": "Name"
             },
             {
               "text": "When used"
@@ -29,14 +29,14 @@
           "rows": tableRows
         }) }}
 
-      <p class="govuk-body"><a href="add-mobility-aid{{pagechange}}">Add another mobility aid</a></p>
+      <p class="govuk-body"><a href="add-mobility-aid{{pagechange}}">Add another mobility aid or support</a></p>
 
     {% else %}
     
     {{ govukTable({
       "head": [
         {
-          "text": "Type"
+          "text": "Name"
         },
         {
           "text": "When used"
@@ -48,7 +48,7 @@
       "rows": ""
     }) }}
 
-    <p class="govuk-body"><a href="add-mobility-aid{{pagechange}}">Add first mobility aid</a></p>
+    <p class="govuk-body"><a href="add-mobility-aid{{pagechange}}">Add first mobility aid or support</a></p>
 
     {% endif %}
   {% endset -%}
@@ -64,7 +64,7 @@
       }
     },
     "hint": {
-      "html": "List any mobility aids such as wheelchairs and scooters or walking aids such as zimmer frames and crutches."
+      "html": "List any mobility aids such as wheelchairs, scooters, zimmer frames or crutches that " + you + " use. If " + you + " use the support of a person, such as a member of " + your + " family, list them here too."
     },
     "items": [
       {

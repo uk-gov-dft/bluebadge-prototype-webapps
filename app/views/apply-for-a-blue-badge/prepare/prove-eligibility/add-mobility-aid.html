@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% set hasSaveClass = 'yes' %}
 
-{% set pageHeading = 'Add mobility aid' %}
+{% set pageHeading = 'Add mobility aid or support' %}
 
 {% block pageTitle %}
   {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
@@ -14,44 +14,15 @@
 <h1 class="govuk-heading-l">{{pageHeading}}</h1>
 
 <form action="{{formAction}}">
-  {% set walkingType %}
-
   {{ govukInput({
     "label": {
-      "text": "What's the name of the walking aid?"
+      "text": "Name of mobility aid or support"
     },
-    "id": "mobility-aid-name",
-    "name": "mobility-aid-name"
-  }) }}
-
-  {% endset -%}
-
-  {{ govukRadios({
-    "idPrefix": "mobility-aid-type",
-    "name": "mobility-aid-type",
-    "fieldset": {
-      "legend": {
-        "text": 'Type of mobility aid',
-        "classes": 'govuk-fieldset__legend--s'
-      }
+    "hint": {
+      "text": "For example, a wheelchair, crutches or a member of your family"
     },
-    "items": [
-      {
-        "value": "Wheelchair",
-        "text": "Wheelchair"
-      },
-      {
-        "value": "Mobility scooter",
-        "text": "Mobility scooter"
-      },
-      {
-        "value": "walking-aid",
-        "text": "Walking aid or prosthetic",
-        "conditional": {
-          "html": walkingType
-        }
-      }
-    ]
+    "id": "mobility-aid-type",
+    "name": "mobility-aid-type"
   }) }}
 
   {{ govukInput({
@@ -69,11 +40,11 @@
 
   {% if data['nation'] == "scotland" %}
 
-  {% set socialWording = 'Social Work' %}
+  {% set socialWording = 'Social work' %}
 
   {% else %}
 
-  {% set socialWording = 'Social Services' %}
+  {% set socialWording = 'Social services' %}
 
   {% endif %}
 
@@ -82,14 +53,14 @@
     "name": "mobility-aid-source",
     "fieldset": {
       "legend": {
-        "text": 'How did ' + you + ' get this mobility aid?',
+        "text": 'How did ' + you + ' get it?',
         "classes": 'govuk-fieldset__legend--s'
       }
     },
     "items": [
       {
         "value": "Prescribed",
-        "text": "Prescribed by a healthcare professional"
+        "text": "Hospital, GP or physiotherapist"
       },
       {
         "value": "Bought",
@@ -97,16 +68,20 @@
       },
       {
         "value": socialWording,
-        "text": "Provided by " + socialWording + " or a charity"
+        "text": "Provided by " + socialWording | lower + " or a charity"
+      },
+      {
+        "value": "FamilyFriends",
+        "text": "It's a person, rather than a mobility aid"
       }
     ]
   }) }}
   {{ govukButton({
-    "text": "Add this mobility aid"
+    "text": "Add this mobility aid or support"
   }) }}
 
   <div class="govuk-info-panel">
-    <p class="govuk-body">You can add more mobility aids on the next page if you need to.</p>
+    <p class="govuk-body">You can add more on the next page if you need to.</p>
   </div>
 
   <!-- Has save -->
