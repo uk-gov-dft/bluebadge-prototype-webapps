@@ -33,11 +33,11 @@
 </div>
 
 {% if (data['disability'] === 'child-bulky-equipment') %}
-  {% set describeLabel = "Give details of the child's medical condition that means they'll always need to be accompanied by bulky medical equipment." %}
+  {% set describeLabel = "Give details of the child's medical condition that means they'll always need to be accompanied by bulky medical equipment (1200 word limit)" %}
 {% elif (data['disability'] === 'child-close-to-vehicle') %}
-  {% set describeLabel = 'Give details about the conditions that mean they need to have quick access to a vehicle.' %}
+  {% set describeLabel = 'Give details about the conditions that mean they need to have quick access to a vehicle (1200 word limit)' %}
 {% else %}
-  {% set describeLabel = 'Try to use the correct medical terms, if you know them.' %}
+  {% set describeLabel = 'Try to use the correct medical terms, if you know them (1200 word limit)' %}
 {% endif %}
 
 <form action="{{ formAction }}">
