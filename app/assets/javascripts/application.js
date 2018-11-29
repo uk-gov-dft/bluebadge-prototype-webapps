@@ -48,6 +48,14 @@ $(document).ready(function () {
 
   }
 
+  if(gup('council-removed')) {
+
+    var gupDecoded = unescape(gup('council-removed'));
+
+    $('.govuk-table').find("a[href*='" + gupDecoded + "']").closest('tr').remove();
+
+  }
+
   $('[data-controls-element] input').on('change', function() {
     var $this = $(this),
         $thisID = $this.attr('id'),

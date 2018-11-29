@@ -11,21 +11,60 @@
 
 {% block content %}
 
-{% set issuingAuthHTML %}
+{% if data['is-issuing'] === 'false' %}
+  {% set submitButtonLabel = 'Add local council' %}
+  {% set addressLine1 = '' %}
+  {% set addressLine2 = '' %}
+  {% set townCity = '' %}
+  {% set laPostcode = '' %}
+  {% set laEmailAddress = '' %}
+  {% set laPhoneNumber = '' %}
+  {% set laWebURL = '' %}
+{% else %}
+  {% set submitButtonLabel = 'Update details' %}
+  {% set addressLine1 = 'Building A' %}
+  {% set addressLine2 = '1 New Street' %}
+  {% set townCity = 'London' %}
+  {% set laPostcode = 'SW1A 1AA' %}
+  {% set laEmailAddress = 'contact@' + data['local-council-name'] | replace(' ', '') | lower + '.gov.uk' %}
+  {% set laPhoneNumber = '020 3123 456' %}
+  {% set laWebURL = 'http://blue-badges.' + data['local-council-name'] | replace(' ', '') | lower + '.gov.uk' %}
+{% endif %}
+
+{% set nonIssuingAuthHTML %}
   <div class="govuk-form-group">
     <label for="issuingAuthPicker" class="govuk-label">Select issuing authority</label>
     <select name="issuing-auth" class="govuk-select" id="issuingAuthPicker">
       {% include "includes/issuing-auth-options.html" %}
     </select>
   </div>
+
+  {{ govukInput({
+    "label": {
+      "text": "Group short code"    
+    },
+    type: "text",
+    classes: "govuk-!-width-one-third input-capitals",
+    id: "group-short",
+    name: "group-short",
+    attributes: {
+      autocapitalize: "characters"
+    }
+  }) }}
 {% endset -%}
 
-{% if data['is-issuing'] === 'false' %}
-  {% set submitButtonLabel = 'Add local council' %}
-{% else %}
-  {% set submitButtonLabel = 'Update details' %}
-{% endif %}
-  
+{% set issuingAuthHTML %}
+  {{ govukInput({
+    "label": {
+      "text": "Website URL"
+    },
+    type: "text",
+    classes: "govuk-!-width-two-thirds",
+    id: "issuing-auth-url",
+    name: "issuing-auth-url",
+    value: laWebURL
+  }) }}
+{% endset -%}
   
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
@@ -68,17 +107,92 @@
             {
               "value": "yes",
               "text": "Yes",
-              "checked": data['is-issuing'] === "yes"
+              "checked": data['is-issuing'] === "yes",
+              "conditional": {
+                "html": issuingAuthHTML
+              }
             },
             {
               "value": "no",
               "text": "No",
               "checked": data['is-issuing'] === "no",
               "conditional": {
-                "html": issuingAuthHTML
+                "html": nonIssuingAuthHTML
               }
             }
           ]
+        }) }}
+
+        {% call govukFieldset({
+          "legend": {
+              "text": "Address (optional)",
+              "classes": "govuk-fieldset__legend--l",
+              "isPageHeading": true
+            }
+        }) %}
+
+          {{ govukInput({
+            "label": {
+              "html": 'Building and street <span class="govuk-visually-hidden">line 1 of 2</span>'
+            },
+            "classes": 'govuk-!-width-two-thirds',
+            "id": "la-address-line-1",
+            "name": "la-address-line-1",
+            "value": addressLine1
+          }) }}
+
+          {{ govukInput({
+            "label": {
+              "html": '<span class="govuk-visually-hidden">Building and street line 2 of 2</span>'
+            },
+            "classes": 'govuk-!-width-two-thirds',
+            "id": "la-address-line-2",
+            "name": "la-address-line-2",
+            "value": addressLine2
+          }) }}
+
+          {{ govukInput({
+            "label": {
+              "html": 'Town or city'
+            },
+            "classes": 'govuk-!-width-two-thirds',
+            "id": "la-address-town",
+            "name": "la-address-town",
+            "value": townCity
+          }) }}
+
+          {{ govukInput({
+            "label": {
+              "html": 'Postcode'
+            },
+            "classes": 'govuk-input--width-10',
+            "id": "la-address-postcode",
+            "name": "la-address-postcode",
+            "value": laPostcode
+          }) }}
+
+        {% endcall %}
+
+        {{ govukInput({
+          "label": {
+            "text": "Email address (optional)"    
+          },
+          id: "local-council-email",
+          type: "email",
+          classes: "govuk-!-width-two-thirds",
+          name: "local-council-email",
+          value: laEmailAddress
+        }) }}
+
+        {{ govukInput({
+          "label": {
+            "text": "Contact phone number (optional)"    
+          },
+          id: "local-council-phone",
+          type: "tel",
+          classes: "govuk-!-width-two-thirds",
+          name: "local-council-phone",
+          value: laPhoneNumber        
         }) }}
 
         {% if data['is-issuing'] === 'false' %}
@@ -101,6 +215,7 @@
                       <p>Are you sure you want to remove <b>' + data['local-council-name'] + '</b>?</p>
                       <p>You won\'t be able to undo this.</p>
                       <input id="success" name="success" type="hidden" value="' + data['local-council-name'] + ' removed">
+                      <input id="council-removed" name="council-removed" type="hidden" value="' + data['council-short'] + '">
                       <input value="Yes, remove this local council" type="submit" class="govuk-button">
                     </form>
                     <p class="govuk-body">
