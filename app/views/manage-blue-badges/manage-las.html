@@ -1,0 +1,150 @@
+{% extends "admin_layout.html" %}
+
+{% block page_header %}
+
+  <h1>{{title}}</h1><p class="count">418</p>
+  <div class="search-box-container">
+    <form action="users-results" class="search-box">
+      {% include "includes/search.html" %}
+    </form>
+    <div class="search-box__options">
+      {{ govukButton({
+        "text": "Add a local council",
+        "href": "edit-la-details?is-issuing=false&council-short=_&issuing-short=_&local-council-name=_"
+      }) }}
+    </div>
+  </div>
+  
+{% endblock %}
+
+{% block content %}
+
+{% if  data['success'] == "Local council added" %}
+
+  {% if data["is-issuing"] === 'yes' %}
+    {% set issuingText = "Yes" %}
+  {% else %}
+    {% set issuingText = '<a href="edit-la-details?is-issuing=' + 
+                    data["is-issuing"] +
+                    '&local-council-name=' + data["issuing-auth"] + 
+                    '&council-short=' + data["council-short"] + 
+                    '">' + data["issuing-auth"] + '</a>' %}
+  {% endif %}
+
+  {% set rowToAdd = [
+      {
+        "html": '<a href="edit-la-details?is-issuing=' + 
+                    data["is-issuing"] +
+                    '&local-council-name=' + data["local-council-name"] + 
+                    '&council-short=' + data["council-short"] + 
+                    '">' + data["local-council-name"] + '</a>'
+      },
+      {
+        "html": issuingText
+      }
+    ]
+  %}
+
+{% endif %}
+
+  {{ govukTable({
+    "firstCellIsHeader": false,
+    "head": [
+      {
+        "text": "Name"
+      },
+      {
+        "text": "Issuing authority"
+      }
+    ],
+    "rows": [
+      rowToAdd,
+        
+      [
+        {
+          "html": "<a href='edit-la-details?is-issuing=yes&council-short=ABERC&issuing-short=ABERC&issuing-name=Aberdeen+city+council&local-council-name=Aberdeen+city+council'>Aberdeen city council</a>"
+        },
+        {
+          "html": "Yes"
+        }
+      ],
+      [
+        {
+          "html": "<a href='edit-la-details?is-issuing=yes&council-short=ABERD&issuing-short=ABERD&issuing-name=Aberdeenshire+council&local-council-name=Aberdeenshire+council'>Aberdeenshire council</a>"
+        },
+        {
+          "html": "Yes"
+        }
+      ],
+      [
+        {
+          "html": "<a href='edit-la-details?is-issuing=no&council-short=ADU&issuing-short=WSUCC&issuing-name=West+Sussex+county+council&local-council-name=Adur+district+council'>Adur district council</a>"
+        },
+        {
+          "html": "<a href='edit-la-details?issuing-short=WSUCC&issuing-name=West+Sussex+county+council'>West Sussex county council</a>"
+        }
+      ],
+      [
+        {
+          "html": "<a href='edit-la-details?is-issuing=no&council-short=ALL&issuing-short=CUMCC&issuing-name=Cumbria+county+council&local-council-name=Allerdale+borough+council'>Allerdale borough council</a>"
+        },
+        {
+          "html": "<a href='edit-la-details?issuing-short=CUMCC&issuing-name=Cumbria+county+council'>Cumbria county council</a>"
+        }
+      ],
+      [
+        {
+          "html": "<a href='edit-la-details?is-issuing=no&council-short=AMB&issuing-short=DERCC&issuing-name=Derbyshire+county+council&local-council-name=Amber+Valley+borough+council'>Amber Valley borough council</a>"
+        },
+        {
+          "html": "<a href='edit-la-details?issuing-short=DERCC&issuing-name=Derbyshire+county+council'>Derbyshire county council</a>"
+        }
+      ],
+      [
+        {
+          "html": "<a href='edit-la-details?is-issuing=yes&council-short=ANGUS&issuing-short=ANGUS&issuing-name=Angus+council&local-council-name=Angus+council'>Angus council</a>"
+        },
+        {
+          "html": "Yes"
+        }
+      ],
+      [
+        {
+          "html": "<a href='edit-la-details?is-issuing=yes&council-short=ARBUT&issuing-short=ARBUT&issuing-name=Argyll+and+Bute+council&local-council-name=Argyll+and+Bute+council'>Argyll and Bute council</a>"
+        },
+        {
+          "html": "Yes"
+        }
+      ],
+      [
+        {
+          "html": "<a href='edit-la-details?is-issuing=no&council-short=ARU&issuing-short=WSUCC&issuing-name=West+Sussex+county+council&local-council-name=Arun+district+council'>Arun district council</a>"
+        },
+        {
+          "html": "<a href='edit-la-details?issuing-short=WSUCC&issuing-name=West+Sussex+county+council'>West Sussex county council</a>"
+        }
+      ],
+      [
+        {
+          "html": "<a href='edit-la-details?is-issuing=no&council-short=ASH&issuing-short=NOTCC&issuing-name=Nottinghamshire+county+council&local-council-name=Ashfield+district+council'>Ashfield district council</a>"
+        },
+        {
+          "html": "<a href='edit-la-details?issuing-short=NOTCC&issuing-name=Nottinghamshire+county+council'>Nottinghamshire county council</a>"
+        }
+      ],
+      [
+        {
+          "html": "<a href='edit-la-details?is-issuing=no&council-short=ASF&issuing-short=KENTCC&issuing-name=Kent+county+council&local-council-name=Ashford+borough+council'>Ashford borough council</a>"
+        },
+        {
+          "html": "<a href='edit-la-details?issuing-short=KENTCC&issuing-name=Kent+county+council'>Kent county council</a>"
+        }
+      ]
+      
+    ]
+  }) }}
+
+  {% include "includes/admin-table_footer.html" %}
+
+{% endblock %}
+

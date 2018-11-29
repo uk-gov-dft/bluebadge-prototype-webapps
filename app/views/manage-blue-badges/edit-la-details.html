@@ -1,0 +1,114 @@
+{% extends "admin_layout.html" %}
+
+{% block back_link %}
+  <div class="back-link-container">
+    {{ govukBackLink({
+      "text": "Back",
+      "href": "javascript: window.history.go(-1)"
+    }) }}
+  </div>
+{% endblock %}
+
+{% block content %}
+
+{% set issuingAuthHTML %}
+  <div class="govuk-form-group">
+    <label for="issuingAuthPicker" class="govuk-label">Select issuing authority</label>
+    <select name="issuing-auth" class="govuk-select" id="issuingAuthPicker">
+      {% include "includes/issuing-auth-options.html" %}
+    </select>
+  </div>
+{% endset -%}
+
+{% if data['is-issuing'] === 'false' %}
+  {% set submitButtonLabel = 'Add local council' %}
+{% else %}
+  {% set submitButtonLabel = 'Update details' %}
+{% endif %}
+  
+  
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form action="manage-las">
+        {{ govukInput({
+          "label": {
+            "text": "Name of local council"    
+          },
+          id: "local-council-name",
+          classes: "govuk-!-width-two-thirds",
+          name: "local-council-name",
+          value: data['local-council-name'] | replace("_", "")
+        }) }}
+        
+        {{ govukInput({
+          "label": {
+            "text": "Local council short code"    
+          },
+          type: "text",
+          classes: "govuk-!-width-one-third input-capitals",
+          id: "council-short",
+          name: "council-short",
+          value: data['council-short'] | replace("_", ""),
+          attributes: {
+            autocapitalize: "characters"
+          }
+        }) }}
+        
+        {{ govukRadios({
+          "idPrefix": "is-issuing",
+          "name": "is-issuing",
+          "fieldset": {
+            "legend": {
+              "text": "Is this an issuing authority?",
+              "isPageHeading": false,
+              "classes": 'govuk-fieldset__legend--m'
+            }
+          },
+          "items": [
+            {
+              "value": "yes",
+              "text": "Yes",
+              "checked": data['is-issuing'] === "yes"
+            },
+            {
+              "value": "no",
+              "text": "No",
+              "checked": data['is-issuing'] === "no",
+              "conditional": {
+                "html": issuingAuthHTML
+              }
+            }
+          ]
+        }) }}
+
+        {% if data['is-issuing'] === 'false' %}
+          <input id="success" name="success" type="hidden" value="Local council added">
+        {% else %}
+          <input id="success" name="success" type="hidden" value="Local council updated">
+        {% endif %}
+        
+        {{ govukButton({
+          "text": submitButtonLabel
+        }) }}
+      </form>
+
+      {% if data['is-issuing'] === 'false' %}
+        <!-- Do nothing -->
+      {% else %}
+        {{ govukDetails({
+          "summaryText": "Remove this local council",
+          "html": '<form action="manage-las">
+                      <p>Are you sure you want to remove <b>' + data['local-council-name'] + '</b>?</p>
+                      <p>You won\'t be able to undo this.</p>
+                      <input id="success" name="success" type="hidden" value="' + data['local-council-name'] + ' removed">
+                      <input value="Yes, remove this local council" type="submit" class="govuk-button">
+                    </form>
+                    <p class="govuk-body">
+                      <a href="?">No, don\'t remove this council</a>
+                    </p>' 
+        }) }}  
+      {% endif %}
+    </div>
+  </div>
+    
+{% endblock %}

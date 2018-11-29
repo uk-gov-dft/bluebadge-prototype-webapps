@@ -154,6 +154,15 @@ router.get('/manage-users', function (req, res) {
   res.render('manage-blue-badges/manage-users', {'title':'Manage users','manage_class':'active'})
 });
 
+router.get('/manage-las', function (req, res) {
+  req.session.data['success'] = undefined;
+  res.render('manage-blue-badges/manage-las', {'title':'Manage local councils','managela_class':'active'})
+});
+
+router.get('/edit-la-details', function (req, res) {
+  res.render('manage-blue-badges/edit-la-details', {'title':'Manage local council','managela_class':'active'})
+});
+
 router.get('/users-results', function (req, res) {
   res.locals.searchValue = req.session.data['search-box'];
   res.render('manage-blue-badges/users-results', {'title':'Manage users','manage_class':'active'})
