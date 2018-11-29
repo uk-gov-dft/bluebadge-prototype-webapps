@@ -28,7 +28,7 @@
   {% set laPostcode = 'SW1A 1AA' %}
   {% set laEmailAddress = 'contact@' + data['local-council-name'] | replace(' ', '') | lower + '.gov.uk' %}
   {% set laPhoneNumber = '020 3123 456' %}
-  {% set laWebURL = 'http://blue-badges.' + data['local-council-name'] | replace(' ', '') | lower + '.gov.uk' %}
+  {% set laWebURL = 'https://blue-badges.' + data['local-council-name'] | replace(' ', '') | lower + '.gov.uk' %}
 {% endif %}
 
 {% set nonIssuingAuthHTML %}
