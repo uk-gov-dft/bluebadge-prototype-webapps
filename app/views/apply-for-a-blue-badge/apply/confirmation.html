@@ -19,7 +19,7 @@
 
 {{ govukPanel({
   "titleHtml": '<h1 class="govuk-panel__title govuk-!-f-36">' + pageHeading + '</h1>',
-  "html": '<span class="govuk-!-f-27">Your reference number is<br><strong>HDJ2123F</strong></span>'
+  "html": ''
 })
 }}
 
@@ -41,7 +41,7 @@
 
   <div id="some-evidence-missing">
 
-    <p class="govuk-body">{{data['council-name'] | title}} may contact {{ you }} about providing:</p>
+    <p class="govuk-body">{{data['council-name'] | capitalize}} may contact {{ you }} about providing:</p>
     <ol class="govuk-list govuk-list--bullet">
       {% if data['proofOfEligibility'] === 'notProvided' and (data['benefit'] === 'dla' or data['benefit'] === 'pip') %}
       <li>proof of eligibility</li>
@@ -61,7 +61,7 @@
 {% else %}
   {% if data['renewal-or-new-application'] !== "renewal" %}
   <div id="all-evidence-present">
-    <p class=govuk-body>{{data['council-name'] | title}} may contact {{ you }} to ask for more information.</p>
+    <p class=govuk-body>If {{data['council-name']}} needs to ask some more questions about {{your}} {{application}}, they may contact {{youOrThem}}.</p>
   </div>
   {% endif %}
 {% endif %}
@@ -69,12 +69,12 @@
 {% if data['renewal-or-new-application'] === "renewal" %}
 <p class="govuk-body">The council will let {{you}} know when they issue {{your}} badge.</p>
 {% else %}
-<p class="govuk-body">The council will let {{you}} know when they make a decision about {{ your }} {{ application }}.</p>
+<p class="govuk-body">The council will let {{you}} know when they make a decision about {{ your }} {{ application }}. It can take between 6 and 12 weeks to issue the badge.</p>
 {% endif %}
 
 <p class="govuk-body"><a href="#">What did you think of this service?</a> (takes 30 seconds)</p>
 
-<p class="govuk-body">It's now safe to close this window.</p>
+<p class="govuk-body">You can close this window.</p>
 
 {% if data['disability'] === 'blind' %}
 
@@ -115,17 +115,9 @@
 
 {% endif %}
 
-<h2 class="govuk-heading-m">{{data['council-name'] | title}} contact details</h2>
-<p class="govuk-body">
-  {{data['council-name'] | title}}
-  <br/>Church Lane
-  <br/>Manchester
-  <br/>M1 4AA
-  <br/>
-</p>
-<p class="govuk-body">
-  Email: <a href="mailto:bluebadge@manchester.gov.uk">bluebadge@council.gov.uk</a>
-  <br/>Telephone: 0161 277 5919
-</p>
+<h2 class="govuk-heading-m">When to contact us</h2>
+
+<p class="govuk-body">{{your | capitalize}} {{application}} has been successfully submitted.</p> 
+<p class="govuk-body">If {{you}} think {{you}} have made a mistake, or need to change something in {{your}} {{application}}, {{you}} should <a href="https://www.localcouncil.gov.uk">contact {{data['council-name']}} through their website</a>.</p>
 
 {% endblock %}
