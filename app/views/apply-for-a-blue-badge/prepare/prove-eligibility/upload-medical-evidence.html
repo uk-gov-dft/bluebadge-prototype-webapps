@@ -2,7 +2,7 @@
 {% set hasSaveClass = 'yes' %}
 {% import "apply-for-a-blue-badge/macros/upload-component-new.html" as uploadComponentWidget %}
 
-{% set pageHeading = "Evidence of " + your + " walking difficulties" %}
+{% set pageHeading = "Supporting documents" %}
 
 {% block pageTitle %}
   {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
@@ -16,8 +16,13 @@
 <form action="{{ formAction }}?proofOfAdapted=upload">
   <input type="hidden" id="change" name="medical-evidence-completed" value="true">
   <h1 class="govuk-heading-l">{{pageHeading}}</h1>
-  
-  <p class="govuk-body">For example, prescriptions or appointment letters from GPs, hospitals, healthcare or social care professionals.</p>
+  {% if data['disability'] === 'child-bulky-equipment' or 
+        data['disability'] === 'child-close-to-vehicle'  %}
+    <p class="govuk-body">Add any documents about their condition, that you feel would support their application.</p>
+  {% else %}
+    <p class="govuk-body">Add any documents about {{your}} condition, that {{you}} feel would support {{your}} application.</p>
+  {% endif %}
+  <p class="govuk-body">For example, prescriptions, diagnosis letters or correspondence from GPs, hospitals or healthcare professionals.</p>
 
   {% set uploadHtml %}
     {{ uploadComponentWidget.uploadComponent(
@@ -45,7 +50,7 @@
     },
     "fieldset": {
       "legend": {
-        "text": "Do " + you + " have evidence to upload?",
+        "text": "Do " + you + " have suporting documents to upload?",
         "isPageHeading": false,
         "classes": 'govuk-fieldset__legend--m'
       }
@@ -61,15 +66,29 @@
       },
       {
         "value": "no",
-        "text": "No"
+        "text": "No",
+        "checked": data['medical-evidence-upload'] === 'no'
       }
 
     ]
   }) }}
 
   <div id="hiddenCaughtInputs"></div>
+
   {{ govukButton({
     "text": submitLabel
+  }) }}
+
+  {{ govukDetails({
+    summaryText: "Need help uploading documents?",
+    id: "help-uploading",
+    html: '<p class="govuk-body">You can take a photo of your documents or scan them to upload here.</p><p class="govuk-body"> We\'ve created a step-by-step guide on <a href="/apply-for-a-blue-badge/guidance?upload-origin-page=upload-medical-evidence">how to upload a document</a>.</p><p class="govuk-body">We\'ll take you back to this page after you\'ve read the guide.</p>'
+  }) }}
+
+  {{ govukDetails({
+    summaryText: "I can't upload a photo or scan",
+    id: "help-uploading",
+    html: '<p class="govuk-body">If you have supporting documents, but cannot upload them, your local council will contact you about other ways for you to submit them after you submit this application.</p><p class="govuk-body">You can still submit this application using this service, but it may take longer for the council to make a decision.</p><p class="govuk-body"><a href="' + formAction + '" class="govuk-button-secondary" role="button">Continue without uploading</a></p>'
   }) }}
 
   <!-- Has save -->

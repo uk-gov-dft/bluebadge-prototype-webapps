@@ -116,56 +116,25 @@
               }) }}
               {% endif %}
             </li>
+            {% endif %}
+            {% if data['disability'] === 'arms' %}
             <li class="app-task-list__item">
-              <a class="app-task-list__task-name" href="upload-medical-evidence{% if data['medical-evidence-completed'] == 'true'%}?medical-evidence-done=true{% endif %}" aria-describedby="medical-evidence-completed" data-no-badge-link>
-                Provide medical evidence
+              <a class="app-task-list__task-name" href="prove-eligibility/{% if data['arms-completed'] == 'true'%}check-arms-blind{% endif %}" aria-describedby="arms-completed" data-no-badge-link>
+                Describe {{your}} condition
               </a>
-              {% if data['medical-evidence-completed'] == "true" or 
+              {% if data['arms-completed'] == "true" or 
                     data['all-completed'] == "true" or
                     proofNotNeeded == true %}
               {{ govukTag({
                 text: 'Completed',
                 classes: 'app-task-list__task-completed',
                 attributes: {
-                  'id': 'medical-evidence-completed'
-                }
-              }) }}
-              {% endif %}
-            </li>
-            <li class="app-task-list__item">
-              <a class="app-task-list__task-name" href="prove-eligibility/list-treatments{% if data['treatments-completed'] == 'true'%}?treatments-done=true{% endif %}" aria-describedby="treatments-completed" data-no-badge-link>
-                List treatments
-              </a>
-              {% if data['treatments-completed'] == "true" or 
-                    data['all-completed'] == "true" or
-                    proofNotNeeded == true %}
-              {{ govukTag({
-                text: 'Completed',
-                classes: 'app-task-list__task-completed',
-                attributes: {
-                  'id': 'treatments-completed'
-                }
-              }) }}
-              {% endif %}
-            </li>
-            <li class="app-task-list__item">
-              <a class="app-task-list__task-name" href="prove-eligibility/list-medication{% if data['medication-completed'] == 'true'%}?medication-done=true{% endif %}" aria-describedby="medication-completed" data-no-badge-link>
-                List medication
-              </a>
-              {% if data['medication-completed'] == "true" or 
-                    data['all-completed'] == "true" or
-                    proofNotNeeded == true %}
-              {{ govukTag({
-                text: 'Completed',
-                classes: 'app-task-list__task-completed',
-                attributes: {
-                  'id': 'medication-completed'
+                  'id': 'arms-completed'
                 }
               }) }}
               {% endif %}
             </li>
             {% endif %}
-
             {% if data['disability'] === 'child-bulky-equipment' or 
                   data['disability'] === 'child-close-to-vehicle'  %}
               <li class="app-task-list__item">
@@ -228,8 +197,58 @@
               {% endif %}
             </li>
             {% endif %}
-
-
+            {% if data['disability'] !== 'blind' and data['benefit'] === 'none' %}
+            <li class="app-task-list__item">
+              <a class="app-task-list__task-name" href="upload-medical-evidence{% if data['medical-evidence-completed'] == 'true'%}?medical-evidence-done=true{% endif %}" aria-describedby="medical-evidence-completed" data-no-badge-link>
+                Add supporting documents
+              </a>
+              {% if data['medical-evidence-completed'] == "true" or 
+                    data['all-completed'] == "true" or
+                    proofNotNeeded == true %}
+              {{ govukTag({
+                text: 'Completed',
+                classes: 'app-task-list__task-completed',
+                attributes: {
+                  'id': 'medical-evidence-completed'
+                }
+              }) }}
+              {% endif %}
+            </li>
+            {% endif %}
+            {% if data['disability'] === 'problems-walking' %}
+            <li class="app-task-list__item">
+              <a class="app-task-list__task-name" href="prove-eligibility/list-treatments{% if data['treatments-completed'] == 'true'%}?treatments-done=true{% endif %}" aria-describedby="treatments-completed" data-no-badge-link>
+                List treatments
+              </a>
+              {% if data['treatments-completed'] == "true" or 
+                    data['all-completed'] == "true" or
+                    proofNotNeeded == true %}
+              {{ govukTag({
+                text: 'Completed',
+                classes: 'app-task-list__task-completed',
+                attributes: {
+                  'id': 'treatments-completed'
+                }
+              }) }}
+              {% endif %}
+            </li>
+            <li class="app-task-list__item">
+              <a class="app-task-list__task-name" href="prove-eligibility/list-medication{% if data['medication-completed'] == 'true'%}?medication-done=true{% endif %}" aria-describedby="medication-completed" data-no-badge-link>
+                List medication
+              </a>
+              {% if data['medication-completed'] == "true" or 
+                    data['all-completed'] == "true" or
+                    proofNotNeeded == true %}
+              {{ govukTag({
+                text: 'Completed',
+                classes: 'app-task-list__task-completed',
+                attributes: {
+                  'id': 'medication-completed'
+                }
+              }) }}
+              {% endif %}
+            </li>
+            {% endif %}
 
             {% if data['benefit'] !== 'none' and 
                   data['renewal-or-new-application'] !== "renewal" and
@@ -270,24 +289,7 @@
               {% endif %}
             </li>
             {% endif %}
-            {% if data['disability'] === 'arms' %}
-            <li class="app-task-list__item">
-              <a class="app-task-list__task-name" href="prove-eligibility/{% if data['arms-completed'] == 'true'%}check-arms-blind{% endif %}" aria-describedby="arms-completed" data-no-badge-link>
-                Describe {{your}} condition
-              </a>
-              {% if data['arms-completed'] == "true" or 
-                    data['all-completed'] == "true" or
-                    proofNotNeeded == true %}
-              {{ govukTag({
-                text: 'Completed',
-                classes: 'app-task-list__task-completed',
-                attributes: {
-                  'id': 'arms-completed'
-                }
-              }) }}
-              {% endif %}
-            </li>
-            {% endif %}
+            
 
             {% if data['renewal-or-new-application'] !== "renewal" %}
             <li class="app-task-list__item">
