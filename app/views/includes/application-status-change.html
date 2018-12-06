@@ -1,0 +1,52 @@
+<form class="application-status-change status-unread">
+	<h2 class="govuk-heading-m">Application status</h2>
+	<strong class="govuk-tag app-task-list__task-completed" id="eligibility-completed">
+		{% if data['change-application-status'] %}
+			{{data['change-application-status']}}
+		{% else %}
+			To do
+		{% endif %}
+	</strong>
+
+	<details class="govuk-details">
+	  <summary class="govuk-details__summary">
+	    <span class="govuk-details__summary-text">
+	      Update application status
+	    </span>
+	  </summary>
+	  {{ govukRadios({
+	    classes: "govuk-radios--inline",
+	    idPrefix: "change-application-status",
+	    name: "change-application-status",
+	    fieldset: {
+	      legend: {
+	        text: "Change status",
+	        isPageHeading: false,
+	        classes: "govuk-fieldset__legend--s"
+	      }
+	    },
+	    items: [
+	      {
+	        value: "to do",
+	        text: "To do",
+	        checked: data['change-application-status'] === "to do"
+	      },
+	      {
+	        value: "in progress",
+	        text: "In progress",
+	        checked: data['change-application-status'] === "in progress"
+	      },
+	      {
+	        value: "finished",
+	        text: "Finished",
+	        checked: data['change-application-status'] === "finished"
+	      }	  
+	     ]
+	  }) }}
+
+	  {{ govukButton({
+	    text: "Update status"
+	  }) }}
+	</details>
+	
+</form>
