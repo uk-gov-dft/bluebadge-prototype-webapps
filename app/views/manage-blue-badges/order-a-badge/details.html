@@ -234,29 +234,158 @@
   </section>
 
   <section class="form-section">
-    <h2 class="govuk-heading-m">Eligibility</h2>
-   
-    <div class="govuk-form-group">
-      <label for="selectElig" class="govuk-label">Select from list</label>
-      <select class="govuk-select govuk-!-width-one-half" id="selectElig" name="reason">
-        <option>Select one</option>
-        <optgroup label="Automatic">
-          <option value="PIP" {% if data['reason'] === 'PIP' %} selected {% endif %}>PIP</option>
-          <option value="DLA" {% if data['reason'] === 'DLA' %} selected {% endif %}>DLA</option>
-          <option value="Armed Forces Compensation scheme" {% if data['reason'] === 'Armed Forces Compensation scheme' %} selected {% endif %}>Armed Forces Compensation scheme</option>
-          <option value="War Pensioners’ Mobility Supplement" {% if data['reason'] === 'War Pensioners’ Mobility Supplement' %} selected {% endif %}>War Pensioners’ Mobility Supplement</option>
-          <option value="Registered blind" {% if data['reason'] === 'Registered blind' %} selected {% endif %}>Registered blind</option>
-        </optgroup>
-        <optgroup label="Further assessment">
-          <option value="Walking ability" {% if data['reason'] === 'Walking ability' %} selected {% endif %}>Walking ability</option>
-          <option value="Disability in both arms" {% if data['reason'] === 'Disability in both arms' %} selected {% endif %}>Disability in both arms</option>
-          <option value="Child under 3 with bulky medical equipment" {% if data['reason'] === 'Child under 3 with bulky medical equipment' %} selected {% endif %}>Child under 3 with bulky medical equipment</option>
-          <option value="Child under 3 who needs to be near a vehicle" {% if data['reason'] === 'Child under 3 who needs to be near a vehicle' %} selected {% endif %}>Child under 3 who needs to be near a vehicle</option>
-          <option value="Terminal illness" {% if data['reason'] === 'Terminal illness' %} selected {% endif %}>Terminal illness</option>
-          <option value="Organisation" {% if data['badge-type'] === 'organisation' %} selected {% endif %}>Organisation</option>
-        </optgroup>
-      </select>
-    </div>
+
+    {% set eligibilityHtmlAuto %}
+
+      {{ govukSelect({
+        id: "selectElig-auto",
+        name: "reason",
+        label: {
+          text: "Eligibility reason"
+        },
+        classes: 'govuk-!-width-one-half',
+        items: [
+          {
+            value: "select-option",
+            text: "Select an option",
+            selected: data['reason'] === 'select-option'
+          },
+          {
+            value: "PIP",
+            text: "PIP",
+            selected: data['reason'] === 'PIP'
+          },
+          {
+            value: "DLA",
+            text: "DLA",
+            selected: data['reason'] === 'DLA'
+          },
+          {
+            value: "AFCS",
+            text: "Armed Forces Compensation Scheme",
+            selected: data['reason'] === 'AFCS'
+          },
+          {
+            value: "WPMS",
+            text: "War Pensioners’ Mobility Supplement",
+            selected: data['reason'] === 'WPMS'
+          },
+          {
+            value: "blind",
+            text: "Severely sight impaired (Blind)",
+            selected: data['reason'] === 'blind'
+          }
+        ]
+      }) }}
+
+    {% endset -%}
+
+    {% set eligibilityHtmlNonAuto %}
+
+      {{ govukSelect({
+        id: "selectElig-non-auto",
+        name: "reason",
+        label: {
+          text: "Eligibility reason"
+        },
+        classes: 'govuk-!-width-one-half',
+        items: [
+          {
+            value: "select-option",
+            text: "Select an option",
+            selected: data['reason'] === 'select-option'
+          },
+          {
+            value: "walking",
+            text: "Walking ability",
+            selected: data['reason'] === 'walking'
+          },
+          {
+            value: "arms",
+            text: "Disability in both arms",
+            selected: data['reason'] === 'arms'
+          },
+          {
+            value: "child-bulky",
+            text: "Child under 3 with bulky medical",
+            selected: data['reason'] === 'child-bulky'
+          },
+          {
+            value: "child-near",
+            text: "Child under 3 who needs to be near a vehicle",
+            selected: data['reason'] === 'child-near'
+          },
+          {
+            value: "terminal",
+            text: "Terminal illness",
+            selected: data['reason'] === 'terminal'
+          },
+          {
+            value: "organisation",
+            text: "Organisation",
+            selected: data['reason'] === 'organisation'
+          }
+        ]
+      }) }}
+
+      {{ govukSelect({
+        id: "assessment-Type",
+        name: "assessment-type",
+        label: {
+          text: "Assessment type"
+        },
+        classes: 'govuk-!-width-one-half',
+        items: [
+          {
+            value: "no-assessment",
+            text: "No assessment needed",
+            selected: data['assessment-type'] === 'no-assessment'
+          },
+          {
+            value: "desk",
+            text: "Desk based IMA",
+            selected: data['assessment-type'] === 'desk'
+          },
+          {
+            value: "in-person",
+            text: "In person IMA",
+            selected: data['assessment-type'] === 'in-person'
+          }
+        ]
+      }) }}
+
+    {% endset -%}
+
+    {{ govukRadios({
+      "idPrefix": "eligibility-auto",
+      "name": "eligibility-auto",
+      "fieldset": {
+        "legend": {
+          "text": "Eligibility",
+          "isPageHeading": false,
+          "classes": 'govuk-fieldset__legend--m'
+        }
+      },
+      "items": [
+        {
+          "value": "Automatic",
+          "text": "Automatic",
+          "checked": data['eligibility-auto'] === 'Automatic',
+          "conditional": {
+            "html": eligibilityHtmlAuto
+          }
+        },
+        {
+          "value": "Non-automatic",
+          "text": "Non-automatic",
+          "checked": data['eligibility-auto'] === 'Non-automatic',
+          "conditional": {
+            "html": eligibilityHtmlNonAuto
+          }
+        }
+
+      ]
+    }) }}
  </section>
 
  <section class="form-section">
