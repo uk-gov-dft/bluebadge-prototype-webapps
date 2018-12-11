@@ -319,11 +319,6 @@
             value: "terminal",
             text: "Terminal illness",
             selected: data['reason'] === 'terminal'
-          },
-          {
-            value: "organisation",
-            text: "Organisation",
-            selected: data['reason'] === 'organisation'
           }
         ]
       }) }}
@@ -337,18 +332,23 @@
         classes: 'govuk-!-width-one-half',
         items: [
           {
-            value: "no-assessment",
-            text: "No assessment needed",
-            selected: data['assessment-type'] === 'no-assessment'
+            value: "choose-assessment",
+            text: "Choose assessment type",
+            selected: data['assessment-type'] === 'choose-assessment'
           },
           {
             value: "desk",
-            text: "Desk based IMA",
+            text: "Desk based assessment",
             selected: data['assessment-type'] === 'desk'
           },
           {
+            value: "phone",
+            text: "Phone assessment",
+            selected: data['assessment-type'] === 'phone'
+          },
+          {
             value: "in-person",
-            text: "In person IMA",
+            text: "In person assessment",
             selected: data['assessment-type'] === 'in-person'
           }
         ]
