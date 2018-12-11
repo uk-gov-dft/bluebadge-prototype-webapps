@@ -45,7 +45,7 @@
       
     <!-- <p class="govuk-body-l">To continue with this application</p> -->
 
-    <p class="govuk-body">To apply, you'll need a photo or scan that shows:</p>
+    <p class="govuk-body">To apply, you'll need a photo or scan of:</p>
 
     <ul class="govuk-list govuk-list--bullet">
       {% if data['existing-blue-badge-number'] !== "none" %}
@@ -61,15 +61,14 @@
           <li>{{your}} WPMS award letter</li>
         {% elif data['disability'] === 'arms' %}
           <li>proof of adapted vehicle (if {{you}} drive one)</li>
-
-        {% elif data['disability'] === 'problems-walking' %}
-          <li>evidence of {{your}} walking difficulties
-            <br>(hospital letter or prescriptions)</li>
         {% endif %}
-
       {% endif %}
       <li>proof of {{your}} identity (passport, birth certificate, driving licence)</li>
       <li>proof of {{your}} address (dated within the last 12 months)</li>
+      {% if data['benefit'] === 'none' and data['disability'] !== 'none' %}
+        <li>any documents related to {{your}} condition, if you have them
+          <br>(diagnosis letters or hospital correspondence)</li>
+      {% endif %}
     </ul>
 
     <p class="govuk-body"><a href="#submittingDocuments">Help with submitting documents</a></p>
