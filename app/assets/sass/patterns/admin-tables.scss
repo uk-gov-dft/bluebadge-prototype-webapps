@@ -25,21 +25,40 @@
 .pagination {
   margin-top: 15px;
   display: inline-block;
+  @include mq($until: tablet) {
+    display: block;
+    text-align: center;
+  }
   p,
   ul,
   li {
-    display: inline;
+    display: inline-block;
+    @include govuk-font(19);
   }
   ul {
     margin: 0;
     padding: 0;
   }
   li {
-    margin-left: 5px;
+    // margin-left: 5px;
+  }
+  .page-active {
+    padding: 3px 8px;
+  }
+  a {
+    display: block;
+    padding: 4px 8px 2px;
+    &:hover {
+      background: govuk-colour(blue);
+      color: white;
+      text-decoration: none;
+    }
   }
 }
 
 // Paginations
 .pagination {
-  float: right;
+  @include mq($from: tablet) {
+    float: right;
+  }
 }
