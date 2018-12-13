@@ -13,26 +13,49 @@
 
 <h1 class="govuk-heading-l">{{pageHeading}}</h1>
 
-<p class="govuk-body">By submitting this {{ application }} {{ you }} agree that:</p>
+<p class="govuk-body">
+  By submitting this {{ application }} you
+  {% if data['applicant'] === 'someone-else' %}
+    agree on behalf of the applicant
+  {% else %}
+    agree 
+  {% endif %}
+  that:
+</p>
 
 {% if data['applicant'] !== 'organisation' %}
 
 <ul class="govuk-list govuk-list--bullet">
-  <li>{{you}} have read and understand the rules for using a Blue Badge</li>
   {% if data['applicant'] === 'someone-else' %}
-    <li>you can submit this {{application}} on their behalf</li>
+    <li>the rules for using a Blue Badge have been read and understood</li>
+  {% else %}
+    <li>you have read and understand the rules for using a Blue Badge</li>
   {% endif %}
-  <li>the details {{you}} have provided are complete and accurate</li>
+  {% if data['applicant'] === 'someone-else' %}
+    <li>you have the authority to submit this {{application}}</li>
+  {% endif %}
+  <li>the details provided are complete and accurate</li>
   <li>{{you}} won't hold more than one Blue Badge at any time</li>
-  <li>{{you}} will tell {{data['council-name']}} about any changes that may affect {{your}} eligibility</li>
+  {% if data['applicant'] === 'someone-else' %}
+    <li>{{data['council-name']}} will be told about any changes that may affect their eligibility</li>
+  {% else %}
+    <li>you will tell {{data['council-name']}} about any changes that may affect your eligibility</li>
+  {% endif %}
 </ul>
 
 <p class="govuk-body">
-  {{you|capitalize}} also agree that {{data['council-name']}} may:
+  You also agree that {{data['council-name']}} may:
 </p>
 
 <ul class="govuk-list govuk-list--bullet">
-  <li>contact {{youOrThem}} if there are issues with {{your}} {{application}}</li>
+  <li>
+    contact 
+    {% if data['applicant'] === 'someone-else' %}
+      the person whose details have been provided
+    {% else %}
+      you 
+    {% endif %}
+    if there are issues with this {{application}}</li>
   {% if data['benefit'] === 'none' %}
     <li>arrange an assessment, either in-person or over the phone</li>
   {% endif %}
