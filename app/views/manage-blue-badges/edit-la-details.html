@@ -38,22 +38,10 @@
       {% include "includes/issuing-auth-options.html" %}
     </select>
   </div>
-
-  {{ govukInput({
-    "label": {
-      "text": "Group short code"    
-    },
-    type: "text",
-    classes: "govuk-!-width-one-third input-capitals",
-    id: "group-short",
-    name: "group-short",
-    attributes: {
-      autocapitalize: "characters"
-    }
-  }) }}
 {% endset -%}
 
 {% set issuingAuthHTML %}
+
   {{ govukInput({
     "label": {
       "text": "Website URL"
@@ -64,6 +52,81 @@
     name: "issuing-auth-url",
     value: laWebURL
   }) }}
+
+  {% call govukFieldset({
+    "legend": {
+        "text": "Address",
+        "classes": "govuk-fieldset__legend--l",
+        "isPageHeading": true
+      }
+  }) %}
+
+    {{ govukInput({
+      "label": {
+        "html": 'Building and street <span class="govuk-visually-hidden">line 1 of 2</span>'
+      },
+      "classes": 'govuk-!-width-two-thirds',
+      "id": "la-address-line-1",
+      "name": "la-address-line-1",
+      "value": addressLine1
+    }) }}
+
+    {{ govukInput({
+      "label": {
+        "html": '<span class="govuk-visually-hidden">Building and street line 2 of 2</span>'
+      },
+      "classes": 'govuk-!-width-two-thirds',
+      "id": "la-address-line-2",
+      "name": "la-address-line-2",
+      "value": addressLine2
+    }) }}
+
+    {{ govukInput({
+      "label": {
+        "html": 'Town or city'
+      },
+      "classes": 'govuk-!-width-two-thirds',
+      "id": "la-address-town",
+      "name": "la-address-town",
+      "value": townCity
+    }) }}
+
+    {{ govukInput({
+      "label": {
+        "html": 'Postcode'
+      },
+      "classes": 'govuk-input--width-10',
+      "id": "la-address-postcode",
+      "name": "la-address-postcode",
+      "value": laPostcode
+    }) }}
+
+  {% endcall %}
+
+  <br>
+
+  {{ govukInput({
+    "label": {
+      "text": "Email address (optional)"    
+    },
+    id: "local-council-email",
+    type: "email",
+    classes: "govuk-!-width-two-thirds",
+    name: "local-council-email",
+    value: laEmailAddress
+  }) }}
+
+  {{ govukInput({
+    "label": {
+      "text": "Contact phone number (optional)"    
+    },
+    id: "local-council-phone",
+    type: "tel",
+    classes: "govuk-!-width-two-thirds",
+    name: "local-council-phone",
+    value: laPhoneNumber        
+  }) }}
+  
 {% endset -%}
   
   <div class="govuk-grid-row">
@@ -123,77 +186,7 @@
           ]
         }) }}
 
-        {% call govukFieldset({
-          "legend": {
-              "text": "Address (optional)",
-              "classes": "govuk-fieldset__legend--l",
-              "isPageHeading": true
-            }
-        }) %}
 
-          {{ govukInput({
-            "label": {
-              "html": 'Building and street <span class="govuk-visually-hidden">line 1 of 2</span>'
-            },
-            "classes": 'govuk-!-width-two-thirds',
-            "id": "la-address-line-1",
-            "name": "la-address-line-1",
-            "value": addressLine1
-          }) }}
-
-          {{ govukInput({
-            "label": {
-              "html": '<span class="govuk-visually-hidden">Building and street line 2 of 2</span>'
-            },
-            "classes": 'govuk-!-width-two-thirds',
-            "id": "la-address-line-2",
-            "name": "la-address-line-2",
-            "value": addressLine2
-          }) }}
-
-          {{ govukInput({
-            "label": {
-              "html": 'Town or city'
-            },
-            "classes": 'govuk-!-width-two-thirds',
-            "id": "la-address-town",
-            "name": "la-address-town",
-            "value": townCity
-          }) }}
-
-          {{ govukInput({
-            "label": {
-              "html": 'Postcode'
-            },
-            "classes": 'govuk-input--width-10',
-            "id": "la-address-postcode",
-            "name": "la-address-postcode",
-            "value": laPostcode
-          }) }}
-
-        {% endcall %}
-
-        {{ govukInput({
-          "label": {
-            "text": "Email address (optional)"    
-          },
-          id: "local-council-email",
-          type: "email",
-          classes: "govuk-!-width-two-thirds",
-          name: "local-council-email",
-          value: laEmailAddress
-        }) }}
-
-        {{ govukInput({
-          "label": {
-            "text": "Contact phone number (optional)"    
-          },
-          id: "local-council-phone",
-          type: "tel",
-          classes: "govuk-!-width-two-thirds",
-          name: "local-council-phone",
-          value: laPhoneNumber        
-        }) }}
 
         {% if data['is-issuing'] === 'false' %}
           <input id="success" name="success" type="hidden" value="Local council added">
