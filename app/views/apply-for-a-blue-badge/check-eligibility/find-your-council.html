@@ -54,6 +54,7 @@
 
   <input id="council-website" name="council-website" type="hidden" value="www.manchester.gov.uk">
   <input id="council-phone" name="council-phone" type="hidden" value="0161 205 7321">
+  <input id="council-nation" name="nation" value="" type="hidden">
 </form>
 
  
@@ -72,7 +73,9 @@
           // Mimick the default onConfirm event that enhanceSelectElement would otherwise set up
           const requestedOption = [].filter.call(document.querySelector('#councilPicker-select').options, option => (option.textContent || option.innerText) === query)[0]
           if (requestedOption) { requestedOption.selected = true }
-
+          var nationAttribute = requestedOption.getAttribute('data-nation');
+          
+          $('#council-nation').val(nationAttribute);
           $('#councilChosen').removeClass('hidden');
           $('#councilNamePopulated').text(document.querySelector("#councilPicker-select").value);
           document.querySelector('#councilChosen').focus();
