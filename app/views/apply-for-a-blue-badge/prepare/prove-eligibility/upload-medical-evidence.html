@@ -79,15 +79,15 @@
     "text": submitLabel
   }) }}
 
-  {{ govukDetails({
+  <!-- {{ govukDetails({
     summaryText: "Need help uploading documents?",
-    id: "help-uploading",
+    id: "help-uploading-1",
     html: '<p class="govuk-body">You can take a photo of your documents or scan them to upload here.</p><p class="govuk-body"> We\'ve created a step-by-step guide on <a href="/apply-for-a-blue-badge/guidance?upload-origin-page=upload-medical-evidence">how to upload a document</a>.</p><p class="govuk-body">We\'ll take you back to this page after you\'ve read the guide.</p>'
-  }) }}
+  }) }} -->
 
   {{ govukDetails({
     summaryText: "I can't upload a photo or scan",
-    id: "help-uploading",
+    id: "cant-upload",
     html: '<p class="govuk-body">If you have supporting documents, but cannot upload them, your local council will contact you about other ways for you to submit them after you submit this application.</p><p class="govuk-body">You can still submit this application using this service, but it may take longer for the council to make a decision.</p><p class="govuk-body"><a href="' + formAction + '" class="govuk-button-secondary" role="button">Continue without uploading</a></p>'
   }) }}
 

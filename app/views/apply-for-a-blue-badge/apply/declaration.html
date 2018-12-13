@@ -13,16 +13,31 @@
 
 <h1 class="govuk-heading-l">{{pageHeading}}</h1>
 
-<p class="govuk-body">When you submit this {{ application }} {{ you }} agree that:</p>
+<p class="govuk-body">By submitting this {{ application }} {{ you }} agree that:</p>
 
 {% if data['applicant'] !== 'organisation' %}
 
 <ul class="govuk-list govuk-list--bullet">
-  <li>the details {{ you }}'ve provided are complete and accurate</li>
-  <li>{{ you }} will not allow anyone else to use {{your}} Blue Badge</li>
-  <li>{{ you }} will not hold more than one Blue Badge at any time</li>
-  <li>{{ you }} will tell {{data['council-name']}} about any changes that may affect {{ your }} Blue Badge entitlement</li>
-  <li>{{data['council-name']}} can check any information they already have about {{ youOrThem }} so that they can process {{ your }} {{ application }}</li>
+  <li>{{you}} have read and understand the rules for using a Blue Badge</li>
+  {% if data['applicant'] === 'someone-else' %}
+    <li>you can submit this {{application}} on their behalf</li>
+  {% endif %}
+  <li>the details {{you}} have provided are complete and accurate</li>
+  <li>{{you}} won't hold more than one Blue Badge at any time</li>
+  <li>{{you}} will tell {{data['council-name']}} about any changes that may affect {{your}} eligibility</li>
+</ul>
+
+<p class="govuk-body">
+  {{you|capitalize}} also agree that {{data['council-name']}} may:
+</p>
+
+<ul class="govuk-list govuk-list--bullet">
+  <li>contact {{youOrThem}} if there are issues with {{your}} {{application}}</li>
+  {% if data['benefit'] === 'none' %}
+    <li>arrange an assessment, either in-person or over the phone</li>
+  {% endif %}
+  <li>check {{your}} eligibility with the information they hold</li>
+  <li>suggest other benefits or services that {{you}} may be eligible for</li>
 </ul>
 
 {% else %}
@@ -30,7 +45,7 @@
 <ul class="govuk-list govuk-list--bullet">
   <li>{{you}}'re authorised to complete this application on behalf of {{your}} organisation</li>
   <li>the details {{you}} have provided are complete and accurate</li>
-  <li>{{you}} will tell {{data['council-name']}} council about any changes that will affect {{your}} organisation's Blue Badge entitlement</li>
+  <li>{{you}} will tell {{data['council-name']}} about any changes that will affect {{your}} organisation's Blue Badge entitlement</li>
   <li>{{data['council-name']}} can check any information they already have about {{you}} so that they can process {{your}} {{application}}</li>
 </ul>
 
