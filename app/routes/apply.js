@@ -639,9 +639,23 @@ router.get('/prove-eligibility/upload-blind-cvi', function (req, res) {
 // Walking ability
 
 router.get('/prove-eligibility/what-makes-walking-difficult', function(req, res) {
-  Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/apply-for-a-blue-badge/prove-eligibility/list-mobility-aids','check-walking'))
+  Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/apply-for-a-blue-badge/prove-eligibility/walking-difficult-backend','check-walking'))
 
   res.render(proveEligibilityTemplatePath+'what-makes-walking-difficult');
+});
+
+router.get('/prove-eligibility/walking-difficult-backend', function(req, res) {
+  if (req.session.data['difficulty'].includes('breathlessness')) {
+    res.redirect(proveEligibilityPath+'breathless-questions');
+  } else {
+    res.redirect(proveEligibilityPath+'list-mobility-aids');
+  }
+});
+
+router.get('/prove-eligibility/breathless-questions', function(req, res) {
+  Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/apply-for-a-blue-badge/prove-eligibility/list-mobility-aids','check-walking'))
+
+  res.render(proveEligibilityTemplatePath+'breathless-questions');
 });
 
 router.get('/prove-eligibility/list-mobility-aids', function(req, res) {

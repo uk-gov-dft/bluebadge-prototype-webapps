@@ -85,9 +85,6 @@
       {% if data['disability'] === 'blind' %}
         <li>either the name of the council {{you}}'re registered as severely sight impaired with <br> <b>or</b> a photo (or scan) of part 1 of {{your}} CVI form</li>
       {% endif %}
-      {% if data['nation'] !== "wales" %}
-      <li>a credit or debit card to pay a {{feePrice}} issue fee. The fee will be refunded if {{your}} application is not successful</li>
-      {% endif %}
     </ul>
 
     {% if data['disability'] === 'problems-walking' and data['content'] === 'interim' %}
@@ -134,6 +131,10 @@
     <p class="govuk-body">It can take up to 3 weeks for {{you}} to receive your badge from {{data['council-name']}}.</p>
     {% else %}
     <p class="govuk-body">It can take between 6 to 12 weeks for {{you}} to receive your badge from {{data['council-name']}}, if {{your}} application is successful.</p>
+    {% endif %}
+
+    {% if data['nation'] !== "wales" %}
+    <p class="govuk-body">Your local council may charge up to {{feePrice}} to issue the badge. You can pay by credit or debit card at the end of the application. The fee will be refunded if {{your}} application is not successful</p>
     {% endif %}
 
     {% if data['disability'] === 'blind' %}

@@ -1,0 +1,86 @@
+{% extends "layout.html" %}
+{% set hasSaveClass = 'yes' %}
+
+{% set pageHeading = 'When do ' + you + ' get breathless?' %}
+
+{% block pageTitle %}
+  {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block inner_content %}
+
+
+{% set otherHtml %}
+    {{ govukInput({
+      "label": {
+        "text": "Describe when " + you + " get breathless"
+      },
+      id: "breathless-description",
+      name: "breathless-description"
+    }) }}
+  {% endset -%}
+        
+<form action="{{ formAction }}">
+  {{ govukCheckboxes({
+    "idPrefix": "when-breathless",
+    "name": "when-breathless",
+    "attributes": {
+      "data-catchoption-label": true
+    },
+    "fieldset": {
+      "legend": {
+        "text": pageHeading,
+        "isPageHeading": true,
+        "classes": 'govuk-fieldset__legend--l'
+      }
+    },
+    "hint": {
+      "html": "Also known as shortness of breath, this could be described as an intense tightening in the chest, or a feeling of suffocation."
+    },
+    "items": [
+      {
+        "value": "hill",
+        "text": "Walking up a slight hill",
+        "checked": checked('when-breathless', 'hill')
+      },
+      {
+        "value": "same-age",
+        "text": "Trying to keep up with others on level ground",
+        "checked": checked('when-breathless', 'same-age')
+      },
+      {
+        "value": "level-ground",
+        "text": "Walking on level ground at " + my + " own pace",
+        "checked": checked('when-breathless', 'level-ground')
+      },
+      {
+        "value": "leave-home",
+        "text": "Getting dressed or trying to leave " + my + " home",
+        "checked": checked('when-breathless', 'leave-home')
+      },
+      {
+        "value": "other",
+        "text": "Other",
+        "checked": checked('when-breathless', 'other'),
+        "conditional": {
+          "html": otherHtml
+        }
+      }
+
+    ]
+  }) }}
+
+  <div id="hiddenCaughtInputs"></div>
+  
+  {{ govukButton({
+    "text": submitLabel
+  }) }}
+
+  <!-- Has save -->
+</form>
+
+      
+
+
+
+{% endblock %}

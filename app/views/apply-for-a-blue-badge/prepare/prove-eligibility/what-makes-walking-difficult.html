@@ -24,6 +24,10 @@
     }) }}
   {% endset -%}
 
+  {% set breathlessHtml %}
+    <p class="govuk-body">We'll ask some additional questions about {{your}} breathlessness on the next page.</p>
+  {% endset -%}
+
   {% if data['nation'] == "wales" %}
 
   {% set differentOptions = [
@@ -35,7 +39,10 @@
       {
         "value": "breathlessness",
         "text": "Breathlessness",
-        "checked": checked('difficulty', 'breathlessness')
+        "checked": checked('difficulty', 'breathlessness'),
+        "conditional": {
+          "html": breathlessHtml
+        }
       },
       {
         "value": "balance",
@@ -79,7 +86,10 @@
       {
         "value": "breathlessness",
         "text": "Breathlessness",
-        "checked": checked('difficulty', 'breathlessness')
+        "checked": checked('difficulty', 'breathlessness'),
+        "conditional": {
+          "html": breathlessHtml
+        }
       },
       {
         "value": "balance",
@@ -128,7 +138,10 @@
       {
         "value": "breathlessness",
         "text": "Breathlessness",
-        "checked": checked('difficulty', 'breathlessness')
+        "checked": checked('difficulty', 'breathlessness'),
+        "conditional": {
+          "html": breathlessHtml
+        }
       },
       {
         "value": "balance",
@@ -182,9 +195,5 @@
 
   <!-- Has save -->
 </form>
-
-      
-
-
 
 {% endblock %}
