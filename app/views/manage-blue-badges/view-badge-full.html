@@ -16,6 +16,14 @@
       <p class="subtitle">{{badgeholder.shortcode}}</p>
       <h1>{{title}}</h1>
     </div>
+
+    <div class="check-answers-change hide-enforcer">
+      <p>
+        <a href="replace-badge">Order a replacement</a><br>
+        <a href="change-details">Change details</a><br>
+        <a href="cancel-badge">Cancel badge</a>
+      </p>
+    </div>
   
   </div>
   
@@ -231,6 +239,25 @@
     </div>
   </dl>
 </section>
+
+{{ govukDetails({
+  "summaryText": "Delete badge",
+  "html": '
+            <form action="search-for-a-badge">
+              <div class="govuk-warning-text">
+                <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+                <strong class="govuk-warning-text__text">
+                  <span class="govuk-warning-text__assistive">Warning</span>
+                  This will delete the badge permanently. <br> You can not undo this.
+                </strong>
+              </div>
+              <input id="success" name="success" type="hidden" value="Badge deleted">
+              <input value="Delete this badge" type="submit" class="govuk-button">
+            </form>
+            <p class="govuk-body">
+              <a href="?reset-user">Close</a>
+            </p>' 
+}) }}
 
 
 {% endblock %}

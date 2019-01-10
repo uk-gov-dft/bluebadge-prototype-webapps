@@ -145,9 +145,8 @@
 	.govuk-select,
 	.govuk-body,
 	.govuk-list,
-	.govuk-file-upload,
-	details,
-	summary {
+	.govuk-file-upload
+	{
 		@include govuk-font(16);
 	}
 	.enforcer-view {
