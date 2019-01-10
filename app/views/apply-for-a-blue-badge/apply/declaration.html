@@ -55,9 +55,16 @@
     {% else %}
       you 
     {% endif %}
-    if there are issues with this {{application}}</li>
+    if there are any issues with this {{application}} or to prevent badge misuse</li>
   {% if data['benefit'] === 'none' %}
-    <li>arrange an assessment, either in-person or over the phone</li>
+    <li>
+      arrange a phone-based or in-person assessment 
+      {% if data['applicant'] === 'someone-else' %}
+        for the applicant
+      {% else %}
+        for you
+      {% endif %}
+    </li>
   {% endif %}
   <li>check {{your}} eligibility with the information they hold</li>
   <li>suggest other benefits or services that {{you}} may be eligible for</li>
