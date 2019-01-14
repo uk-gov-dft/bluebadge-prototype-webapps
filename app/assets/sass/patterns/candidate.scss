@@ -21,6 +21,13 @@
   }
 }
 
+.app-task-list__task-name.app-task-list--inactivelink {
+  color: govuk-colour(black);
+  cursor: default;
+  pointer-events: none;
+  text-decoration: none;
+}
+
 .js-hidden {
   .js-enabled & {
     display: none;

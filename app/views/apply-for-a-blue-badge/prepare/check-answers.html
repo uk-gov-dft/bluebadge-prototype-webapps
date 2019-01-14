@@ -47,11 +47,6 @@
 
   {% if data['benefit'] === 'none' %}
   <section class="split-section">
-    <h2 class="govuk-heading-m">Supporting documents</h2>
-
-    
-  </section>
-  <section class="split-section">
     <h2 class="govuk-heading-m">Healthcare professionals</h2>
 
     
@@ -66,10 +61,57 @@
         data['disability'] === 'blind' %}
   <section class="split-section">
     <h2 class="govuk-heading-m">Proof of eligibility</h2>
+    
+  </section>
+  {% endif %}
 
-    {% if data['benefit'] === 'pip' %}      
-      <dl class="govuk-check-your-answers govuk-check-your-answers--short">
-      
+  {% if data['disability'] === 'arms' or 
+        data['disability'] === 'blind' %}      
+  <section class="split-section">
+    <h2 class="govuk-heading-m">Proof of eligibility</h2>
+
+    {% include "includes/in-check-arms-blind.html" %}
+  </section>
+  {% endif %}
+    
+  <section class="split-section">
+    <h2 class="govuk-heading-m">Document uploads</h2>
+
+    <dl class="govuk-check-your-answers govuk-check-your-answers--short">
+    
+      <div class="govuk-check-your-answers__contents">
+        <dt class="govuk-check-your-answers__question">
+          Proof of identity
+        </dt>
+        <dd class="govuk-check-your-answers__answer">
+          <a href="">driving-license.jpg</a>
+        </dd>
+        <dd class="govuk-check-your-answers__change">
+          <a href="/apply-for-a-blue-badge/prove-identity?change=true">
+            Change<span class="govuk-visually-hidden"> proof of identity</span>
+          </a>
+        </dd>
+      </div>
+
+      {% if data['benefit'] === 'none' %}
+        <div class="govuk-check-your-answers__contents">
+          <dt class="govuk-check-your-answers__question">
+            Supporting documents
+          </dt>
+          <dd class="govuk-check-your-answers__answer">
+            <a href="">doctors-letter.jpg</a> <br>
+            <a href="">prescription-1.jpg</a> <br>
+            <a href="">prescripton-2.jpg</a>
+          </dd>
+          <dd class="govuk-check-your-answers__change">
+            <a href="/apply-for-a-blue-badge/prove-eligibility?change=true">
+              Change<span class="govuk-visually-hidden"> proof of PIP</span>
+            </a>
+          </dd>
+        </div>
+      {% endif %}
+
+      {% if data['benefit'] === 'pip' %}      
         <div class="govuk-check-your-answers__contents">
           <dt class="govuk-check-your-answers__question">
             Proof of Personal Independence Payment (PIP)
@@ -83,12 +125,9 @@
             </a>
           </dd>
         </div>
-      </dl>
-    {% endif %}
+      {% endif %}
 
-    {% if data['benefit'] === 'dla' %}      
-      <dl class="govuk-check-your-answers govuk-check-your-answers--short">
-      
+      {% if data['benefit'] === 'dla' %}      
         <div class="govuk-check-your-answers__contents">
           <dt class="govuk-check-your-answers__question">
             Proof of Disability Living Allowance (DLA)
@@ -102,12 +141,9 @@
             </a>
           </dd>
         </div>
-      </dl>
-    {% endif %}
+      {% endif %}
 
-    {% if data['benefit'] === 'armed-forces' %}      
-      <dl class="govuk-check-your-answers govuk-check-your-answers--short">
-      
+      {% if data['benefit'] === 'armed-forces' %}      
         <div class="govuk-check-your-answers__contents">
           <dt class="govuk-check-your-answers__question">
             Proof of Armed Forces Compensation scheme
@@ -121,12 +157,9 @@
             </a>
           </dd>
         </div>
-      </dl>
-    {% endif %}
+      {% endif %}
 
-    {% if data['benefit'] === 'war-pensioners' %}      
-      <dl class="govuk-check-your-answers govuk-check-your-answers--short">
-      
+      {% if data['benefit'] === 'war-pensioners' %}      
         <div class="govuk-check-your-answers__contents">
           <dt class="govuk-check-your-answers__question">
             Proof of War Pensioners' Mobility Supplement
@@ -140,35 +173,7 @@
             </a>
           </dd>
         </div>
-      </dl>
-    {% endif %}
-    
-    {% if data['disability'] === 'arms' or 
-          data['disability'] === 'blind' %}      
-    {% include "includes/in-check-arms-blind.html" %}
-    {% endif %}
-    
-  </section>
-  {% endif %}
-    
-  <section class="split-section">
-    <h2 class="govuk-heading-m">Proof of identity</h2>
-
-    <dl class="govuk-check-your-answers govuk-check-your-answers--short">
-    
-      <div class="govuk-check-your-answers__contents">
-        <dt class="govuk-check-your-answers__question">
-          Document uploaded
-        </dt>
-        <dd class="govuk-check-your-answers__answer">
-          <a href="">driving-license.jpg</a>
-        </dd>
-        <dd class="govuk-check-your-answers__change">
-          <a href="/apply-for-a-blue-badge/prove-identity?change=true">
-            Change<span class="govuk-visually-hidden"> proof of identity</span>
-          </a>
-        </dd>
-      </div>
+      {% endif %}
     </dl>
   </section>
 

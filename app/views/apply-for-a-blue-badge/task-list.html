@@ -43,7 +43,7 @@
           </h2>
           <ul class="app-task-list__items complete-before-submit">
             <li class="app-task-list__item">
-              <a class="app-task-list__task-name" href="check-eligibility/warning" aria-describedby="eligibility-completed">
+              <a class="app-task-list__task-name app-task-list--inactivelink" href="check-eligibility/warning" aria-describedby="eligibility-completed">
                 Check eligibility
               </a>
               {{ govukTag({
@@ -60,9 +60,9 @@
         <li>
           <h2 class="app-task-list__section">
             {% if data['renewal-or-new-application'] === "renewal" %}
-            <span class="app-task-list__section-number">1. </span> Prepare to renew
+            <span class="app-task-list__section-number">1. </span> Prepare reapplication
             {% else %}
-            <span class="app-task-list__section-number">2. </span> Prepare to apply
+            <span class="app-task-list__section-number">2. </span> Prepare application
             {% endif %}
           </h2>
           <ul class="app-task-list__items complete-before-submit">
