@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+{% set hasSaveClass = 'yes' %}
+
+{% set pageHeading = 'What is ' + your + ' spouse or partner\'s full name?' %}
+
+
+{% block pageTitle %}
+  {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block inner_content %}
+
+
+
+<form action="{{ formAction }}">
+
+  <h1 class="govuk-heading-l">{{pageHeading}}</h1>
+
+
+  {{ govukInput({
+    label: {
+      text: "Enter their full name"
+    },
+    id: "question-04",
+    name: "question-04"
+  }) }}
+
+  {{ govukButton({
+    "text": "Continue"
+  }) }}
+
+  <!-- Has save -->
+</form>
+
+      
+
+
+
+{% endblock %}

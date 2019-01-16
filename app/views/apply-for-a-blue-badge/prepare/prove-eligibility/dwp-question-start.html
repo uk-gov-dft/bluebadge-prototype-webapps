@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+{% set hasSaveClass = 'yes' %}
+
+{% set pageHeading = 'You\'ll now be asked some questions to help us verify your details with DWP' %}
+
+
+{% block pageTitle %}
+  {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block inner_content %}
+
+
+
+<form action="{{ formAction }}">
+
+  <h1 class="govuk-heading-l">{{pageHeading}}</h1>
+  
+  <p class="govuk-body">To answer these questions you'll need to know:</p>
+
+  <ul class="govuk-list govuk-list--bullet">
+    <li>{{your}} bank details</li>
+    <li>any previous addresses {{you}}'ve lived at</li>
+    <li>what {{you}} scored in {{your}} PIP assessment</li>
+    <li>details about {{your}} spouse or partner</li>
+  </ul>
+  
+  {{ govukButton({
+    "text": "Continue"
+  }) }}
+
+  <!-- Has save -->
+</form>
+
+      
+
+
+
+{% endblock %}

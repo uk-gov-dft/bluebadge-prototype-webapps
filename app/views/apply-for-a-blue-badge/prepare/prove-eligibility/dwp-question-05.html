@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+{% set hasSaveClass = 'yes' %}
+
+{% set pageHeading = 'How many points did ' + you + ' score in the planning and following a journey part of ' + your + ' PIP assessment?' %}
+
+
+{% block pageTitle %}
+  {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block inner_content %}
+
+
+
+<form action="{{ formAction }}">
+
+  <h1 class="govuk-heading-l">{{pageHeading}}</h1>
+
+
+  {{ govukInput({
+    label: {
+      text: "Enter the points " + you + " scored"
+    },
+    id: "question-05",
+    name: "question-05"
+  }) }}
+
+  {{ govukButton({
+    "text": "Continue"
+  }) }}
+
+  <!-- Has save -->
+</form>
+
+      
+
+
+
+{% endblock %}

@@ -596,6 +596,56 @@ router.get('/prove-eligibility/upload-benefit', function (req, res) {
   res.render(proveEligibilityTemplatePath+'upload-benefit')
 });
 
+// DWP
+
+router.get('/prove-eligibility/dwp-permission', function(req, res) {
+  res.locals.formAction = '/apply-for-a-blue-badge/prove-eligibility/dwp-permission-backend';
+  res.render(proveEligibilityTemplatePath+'dwp-permission');
+});
+
+router.get('/prove-eligibility/dwp-permission-backend', function(req, res) {
+  if (req.session.data['dwp-permission'] === 'yes') {
+    res.redirect(proveEligibilityPath+'dwp-question-start');
+  } else {
+    res.redirect(proveEligibilityPath);
+  }
+});
+
+router.get('/prove-eligibility/dwp-question-start', function(req, res) {
+  res.locals.formAction = '/apply-for-a-blue-badge/prove-eligibility/dwp-question-01';
+  res.render(proveEligibilityTemplatePath+'dwp-question-start');
+});
+
+router.get('/prove-eligibility/dwp-question-01', function(req, res) {
+  res.locals.formAction = '/apply-for-a-blue-badge/prove-eligibility/dwp-question-02';
+  res.render(proveEligibilityTemplatePath+'dwp-question-01');
+});
+
+router.get('/prove-eligibility/dwp-question-02', function(req, res) {
+  res.locals.formAction = '/apply-for-a-blue-badge/prove-eligibility/dwp-question-03';
+  res.render(proveEligibilityTemplatePath+'dwp-question-02');
+});
+
+router.get('/prove-eligibility/dwp-question-03', function(req, res) {
+  res.locals.formAction = '/apply-for-a-blue-badge/prove-eligibility/dwp-question-04';
+  res.render(proveEligibilityTemplatePath+'dwp-question-03');
+});
+
+router.get('/prove-eligibility/dwp-question-04', function(req, res) {
+  res.locals.formAction = '/apply-for-a-blue-badge/prove-eligibility/dwp-question-05';
+  res.render(proveEligibilityTemplatePath+'dwp-question-04');
+});
+
+router.get('/prove-eligibility/dwp-question-05', function(req, res) {
+  res.locals.formAction = '/apply-for-a-blue-badge/prove-eligibility/dwp-question-end';
+  res.render(proveEligibilityTemplatePath+'dwp-question-05');
+});
+
+router.get('/prove-eligibility/dwp-question-end', function(req, res) {
+  res.locals.formAction = '/apply-for-a-blue-badge/task-list?benefit-completed=true';
+  res.render(proveEligibilityTemplatePath+'dwp-question-end');
+});
+
 // Registered blind (severely sight impaired)
 
 router.get('/prove-eligibility/are-you-registered-blind', function(req, res) {

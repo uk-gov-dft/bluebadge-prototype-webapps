@@ -1,0 +1,92 @@
+{% extends "layout.html" %}
+{% set hasSaveClass = 'yes' %}
+
+{% set pageHeading = 'Have ' + you + ' lived at any other addresses in the last 3 years?' %}
+
+
+{% block pageTitle %}
+  {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block inner_content %}
+
+
+
+<form action="{{ formAction }}">
+
+  {% set addressYesHtml %}
+
+  {% call govukFieldset({
+    "legend": {
+        "text": "Enter the details of one of those addresses",
+        "classes": "govuk-fieldset__legend--m",
+        "isPageHeading": false
+      }
+  }) %}
+
+    {{ govukInput({
+    id: "prevaddress-firstline",
+    name: "prevaddress-firstline",
+    type: "text",
+    label: {
+      text: "First line of address"
+    }
+  }) }}
+
+  {{ govukInput({
+    "label": {
+      "html": 'Postcode'
+    },
+    "classes": 'govuk-input--width-10',
+    "id": "prevaddress-postcode",
+    "name": "prevaddress-postcode"
+  }) }}
+
+  {% endcall %}
+
+  {% endset -%}
+
+
+  {{ govukRadios({
+    "idPrefix": "dwp-question-01",
+    "name": "dwp-question-01",
+    "attributes": {
+      "data-catchoption-label": true
+    },
+    "fieldset": {
+      "legend": {
+        "text": pageHeading,
+        "isPageHeading": true,
+        "classes": 'govuk-fieldset__legend--l'
+      }
+    },
+    "items": [
+      {
+        "value": "yes",
+        "text": "Yes",
+        "conditional": {
+          "html": addressYesHtml
+        }
+      },
+      {
+        "value": "no",
+        "text": "No"
+      }
+
+    ]
+  }) }}
+
+  <div id="hiddenCaughtInputs"></div>
+  
+  {{ govukButton({
+    "text": "Continue"
+  }) }}
+
+  <!-- Has save -->
+</form>
+
+      
+
+
+
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+{% set hasSaveClass = 'yes' %}
+
+{% set pageHeading = 'What bank is ' + your + ' benefit paid into?' %}
+
+
+{% block pageTitle %}
+  {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block inner_content %}
+
+
+
+<form action="{{ formAction }}">
+
+  <h1 class="govuk-heading-l">{{pageHeading}}</h1>
+
+
+  {{ govukInput({
+    id: "question-02",
+    name: "question-02",
+    type: "text",
+    label: {
+      text: "Enter the name of the bank"
+    }
+  }) }}
+
+  {{ govukButton({
+    "text": "Continue"
+  }) }}
+
+  <!-- Has save -->
+</form>
+
+      
+
+
+
+{% endblock %}
