@@ -61,6 +61,15 @@
   }
 }
 
+.govuk-check-your-answers.no-border {
+  .govuk-check-your-answers__contents, dd {
+    border: none;
+  }
+  .govuk-table {
+    margin-bottom: 0;
+  }
+}
+
 .summary-trigger + .govuk-details .govuk-details__summary {
   display: none;
 }

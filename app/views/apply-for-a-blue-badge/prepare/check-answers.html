@@ -24,6 +24,10 @@
   {% if data['disability'] === 'problems-walking' %}
   <section class="split-section">
     <h2 class="govuk-heading-m">Walking difficulties</h2>
+
+    <!-- <div class="govuk-inset-text">
+      <p class="govuk-body">It's especially important to fill this section out in as much detail as possible.</p>
+    </div> -->
     
     {% include "includes/in-check-walking.html" %}
   </section>
@@ -33,7 +37,39 @@
   <section class="split-section">
     <h2 class="govuk-heading-m">Treatments</h2>
 
+    <dl class="govuk-check-your-answers govuk-check-your-answers--short no-border">
     
+      <div class="govuk-check-your-answers__contents">
+        <!-- <dt class="govuk-check-your-answers__question">
+          {{your|capitalize}} treatments
+        </dt> -->
+        <dd class="govuk-check-your-answers__answer">
+          <table class="govuk-table">
+            <thead class="govuk-table__head">
+              <tr class="govuk-table__row">
+                <th class="govuk-table__header" scope="col">Description</th>
+                <th class="govuk-table__header" scope="col">When</th>
+              </tr>
+            </thead>
+            <tbody class="govuk-table__body">
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell">Physio</td>
+                <td class="govuk-table__cell ">Every week</td>
+              </tr>
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell">Hip replacement</td>
+                <td class="govuk-table__cell ">2 years ago</td>
+              </tr>
+            </tbody>
+          </table>
+        </dd>
+        <dd class="govuk-check-your-answers__change">
+          <a href="/apply-for-a-blue-badge/prove-identity?change=true">
+            Edit<span class="govuk-visually-hidden"> {{your}} treatments</span>
+          </a>
+        </dd>
+      </div>
+    </dl>
   </section>
   {% endif %}
 
@@ -41,7 +77,43 @@
   <section class="split-section">
     <h2 class="govuk-heading-m">Medication</h2>
 
+    <dl class="govuk-check-your-answers govuk-check-your-answers--short no-border">
     
+      <div class="govuk-check-your-answers__contents">
+        <!-- <dt class="govuk-check-your-answers__question">
+          {{your|capitalize}} treatments
+        </dt> -->
+        <dd class="govuk-check-your-answers__answer">
+          <table class="govuk-table">
+            <thead class="govuk-table__head">
+              <tr class="govuk-table__row">
+                <th class="govuk-table__header" scope="col">Name</th>
+                <th class="govuk-table__header" scope="col">Type</th>
+                <th class="govuk-table__header" scope="col">Dosage</th>
+                <th lass="govuk-table__header" scope="col"></th>
+              </tr>
+            </thead>
+            <tbody class="govuk-table__body">
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell">Paracetamol</td>
+                <td class="govuk-table__cell ">Prescribed</td>
+                <td class="govuk-table__cell ">2 tablets</td>
+              </tr>
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell">Tramadol</td>
+                <td class="govuk-table__cell ">Prescribed</td>
+                <td class="govuk-table__cell ">3 tablets</td>
+              </tr>
+            </tbody>
+          </table>
+        </dd>
+        <dd class="govuk-check-your-answers__change">
+          <a href="/apply-for-a-blue-badge/prove-identity?change=true">
+            Edit<span class="govuk-visually-hidden"> {{your}} medication</span>
+          </a>
+        </dd>
+      </div>
+    </dl>
   </section>
   {% endif %}
 
@@ -49,7 +121,39 @@
   <section class="split-section">
     <h2 class="govuk-heading-m">Healthcare professionals</h2>
 
+    <dl class="govuk-check-your-answers govuk-check-your-answers--short no-border">
     
+      <div class="govuk-check-your-answers__contents">
+        <!-- <dt class="govuk-check-your-answers__question">
+          {{your|capitalize}} treatments
+        </dt> -->
+        <dd class="govuk-check-your-answers__answer">
+          <table class="govuk-table">
+            <thead class="govuk-table__head">
+              <tr class="govuk-table__row">
+                <th class="govuk-table__header" scope="col">Name</th>
+                <th class="govuk-table__header" scope="col">Hospital or health centre</th>
+              </tr>
+            </thead>
+            <tbody class="govuk-table__body">
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell">Dr Sidhu</td>
+                <td class="govuk-table__cell ">Barnsley Medical Centre</td>
+              </tr>
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell">Mr Watson</td>
+                <td class="govuk-table__cell ">Leeds General Hospital</td>
+              </tr>
+            </tbody>
+          </table>
+        </dd>
+        <dd class="govuk-check-your-answers__change">
+          <a href="/apply-for-a-blue-badge/prove-identity?change=true">
+            Edit<span class="govuk-visually-hidden"> {{your}} HCPs</span>
+          </a>
+        </dd>
+      </div>
+    </dl>
   </section>
   {% endif %}
 
@@ -88,7 +192,7 @@
         </dd>
         <dd class="govuk-check-your-answers__change">
           <a href="/apply-for-a-blue-badge/prove-identity?change=true">
-            Change<span class="govuk-visually-hidden"> proof of identity</span>
+            Edit<span class="govuk-visually-hidden"> proof of identity</span>
           </a>
         </dd>
       </div>
@@ -105,7 +209,7 @@
           </dd>
           <dd class="govuk-check-your-answers__change">
             <a href="/apply-for-a-blue-badge/prove-eligibility?change=true">
-              Change<span class="govuk-visually-hidden"> proof of PIP</span>
+              Edit<span class="govuk-visually-hidden"> proof of PIP</span>
             </a>
           </dd>
         </div>
@@ -121,7 +225,7 @@
           </dd>
           <dd class="govuk-check-your-answers__change">
             <a href="/apply-for-a-blue-badge/prove-eligibility?change=true">
-              Change<span class="govuk-visually-hidden"> proof of PIP</span>
+              Edit<span class="govuk-visually-hidden"> proof of PIP</span>
             </a>
           </dd>
         </div>
@@ -137,7 +241,7 @@
           </dd>
           <dd class="govuk-check-your-answers__change">
             <a href="/apply-for-a-blue-badge/prove-eligibility?change=true">
-              Change<span class="govuk-visually-hidden"> proof of DLA</span>
+              Edit<span class="govuk-visually-hidden"> proof of DLA</span>
             </a>
           </dd>
         </div>
@@ -153,7 +257,7 @@
           </dd>
           <dd class="govuk-check-your-answers__change">
             <a href="/apply-for-a-blue-badge/prove-eligibility?change=true">
-              Change<span class="govuk-visually-hidden"> proof of AFCS</span>
+              Edit<span class="govuk-visually-hidden"> proof of AFCS</span>
             </a>
           </dd>
         </div>
@@ -169,7 +273,7 @@
           </dd>
           <dd class="govuk-check-your-answers__change">
             <a href="/apply-for-a-blue-badge/prove-eligibility?change=true">
-              Change<span class="govuk-visually-hidden"> proof of WPMS</span>
+              Edit<span class="govuk-visually-hidden"> proof of WPMS</span>
             </a>
           </dd>
         </div>
@@ -179,7 +283,23 @@
 
   <section class="split-section">
     <h2 class="govuk-heading-m">Photo</h2>
-
+    
+    <dl class="govuk-check-your-answers govuk-check-your-answers--short">
+    
+      <div class="govuk-check-your-answers__contents">
+        <dt class="govuk-check-your-answers__question">
+          {{your|capitalize}} photo
+        </dt>
+        <dd class="govuk-check-your-answers__answer">
+          <img src="{{asset_path}}/images/margaret.png" alt="">
+        </dd>
+        <dd class="govuk-check-your-answers__change">
+          <a href="/apply-for-a-blue-badge/prove-identity?change=true">
+            Edit<span class="govuk-visually-hidden"> {{your}} photo</span>
+          </a>
+        </dd>
+      </div>
+    </dl>
 
   </section>
   
