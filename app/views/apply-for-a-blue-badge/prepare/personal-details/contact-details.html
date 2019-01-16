@@ -19,7 +19,7 @@
 
   {{ govukInput({
     "label": {
-      "text": "Your full name"
+      "text": "Contact's full name"
     },
     "hint": {
       "text": "So that we know who to speak to about the application"
@@ -48,6 +48,54 @@
 
   {{ govukInput({
     "label": {
+      "text": "Email address"
+    },
+    "hint": {
+      "text": "This will be used for updates about " + your +" "+ application + " and to notify you when the badge is due to expire"
+    },
+    id: "email-address",
+    name: "email-address",
+    type: "text",
+    value: data['email-address']
+  }) }}
+
+  <details class="govuk-details">
+    <summary class="govuk-details__summary">
+      <span class="govuk-details__summary-text">
+        Continue without providing an email address
+      </span>
+    </summary>
+    <div class="govuk-details__text">
+      {{ govukRadios({
+        idPrefix: "why-no-email",
+        name: "why-no-email",
+        fieldset: {
+          legend: {
+            text: "Why aren't you providing an email address?",
+            isPageHeading: false,
+            classes: "govuk-fieldset__legend--s"
+          }
+        },
+        items: [
+          {
+            value: "dont-have",
+            text: "I don't have one"
+          },
+          {
+            value: "dont-want",
+            text: "I don't want to provide it"
+          },
+          {
+            value: "other",
+            text: "Other"
+          }
+        ]
+      }) }}
+    </div>
+  </details>
+
+  {{ govukInput({
+    "label": {
       "text": "Main phone number"
     },
     "hint": {
@@ -58,11 +106,6 @@
     name: "primary-phone-number",
     type: "tel",
     value: data['primary-phone-number']
-  }) }}
-
-  {{ govukDetails({
-    summaryText: "Why do we need a phone number?",
-    text: "We will call the phone number entered here to speak to you about " + your + " " + application + " or to check if we suspect that someone else is using " + your + " badge."
   }) }}
 
   {{ govukInput({
@@ -76,18 +119,7 @@
     value: data['secondary-phone-number']
   }) }}
 
-  {{ govukInput({
-    "label": {
-      "text": "Email address (optional)"
-    },
-    "hint": {
-      "text": "For updates about this " + application
-    },
-    id: "email-address",
-    name: "email-address",
-    type: "text",
-    value: data['email-address']
-  }) }}
+  
   
   {{ govukButton({
     "text": submitLabel

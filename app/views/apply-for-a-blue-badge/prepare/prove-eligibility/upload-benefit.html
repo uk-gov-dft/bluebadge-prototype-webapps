@@ -80,9 +80,14 @@
       <li>assessment scores (second to last page)</li>
       <li>mobility scores (last page)</li>
     </ul>
+
+    <a href="#" data-summary-trigger="pipSummary" class="summary-trigger">
+      <img src="{{ asset_path }}images/PIP-3pages.svg" alt="">
+      <span class="summary-trigger-text">What pages do I need to upload?</span>
+    </a>
     
     <details class="govuk-details">
-      <summary class="govuk-details__summary">
+      <summary class="govuk-details__summary" id="pipSummary">
         <span class="govuk-details__summary-text">
           What pages do I need to upload?
         </span>
@@ -161,4 +166,17 @@
 
 {% block pageScripts %}
   <script src="{{ asset_path }}javascripts/upload-file.js"></script>
+
+  <script>
+    $('[data-summary-trigger]').on('click', function(e) {
+      var $this = $(this),
+          thisTarget = $this.attr('data-summary-trigger');
+
+      $('#' + thisTarget).click();
+
+      // $this.blur();
+
+      e.preventDefault();
+    });
+  </script>
 {% endblock %}

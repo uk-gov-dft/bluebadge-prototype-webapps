@@ -49,6 +49,22 @@
   margin-bottom: 30px;
 }
 
+.summary-trigger {
+  @include govuk-font(19);
+  img {
+    display: block;
+    margin-bottom: 10px;
+    max-width: 80px;
+  }
+  &:focus {
+    outline: none;
+  }
+}
+
+.summary-trigger + .govuk-details .govuk-details__summary {
+  display: none;
+}
+
 .countdown-timer {
   @include govuk-font(80);
   font-size: 120px !important;
