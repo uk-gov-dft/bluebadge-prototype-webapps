@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% set hasSaveClass = 'yes' %}
 
-{% set pageHeading = "Have " + you + " had any treatments for "+ your +" condition?" %}
+{% set pageHeading = "Has " + your + " condition required any treatments?" %}
 
 {% block pageTitle %}
   {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
@@ -65,7 +65,7 @@
       }
     },
     "hint": {
-      "text": "List any surgeries, treatments or clinics " + you + "'ve attended for " + your + " condition"
+      "text": "These could have been in the last 10 years, ongoing or any treatment " + you + " have booked in the next 3 years. List any surgeries, treatments or clinics that are to do with " + your + " condition."
     },
     "items": [
       {

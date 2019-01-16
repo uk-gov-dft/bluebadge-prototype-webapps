@@ -789,19 +789,9 @@ router.get('/prove-eligibility/where-can-you-walk', function(req, res) {
 });
 
 router.get('/prove-eligibility/how-quickly-do-you-walk', function(req, res) {
-  if(req.session.data['nation'] === "scotland" || req.session.data['nation'] === "wales") {
-    Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/apply-for-a-blue-badge/prove-eligibility/condition-improve','check-walking'))
-  } else {
-    Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/apply-for-a-blue-badge/prove-eligibility/check-walking','check-walking'))
-  }
+  Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/apply-for-a-blue-badge/prove-eligibility/check-walking','check-walking'))
   res.render(proveEligibilityTemplatePath+'how-quickly-do-you-walk');
 });
-
-router.get('/prove-eligibility/condition-improve', function(req, res) {
-  Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/apply-for-a-blue-badge/prove-eligibility/check-walking','check-walking'))
-  res.render(proveEligibilityTemplatePath+'condition-improve');
-});
-
 
 // Both arms
 
@@ -926,9 +916,19 @@ router.get('/prove-eligibility/add-treatment', function(req, res) {
 });
 
 router.get('/prove-eligibility/create-treatment', function(req, res) {
+  var treatmentdate = "";
+
+  if(req.session.data['treatment-when'] === "past") {
+    treatmentdate = req.session.data['past-date'];
+  } else if(req.session.data['treatment-when'] === "ongoing") {
+    treatmentdate = req.session.data['present-date'];
+  } else if(req.session.data['treatment-when'] === "future") {
+    treatmentdate = req.session.data['future-date'] + " (Due to improve: " +  req.session.data['future-improve'] + ")";
+  }
+
   var treatment = {
     "description": req.session.data['treatment-description'],
-    "date": req.session.data['treatment-date']
+    "date": treatmentdate
   }
 
   if (req.session.data['treatments-array']) {
@@ -937,7 +937,7 @@ router.get('/prove-eligibility/create-treatment', function(req, res) {
     req.session.data['treatments-array'] = [treatment];
   }
 
-  delete req.session.data['treatment-description','treatment-date'];
+  delete req.session.data['treatment-description', 'past-date', 'present-date', 'future-date', 'future-improve'];
   res.redirect('/apply-for-a-blue-badge/prove-eligibility/list-treatments');
 });
 

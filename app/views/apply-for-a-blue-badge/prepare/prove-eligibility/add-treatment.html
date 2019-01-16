@@ -23,18 +23,93 @@
 
   {{ govukDetails({
     summaryText: "What counts as treatment?",
-    text: "Anything relevant to " + your + " condition, that " + you + "'ve seen a professional for. For example, hip replacement operation, physiotherapy or  pain clinic."
+    text: "Anything relevant to " + your + " condition that " + you + "'ve seen (or are due to see) a professional for. For example, hip replacement operation, physiotherapy or  pain clinic."
   }) }}
 
-  {{ govukInput({
-    "label": {
-      "text": "When did you have this treatment?"
+  {% set treatmentPastHtml %}
+    {{ govukInput({
+      id: "past-date",
+      name: "past-date",
+      type: "text",
+      label: {
+        text: "When was the treatment?"
+      },
+      hint: {
+        text: "For example, 16 May 2017 or 6 months ago"
+      }
+    }) }}
+  {% endset -%}
+
+  {% set treatmentOngoingHtml %}
+    {{ govukInput({
+      id: "present-date",
+      name: "present-date",
+      type: "text",
+      label: {
+        text: "How often do you have the treatment?"
+      },
+      hint: {
+        text: "For example, every week or once a month"
+      }
+    }) }}
+  {% endset -%}
+
+  {% set treatmentFutureHtml %}
+    {{ govukInput({
+      id: "future-date",
+      name: "future-date",
+      type: "text",
+      label: {
+        text: "When are " + you + " due to have the treatment?"
+      },
+      hint: {
+        text: "For example, 12 July 2021"
+      }
+    }) }}
+
+    {{ govukInput({
+      id: "future-improve",
+      name: "future-improve",
+      type: "text",
+      label: {
+        text: "Do " + you + " expect " + your + " condition to improve after having it?"
+      }
+    }) }}
+  {% endset -%}
+
+  {{ govukRadios({
+    idPrefix: "treatment-when",
+    name: "treatment-when",
+    fieldset: {
+      legend: {
+        text: "Date of the treatment",
+        isPageHeading: false,
+        classes: "govuk-fieldset__legend--m"
+      }
     },
-    "hint": {
-      "html": "For example, 12 May 2016 or 6 months ago"
-    },
-    "classes": 'govuk-!-width-two-thirds',
-    "name": "treatment-date"
+    items: [
+      {
+        value: "past",
+        text: "Within the last 10 years",
+        conditional: {
+          html: treatmentPastHtml
+        }
+      },
+      {
+        value: "ongoing",
+        text: "Ongoing",
+        conditional: {
+          html: treatmentOngoingHtml
+        }
+      },
+      {
+        value: "future",
+        text: "It's due to be in the next 3 years",
+        conditional: {
+          html: treatmentFutureHtml
+        }
+      }
+    ]
   }) }}
 
   {{ govukButton({
