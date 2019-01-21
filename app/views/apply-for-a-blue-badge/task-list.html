@@ -356,6 +356,22 @@
           </h2>
           <ul class="app-task-list__items">
             <li class="app-task-list__item">
+              <div class="task-list-deactivated-item"><p class="govuk-body-s">Check your answers</p></div>
+              <a class="app-task-list__task-name" href="check-answers" aria-describedby="check-answers-completed">
+                Check your answers
+              </a>
+              {% if data['check-answers-completed'] == "true" or 
+                    data['all-completed'] == "true" %}
+              {{ govukTag({
+                text: 'Completed',
+                classes: 'app-task-list__task-completed',
+                attributes: {
+                  'id': 'check-answers-completed'
+                }
+              }) }}
+              {% endif %}
+            </li>
+            <li class="app-task-list__item">
               <div class="task-list-deactivated-item"><p class="govuk-body-s">Read declaration</p></div>
               <a class="app-task-list__task-name" href="apply/declaration" aria-describedby="declaration-completed">
                 Read declaration

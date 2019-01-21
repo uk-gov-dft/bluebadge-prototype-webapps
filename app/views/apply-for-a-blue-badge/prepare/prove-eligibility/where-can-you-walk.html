@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% set hasSaveClass = 'yes' %}
 
-{% set pageHeading = 'Where can ' + you + ' walk to?' %}
+{% set pageHeading = 'Where can ' + you + ' walk from and to?' %}
 
 {% if data['mobility-aids-array'].length and data['use-mobility-aid'] !== 'no' %}
 {% set usingMobilityAid = ', using a mobility aid' %}
@@ -23,10 +23,10 @@
 
   {{ govukInput({
     label: {
-      text: "Describe somewhere " + you + " can walk to and from" + usingMobilityAid
+      text: "Describe somewhere " + you + " can walk from and to" + usingMobilityAid
     },
     hint: {
-      text: 'For example, from my home to the Post office on the High Street'
+      text: 'Try to use landmarks or house numbers. For example, from my home to the Post office on the High Street, or from my home to No. 36 on my street'
     },
     id: "walk-location",
     name: "walk-location",
@@ -38,7 +38,7 @@
       text: "How long does it take " + youOrThem + "?"
     },
     hint: {
-      text: 'For example, 10 minutes'
+      text: 'For example, 8 minutes'
     },
     id: "how-long-takes-you",
     name: "how-long-takes-you",
