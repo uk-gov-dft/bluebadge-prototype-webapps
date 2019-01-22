@@ -308,19 +308,49 @@
     "href": "order-a-badge/processing"
   }) }}
 
-<p><a href="">Export application</a></p>
-
-  {{ govukDetails({
-    "summaryText": "Delete application",
-    "html": '
-              <form action="all-applications">
-                <p>Are you sure you want to delete this application?</p>
-                <input id="success" name="success" type="hidden" value="Application deleted">
-                <input value="Yes, delete application" type="submit" class="govuk-button">
-              </form>
-              <p class="govuk-body">
-                <a href="#">No, don\'t delete the application</a>
-              </p>' 
-  }) }}
+  <div class="uniform-links">
+    <p><a href="">Export application</a></p>
+    
+    <details class="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">
+          Delete application
+        </span>
+      </summary>
+      <div class="govuk-details__text">
+        <form action="new-applications">
+          <p>Are you sure you want to delete this application?</p>
+          <input id="success" name="success" type="hidden" value="Application deleted">
+          <input value="Yes, delete application" type="submit" class="govuk-button">
+        </form>
+        <p class="govuk-body">
+          <a href="#">No, don't delete the application</a>
+        </p>
+      </div>
+    </details>
+    
+    <details class="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">
+          Transfer application
+        </span>
+      </summary>
+      <div class="govuk-details__text">
+        <form action="new-applications">
+          <input id="success" name="success" type="hidden" value="Application transferred">
+          <div class="govuk-form-group">
+            <label for="issuingAuthPicker" class="govuk-label">Choose local authority to transfer the application to</label>
+            <select name="issuing-auth" class="govuk-select" id="issuingAuthPicker">
+              {% include "includes/issuing-auth-options.html" %}
+            </select>
+          </div>
+          <input value="Transfer application" type="submit" class="govuk-button">
+        </form>
+        <p class="govuk-body">
+          <a href="#">No, don't transfer the application</a>
+        </p>
+      </div>
+    </details>
+  </div>
 
 {% endblock %}

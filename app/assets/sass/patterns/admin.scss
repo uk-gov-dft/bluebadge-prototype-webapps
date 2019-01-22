@@ -227,6 +227,15 @@
 			@include govuk-font(19);
 		}
 	}
+
+	.uniform-links {
+	  p, details, summary {
+	 	margin: 0;   
+	  }
+	  p, summary {
+	  	margin-bottom: 15px;
+	  }
+	}
 }
 
 .govuk-table__cell--has-tag {
