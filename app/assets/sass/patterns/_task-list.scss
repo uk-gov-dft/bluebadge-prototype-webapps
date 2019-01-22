@@ -53,9 +53,9 @@ $task-list-indent: 35px;
 
 .app-task-list__item {
   border-bottom: 1px solid $govuk-border-colour;
-  padding-top: govuk-spacing(2);
-  padding-bottom: govuk-spacing(2);
-  @include govuk-clearfix
+  padding-top: govuk-spacing(1);
+  padding-bottom: govuk-spacing(1);
+  @include govuk-clearfix;
 }
 
 .app-task-list__item:first-child {
@@ -63,10 +63,13 @@ $task-list-indent: 35px;
 }
 
 .app-task-list__task-name {
-  width: 33.3%;
+  padding-top: govuk-spacing(1);
+  padding-bottom: govuk-spacing(1);
+  width: 60%;
   float: left;
 }
 
 .app-task-list__task-completed {
+  margin-top: 3px;
   float: right;
 }
