@@ -66,28 +66,20 @@
       </span>
     </summary>
     <div class="govuk-details__text">
-      {{ govukRadios({
+      {{ govukCheckboxes({
         idPrefix: "why-no-email",
         name: "why-no-email",
         fieldset: {
           legend: {
-            text: "Why aren't you providing an email address?",
+            text: "If you don't provide an email address we won't be able to send updates on " + your + " application",
             isPageHeading: false,
             classes: "govuk-fieldset__legend--s"
           }
         },
         items: [
           {
-            value: "dont-have",
-            text: "I don't have one"
-          },
-          {
-            value: "dont-want",
-            text: "I don't want to provide it"
-          },
-          {
-            value: "other",
-            text: "Other"
+            value: "noemail-confirm",
+            text: "I understand and want to continue without an email address"
           }
         ]
       }) }}
