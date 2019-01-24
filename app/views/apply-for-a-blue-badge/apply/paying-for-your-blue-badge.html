@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 
-{% set pageHeading = 'Pay for your Blue Badge' %}
+{% set pageHeading = 'Pay for the Blue Badge' %}
 
 {% block pageTitle %}
   {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
@@ -12,7 +12,7 @@
 
 <h1 class="govuk-heading-l">{{pageHeading}}</h1>
 
-<p class="govuk-body-l">{{you | capitalize}}'ll have to pay a {{feePrice}} issue fee for {{your}} badge. {{data['council-name'] | title}} will reimburse this fee if {{your}} application is unsuccessful.</p>
+<p class="govuk-body-l">{{you | capitalize}} need to pay a {{feePrice}} issue fee. <br> {{data['council-name'] | title}} will reimburse this fee if {{your}} application is unsuccessful.</p>
 
 <form action="/apply-for-a-blue-badge/paying-for-your-blue-badge-backend" novalidate="">
 

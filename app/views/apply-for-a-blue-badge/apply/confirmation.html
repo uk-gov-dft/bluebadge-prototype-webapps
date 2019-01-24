@@ -24,7 +24,7 @@
 }}
 
 {% if data['pay-when'] === 'now' and data['nation'] !== "wales" %}
-<p class="govuk-body">You've paid a {{feePrice}} issue fee.</p>
+<p class="govuk-body">You've paid the {{feePrice}} issue fee.</p>
 {% endif %}
 
 <p class="govuk-body">We've sent confirmation of this {{application}} to 
@@ -117,7 +117,6 @@
 
 <h2 class="govuk-heading-m">When to contact us</h2>
 
-<p class="govuk-body">{{your | capitalize}} {{application}} has been successfully submitted.</p> 
 <p class="govuk-body">If {{you}} think {{you}} have made a mistake, or need to change something in {{your}} {{application}}, {{you}} should <a href="https://www.localcouncil.gov.uk">contact {{data['council-name']}} through their website</a>.</p>
 
 {% endblock %}
