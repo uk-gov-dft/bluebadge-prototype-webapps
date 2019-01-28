@@ -1,0 +1,66 @@
+{% extends "layout.html" %}
+
+{% set pageHeading = 'Payment unsuccessful' %}
+
+{% block pageTitle %}
+  {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block inner_content %}
+
+
+<form action="/apply-for-a-blue-badge/payment-failed-backend" novalidate="">
+
+	<h1 class="govuk-heading-l">{{pageHeading}}</h1>
+
+	<div class="govuk-inset-text">
+	  <p class="govuk-body">No money has been taken from your account. Contact your bank for more details.</p>
+	</div>
+
+	{% set paymentRetryHtml %}
+
+	<p class="govuk-body">We'll take you back to the payment screen to re-enter your details.</p>
+	  
+	{% endset -%}
+
+	{% set retryNoHtml %}
+
+	<p class="govuk-body">Your application will be submitted without payment. Your local council will contact you for payment.</p>
+	
+	{% endset -%}
+
+	{{ govukRadios({
+	  idPrefix: "payment-retry",
+	  name: "payment-retry",
+	  fieldset: {
+	    legend: {
+	      text: "Do you want to try again?",
+	      isPageHeading: false,
+	      classes: "govuk-fieldset__legend--m"
+	    }
+	  },
+	  items: [
+	    {
+	      value: "yes",
+	      text: "Yes, try the payment again",
+	      conditional: {
+	      	html: paymentRetryHtml
+	      }
+	    },
+	    {
+	      value: "no",
+	      text: "No, submit and pay later",
+	      conditional: {
+	      	html: retryNoHtml
+	      }
+	    }
+	  ]
+	}) }}
+
+	{{ govukButton({
+	  text: "Continue"
+	}) }}
+
+</form>
+
+{% endblock %}

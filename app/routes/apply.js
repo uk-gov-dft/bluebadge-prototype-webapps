@@ -1186,6 +1186,16 @@ router.get('/paying-for-your-blue-badge-backend', function(req, res) {
   };
 });
 
+router.get('/payment-failed-backend', function(req, res) {
+  if (req.query['payment-retry'] === 'yes') {
+    req.session.data['pay-when'] = 'now';
+    res.redirect('https://products.payments.service.gov.uk/pay/6082e5de8f0542ed8ae20ef9b9feaeac');
+  } else {
+    req.session.data['pay-when'] = 'later';
+    res.redirect('/apply-for-a-blue-badge/apply/confirmation');
+  };
+});
+
 router.get('/confirmation', function (req, res) {
   res.render('apply-for-a-blue-badge/apply/confirmation')
 })
