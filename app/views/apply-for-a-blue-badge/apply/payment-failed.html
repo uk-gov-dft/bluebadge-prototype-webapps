@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 
-{% set pageHeading = "You have not paid for the badge" %}
+{% set pageHeading = "You have not paid for the badge, do you want to try again?" %}
 
 {% block pageTitle %}
   {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
@@ -11,21 +11,21 @@
 
 <form action="/apply-for-a-blue-badge/payment-failed-backend" novalidate="">
 
-	<h1 class="govuk-heading-l">{{pageHeading}}</h1>
+	<!-- <h1 class="govuk-heading-l">{{pageHeading}}</h1>
 
 	<div class="govuk-inset-text">
 	  <p class="govuk-body">Something went wrong. You still need to pay the badge issue fee.</p>
 	</div>
-
+ -->
 	{% set paymentRetryHtml %}
 
-	<p class="govuk-body">We'll take you back to the payment screen to re-enter your details.</p>
+	<p class="govuk-body">We'll take you back to re-enter your payment details.</p>
 	  
 	{% endset -%}
 
 	{% set retryNoHtml %}
 
-	<p class="govuk-body">Your application will be submitted without payment. Your local council will contact you for payment.</p>
+	<p class="govuk-body">Your application will be submitted without payment.</p>
 	
 	{% endset -%}
 
@@ -34,25 +34,19 @@
 	  name: "payment-retry",
 	  fieldset: {
 	    legend: {
-	      text: "Do you want to try again?",
-	      isPageHeading: false,
-	      classes: "govuk-fieldset__legend--m"
+	      text: pageHeading,
+	      isPageHeading: true,
+	      classes: "govuk-fieldset__legend--l"
 	    }
 	  },
 	  items: [
 	    {
 	      value: "yes",
-	      text: "Yes, try the payment again",
-	      conditional: {
-	      	html: paymentRetryHtml
-	      }
+	      text: "Yes, re-enter payment details"
 	    },
 	    {
 	      value: "no",
-	      text: "No, submit and pay later",
-	      conditional: {
-	      	html: retryNoHtml
-	      }
+	      text: "No, submit and pay later"
 	    }
 	  ]
 	}) }}

@@ -13,21 +13,10 @@
 
 <form action="{{ formAction }}">
 
-  {% set somethingHtml %}
-    {{ govukTextarea({
-      "label": {
-        "text": "Give a description"
-      },
-      id: "something-description",
-      name: "something-description",
-      rows: 2
-    }) }}
-  {% endset -%}
-
   {% set painHtml %}
     {{ govukTextarea({
       "label": {
-        "text": "Describe when " + you + " get the pain"
+        "text": "Describe when " + you + " get excessive pain"
       },
       id: "pain-question",
       name: "pain-question",
@@ -64,7 +53,7 @@
   {% set dangerHtml %}
     {{ govukTextarea({
       "label": {
-        "text": "How is it dangerous?"
+        "text": "How is walking dangerous?"
       },
       id: "danger-question",
       name: "danger-question",
@@ -79,6 +68,17 @@
       },
       id: "planning-question",
       name: "planning-question",
+      rows: 2
+    }) }}
+  {% endset -%}
+
+  {% set somethingHtml %}
+    {{ govukTextarea({
+      "label": {
+        "text": "What is it about " + your + " condition that causes " + youOrThem + " difficulty walking?"
+      },
+      id: "something-description",
+      name: "something-description",
       rows: 2
     }) }}
   {% endset -%}
