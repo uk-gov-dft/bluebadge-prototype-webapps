@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 
-{% set pageHeading = 'Payment unsuccessful' %}
+{% set pageHeading = "You have not paid for the badge" %}
 
 {% block pageTitle %}
   {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
@@ -14,7 +14,7 @@
 	<h1 class="govuk-heading-l">{{pageHeading}}</h1>
 
 	<div class="govuk-inset-text">
-	  <p class="govuk-body">No money has been taken from your account. Contact your bank for more details.</p>
+	  <p class="govuk-body">Something went wrong. You still need to pay the badge issue fee.</p>
 	</div>
 
 	{% set paymentRetryHtml %}
