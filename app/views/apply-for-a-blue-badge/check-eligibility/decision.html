@@ -135,7 +135,7 @@
 
     {% if data['nation'] !== "wales" %}
       {% if data['takes-payment'] === "yes" %}
-      <p class="govuk-body">{{data['council-name']}} charges {{feePrice}} to issue the badge. You can pay by credit or debit card at the end of the application. The fee will be refunded if {{your}} application is not successful.</p>
+      <p class="govuk-body">{{data['council-name']}} charges {{feePrice}} to issue the badge. You can pay by card at the end of the application. The fee will be refunded if {{your}} application is not successful.</p>
       {% else %}
       <p class="govuk-body">{{data['council-name']}} may charge up to {{feePrice}} to issue the badge. They'll contact you for payment after you submit the application.</p>
       {% endif %}
