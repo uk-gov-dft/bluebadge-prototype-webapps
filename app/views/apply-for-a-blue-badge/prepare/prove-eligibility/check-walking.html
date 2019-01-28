@@ -106,32 +106,11 @@
           Where {{you}} can walk
         </dt>
         <dd class="govuk-check-your-answers__answer">
-          "{{data['walk-location']}}" taking {{you}} {{data['how-long-takes-you']|lower}} to walk there
+          "{{data['walk-location']}}" taking {{youOrThem}} {{data['how-long-takes-you']|lower}} to walk there
         </dd>
         <dd class="govuk-check-your-answers__change">
           <a href="where-can-you-walk?change=true">
             Change<span class="govuk-visually-hidden"> location you can walk to</span>
-          </a>
-        </dd>
-      </div>
-      {% endif %}
-
-      {% if data['nation'] === 'scotland' or data['nation'] === 'wales' %}
-      <div class="govuk-check-your-answers__contents">
-        <dt class="govuk-check-your-answers__question">
-          Is {{your}} condition due to improve?
-        </dt>
-        <dd class="govuk-check-your-answers__answer">
-          {{data['condition-improve'] | capitalize}}
-          {% if data['condition-improve'] === 'yes' %}
-          - 
-          {{data['condition-improve-date']}}
-
-          {% endif %}
-        </dd>
-        <dd class="govuk-check-your-answers__change">
-          <a href="condition-improve?change=true">
-            Change<span class="govuk-visually-hidden"> answer to whether condition is due to improve</span>
           </a>
         </dd>
       </div>

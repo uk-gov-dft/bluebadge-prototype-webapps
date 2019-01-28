@@ -14,18 +14,73 @@
 <form action="{{ formAction }}">
 
   {% set somethingHtml %}
-    {{ govukInput({
+    {{ govukTextarea({
       "label": {
         "text": "Give a description"
       },
-      classes: "govuk-!-width-two-thirds",
       id: "something-description",
-      name: "something-description"
+      name: "something-description",
+      rows: 2
+    }) }}
+  {% endset -%}
+
+  {% set painHtml %}
+    {{ govukTextarea({
+      "label": {
+        "text": "Describe when " + you + " get the pain"
+      },
+      id: "pain-question",
+      name: "pain-question",
+      rows: 2
     }) }}
   {% endset -%}
 
   {% set breathlessHtml %}
     <p class="govuk-body">We'll ask some additional questions about {{your}} breathlessness on the next page.</p>
+  {% endset -%}
+
+  {% set balanceHtml %}
+    {{ govukTextarea({
+      "label": {
+        "text": "What affects " + your + " balance or coordination?"
+      },
+      id: "balance-question",
+      name: "balance-question",
+      rows: 2
+    }) }}
+  {% endset -%}
+
+  {% set longHtml %}
+    {{ govukTextarea({
+      "label": {
+        "text": "Why does it take " + youOrThem + " a long time?"
+      },
+      id: "longtime-question",
+      name: "longtime-question",
+      rows: 2
+    }) }}
+  {% endset -%}
+
+  {% set dangerHtml %}
+    {{ govukTextarea({
+      "label": {
+        "text": "How is it dangerous?"
+      },
+      id: "danger-question",
+      name: "danger-question",
+      rows: 2
+    }) }}
+  {% endset -%}
+
+  {% set planningHtml %}
+    {{ govukTextarea({
+      "label": {
+        "text": "Give a description"
+      },
+      id: "planning-question",
+      name: "planning-question",
+      rows: 2
+    }) }}
   {% endset -%}
 
   {% if data['nation'] == "wales" %}
@@ -34,7 +89,10 @@
       {
         "value": "pain",
         "text": "Excessive pain",
-        "checked": checked('difficulty', 'pain')
+        "checked": checked('difficulty', 'pain'),
+        "conditional": {
+          "html": painHtml
+        }
       },
       {
         "value": "breathlessness",
@@ -47,22 +105,34 @@
       {
         "value": "balance",
         "text": "Balance or coordination",
-        "checked": checked('difficulty', 'balance')
+        "checked": checked('difficulty', 'balance'),
+        "conditional": {
+          "html": balanceHtml
+        }
       },
       {
         "value": "longtime",
         "text": "It takes " + me + " a long time" ,
-        "checked": checked('difficulty', 'longtime')
+        "checked": checked('difficulty', 'longtime'),
+        "conditional": {
+          "html": longHtml
+        }
       },
       {
         "value": "dangerous",
         "text": "It's dangerous to " + my + " health and safety or that of others",
-        "checked": checked('difficulty', 'dangerous')
+        "checked": checked('difficulty', 'dangerous'),
+        "conditional": {
+          "html": dangerHtml
+        }
       },
       {
         "value": "planning",
         "text": iThey|capitalize + " struggle planning or following a journey",
-        "checked": checked('difficulty', 'planning')
+        "checked": checked('difficulty', 'planning'),
+        "conditional": {
+          "html": planningHtml
+        }
       },
       {
         "value": "something",
@@ -81,7 +151,10 @@
       {
         "value": "pain",
         "text": "Excessive pain",
-        "checked": checked('difficulty', 'pain')
+        "checked": checked('difficulty', 'pain'),
+        "conditional": {
+          "html": painHtml
+        }
       },
       {
         "value": "breathlessness",
@@ -94,17 +167,26 @@
       {
         "value": "balance",
         "text": "Balance or coordination",
-        "checked": checked('difficulty', 'balance')
+        "checked": checked('difficulty', 'balance'),
+        "conditional": {
+          "html": balanceHtml
+        }
       },
       {
         "value": "longtime",
         "text": "It takes " + me + " a long time" ,
-        "checked": checked('difficulty', 'longtime')
+        "checked": checked('difficulty', 'longtime'),
+        "conditional": {
+          "html": longHtml
+        }
       },
       {
         "value": "dangerous",
         "text": "It's dangerous to " + my + " health and safety",
-        "checked": checked('difficulty', 'dangerous')
+        "checked": checked('difficulty', 'dangerous'),
+        "conditional": {
+          "html": dangerHtml
+        }
       },
       {
         "value": "risk",
@@ -114,7 +196,10 @@
       {
         "value": "planning",
         "text": iThey|capitalize + " struggle planning or following a journey",
-        "checked": checked('difficulty', 'planning')
+        "checked": checked('difficulty', 'planning'),
+        "conditional": {
+          "html": planningHtml
+        }
       },
       {
         "value": "something",
@@ -133,7 +218,10 @@
       {
         "value": "pain",
         "text": "Excessive pain",
-        "checked": checked('difficulty', 'pain')
+        "checked": checked('difficulty', 'pain'),
+        "conditional": {
+          "html": painHtml
+        }
       },
       {
         "value": "breathlessness",
@@ -146,17 +234,26 @@
       {
         "value": "balance",
         "text": "Balance or coordination",
-        "checked": checked('difficulty', 'balance')
+        "checked": checked('difficulty', 'balance'),
+        "conditional": {
+          "html": balanceHtml
+        }
       },
       {
         "value": "longtime",
         "text": "It takes " + me + " a long time" ,
-        "checked": checked('difficulty', 'longtime')
+        "checked": checked('difficulty', 'longtime'),
+        "conditional": {
+          "html": longHtml
+        }
       },
       {
         "value": "dangerous",
         "text": "It's dangerous to " + my + " health and safety",
-        "checked": checked('difficulty', 'dangerous')
+        "checked": checked('difficulty', 'dangerous'),
+        "conditional": {
+          "html": dangerHtml
+        }
       },
       {
         "value": "something",
