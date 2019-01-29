@@ -15,16 +15,65 @@
 <h1 class="govuk-heading-l">{{pageHeading}}</h1>
 <form action="{{ formAction }}">
   <input type="hidden" id="change" name="identity-completed" value="true">
-  <p class="govuk-body">You need to upload a copy of a document that proves {{ your }} identity such as:</p>
+  <p class="govuk-body">You need to upload a copy of a document that proves {{ your }} identity.</p>
 
-  <ul class="govuk-list govuk-list--bullet">
-    <li>the photo page of {{ your }} passport</li>
-      <li>{{ your }} driving licence</li>
-    
-    <li>{{ your }} birth or adoption certificate</li>
-    
-    <li>{{ your }} marriage, civil partnership, divorce or dissolution certificate</li>
-  </ul>
+  {% set dontHaveIDHtml %}
+
+  <p class="govuk-body">Your local council will contact you about other ways for you to provide proof of your identity after you submit this application.</p>
+  <p class="govuk-body">You can still submit this application using this service, but it will take longer for the council to make a decision.</p>
+  <p class="govuk-body">
+    <a href="/apply-for-a-blue-badge/task-list?identity-completed=true&amp;proveIdentity=notProvided&amp;your-identity-file-upload=" class="govuk-button-secondary" role="button">Continue without uploading</a>
+  </p>
+
+  {% endset -%}
+
+  {{ govukRadios({
+    "idPrefix": "which-id-uploaded",
+    "name": "which-id-uploaded",
+    "attributes": {
+      "data-catchoption-label": true
+    },
+    "fieldset": {
+      "legend": {
+        "text": "What document are you uploading?",
+        "isPageHeading": false,
+        "classes": 'govuk-fieldset__legend--m'
+      }
+    },
+    "items": [
+      {
+        "value": "birth-certificate",
+        "text": "Birth or adoption certificate",
+        "checked": data['which-id-uploaded'] === 'birth-certificate'
+      },
+      {
+        "value": "passport",
+        "text": "Passport",
+          "checked": data['which-id-uploaded'] === 'passport'
+      },
+      {
+        "value": "driving-license",
+        "text": "Driving license",
+        "checked": data['which-id-uploaded'] === 'driving-license'
+      },
+      {
+        "value": "marriage-certificate",
+        "text": "Marriage, civil partnership, divorce or dissolution certificate",
+        "checked": data['which-id-uploaded'] === 'marriage-certificate'
+      },
+      {
+        "value": "dont-have-id",
+        "text": iThey + " don't have any of these",
+        "checked": data['which-id-uploaded'] === 'dont-have-id',
+        "conditional": {
+          "html": dontHaveIDHtml
+        }
+      }
+
+    ]
+  }) }}
+
+  <div id="hiddenCaughtInputs"></div>
   
 
   {{ uploadComponentWidget.uploadComponent(
@@ -34,7 +83,7 @@
     your, 
     'provide proof of ' + your + ' identity', 
     change, 
-    'yes',
+    'no',
     'your-identity-file-upload',
     'no',
     'rsz_uk-driving-licence_full_front_flag.jpg',
