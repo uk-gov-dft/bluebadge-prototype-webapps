@@ -76,6 +76,12 @@ $(document).ready(function () {
         thisGroupName = $checkedItems.attr('name'),
         listOfValues = '';
 
+    if($this.is(":checked")) {
+
+    } else {
+      $this.closest('.govuk-checkboxes__item').next('.govuk-checkboxes__conditional').find('textarea, input').val("");
+    }
+
     $checkedItems.each(function() {
       var $this = $(this),
           $thisLabel = $this.next('label'),

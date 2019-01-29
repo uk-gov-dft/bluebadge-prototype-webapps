@@ -5,7 +5,7 @@
       Description of condition
     </dt>
     <dd class="govuk-check-your-answers__answer">
-      {{data['describe-condition']}}
+      {{data['describe-condition']}} <br>
     </dd>
     <dd class="govuk-check-your-answers__change">
       <a href="/apply-for-a-blue-badge/prove-eligibility/describe-conditions?change=true">
@@ -20,6 +20,31 @@
     </dt>
     <dd class="govuk-check-your-answers__answer">
       {{data['difficulty-chosen-value'] | striptags(true) | escape | nl2br}}
+      {% if data['pain-question'] !== "" or 
+            data['balance-question'] !== "" or
+            data['longtime-question'] !== "" or
+            data['danger-question'] !== ""  %}
+        <br><br>
+        {{your | capitalize}} additional answers <br>
+        -------------- <br>
+      {% endif %}
+      {% if data['pain-question'] !== "" %}
+        Excessive pain: <br>
+        {{data['pain-question']}} <br>
+      {% endif %}
+      {% if data['balance-question'] !== "" %}
+        Balance or coordination: <br>
+        {{data['balance-question']}} <br>
+      {% endif %}
+      {% if data['longtime-question'] !== "" %}
+        It takes a long time: <br>
+        {{data['longtime-question']}} <br>
+      {% endif %}
+      {% if data['danger-question'] !== "" %}
+        Dangerous to health and safety: <br>
+        {{data['danger-question']}} <br>
+      {% endif %}
+      
     </dd>
     <dd class="govuk-check-your-answers__change">
       <a href="/apply-for-a-blue-badge/prove-eligibility/what-makes-walking-difficult?change=true">

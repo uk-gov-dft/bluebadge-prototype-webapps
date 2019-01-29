@@ -20,6 +20,7 @@
       },
       id: "pain-question",
       name: "pain-question",
+      value: data['pain-question'],
       rows: 2
     }) }}
   {% endset -%}
@@ -35,6 +36,7 @@
       },
       id: "balance-question",
       name: "balance-question",
+      value: data['balance-question'],
       rows: 2
     }) }}
   {% endset -%}
@@ -46,6 +48,7 @@
       },
       id: "longtime-question",
       name: "longtime-question",
+      value: data['longtime-question'],
       rows: 2
     }) }}
   {% endset -%}
@@ -57,6 +60,7 @@
       },
       id: "danger-question",
       name: "danger-question",
+      value: data['danger-question'],
       rows: 2
     }) }}
   {% endset -%}
@@ -64,10 +68,11 @@
   {% set planningHtml %}
     {{ govukTextarea({
       "label": {
-        "text": "Give a description"
+        "text": "How does " + your + " condition make planning and following a journey difficult?"
       },
       id: "planning-question",
       name: "planning-question",
+      value: data['planning-question'],
       rows: 2
     }) }}
   {% endset -%}
@@ -79,6 +84,7 @@
       },
       id: "something-description",
       name: "something-description",
+      value: data['something-description'],
       rows: 2
     }) }}
   {% endset -%}
