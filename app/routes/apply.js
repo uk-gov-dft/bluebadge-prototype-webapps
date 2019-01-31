@@ -97,13 +97,11 @@ router.get('/check-eligibility/your-council-backend', function (req, res) {
         req.session.data['council-name'] == 'Cambridgeshire County Council' ||
         req.session.data['council-name'] == 'Dorset County Council' ||
         req.session.data['council-name'] == 'Essex County Council' ||
-        req.session.data['council-name'] == 'City of Westminster' ||
-        req.session.data['council-name'] == 'London Borough of Southwark' ||
         req.session.data['council-name'] == 'East Riding of Yorkshire Council'
         ) {
       res.redirect('/apply-for-a-blue-badge/check-eligibility/council-not-participating');
     } else {
-      res.redirect('/apply-for-a-blue-badge/check-eligibility/existing-badge');
+      res.redirect('/apply-for-a-blue-badge/check-eligibility/your-council');
     }
   } 
 });

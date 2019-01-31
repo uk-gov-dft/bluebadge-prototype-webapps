@@ -1,0 +1,78 @@
+{% extends "layout.html" %}
+
+{% set pageHeading = 'Find ' + your + ' local council' %}
+
+{% block pageTitle %}
+  {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block inner_content %}
+
+
+
+<h1 class="govuk-heading-l">{{pageHeading}}</h1>
+{% if data['applicant'] === "organisation" %}
+<p class="govuk-body">Blue Badge applications are assessed by {{ your }} organisation's local council.</p> 
+{% else %}
+<p class="govuk-body">{{ your | capitalize }} local council is responsible for assessing applications for Blue Badges. 
+<br> {{ you | capitalize }} cannot get a Blue Badge if you live outside of the UK.</p>
+{% endif %}
+
+<form action="your-council-backend" id="findCouncilForm">
+  {{ govukInput({
+    label: {
+      text: "Enter " + your + " postcode"
+    },
+    hint: {
+      text: "For example, SW1A 2AA"
+    },
+    classes: "govuk-input--width-10",
+    id: "postcode-for-council",
+    name: "postcode-for-council"
+  }) }} 
+  
+  {{ govukButton({
+    "text": "Continue"
+  }) }}
+
+  <input id="council-found" name="council-name" type="hidden" value="">
+</form>
+
+{% endblock %}
+
+{% block pageScripts %}
+  <script>
+    $(document).ready(function () {
+      var mapitJson = "https://mapit.mysociety.org/postcode/";
+
+      $('#findCouncilForm').on('submit', function(e) {
+
+        e.preventDefault();
+
+        var postcodeEntered = $('#postcode-for-council').val().replace(" ", ""),
+            $this = $(this);
+
+        if(postcodeEntered.slice(0, 2).toLowerCase() === "bt") {
+          location = "nir-explain";
+        } else {
+          $.getJSON( mapitJson + postcodeEntered, {
+            format: "json"
+          })
+          .done(function( data ) {
+            $.each( data.areas, function( i, area ) {
+              var councilName = area.name;
+              if(area.type === "LBO" ||
+                 area.type === "UTA" ||
+                 area.type === "CTY" ||
+                 area.type === "MTD") {
+
+                $("#council-found").val(councilName);
+              }
+            });
+            $this.unbind('submit').submit();
+          });
+        }
+      });
+    });
+  </script>
+{% endblock %}

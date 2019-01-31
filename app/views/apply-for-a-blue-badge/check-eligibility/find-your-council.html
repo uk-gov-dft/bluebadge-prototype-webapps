@@ -32,15 +32,7 @@
     {% set postcodeLabel = 'Enter ' + your + ' postcode' %}
   {% endif %}    
 
-  {{ govukDetails({
-    "summaryText": "I don't know " + my + " local council",
-    "html": ' <div class="govuk-form-group"><label class="govuk-label" for="postcode">' + postcodeLabel + '<span class="govuk-hint">For example, SW1A 2AA</span>
-               
-             </label>
-             <input class="govuk-input govuk-input--width-10" id="postcode" name="postcode" type="text">
-             </div>
-             ' 
-  }) }}
+  <p class="govuk-body"><a href="find-your-council-postcode">I don't know {{my}} local council</a></p>
 
   <div id="councilChosen" class="hidden">
     <p class="govuk-body" aria-live="polite">
