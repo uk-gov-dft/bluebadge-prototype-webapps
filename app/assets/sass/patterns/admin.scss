@@ -162,6 +162,12 @@
 			}
 		}
 	}
+	.detail-small-font {
+		details, summary, details p, .govuk-button {
+			@include govuk-font(16);
+		}
+		details { margin-bottom: 0; }
+	}
 	.govuk-error-message {
 		@include govuk-font(16, $weight: bold);
 	}

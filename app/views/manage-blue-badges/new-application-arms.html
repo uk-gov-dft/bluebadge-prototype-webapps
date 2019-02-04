@@ -117,7 +117,27 @@
         Photo
       </dt>
       <dd class="govuk-check-your-answers__answer">
-        <img src="/public/images/jeff.png" alt="Photo of Margaret Miller">
+        <div class="govuk-grid-row">
+          <div class="govuk-grid-column-one-third" id="photoContainer">
+            <img src="/public/images/edward.jpg" id="cropper" alt="Photo of applicant">
+          </div>
+          <div class="govuk-grid-column-two-thirds detail-small-font">
+            {{ govukDetails({
+              "summaryText": "Edit photo",
+              "html": '
+                        <p>
+                          <a href="" id="cropPhoto">Crop photo to 1.29 aspect ratio</a>
+                        </p>
+                        <p>
+                          <a href="" id="rotatePhoto">Rotate photo</a>
+                        </p>
+                        <a href="" id="savePhotoBtn" role="button" class="govuk-button">
+                          Save photo
+                        </a>
+                        ' 
+            }) }}
+          </div>
+        </div>
       </dd>
     </div>
   </dl>
@@ -251,4 +271,79 @@
               </p>' 
   }) }}
 
+{% endblock %}
+
+{% block pageScripts %}
+  <script src="/public/javascripts/croppr.js"></script>
+  <script>
+    $(document).ready(function () {
+      var loadTimer,
+          imgObject = new Image(),
+          croppr;
+
+      $('#cropPhoto').on('click', function(e) {
+        croppr = new Croppr('#cropper', {
+            aspectRatio: 1.29,
+            onInitialize: (instance) => { },
+            onCropStart: (data) => {  },
+            onCropEnd: (data) => { console.log('end', data);},
+            onCropMove: (data) => {  }
+        });
+
+        e.preventDefault();
+      });
+
+      var cropX = '',
+          cropY = '',
+          cropWidth = '',
+          cropHeight = '';
+
+      $('#savePhotoBtn').on('click', function(e) {
+        e.preventDefault();
+
+        cropBtnClicked();
+    
+      });
+      
+      function cropBtnClicked() {
+          cropX = croppr.getValue().x;
+          cropY = croppr.getValue().y;
+          cropWidth = croppr.getValue().width;
+          cropHeight = croppr.getValue().height;
+
+          imgObject.src = $('#photoContainer img').attr('src');
+
+          getCroppedImage(cropX, cropY, cropWidth, cropHeight);
+
+      }
+
+      function getCroppedImage(cropX, cropY, cropWidth, cropHeight){
+        //call the methods that will create a 64-bit version of thumbnail here.
+        // var newImg = getImagePortion(imgObject, 171, 220, 25, 0, 1);
+        var newImg = getImagePortion(imgObject, cropWidth, cropHeight, cropX, cropY, 1);
+
+        //place image in appropriate div
+        document.getElementById("photoContainer").innerHTML = '<img alt="" id="cropper" src="'+newImg+'" />';
+      }
+
+      function getImagePortion(imgObj, newWidth, newHeight, startX, startY, ratio){
+       /* the parameters: - the image element - the new width - the new height - the x point we start taking pixels - the y point we start taking pixels - the ratio */
+       //set up canvas for thumbnail
+       var tnCanvas = document.createElement('canvas');
+       var tnCanvasContext = tnCanvas.getContext('2d');
+       tnCanvas.width = newWidth; tnCanvas.height = newHeight;
+       
+       /* use the sourceCanvas to duplicate the entire image. This step was crucial for iOS4 and under devices. Follow the link at the end of this post to see what happens when you don’t do this */
+       var bufferCanvas = document.createElement('canvas');
+       var bufferContext = bufferCanvas.getContext('2d');
+       bufferCanvas.width = imgObj.width;
+       bufferCanvas.height = imgObj.height;
+       bufferContext.drawImage(imgObj, 0, 0);
+       
+       /* now we use the drawImage method to take the pixels from our bufferCanvas and draw them into our thumbnail canvas */
+       tnCanvasContext.drawImage(bufferCanvas, startX,startY,newWidth * ratio, newHeight * ratio,0,0,newWidth,newHeight);
+       return tnCanvas.toDataURL();
+      }
+    });
+  </script>
 {% endblock %}
