@@ -15,14 +15,14 @@
 
 
 
-{% if data['postcode'] %}
+{% if data['address-part-4'] !== '' or data['address-part-4'] !== ' ' %}
 
-  {% set userPostcode = data['postcode'] | upper %}
+  {% set addressLine3 = data['address-part-3'] %}
 
 {% else %}
-
-  {% set userPostcode = "SW1A 4AA" %}
-
+  
+  {% set addressLine3 = data['address-part-4'] %}
+  
 {% endif %}
 
 <!-- <h1 class="govuk-heading-l">{{pageHeading}}</h1> -->
@@ -42,7 +42,7 @@
       },
       "id": "address-line-1",
       "name": "address-line-1",
-      "value": data['premises']
+      "value": data['address-part-1'] + ', ' + data['address-part-2']
     }) }}
 
     {{ govukInput({
@@ -50,7 +50,8 @@
         "html": '<span class="govuk-visually-hidden">Building and street line 2 of 2</span>'
       },
       "id": "address-line-2",
-      "name": "address-line-2"
+      "name": "address-line-2",
+      "value": addressLine3
     }) }}
 
     {{ govukInput({
@@ -69,7 +70,7 @@
       "classes": 'govuk-input--width-10',
       "id": "address-postcode",
       "name": "address-postcode",
-      "value": userPostcode
+      "value": data['postcode-for-council']|upper
     }) }}
 
   {% endcall %}

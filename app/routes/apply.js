@@ -421,18 +421,27 @@ router.get('/personal-details/nino', function (req, res) {
 })
 
 router.get('/personal-details/your-address', function (req, res) {
-  if (req.query.change === 'true') {
-    res.locals.formAction = 'select-address?change=true';
+  if (req.session.data['postcode-for-council'] !== '') {
+    res.redirect(personDetailsPath+'select-your-address-list');
   } else {
-    res.locals.formAction = 'select-address';
+    if (req.query.change === 'true') {
+      res.locals.formAction = 'select-address?change=true';
+    } else {
+      res.locals.formAction = 'select-address';
+    }
+    res.locals.submitLabel = 'Find address';
+    res.render(personDetailsTemplatePath+'your-address');
   }
-  res.locals.submitLabel = 'Find address';
-  res.render(personDetailsTemplatePath+'your-address');
 })
 
 router.get('/personal-details/select-address', function (req, res) {
   Object.assign(res.locals,sendBackToCheckAnswers(req.query,personDetailsPath+'contact-details','check-personal'))
   res.render(personDetailsTemplatePath+'select-your-address')
+})
+
+router.get('/personal-details/select-your-address-list', function (req, res) {
+  Object.assign(res.locals,sendBackToCheckAnswers(req.query,personDetailsPath+'contact-details','check-personal'))
+  res.render(personDetailsTemplatePath+'select-your-address-list')
 })
 
 router.get('/personal-details/enter-address', function (req, res) {

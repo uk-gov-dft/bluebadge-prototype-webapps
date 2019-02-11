@@ -1,0 +1,121 @@
+{% extends "layout.html" %}
+{% set hasSaveClass = 'yes' %}
+
+{% if data['applicant'] === 'organisation' %}
+  {% set pageHeading = "Select your organisation's address" %}
+{% else %}
+  {% set pageHeading = 'Select ' + your + ' address' %}
+{% endif %}
+
+{% block pageTitle %}
+  {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block inner_content %}
+
+
+<h1 class="govuk-heading-l">{{pageHeading}}</h1>
+
+<div id="applicantsPostcode" class="hidden">{{data['postcode-for-council']}}</div>
+
+<form action="{{formAction}}" id="selectAddressForm">
+  <p class="govuk-body" id="findingAddressesText">
+    Finding addresses for postcode {{data['postcode-for-council']|upper}}.
+  </p>
+
+  <div class="govuk-form-group hidden" id="selectAddressFormGroup">
+    <label for="councilPicker" class="govuk-label">Start typing and select your address</label>
+    <select name="address-from-postcode" class="enhanced-select" name="" id="addressFromPostcode">
+      <option value=""></option>
+      
+    </select>
+  </div>
+
+  <p class="govuk-body">Address not shown? <a href="enter-address" id="enterManuallyButton">Enter {{ your }} address manually</a></p>
+  
+  {{ govukButton({
+    "text": submitLabel
+  }) }}
+
+  <!-- Has save -->
+</form>
+
+
+
+{% endblock %}
+
+{% block pageScripts %}
+  <script>
+    $(document).ready(function () {
+
+      var postcodeEntered = $('#applicantsPostcode').text().replace(" ", ""),
+          getAddressJson = "https://api.getAddress.io/find/" + postcodeEntered + '?api-key=QwT-z9ly90ylfC1MIUfj_A17394',
+          addressesFoundCount = 0,
+          $this = $(this);
+
+      $.getJSON( getAddressJson, {
+        format: "json"
+      })
+      .done(function( data ) {
+        $('#findingAddressesText').addClass('hidden');
+        $('#selectAddressFormGroup').removeClass('hidden');
+        $.each( data.addresses, function( i, address ) {
+          var theAddress = address.split(','),
+              filteredAddress = theAddress.filter(function (el) {
+                return el != " ";
+              });
+
+          filteredAddress.join();
+
+          addressesFoundCount++;
+          $('#addressFromPostcode').append('<option value="'+filteredAddress+'">'+filteredAddress+'</option>');
+        });
+        govukGovernmentOrganisationsAutocomplete({
+          defaultValue: '',
+          placeholder: addressesFoundCount + ' addresses at this postcode',
+          autoselect: false,
+          showAllValues: true,
+          selectElement: document.getElementById('addressFromPostcode')
+        })
+      });
+
+      $('#selectAddressForm').on('submit', function(e) {
+
+        e.preventDefault();
+
+        var addressChosen = $('#addressFromPostcode').val(),
+            $this = $(this),
+            addressPartNo = 0,
+            addressArray = addressChosen.split(',');
+
+        $.each( addressArray, function( i, addresspart ) {
+          addressPartNo++;
+          $this.append('<input id="address-part-'+addressPartNo+'" name="address-part-'+addressPartNo+'" type="hidden" value="'+addresspart+'">')
+        });
+
+        $this.unbind('submit').submit();
+      });
+
+      $('#enterManuallyButton').on('click', function(e) {
+
+        e.preventDefault();
+
+        var addressChosen = $('#addressFromPostcode').val(),
+            $this = $(this),
+            addressPartNo = 0,
+            addressArray = addressChosen.split(','),
+            urlParams = '';
+
+        $.each( addressArray, function( i, addresspart ) {
+          addressPartNo++;
+          urlParams += 'address-part-' + addressPartNo + '=' + addresspart + '&';
+
+        });
+
+        location = 'enter-address?' + urlParams;
+
+      });
+      
+    });
+  </script>
+{% endblock %}
