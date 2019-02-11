@@ -18,9 +18,9 @@
 
 <h1 class="govuk-heading-l">{{pageHeading}}</h1>
 {% if data['renewal-or-new-application'] === "renewal" %}
-<p class="govuk-body">Upload a recent digital photo that's different from the one on {{your}} current badge. The photo should have been taken within the last 6 months.</p>
+<p class="govuk-body">Upload a recent digital photo that's different from the one on {{your}} current badge. The photo should either still be a true likeness of {{youOrThem}} or have been taken within the last 6 months.</p>
 {% else %}
-<p class="govuk-body">You need to add a recent digital photo to be printed on the back of {{ your }} badge. The photo should have been taken within the last 6 months.</p>
+<p class="govuk-body">You need to add a recent digital photo to be printed on the back of {{ your }} badge. The photo should either still be a true likeness of {{youOrThem}} or have been taken within the last 6 months.</p>
 {% endif %}
 
 <div class="govuk-grid-row">

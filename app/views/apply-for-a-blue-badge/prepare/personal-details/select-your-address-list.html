@@ -24,7 +24,7 @@
   </p>
 
   <div class="govuk-form-group hidden" id="selectAddressFormGroup">
-    <label for="councilPicker" class="govuk-label">Start typing and select your address</label>
+    <label for="addressFromPostcode" class="govuk-label">Start typing and select your address</label>
     <select name="address-from-postcode" class="enhanced-select" name="" id="addressFromPostcode">
       <option value=""></option>
       
@@ -49,7 +49,7 @@
     $(document).ready(function () {
 
       var postcodeEntered = $('#applicantsPostcode').text().replace(" ", ""),
-          getAddressJson = "https://api.getAddress.io/find/" + postcodeEntered + '?api-key=QwT-z9ly90ylfC1MIUfj_A17394',
+          getAddressJson = "https://api.getAddress.io/find/" + postcodeEntered + '?api-key=cSu3pKX7zEGNZt1ZoC7jnw17421&expand=true',
           addressesFoundCount = 0,
           $this = $(this);
 
@@ -60,15 +60,35 @@
         $('#findingAddressesText').addClass('hidden');
         $('#selectAddressFormGroup').removeClass('hidden');
         $.each( data.addresses, function( i, address ) {
-          var theAddress = address.split(','),
-              filteredAddress = theAddress.filter(function (el) {
-                return el != " ";
-              });
+          var wholeAddress = address.formatted_address,
+              filteredAddress = wholeAddress.filter(function (el) {
+                return el != "";
+              }),
+              filteredAddressString = filteredAddress.join(', ');
 
-          filteredAddress.join();
+          if(address.line_1 !== ""){
+            addressL1data = 'data-address-line1="' + address.line_1 + '"';
+          } else {
+            addressL1data = "";
+          }
+          if(address.line_2 !== ""){
+            addressL2data = 'data-address-line2="' + address.line_2 + '"';
+          } else {
+            addressL2data = "";
+          }
+          if(address.line_3 !== ""){
+            addressL3data = 'data-address-line3="' + address.line_3 + '"';
+          } else {
+            addressL3data = "";
+          }
+          if(address.town_or_city !== ""){
+            addressTCdata = 'data-address-tc="' + address.town_or_city + '"';
+          } else {
+            addressTCdata = "";
+          }
 
           addressesFoundCount++;
-          $('#addressFromPostcode').append('<option value="'+filteredAddress+'">'+filteredAddress+'</option>');
+          $('#addressFromPostcode').append('<option ' + addressL1data + addressL2data + addressL3data + addressTCdata +' value="'+filteredAddressString+'">'+filteredAddressString+'</option>');
         });
         govukGovernmentOrganisationsAutocomplete({
           defaultValue: '',
@@ -83,37 +103,17 @@
 
         e.preventDefault();
 
-        var addressChosen = $('#addressFromPostcode').val(),
-            $this = $(this),
-            addressPartNo = 0,
-            addressArray = addressChosen.split(',');
+        var addressChosen = $('#addressFromPostcode-select').find('option:selected'),
+            $this = $(this);
 
-        $.each( addressArray, function( i, addresspart ) {
-          addressPartNo++;
-          $this.append('<input id="address-part-'+addressPartNo+'" name="address-part-'+addressPartNo+'" type="hidden" value="'+addresspart+'">')
-        });
+        console.log(addressChosen);
+
+        $this.append('<input id="address-part-1" name="address-part-1" type="hidden" value="'+addressChosen.attr('data-address-line1')+'">');
+        $this.append('<input id="address-part-2" name="address-part-2" type="hidden" value="'+addressChosen.attr('data-address-line2')+'">');
+        $this.append('<input id="address-part-3" name="address-part-3" type="hidden" value="'+addressChosen.attr('data-address-line3')+'">');
+        $this.append('<input id="address-tc" name="address-tc" type="hidden" value="'+addressChosen.attr('data-address-tc')+'">');
 
         $this.unbind('submit').submit();
-      });
-
-      $('#enterManuallyButton').on('click', function(e) {
-
-        e.preventDefault();
-
-        var addressChosen = $('#addressFromPostcode').val(),
-            $this = $(this),
-            addressPartNo = 0,
-            addressArray = addressChosen.split(','),
-            urlParams = '';
-
-        $.each( addressArray, function( i, addresspart ) {
-          addressPartNo++;
-          urlParams += 'address-part-' + addressPartNo + '=' + addresspart + '&';
-
-        });
-
-        location = 'enter-address?' + urlParams;
-
       });
       
     });

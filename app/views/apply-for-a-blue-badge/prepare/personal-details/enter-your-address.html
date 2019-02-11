@@ -13,15 +13,28 @@
 
 {% block inner_content %}
 
+{% if data['address-part-3'] !== 'undefined' %}
 
-
-{% if data['address-part-4'] !== '' or data['address-part-4'] !== ' ' %}
-
-  {% set addressLine3 = data['address-part-3'] %}
+  {% set addressLine2 = data['address-part-3'] %}
 
 {% else %}
   
-  {% set addressLine3 = data['address-part-4'] %}
+  {% set addressLine2 = '' %}
+  
+{% endif %}
+
+{% if data['address-part-2'] === 'undefined' %}
+
+  {% set addressLine1 = data['address-part-1'] %}
+
+{% elif data['address-part-2'] !== 'undefined' and data['address-part-3'] === 'undefined' %}
+  
+  {% set addressLine1 = data['address-part-1'] %}
+  {% set addressLine2 = data['address-part-2'] %}
+
+{% else %}
+
+  {% set addressLine1 = data['address-part-1'] + ", " + data['address-part-2'] %}
   
 {% endif %}
 
@@ -42,7 +55,7 @@
       },
       "id": "address-line-1",
       "name": "address-line-1",
-      "value": data['address-part-1'] + ', ' + data['address-part-2']
+      "value": addressLine1
     }) }}
 
     {{ govukInput({
@@ -51,7 +64,7 @@
       },
       "id": "address-line-2",
       "name": "address-line-2",
-      "value": addressLine3
+      "value": addressLine2
     }) }}
 
     {{ govukInput({
@@ -60,7 +73,8 @@
       },
       "classes": 'govuk-!-width-two-thirds',
       "id": "address-town",
-      "name": "address-town"
+      "name": "address-town",
+      "value": data['address-tc']
     }) }}
 
     {{ govukInput({
