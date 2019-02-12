@@ -79,7 +79,11 @@
       Address
     </dt>
     <dd class="govuk-check-your-answers__answer">
-      {{ data['address-from-postcode'] }}, {{ data['postcode-for-council']|upper }}
+      {% if data['address-line-1'] !== undefined %}
+        {{data['address-line-1']}}, {{data['address-line-2']}}, {{data['address-town']}}, {{ data['postcode-for-council']|upper }}
+      {% else %}
+        {{ data['address-from-postcode'] }}, {{ data['postcode-for-council']|upper }}
+      {% endif %}
     </dd>
     <dd class="govuk-check-your-answers__change">
       <a href="/apply-for-a-blue-badge/personal-details/enter-address?change=true">

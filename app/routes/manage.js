@@ -107,6 +107,10 @@ router.get('/error-500', function (req, res) {
   res.render('manage-blue-badges/error-500', {'title':'Something went wrong'})
 });
 
+router.get('/error-sessions', function (req, res) {
+  res.render('manage-blue-badges/error-sessions', {'title':'You need to start again'})
+});
+
 router.get('/link-expired', function (req, res) {
   res.locals.formAction = '/manage-blue-badges/reset***REMOVED***';
   res.render('manage-blue-badges/link-expired', {'title':'Link expired'})

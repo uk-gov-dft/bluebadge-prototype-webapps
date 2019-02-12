@@ -1,0 +1,23 @@
+{% extends "admin_layout.html" %}
+
+{% block back_link %}
+  <div class="back-link-container">
+    {{ govukBackLink({
+      "text": "Back",
+      "href": "javascript: window.history.go(-1)"
+    }) }}
+  </div>
+{% endblock %}
+
+{% block page_header %}
+
+<h1>{{title}}</h1>
+  
+{% endblock %}
+
+{% block content %}
+
+<p class="govuk-body">Close any other browser tabs that have "Manage Blue Badges" open.</p>
+<p class="govuk-body">If you're ordering a badge, you can only have one "Order a badge" page open at a time.</p>
+
+{% endblock %}

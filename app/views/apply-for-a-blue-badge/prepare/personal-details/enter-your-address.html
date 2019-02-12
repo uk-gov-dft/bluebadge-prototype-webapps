@@ -13,29 +13,53 @@
 
 {% block inner_content %}
 
-{% if data['address-part-3'] !== 'undefined' %}
+{% if data['address-line-1'] !== undefined %}
 
-  {% set addressLine2 = data['address-part-3'] %}
-
-{% else %}
-  
-  {% set addressLine2 = '' %}
-  
-{% endif %}
-
-{% if data['address-part-2'] === 'undefined' %}
-
-  {% set addressLine1 = data['address-part-1'] %}
-
-{% elif data['address-part-2'] !== 'undefined' and data['address-part-3'] === 'undefined' %}
-  
-  {% set addressLine1 = data['address-part-1'] %}
-  {% set addressLine2 = data['address-part-2'] %}
+  {% set addressLine1 = data['address-line-1'] %}
+  {% set addressLine2 = data['address-line-2'] %}
+  {% set addressTC = data['address-town'] %}
+  {% set addressPostcode = data['postcode-for-council']|upper %}
 
 {% else %}
 
-  {% set addressLine1 = data['address-part-1'] + ", " + data['address-part-2'] %}
-  
+  {% set addressTC = data['address-tc'] %}
+  {% set addressPostcode = data['postcode-for-council']|upper %}
+
+  {% if data['address-part-1'] === undefined %}
+
+    {% set addressLine1 = '' %}
+    {% set addressLine2 = '' %}
+
+  {% elif data['address-part-3'] !== undefined %}
+
+    {% set addressLine2 = data['address-part-3'] %}
+
+  {% else %}
+    
+    {% set addressLine2 = '' %}
+    
+  {% endif %}
+
+  {% if data['address-part-1'] === undefined %}
+
+    {% set addressLine1 = '' %}
+    {% set addressLine2 = '' %}
+
+  {% elif data['address-part-2'] === undefined %}
+
+    {% set addressLine1 = data['address-part-1'] %}
+
+  {% elif data['address-part-2'] !== undefined and data['address-part-3'] === undefined %}
+    
+    {% set addressLine1 = data['address-part-1'] %}
+    {% set addressLine2 = data['address-part-2'] %}
+
+  {% else %}
+
+    {% set addressLine1 = data['address-part-1'] + ", " + data['address-part-2'] %}
+    
+  {% endif %}
+
 {% endif %}
 
 <!-- <h1 class="govuk-heading-l">{{pageHeading}}</h1> -->
@@ -74,7 +98,7 @@
       "classes": 'govuk-!-width-two-thirds',
       "id": "address-town",
       "name": "address-town",
-      "value": data['address-tc']
+      "value": addressTC
     }) }}
 
     {{ govukInput({
@@ -84,7 +108,7 @@
       "classes": 'govuk-input--width-10',
       "id": "address-postcode",
       "name": "address-postcode",
-      "value": data['postcode-for-council']|upper
+      "value": addressPostcode
     }) }}
 
   {% endcall %}
