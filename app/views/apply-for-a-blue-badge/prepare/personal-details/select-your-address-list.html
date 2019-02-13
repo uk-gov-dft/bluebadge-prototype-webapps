@@ -24,6 +24,9 @@
   </p>
 
   <div class="govuk-form-group hidden" id="selectAddressFormGroup">
+    <p class="govuk-body" id="">
+      Showing addresses for postcode <b>{{data['postcode-for-council']|upper}}</b>.
+    </p>
     <label for="addressFromPostcode" class="govuk-label">Start typing and select your address</label>
     <select name="address-from-postcode" class="enhanced-select" name="" id="addressFromPostcode">
       <option value=""></option>
