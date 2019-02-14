@@ -33,7 +33,7 @@
 <h2 class="govuk-heading-m">What happens next</h2>
 
 {% if data['pay-when'] === 'later' %}
-<p class="govuk-body">Because {{you}}'ve chosen to pay later, {{data['council-name']}} will contact {{you}} for payment.</p>
+<p class="govuk-body">Because {{you}}'ve chosen to pay later, {{data['council-name']}} will contact you for payment.</p>
 {% endif %}
 
 {% if ((data['proofOfEligibility'] === 'notProvided' and (data['benefit'] === 'dla' or data['benefit'] === 'pip')) or

@@ -19,7 +19,7 @@
 
   {% set dontHaveIDHtml %}
 
-  <p class="govuk-body">After you submit this application you need to contact your local council to see how you can provide proof of your identity.</p>
+  <p class="govuk-body">After you submit this application you need to contact {{your}} local council to see how you can provide proof of {{your}} identity.</p>
   <p class="govuk-body">You can still submit this application using this service, but it will take longer for the council to make a decision.</p>
   <p class="govuk-body">
     <a href="/apply-for-a-blue-badge/task-list?identity-completed=true&amp;proveIdentity=notProvided&amp;your-identity-file-upload=" class="govuk-button-secondary" role="button">Continue without uploading</a>
@@ -35,7 +35,7 @@
     },
     "fieldset": {
       "legend": {
-        "text": "What document are you uploading?",
+        "text": "Which identity document are you uploading?",
         "isPageHeading": false,
         "classes": 'govuk-fieldset__legend--m'
       }
@@ -48,7 +48,7 @@
       },
       {
         "value": "passport",
-        "text": "Passport",
+        "text": "Photo page of " + your + " passport",
           "checked": data['which-id-uploaded'] === 'passport'
       },
       {
@@ -63,7 +63,7 @@
       },
       {
         "value": "dont-have-id",
-        "text": iThey + " don't have any of these",
+        "text": iThey|capitalize + " don't have any of these",
         "checked": data['which-id-uploaded'] === 'dont-have-id',
         "conditional": {
           "html": dontHaveIDHtml
