@@ -17,7 +17,7 @@
         {{ govukTable({
           "head": [
             {
-              "text": "Name"
+              "text": "Type"
             },
             {
               "text": "When used"
@@ -29,14 +29,14 @@
           "rows": tableRows
         }) }}
 
-      <p class="govuk-body"><a href="add-mobility-aid{{pagechange}}">Add another mobility aid or support</a></p>
+      <p class="govuk-body"><a href="add-mobility-aid{{pagechange}}">Add another mobility aid, support or person</a></p>
 
     {% else %}
     
     {{ govukTable({
       "head": [
         {
-          "text": "Name"
+          "text": "Type"
         },
         {
           "text": "When used"
@@ -48,7 +48,7 @@
       "rows": ""
     }) }}
 
-    <p class="govuk-body"><a href="add-mobility-aid{{pagechange}}">Add first mobility aid or support</a></p>
+    <p class="govuk-body"><a href="add-mobility-aid{{pagechange}}">Add first mobility aid, support or person</a></p>
 
     {% endif %}
   {% endset -%}

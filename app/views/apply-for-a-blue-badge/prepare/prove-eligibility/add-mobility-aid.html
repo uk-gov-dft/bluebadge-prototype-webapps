@@ -16,7 +16,7 @@
 <form action="{{formAction}}">
   {{ govukInput({
     "label": {
-      "text": "Name of mobility aid or support"
+      "text": "What is this aid or support?"
     },
     "hint": {
       "text": "For example, a wheelchair, crutches or a member of your family"
@@ -27,7 +27,7 @@
 
   {{ govukInput({
     "label": {
-      "text": "When do " + you + " use it?"
+      "text": "When do " + you + " need this help?"
     },
     "hint" : {
       "text": 'For example, to get to the shops'
@@ -53,11 +53,15 @@
     "name": "mobility-aid-source",
     "fieldset": {
       "legend": {
-        "text": 'How did ' + you + ' get it?',
+        "text": 'If it\'s an aid, how was it provided?',
         "classes": 'govuk-fieldset__legend--s'
       }
     },
     "items": [
+      {
+        "value": "FamilyFriends",
+        "text": "It's a person, rather than a mobility aid"
+      },
       {
         "value": "Prescribed",
         "text": "Hospital, GP or physiotherapist"
@@ -69,10 +73,6 @@
       {
         "value": socialWording,
         "text": "Provided by " + socialWording | lower + " or a charity"
-      },
-      {
-        "value": "FamilyFriends",
-        "text": "It's a person, rather than a mobility aid"
       }
     ]
   }) }}

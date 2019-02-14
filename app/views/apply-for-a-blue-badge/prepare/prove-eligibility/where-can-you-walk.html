@@ -4,7 +4,7 @@
 {% set pageHeading = 'Where can ' + you + ' walk from and to?' %}
 
 {% if data['mobility-aids-array'].length and data['use-mobility-aid'] !== 'no' %}
-{% set usingMobilityAid = ', using a mobility aid' %}
+{% set usingMobilityAid = ', using a mobility aid or the support of a person' %}
 {% else %}
 {% set usingMobilityAid = '' %}
 {% endif %}
