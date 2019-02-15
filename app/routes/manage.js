@@ -234,6 +234,10 @@ router.get('/order-a-badge/badge-ordered', function (req, res) {
   res.render('manage-blue-badges/badge-ordered', {'order_class':'active'})
 })
 
+router.get('/reports', function (req, res) {
+  res.render('manage-blue-badges/reports', {'title':'Reports','reports_class':'active'})
+})
+
 router.get('/search-for-a-badge', function (req, res) {
   res.render('manage-blue-badges/search-for-a-badge', {'title':'Find a badge','search_class':'active'})
 })

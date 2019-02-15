@@ -1,0 +1,44 @@
+{% extends "admin_layout.html" %}
+
+{% block page_header %}
+
+  <h1>{{title}}</h1>
+  
+{% endblock %}
+
+{% block content %}
+
+
+<form action="/public/downloaded-report.csv" novalidate>
+  
+  {{ govukRadios({
+    "idPrefix": "download-report",
+    "name": "download-report",
+    "fieldset": {
+      "legend": {
+        "text": 'Which report do you want to download?'
+      }
+    },
+    "hint": {
+      "text": 'You can only download reports for Manchester City Council'
+    },
+    "items": [
+      {
+        "value": "issued-badges",
+        "text": "All issued badges"
+      },
+      {
+        "value": "rejected-badges",
+        "text": "Rejected badges"
+      }
+    ]
+  }) }}
+
+
+  {{ govukButton({
+    "text": "Download report"
+  }) }}
+
+</form>
+
+{% endblock %}

@@ -49,6 +49,21 @@
     "text": "Search"
   }) }}
 
+  <details class="govuk-details">
+    <summary class="govuk-details__summary">
+      <span class="govuk-details__summary-text">
+        Export all badges
+      </span>
+    </summary>
+    <div class="govuk-details__text">
+      <p>This will download a CSV including all the badges for this local authority.</p>
+      {{ govukButton({
+        "text": "Export badges",
+        "href": "/public/downloaded-report.csv"
+      }) }}
+    </div>
+  </details>
+
 </form>
 
 {% endblock %}
