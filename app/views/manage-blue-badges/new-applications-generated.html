@@ -1,0 +1,47 @@
+{% extends "admin_layout.html" %}
+
+{% block page_header %}
+  <h1>{{title}}</h1><p class="count">36</p>
+  <div class="search-box-container">
+    <form action="" class="search-box">
+      {% include "includes/search.html" %}
+    </form>
+    <div class="search-box__options">
+      <a href="/public/images/new-applications.csv">Export all</a>
+    </div>
+  </div>
+{% endblock %}
+
+{% block content %}
+  <table class="govuk-table">
+    
+    
+    <thead class="govuk-table__head">
+      <tr class="govuk-table__row">
+      
+        <th class="govuk-table__header" scope="col">Name</th>
+      
+        <th class="govuk-table__header" scope="col">NI number</th>
+      
+        <th class="govuk-table__header" scope="col">Eligibility</th>
+      
+        <th class="govuk-table__header" scope="col">Submitted date</th>
+      
+      </tr>
+    </thead>
+    
+    <tbody class="govuk-table__body">
+      {% for application in applicationsTableArray %}
+      <tr class="govuk-table__row">
+        <td class="govuk-table__cell"><a href="new-application-generated?application-gen-nino={{application.applicantNINO}}">{{application.applicantName}}</a></td>
+        <td class="govuk-table__cell ">{{application.applicantNINO}}</td>
+        <td class="govuk-table__cell ">{{application.applicantEligibility}}</td>
+        <td class="govuk-table__cell ">{{application.applicantSubmittedDate}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  
+
+  {% include "includes/admin-table_footer.html" %}
+{% endblock %}

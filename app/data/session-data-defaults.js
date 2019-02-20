@@ -19,8 +19,6 @@ Example usage:
 
 module.exports = {
 
-  // "statuses": ["Preparation", "Notified", "Claimed", "Deferred", "Exempt", "Extended", "Not claimed"],
-
   "badgeholders": [
     {
       "shortcode": "72B9HA",
@@ -185,6 +183,144 @@ module.exports = {
       "applicationDate": "12 May 2018",
       "applicationChannel": "Phone",
       "laReference": "123456432"
+    }
+  ],
+  "badgeApplications": [
+    {
+      "fullName": "Fred Michael Jones",
+      "dateOfBirth": "12 May 2016",
+      "nino": "JR 12 34 56 A",
+      "gender": "Man",
+      "address": {
+        "street": "23 River View",
+        "street2": "",
+        "city": "Bedlington",
+        "postcode": "NE2 5LS"
+      },
+      "contactName": "Sarah Jones",
+      "mainPhoneNumber": "01331 252 226",
+      "altPhoneNumber": "07938 232 989",
+      "emailAddress": "sarah.jones@gmail.com",
+      "eligibilityShort": "WALKD",
+      "eligibility": "Cannot walk or finds walking very difficult",
+      "descriptionOfCondition": "Arthritic kneees, quardruple heart bypass, high blood pressure and shortness or breath. Also suffer from chronic sleep Apnoea. Insulin dependent diabetic.",
+      "walkingDifficult": [
+        "Excessive pain",
+        "Breathlessness"
+      ],
+      "breathlessness": [
+        "Walking up a slight hill",
+        "Trying to keep up with others on level ground"
+      ],
+      "mobilityAids": [
+        {
+          "name": "Crutches",
+          "when": "All the time",
+          "provided": "Hospital, GP or physiotherapist"
+        }
+      ],
+      "treatments": [
+        {
+          "name": "Hip replacement",
+          "when": "About 2 years ago"
+        }
+      ],
+      "medication": [
+        {
+          "name": "Simvastatin",
+          "prescribed": "Prescribed",
+          "dosage": "40mg",
+          "often": "Every 4 hours"
+        },
+        {
+          "name": "Bisoprolol",
+          "prescribed": "Prescribed",
+          "dosage": "10mg",
+          "often": "Daily"
+        }
+      ],
+      "hcps": [
+        {
+          "name": "Dr Sidhu",
+          "where": "Thingy Hospital"
+        }
+      ],
+      "walkingDuration": "1 to 5 minutes",
+      "whereWalkFromTo": "From my house to the post office on the High Street",
+      "howLongTakes": "About 5 minutes",
+      "supportingDocuments": "doctors-note.png",
+      "photoPath": "jeff.png",
+      "proofOfIdentity": "driving-licence.png",
+      "applicationDate": "12 May 2019",
+      "applicationChannel": "Online"
+    },
+    {
+      "fullName": "Jackie Jones",
+      "dateOfBirth": "12 May 2016",
+      "nino": "JR 12 34 56 C",
+      "gender": "Man",
+      "address": {
+        "street": "23 River View",
+        "street2": "",
+        "city": "Bedlington",
+        "postcode": "NE2 5LS"
+      },
+      "contactName": "Sarah Jones",
+      "mainPhoneNumber": "01331 252 226",
+      "altPhoneNumber": "07938 232 989",
+      "emailAddress": "sarah.jones@gmail.com",
+      "eligibilityShort": "WALKD",
+      "eligibility": "Cannot walk or finds walking very difficult",
+      "descriptionOfCondition": "Arthritic kneees, quardruple heart bypass, high blood pressure and shortness or breath. Also suffer from chronic sleep Apnoea. Insulin dependent diabetic.",
+      "walkingDifficult": [
+        "Excessive pain",
+        "Breathlessness"
+      ],
+      "breathlessness": [
+        "Walking up a slight hill",
+        "Trying to keep up with others on level ground"
+      ],
+      "mobilityAids": [
+        {
+          "name": "Crutches",
+          "when": "All the time",
+          "provided": "Hospital, GP or physiotherapist"
+        }
+      ],
+      "treatments": [
+        {
+          "name": "Hip replacement",
+          "when": "About 2 years ago"
+        }
+      ],
+      "medication": [
+        {
+          "name": "Simvastatin",
+          "prescribed": "Prescribed",
+          "dosage": "40mg",
+          "often": "Every 4 hours"
+        },
+        {
+          "name": "Bisoprolol",
+          "prescribed": "Prescribed",
+          "dosage": "10mg",
+          "often": "Daily"
+        }
+      ],
+      "hcps": [
+        {
+          "name": "Dr Sidhu",
+          "where": "Thingy Hospital"
+        }
+      ],
+      "walkingDuration": "1 to 5 minutes",
+      "whereWalkFromTo": "From my house to the post office on the High Street",
+      "howLongTakes": "About 5 minutes",
+      "supportingDocuments": "doctors-note.png",
+      "photoPath": "jeff.png",
+      "proofOfIdentity": "driving-licence.png",
+      "applicationDate": "12 May 2019",
+      "applicationChannel": "Online"
     }
   ]
 }

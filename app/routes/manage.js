@@ -16,6 +16,8 @@ router.use(function(req, res, next) {
     }
   }
 
+  res.locals.applicationsTableArray = [];
+
   next();
 });
 
@@ -75,7 +77,6 @@ router.get('/view-badge-full', (req, res) => {
 
   res.render('manage-blue-badges/view-badge-full', 
   {'title':'View badge','search_class':'active'})
-
 })
 
 router.get('/search-results-backend', (req, res) => {
@@ -86,6 +87,34 @@ router.get('/search-results-backend', (req, res) => {
 
   res.render('manage-blue-badges/search-results', 
     {'title':'Badge details','search_class':'active'})
+})
+
+router.get('/new-applications-generated', (req, res) => {
+  const applications = req.session.data['badgeApplications']
+
+  applications.forEach(function(application) {
+    var applicationRowObject = {
+                                  "applicantName": application.fullName,
+                                  "applicantNINO": application.nino,
+                                  "applicantEligibility": application.eligibilityShort,
+                                  "applicantSubmittedDate": application.applicationDate
+                                };
+
+    res.locals.applicationsTableArray.push(applicationRowObject);
+  });
+
+  res.render('manage-blue-badges/new-applications-generated', 
+  {'title':'New applications','app_class':'active'})
+})
+
+router.get('/new-application-generated', (req, res) => {
+  const appnino = req.session.data['application-gen-nino'].replace('%20','').toUpperCase()
+  const application = req.session.data['badgeApplications'].filter(application => application.nino === appnino)
+
+  res.locals.application = application[0]
+
+  res.render('manage-blue-badges/new-application-generated', 
+  {'title':'View application','app_class':'active'})
 })
 
 router.get('/reset***REMOVED***', function (req, res) {
