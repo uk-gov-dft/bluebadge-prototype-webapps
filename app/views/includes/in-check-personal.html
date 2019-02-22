@@ -1,19 +1,4 @@
 <dl class="govuk-check-your-answers govuk-check-your-answers--short">
-  {% if data['applicant'] === "someone-else" %}
-  <div class="govuk-check-your-answers__contents">
-    <dt class="govuk-check-your-answers__question">
-      Applicant relationship
-    </dt>
-    <dd class="govuk-check-your-answers__answer">
-      {{data['someone-relationship']}}
-    </dd>
-    <dd class="govuk-check-your-answers__change">
-      <a href="/apply-for-a-blue-badge/check-eligibility?change=true">
-        Edit<span class="govuk-visually-hidden"> who's applying</span>
-      </a>
-    </dd>
-  </div>
-  {% endif %}
 
   <div class="govuk-check-your-answers__contents">
     <dt class="govuk-check-your-answers__question">

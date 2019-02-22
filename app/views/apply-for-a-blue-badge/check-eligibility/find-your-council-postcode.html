@@ -8,6 +8,11 @@
 
 {% block inner_content %}
 
+{% if data['applicant'] === "someone-else" %}
+  {% set postcodeFindLabel = "Enter the applicant's postcode" %}
+{% else %}
+  {% set postcodeFindLabel = "Enter your postcode" %}
+{% endif %}
 
 
 <h1 class="govuk-heading-l">{{pageHeading}}</h1>
@@ -20,7 +25,7 @@
 <form action="your-council-backend" id="findCouncilForm">
   {{ govukInput({
     label: {
-      text: "Enter " + your + " postcode"
+      text: postcodeFindLabel
     },
     hint: {
       text: "For example, SW1A 2AA"

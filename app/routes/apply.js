@@ -1073,7 +1073,7 @@ router.get('/prove-eligibility/delete-hcp/:id', function(req, res) {
 router.get('/prove-your-address', function (req, res) {
   res.locals.submitLabel = 'Continue';
   res.locals.change = req.query.change;
-  res.locals.formAction = '/apply-for-a-blue-badge/task-list?address-completed=true';
+  res.locals.formAction = '/apply-for-a-blue-badge/task-list';
   res.render('apply-for-a-blue-badge/prepare/prove-your-address');
 })
 
