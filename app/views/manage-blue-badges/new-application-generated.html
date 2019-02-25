@@ -152,6 +152,15 @@
         {% for difficult in application.walkingDifficult %}
           {{difficult}} <br>
         {% endfor %}
+        
+        <br>
+        -------------- <br> <br>
+        <b>Extra answers</b> <br> <br>
+
+
+        {% for extra in application.difficultExtras %}
+          {{extra | striptags(true) | escape | nl2br}} <br>
+        {% endfor %}
       </dd>
     </div>
 
