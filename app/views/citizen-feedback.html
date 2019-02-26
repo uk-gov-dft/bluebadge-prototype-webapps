@@ -1,7 +1,6 @@
-{% extends "guidance_layout.html" %}
+{% extends "feedback_layout.html" %}
 
-{% set guidanceTitle =  'Citizen feedback (unmoderated)' %}
-{% set hidesSteps =  "true" %}
+{% set guidanceTitle =  'Citizen feedback (not moderated)' %}
 {% set isCitizenFeedback =  "true" %}
 {% set hideBackLink =  "yes" %}
 
@@ -38,7 +37,7 @@
 
       var rangeStart = randomIntFromInterval(2,5909),
           rangeEnd = rangeStart + 4, 
-          range = "C"+rangeStart+":C" +rangeEnd,
+          range = "C"+rangeStart+":C"+rangeEnd,
           sheetsURL = "https://sheets.googleapis.com/v4/spreadsheets/1X2YzQ1p2UZ9pGUCg-hhRNOCZhhRPl_26ZrKZ7i68xYE/values/Feedback!"+range+"?key=AIzaSyBzN8Fujbz24ZzMZX7E8jx9aPkJ2JcYO_8",
           datesURL = "https://sheets.googleapis.com/v4/spreadsheets/1X2YzQ1p2UZ9pGUCg-hhRNOCZhhRPl_26ZrKZ7i68xYE/values/Feedback!A2:A?key=AIzaSyBzN8Fujbz24ZzMZX7E8jx9aPkJ2JcYO_8",
           scoreURL = "https://sheets.googleapis.com/v4/spreadsheets/1X2YzQ1p2UZ9pGUCg-hhRNOCZhhRPl_26ZrKZ7i68xYE/values/Satisfaction%20Score!B4?key=AIzaSyBzN8Fujbz24ZzMZX7E8jx9aPkJ2JcYO_8";
@@ -49,7 +48,9 @@
         $.each( data.values, function( i, value ) {
           var feedback = value[0].replace('â€™', '\'').replace('â€™',  '\'');
 
-          if(feedback.indexOf('Rating of') >= 0 || feedback.indexOf('N/A') >= 0) {
+          if(feedback.indexOf('Rating of') >= 0 ||
+             feedback == 'N/A' ||
+             feedback == 'na' ){
             $('#feedbackContainer').append('<p class="govuk-body-l"><i>Text removed</i></p>');
           } else {
             $('#feedbackContainer').append('<p class="govuk-body-l">"' + feedback + '"</p>');

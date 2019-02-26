@@ -11,6 +11,9 @@
 	h1, h2, h3, p, ul, legend, label {
 		color: govuk-colour(white);
 		max-width: 40rem;
+		.wide-screen-true & {
+			max-width: 50rem;
+		}
 	}
 	a, a:visited, a:link {
 		color: white;

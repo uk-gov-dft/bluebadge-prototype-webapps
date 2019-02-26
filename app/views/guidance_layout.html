@@ -13,16 +13,7 @@
 			{% endif %}
 	  		<div class="guidance-page-title-wrapper">
 	  			<h2 class="govuk-heading-l">{{guidanceTitle}}</h2>
-	  			{% if isCitizenFeedback === "true" %}
-	  				<p class="" id="feedbackDateRange"></p>
-	  			{% endif %}
 	  		</div>
-	  		{% if isCitizenFeedback === "true" %}
-	  		<div class="guidance-title-wrapper">
-				<span class="guidance-step-count">Current score <span class="satisfaction-score" id="satisfactionScore"></span></span>
-			</div>
-				
-			{% endif %}
 			
 	  	</div>
       {% block guidance_content %}{% endblock %}
