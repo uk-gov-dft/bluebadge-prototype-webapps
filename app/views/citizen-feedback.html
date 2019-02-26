@@ -38,10 +38,10 @@
       })
       .done(function( data ) {
         $.each( data.values, function( i, value ) {
-          var feedback = value[0].replace('â€™', '\'');
+          var feedback = value[0].replace('â€™', '\'').replace('â€™',  '\'');
 
           if(feedback.indexOf('Rating of') >= 0 || feedback.indexOf('N/A') >= 0) {
-
+            $('#feedbackContainer').append('<p class="govuk-body-l"><i>Text removed</i></p>');
           } else {
             $('#feedbackContainer').append('<p class="govuk-body-l">"' + feedback + '"</p>');
           }
