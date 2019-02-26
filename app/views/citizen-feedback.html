@@ -12,6 +12,8 @@
 
 <div id="feedbackContainer"></div>
 
+<p class="" id="feedbackDateRange"></p>
+
 {% if data['auto-refresh'] !== "true" %}
   <a href="?auto-refresh=true">30 sec auto-refresh</a>
 {% else %}
@@ -21,6 +23,8 @@
 {% endblock %}
 
 {% block pageScripts %}
+
+  <script src="/public/javascripts/moment.js"></script>
 
   {% if data['auto-refresh'] === "true" %}
     <script>
@@ -35,12 +39,30 @@
           return Math.floor(Math.random()*(max-min+1)+min);
       }
 
+      function convertDigitIn(str){
+         return str.split('/').reverse().join('-');
+      }
+
       var rangeStart = randomIntFromInterval(2,5909),
           rangeEnd = rangeStart + 4, 
           range = "C"+rangeStart+":C"+rangeEnd,
+          timerange = "A"+rangeStart+":A"+rangeEnd,
           sheetsURL = "https://sheets.googleapis.com/v4/spreadsheets/1X2YzQ1p2UZ9pGUCg-hhRNOCZhhRPl_26ZrKZ7i68xYE/values/Feedback!"+range+"?key=AIzaSyBzN8Fujbz24ZzMZX7E8jx9aPkJ2JcYO_8",
+          timesURL = "https://sheets.googleapis.com/v4/spreadsheets/1X2YzQ1p2UZ9pGUCg-hhRNOCZhhRPl_26ZrKZ7i68xYE/values/Feedback!"+timerange+"?key=AIzaSyBzN8Fujbz24ZzMZX7E8jx9aPkJ2JcYO_8",
           datesURL = "https://sheets.googleapis.com/v4/spreadsheets/1X2YzQ1p2UZ9pGUCg-hhRNOCZhhRPl_26ZrKZ7i68xYE/values/Feedback!A2:A?key=AIzaSyBzN8Fujbz24ZzMZX7E8jx9aPkJ2JcYO_8",
           scoreURL = "https://sheets.googleapis.com/v4/spreadsheets/1X2YzQ1p2UZ9pGUCg-hhRNOCZhhRPl_26ZrKZ7i68xYE/values/Satisfaction%20Score!B4?key=AIzaSyBzN8Fujbz24ZzMZX7E8jx9aPkJ2JcYO_8";
+
+      $.getJSON( timesURL, {
+        
+      }).done(function( data ) {
+        var values = data.values,
+                    startDate = values[0],
+                    justDate = startDate.toString().slice(0, -6),
+                    reversedDate = convertDigitIn(justDate),
+                    formattedDate = moment(reversedDate).format('ddd D MMM YYYY'); 
+
+                $('#feedbackContainer').prepend('<p class="govuk-body-l"><small>5 responses from ' + formattedDate + '</small>');
+      });
 
       $.getJSON( sheetsURL, {
         
@@ -66,7 +88,7 @@
             responseLength = values.length-1,
             endDate = values[responseLength];
 
-        $('#feedbackDateRange').html("<small>Showing 5 of " + responseLength + " from " + startDate + " to " + endDate + "</small>");
+        $('#feedbackDateRange').html("<small>" + responseLength + " responses from " + startDate + " to " + endDate + "</small>");
       });
 
       $.getJSON( scoreURL, {
