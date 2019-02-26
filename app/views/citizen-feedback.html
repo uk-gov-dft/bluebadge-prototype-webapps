@@ -45,8 +45,7 @@
 
       $.getJSON( sheetsURL, {
         
-      })
-      .done(function( data ) {
+      }).done(function( data ) {
         $.each( data.values, function( i, value ) {
           var feedback = value[0].replace('â€™', '\'').replace('â€™',  '\'');
 
@@ -55,27 +54,23 @@
           } else {
             $('#feedbackContainer').append('<p class="govuk-body-l">"' + feedback + '"</p>');
           }
-          
         });
       });
 
       $.getJSON( datesURL, {
         
-      })
-      .done(function( data ) {
-
+      }).done(function( data ) {
         var values = data.values,
             startDate = values[0],
-            endDate = values[values.length-1];
+            responseLength = values.length-1,
+            endDate = values[responseLength];
 
-        $('#feedbackDateRange').html("<small>Showing 5 samples from " + startDate + " to " + endDate + "</small>");
+        $('#feedbackDateRange').html("<small>Showing 5 of " + responseLength + " from " + startDate + " to " + endDate + "</small>");
       });
-
 
       $.getJSON( scoreURL, {
         
-      })
-      .done(function( data ) {
+      }).done(function( data ) {
         $.each( data.values, function( i, value ) {
           var score = value[0];
           
