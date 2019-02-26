@@ -1,0 +1,65 @@
+{% extends "guidance_layout.html" %}
+
+{% set guidanceTitle =  'Citizen feedback (unmoderated)' %}
+{% set hidesSteps =  "true" %}
+{% set isCitizenFeedback =  "true" %}
+{% set hideBackLink =  "yes" %}
+
+{% block pageTitle %}
+  Citizen feedback - Apply for a Blue Badge
+{% endblock %}
+
+{% block guidance_content %}
+
+<div id="feedbackContainer"></div>
+
+
+{% endblock %}
+
+{% block pageScripts %}
+  <script>
+    $(document).ready(function () {
+      function randomIntFromInterval(min,max)
+      {
+          return Math.floor(Math.random()*(max-min+1)+min);
+      }
+
+      window.setTimeout(function(){ document.location.reload(true); }, 15000);
+      //Refreshes the window
+
+      var rangeStart = randomIntFromInterval(2,5909),
+          rangeEnd = rangeStart + 4, 
+          range = "C"+rangeStart+":C" +rangeEnd,
+          sheetsURL = "https://sheets.googleapis.com/v4/spreadsheets/1X2YzQ1p2UZ9pGUCg-hhRNOCZhhRPl_26ZrKZ7i68xYE/values/Feedback!"+range+"?key=AIzaSyBzN8Fujbz24ZzMZX7E8jx9aPkJ2JcYO_8",
+          scoreURL = "https://sheets.googleapis.com/v4/spreadsheets/1X2YzQ1p2UZ9pGUCg-hhRNOCZhhRPl_26ZrKZ7i68xYE/values/Satisfaction%20Score!B4?key=AIzaSyBzN8Fujbz24ZzMZX7E8jx9aPkJ2JcYO_8";
+
+      $.getJSON( sheetsURL, {
+        
+      })
+      .done(function( data ) {
+        $.each( data.values, function( i, value ) {
+          var feedback = value[0].replace('â€™', '\'');
+
+          if(feedback.indexOf('Rating of') >= 0 || feedback.indexOf('N/A') >= 0) {
+
+          } else {
+            $('#feedbackContainer').append('<p class="govuk-body-l">"' + feedback + '"</p>');
+          }
+          
+        });
+      });
+
+      $.getJSON( scoreURL, {
+        
+      })
+      .done(function( data ) {
+        $.each( data.values, function( i, value ) {
+          var score = value[0];
+          
+          $('#satisfactionScore').html(score);
+        });
+      });
+
+    });
+  </script>
+{% endblock %}

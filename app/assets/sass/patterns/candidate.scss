@@ -227,3 +227,12 @@
   border: 0;
   white-space: nowrap;
 }
+
+.satisfaction-score {
+  display: block;
+  @include govuk-font(36, $weight: bold);
+}
+
+.govuk-width-container.is-citizen-true {
+  max-width: 1200px;
+}
