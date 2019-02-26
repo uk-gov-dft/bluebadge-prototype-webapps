@@ -40,6 +40,7 @@
           rangeEnd = rangeStart + 4, 
           range = "C"+rangeStart+":C" +rangeEnd,
           sheetsURL = "https://sheets.googleapis.com/v4/spreadsheets/1X2YzQ1p2UZ9pGUCg-hhRNOCZhhRPl_26ZrKZ7i68xYE/values/Feedback!"+range+"?key=AIzaSyBzN8Fujbz24ZzMZX7E8jx9aPkJ2JcYO_8",
+          datesURL = "https://sheets.googleapis.com/v4/spreadsheets/1X2YzQ1p2UZ9pGUCg-hhRNOCZhhRPl_26ZrKZ7i68xYE/values/Feedback!A2:A?key=AIzaSyBzN8Fujbz24ZzMZX7E8jx9aPkJ2JcYO_8",
           scoreURL = "https://sheets.googleapis.com/v4/spreadsheets/1X2YzQ1p2UZ9pGUCg-hhRNOCZhhRPl_26ZrKZ7i68xYE/values/Satisfaction%20Score!B4?key=AIzaSyBzN8Fujbz24ZzMZX7E8jx9aPkJ2JcYO_8";
 
       $.getJSON( sheetsURL, {
@@ -57,6 +58,19 @@
           
         });
       });
+
+      $.getJSON( datesURL, {
+        
+      })
+      .done(function( data ) {
+
+        var values = data.values,
+            startDate = values[0],
+            endDate = values[values.length-1];
+
+        $('#feedbackDateRange').html("<small>Showing 5 samples from " + startDate + " to " + endDate + "</small>");
+      });
+
 
       $.getJSON( scoreURL, {
         
