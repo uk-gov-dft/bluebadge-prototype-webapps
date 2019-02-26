@@ -13,19 +13,28 @@
 
 <div id="feedbackContainer"></div>
 
+{% if data['auto-refresh'] !== "true" %}
+  <a href="?auto-refresh=true">30 sec auto-refresh</a>
+{% else %}
+  <a href="?auto-refresh=false">Turn off auto-refresh</a>
+{% endif %}
 
 {% endblock %}
 
 {% block pageScripts %}
+
+  {% if data['auto-refresh'] === "true" %}
+    <script>
+      window.setTimeout(function(){ document.location.reload(true); }, 30000);
+      //Refreshes the window
+    </script>
+  {% endif %}
   <script>
     $(document).ready(function () {
       function randomIntFromInterval(min,max)
       {
           return Math.floor(Math.random()*(max-min+1)+min);
       }
-
-      window.setTimeout(function(){ document.location.reload(true); }, 30000);
-      //Refreshes the window
 
       var rangeStart = randomIntFromInterval(2,5909),
           rangeEnd = rangeStart + 4, 
