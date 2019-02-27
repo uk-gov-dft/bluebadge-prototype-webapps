@@ -40,8 +40,17 @@
 {% endblock %}
 
 {% block page_layout %}
-
-  <nav class="side-nav dft-sidebar">
+  
+  {% if disableSidebar %}
+  <nav class="side-nav dft-sidebar disable-side-bar-{{disableSidebar}}">
+    <ul>
+      <li class="side-nav__item {{ new_class }}">
+        <a href="/manage-blue-badges/new-applications-generated">New applications<span class="counter">36</span></a>
+      </li>
+    </ul>
+  </nav>
+  {% else %}
+  <nav class="side-nav dft-sidebar disable-side-bar-{{disableSidebar}}">
     <ul>
       <!--       
       <li class="side-nav__item {{ app_class }}">
@@ -90,6 +99,7 @@
       </li> -->
     </ul>
   </nav>
+  {% endif %}
 
   <div class="main-container {{enforcerClass}}">
     <main role="main" id="adminContent" class="govuk-main-wrapper">

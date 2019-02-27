@@ -44,6 +44,10 @@
 	}
 }
 
+.disable-side-bar-yes {
+	pointer-events: none;
+}
+
 .mobile-grid {
 	display: flex;
 	margin-bottom: $govuk-gutter / 2;
