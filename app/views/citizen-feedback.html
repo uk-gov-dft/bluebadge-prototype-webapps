@@ -72,10 +72,14 @@
 
           if(feedback.indexOf('Rating of') >= 0 ||
              feedback == 'N/A' ||
-             feedback == 'na' ){
-            $('#feedbackContainer').append('<p class="govuk-body-l"><i>Text removed</i></p>');
+             feedback == 'na' ||
+             feedback == 'apply-blue-badge' ){
+            $('#feedbackContainer').append('<p class="govuk-body-l" data-removed-text><i>Text removed</i></p>');
+            if($('[data-removed-text]').length > 2) {
+              window.setTimeout(function(){ document.location.reload(true); }, 2000)
+            }
           } else {
-            $('#feedbackContainer').append('<p class="govuk-body-l">"' + feedback + '"</p>');
+            $('#feedbackContainer').append('<p class="govuk-body-l">“' + feedback + '”</p>');
           }
         });
       });
