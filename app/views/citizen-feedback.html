@@ -17,7 +17,24 @@
 {% if data['auto-refresh'] !== "true" %}
   <a href="?auto-refresh=true">30 sec auto-refresh</a>
 {% else %}
-  <a href="?auto-refresh=false">Turn off auto-refresh</a>
+  <div class="feedback-countdown-container">
+    <a href="?auto-refresh=false">Turn off auto-refresh</a>
+    <div class="countdown-container">
+      <a href="" class="pause-button">
+        <svg id="icon-pause" viewBox="0 0 32 32">
+        <title>Pause countdown</title>
+        <path d="M16 0c-8.837 0-16 7.163-16 16s7.163 16 16 16 16-7.163 16-16-7.163-16-16-16zM16 29c-7.18 0-13-5.82-13-13s5.82-13 13-13 13 5.82 13 13-5.82 13-13 13zM10 10h4v12h-4zM18 10h4v12h-4z"></path>
+        </svg>
+      </a>
+      <a href="" class="play-button" style="display: none;">
+        <svg id="icon-pause" viewBox="0 0 32 32">
+        <title>Restart countdown</title>
+        <path d="M16 0c-8.837 0-16 7.163-16 16s7.163 16 16 16 16-7.163 16-16-7.163-16-16-16zM16 29c-7.18 0-13-5.82-13-13s5.82-13 13-13 13 5.82 13 13-5.82 13-13 13zM12 9l12 7-12 7z"></path>
+        </svg>
+      </a>
+      <p class="countdown-visual govuk-body" id="countdownVisual">30</p>
+    </div>
+  </div>
 {% endif %}
 
 {% endblock %}
@@ -28,8 +45,38 @@
 
   {% if data['auto-refresh'] === "true" %}
     <script>
-      window.setTimeout(function(){ document.location.reload(true); }, 30000);
-      //Refreshes the window
+      var $countdownVisual = $('#countdownVisual'),
+          countdownTime = Number($countdownVisual.text()),
+          isPaused = false,
+          counter = 0,
+          interval = setInterval(function() {
+                      if(!isPaused) {
+                          counter++;
+                          $countdownVisual.text(countdownTime - counter);
+                          if (counter == 30) {
+                              //Refreshes the window
+                              document.location.reload(true)
+                          }
+                        }
+                    }, 1000);
+
+      $('.pause-button').on('click', function(e) {
+        e.preventDefault();
+
+        isPaused = true;
+
+        $(this).hide();
+        $('.play-button').show();
+      });
+
+      $('.play-button').on('click', function(e) {
+        e.preventDefault();
+
+        isPaused = false;
+        $(this).hide();
+        $('.pause-button').show();
+      });
+      
     </script>
   {% endif %}
   <script>
@@ -71,8 +118,7 @@
           var feedback = value[0].replace('â€™', '\'').replace('â€™',  '\'');
 
           if(feedback.indexOf('Rating of') >= 0 ||
-             feedback == 'N/A' ||
-             feedback == 'na' ||
+             feedback.length < 4  ||
              feedback == 'apply-blue-badge' ){
             $('#feedbackContainer').append('<p class="govuk-body-l" data-removed-text><i>Text removed</i></p>');
             if($('[data-removed-text]').length > 2) {
