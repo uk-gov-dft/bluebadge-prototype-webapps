@@ -143,6 +143,40 @@
 	}
 }
 
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spinner-container {
+	animation-name: spin;
+	animation-duration: 2000ms;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+	width: 40px;
+	height: 40px;
+}
+
+.loading-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+	height: 150px;
+	margin-top: 50px;
+	svg {
+		width: 40px;
+		height: 40px;
+		path {
+			fill: white;
+		}
+	}
+}
+
 .feedback-countdown-container {
 	display: flex;
 	justify-content: space-between;
