@@ -37,6 +37,8 @@ documentationApp.use(handleCookies)
 var releaseVersion = packageJson.version
 var username = process.env.USERNAME
 var password = process.env.PASSWORD
+var googleSheetID = process.env.GOOGLESHEETID
+var googleSheetApiKey = process.env.GOOGLESHEETAPIKEY
 var env = process.env.NODE_ENV || 'development'
 var useAuth = process.env.USE_AUTH || config.useAuth
 var useAutoStoreData = process.env.USE_AUTO_STORE_DATA || config.useAutoStoreData
@@ -138,6 +140,8 @@ app.use(function (req, res, next) {
 
 // Add variables that are available in all views
 app.locals.gtmId = gtmId
+app.locals.googleSheetID = googleSheetID
+app.locals.googleSheetApiKey = googleSheetApiKey
 app.locals.asset_path = '/public/'
 app.locals.useAutoStoreData = (useAutoStoreData === 'true')
 app.locals.cookieText = config.cookieText
