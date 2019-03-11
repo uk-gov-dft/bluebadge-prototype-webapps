@@ -104,37 +104,36 @@
           sheetID = "{{googleSheetID}}",
           apiKey = "{{googleSheetApiKey}}",
           $feedbackContainer = $('#feedbackContainer'),
-          responsesURL = sheetsURL+sheetID+"/values/Satisfaction%20Score!A4?key=" + apiKey;
+          responsesURL = sheetsURL+sheetID+"/values/Satisfaction%20score!A4:B4?key=" + apiKey;
 
       // Get total responses
       $.getJSON( responsesURL ).done(function( data ) {
-        var value = data.values[0],
-            maxResponses = value - 5,
+        var total = data.values[0][0],
+            score = data.values[0][1],
+            maxResponses = total - 5,
             rangeStart = randomIntFromInterval(2,maxResponses),
             rangeEnd = rangeStart + 4,
-            range = "C"+rangeStart+":C"+rangeEnd,
-            timerange = "A"+rangeStart+":A"+rangeEnd,
+            range = "A"+rangeStart+":C"+rangeEnd,
             feedbackURL = sheetsURL+sheetID+"/values/Feedback!"+range+"?key=" + apiKey,
-            timesURL = sheetsURL+sheetID+"/values/Feedback!"+timerange+"?key=" + apiKey,
-            datesURL = sheetsURL+sheetID+"/values/Feedback!A2:A?key=" + apiKey,
-            scoreURL = sheetsURL+sheetID+"/values/Satisfaction%20Score!B4?key=" + apiKey;
+            datesURL = sheetsURL+sheetID+"/values/Feedback!A2:A?key=" + apiKey;
 
-        // Display the date the responses are from
-        $.getJSON( timesURL ).done(function( data ) {
+        // Show the satisfaction score
+        $('#satisfactionScore').html(score);
+
+        // Display 5 responses
+        $.getJSON( feedbackURL ).done(function( data ) {
           var values = data.values,
-              startDate = values[0],
+              startDate = values[0][0],
               justDate = startDate.toString().slice(0, -6),
               reversedDate = convertDigitIn(justDate),
               formattedDate = moment(reversedDate).format('ddd D MMM YYYY'); 
 
-              $feedbackContainer.prepend('<p class="govuk-body-l"><small>5 responses from ' + formattedDate + '</small>');
-        });
-
-        // Display 5 responses
-        $.getJSON( feedbackURL ).done(function( data ) {
           $('#loadingContainer').hide();
-          $.each( data.values, function( i, value ) {
-            var feedback = value[0].replace('â€™', '\'').replace('â€™',  '\'');
+
+          $feedbackContainer.prepend('<p class="govuk-body-l"><small>5 responses from ' + formattedDate + '</small>');
+
+          $.each( values, function( i, value ) {
+            var feedback = value[2].replace('â€™', '\'');
 
             if(feedback.indexOf('Rating of') >= 0 ||
                feedback.length < 4  ||
@@ -168,12 +167,6 @@
           $('#feedbackDateRange').html("<small>" + responseLength + " responses from " + formattedStartDate + " to " + formattedEndDate + "</small>");
         });
 
-        // Display satisfaction score
-        $.getJSON( scoreURL ).done(function( data ) {
-          var score = data.values[0];
-          
-          $('#satisfactionScore').html(score);
-        });
       });
     });
   </script>
