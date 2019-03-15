@@ -28,6 +28,18 @@
 	  type: "email",
 	  value: data['email-address']
 	}) }}
+
+	{{ govukInput({
+	  "label": {
+	    "text": "Enter " + your + " postcode"
+	  },
+	  "hint": {
+	  	"text": "This is used to verify " + your + " application"
+	  },
+	  classes: "govuk-input--width-10",
+	  id: "postcode-save",
+	  name: "postcode-save"
+	}) }}
 	
 	
 

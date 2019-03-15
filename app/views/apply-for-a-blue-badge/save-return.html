@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 {% set hideBackLink = 'yes' %}
-{% set pageHeading = 'Return to ' + your + ' application' %}
+{% set pageHeading = 'Return to a saved application' %}
 
 {% block pageTitle %}
   {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
@@ -9,24 +9,30 @@
 {% block inner_content %}
 
 <form action="save-enter-code">
-  <h1 class="govuk-heading-l">{{pageHeading}}</h1>
-
-  <div class="govuk-inset-text">
-    <p class="govuk-body">Enter the email address {{you}} used to save {{your}} {{application}}.</p> 
-  </div>
-  
-  
+  <h1 class="govuk-heading-l">{{pageHeading}}</h1>  
   
   {{ govukInput({
     "label": {
       "text": "Email address"
     },
     "hint": {
-      "text": "We'll send a code that you will need to continue " + your + " application"
+      "text": "We'll send a code you will need to continue the application"
     },
     id: "email-phone",
     name: "email-phone",
     type: "text"
+  }) }}
+
+  {{ govukInput({
+    "label": {
+      "text": "Enter the applicant's postcode"
+    },
+    "hint": {
+      "text": "This is used to verify the application"
+    },
+    classes: "govuk-input--width-10",
+    id: "postcode-save",
+    name: "postcode-save"
   }) }}
   
   {{ govukButton({
