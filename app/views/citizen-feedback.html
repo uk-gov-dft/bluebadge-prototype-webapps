@@ -164,7 +164,7 @@
               reversedEndDate = convertDigitIn(justEndDate),
               formattedEndDate = moment(reversedEndDate).format('ddd D MMM YYYY');
 
-          $('#feedbackDateRange').html("<small>" + responseLength + " responses from " + formattedStartDate + " to " + formattedEndDate + "</small>");
+          $('#feedbackDateRange').html("<small>" + responseLength.toLocaleString('en') + " responses from " + formattedStartDate + " to " + formattedEndDate + "</small>");
         });
 
       });
