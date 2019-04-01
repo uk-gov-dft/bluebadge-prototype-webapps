@@ -300,10 +300,10 @@ router.get('/check-eligibility/disability-backend', function (req, res) {
 });
 
 router.get('/check-eligibility/walking-backend', function (req, res) {
-  if (req.session.data['disability-walking'] !== 'none') {
-    res.render(checkEligibilityTemplatePath+'decision');
-  } else {
+  if (req.session.data['disability-walking'].includes('none')) {
     res.render(checkEligibilityTemplatePath+'decision-not-eligible');
+  } else {
+    res.render(checkEligibilityTemplatePath+'decision');
   }
 });
 
