@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 
-{% set pageHeading = 'Enter ' + your + ' code' %}
+{% set pageHeading = 'Enter the 4-digit code' %}
 
 {% block pageTitle %}
   {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
@@ -11,19 +11,33 @@
 <form action="task-list">
   <h1 class="govuk-heading-l">{{pageHeading}}</h1>
   
-  <p class="govuk-body">If the details match to a saved application, a 7-character code will have been sent to <b>{{data['email-phone']}}</b>. Enter the code to continue the application.</p>
+  <div class="govuk-inset-text">
+    <p class="govuk-body">If the details match to a saved application, a 4-digit code will have been sent to <b>{{data['email-phone']}}</b>. The code is valid for 30 minutes.</p>
+  </div>
+
+  {{ govukInput({
+    "label": {
+      "text": "Enter the applicant's postcode"
+    },
+    "hint": {
+      "text": "This is used to verify the application"
+    },
+    classes: "govuk-input--width-10",
+    id: "postcode-save",
+    name: "postcode-save"
+  }) }}
   
   {{ govukInput({
     "label": {
-      "text": "Enter the code"
+      "text": "Enter the 4-digit code"
     },
     id: "return-code",
     name: "return-code",
-    type: "text",
-    classes: "govuk-input--width-10 input-capitals",
+    type: "tel",
+    classes: "govuk-input--width-4 input-capitals",
     attributes: {
       autocapitalize: "characters",
-      maxlength: "7"
+      maxlength: "4"
     }
   }) }}
   
