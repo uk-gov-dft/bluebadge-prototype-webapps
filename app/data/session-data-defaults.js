@@ -203,7 +203,7 @@ module.exports = {
       "emailAddress": "Umish.Handocha@gmail.com",
       "existingBadgeNumber": "AA23EE",
       "badgeFlag": "Not for reassessment",
-      "eligibilityShort": "WALKD",
+      "eligibilityShort": "Walking difficulty",
       "eligibility": "Cannot walk or finds walking very difficult",
       "descriptionOfCondition": "My father-in-law has had a stroke back in 2016. He's had a minor stroke followed by another stroke which took place in September 2018. He's aged 87 and lives with my brother-in-law and his wife. He recently lost his wife 3 years ago through dementia. Although he's not diagnosed with dementia, he has mental health issues. In terms of his mobility he finds it rather hard to do every day things. Although he's been issued with a walking stick, due to his stubborness he refused to use this. Although now going forward he has no option but to use this.",
       "walkingDifficult": [
@@ -294,7 +294,7 @@ module.exports = {
       "altPhoneNumber": "07938 232 989",
       "emailAddress": "sheila.smith@gmail.com",
       "existingBadgeNumber": "VV45JM",
-      "eligibilityShort": "WALKD",
+      "eligibilityShort": "Walking difficulty",
       "eligibility": "Cannot walk or finds walking very difficult",
       "descriptionOfCondition": "I struggle with limited mobility, due to that I am unable to walk at a fast pace. I can only manage to walk 10 to 15 minutes and I feel exhausted. I dislocated my ankle in 2003 and also I have a joint condition known as Ehlers-Danlos syndrome which affects my joints causing dislocations. To the shoulder and the ankle. I also suffer with scoliosis since birth which causes severe pain in the lower back.",
       "walkingDifficult": [
@@ -359,7 +359,7 @@ module.exports = {
       "mainPhoneNumber": "01331 252 226",
       "altPhoneNumber": "07938 232 989",
       "emailAddress": "jane.koka@gmail.com",
-      "eligibilityShort": "WALKD",
+      "eligibilityShort": "Walking difficulty",
       "eligibility": "Cannot walk or finds walking very difficult",
       "descriptionOfCondition": "COPD - Lung disease which makes walking difficult and I get breathless",
       "walkingDifficult": [
@@ -454,7 +454,7 @@ module.exports = {
       "altPhoneNumber": "07938 232 989",
       "emailAddress": "mick.smith@gmail.com",
       "existingBadgeNumber": "JNS23D",
-      "eligibilityShort": "WALKD",
+      "eligibilityShort": "Walking difficulty",
       "eligibility": "Cannot walk or finds walking very difficult",
       "descriptionOfCondition": "I suffer from COPD which is a form of lung disease which is degenerative. I also had a major lung operation over 20 years ago following a stab wound and this caused some problems with my breathing over the years",
       "walkingDifficult": [
@@ -532,7 +532,7 @@ module.exports = {
       "mainPhoneNumber": "01331 252 226",
       "altPhoneNumber": "07938 232 989",
       "emailAddress": "greg.woods@gmail.com",
-      "eligibilityShort": "WALKD",
+      "eligibilityShort": "Walking difficulty",
       "eligibility": "Cannot walk or finds walking very difficult",
       "descriptionOfCondition": "Walks only with difficulty. Attends falls clinic and is in danger of suffering falls and breaking hip. Cannot walk more than 50 yards comfortably. Suffers from rheumatoid arthritis. ",
       "walkingDifficult": [
@@ -593,7 +593,7 @@ module.exports = {
       "mainPhoneNumber": "01331 252 226",
       "altPhoneNumber": "07938 232 989",
       "emailAddress": "sheila.cole@gmail.com",
-      "eligibilityShort": "WALKD",
+      "eligibilityShort": "Walking difficulty",
       "eligibility": "Cannot walk or finds walking very difficult",
       "descriptionOfCondition": "Osteo arthritis - two knee replacements - angina shortish of breath",
       "walkingDifficult": [
@@ -662,7 +662,7 @@ module.exports = {
       "mainPhoneNumber": "01331 252 226",
       "altPhoneNumber": "07938 232 989",
       "emailAddress": "steve-gaites@gmail.com",
-      "eligibilityShort": "WALKD",
+      "eligibilityShort": "Walking difficulty",
       "eligibility": "Cannot walk or finds walking very difficult",
       "descriptionOfCondition": "After stroke, no use of left arm, very limited use and strength in left leg. can stand for a few moments with tripod stand, needs help getting around the house and can’t leave the house without help and a wheelchair.",
       "walkingDifficult": [
@@ -767,7 +767,7 @@ module.exports = {
       "altPhoneNumber": "07938 232 989",
       "emailAddress": "tim.barnes@gmail.com",
       "existingBadgeNumber": "HJN23F",
-      "eligibilityShort": "WALKD",
+      "eligibilityShort": "Walking difficulty",
       "eligibility": "Cannot walk or finds walking very difficult",
       "descriptionOfCondition": "Due to 2 hip replacements David has trouble walking and needs to use 2 sticks as a walking aid and a wheelchair for further distances.",
       "walkingDifficult": [
@@ -843,7 +843,7 @@ module.exports = {
       "altPhoneNumber": "07938 232 989",
       "emailAddress": "jane.hythe@gmail.com",
       "existingBadgeNumber": "KKS23D",
-      "eligibilityShort": "WALKD",
+      "eligibilityShort": "Walking difficulty",
       "eligibility": "Cannot walk or finds walking very difficult",
       "descriptionOfCondition": "Osteoporosis, curvature of the spine which means she cannot walk very far as in pain and also needs some sort of support, ie. a walking stick or frame or person to hold on to",
       "walkingDifficult": [
@@ -933,7 +933,7 @@ module.exports = {
       "mainPhoneNumber": "01331 252 226",
       "altPhoneNumber": "07938 232 989",
       "emailAddress": "sally.smith@gmail.com",
-      "eligibilityShort": "WALKD",
+      "eligibilityShort": "Walking difficulty",
       "eligibility": "Cannot walk or finds walking very difficult",
       "descriptionOfCondition": "Suffers with angina and cannot walk more than a few metres without feeling breathless. Also suffers with COPD which increases the breathlessness, the side effects of angina meds make him feel light headed which contributes to him being unsteady. Additionally he suffers from dementia which makes him confused and lost",
       "walkingDifficult": [
@@ -1048,7 +1048,7 @@ module.exports = {
       "mainPhoneNumber": "01331 252 226",
       "altPhoneNumber": "07938 232 989",
       "emailAddress": "j.bloggs@gmail.com",
-      "eligibilityShort": "WALKD",
+      "eligibilityShort": "Walking difficulty",
       "eligibility": "Cannot walk or finds walking very difficult",
       "descriptionOfCondition": "Arthritis with abnormal gait",
       "walkingDifficult": [
