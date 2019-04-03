@@ -1,5 +1,4 @@
 {% extends "admin_layout.html" %}
-{% set disableSidebar = 'yes' %}
 
 {% block back_link %}
   <div class="dft-headline-wrapper">
@@ -32,6 +31,49 @@
 {% block content %}
 
 {% include "includes/application-status-change.html" %}
+
+{% if application.existingBadgeNumber %}
+
+<section class="split-section">
+  
+  <h2 class="govuk-heading-m">Previous badge</h2>
+
+  <dl class="govuk-check-your-answers govuk-check-your-answers--short dft-data-list">
+    <div class="govuk-check-your-answers__contents dft-data-list__item">
+      <dt class="dft-data-list__dt govuk-check-your-answers__question">
+        Badge number
+      </dt>
+      <dd class="dft-data-list__dd govuk-check-your-answers__answer">
+        {{application.existingBadgeNumber}}
+      </dd>
+    </div>
+
+    <div class="govuk-check-your-answers__contents dft-data-list__item">
+      <dt class="dft-data-list__dt govuk-check-your-answers__question">
+        Badge expiry date
+      </dt>
+      <dd class="dft-data-list__dd govuk-check-your-answers__answer">
+        4 May 2019
+      </dd>
+    </div>
+
+    {% if application.badgeFlag %}
+
+      <div class="govuk-check-your-answers__contents dft-data-list__item">
+        <dt class="dft-data-list__dt govuk-check-your-answers__question">
+          Badge flag
+        </dt>
+        <dd class="dft-data-list__dd govuk-check-your-answers__answer">
+          {{application.badgeFlag}}
+        </dd>
+      </div>
+
+    {% endif %}
+  </dl>
+
+</section>
+
+{% endif %}
 
 <section class="split-section">
   <h2 class="govuk-heading-m">

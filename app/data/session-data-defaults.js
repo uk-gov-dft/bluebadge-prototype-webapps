@@ -201,6 +201,8 @@ module.exports = {
       "mainPhoneNumber": "01331 252 226",
       "altPhoneNumber": "07938 232 989",
       "emailAddress": "Umish.Handocha@gmail.com",
+      "existingBadgeNumber": "AA23EE",
+      "badgeFlag": "Not for reassessment",
       "eligibilityShort": "WALKD",
       "eligibility": "Cannot walk or finds walking very difficult",
       "descriptionOfCondition": "My father-in-law has had a stroke back in 2016. He's had a minor stroke followed by another stroke which took place in September 2018. He's aged 87 and lives with my brother-in-law and his wife. He recently lost his wife 3 years ago through dementia. Although he's not diagnosed with dementia, he has mental health issues. In terms of his mobility he finds it rather hard to do every day things. Although he's been issued with a walking stick, due to his stubborness he refused to use this. Although now going forward he has no option but to use this.",
@@ -279,7 +281,7 @@ module.exports = {
     },
     {
       "fullName": "Sheila Smith",
-      "dateOfBirth": "01 Jan 1971",
+      "dateOfBirth": "18 Jan 1971",
       "nino": "YY6222333A",
       "gender": "Woman",
       "address": {
@@ -291,6 +293,7 @@ module.exports = {
       "mainPhoneNumber": "01331 252 226",
       "altPhoneNumber": "07938 232 989",
       "emailAddress": "sheila.smith@gmail.com",
+      "existingBadgeNumber": "VV45JM",
       "eligibilityShort": "WALKD",
       "eligibility": "Cannot walk or finds walking very difficult",
       "descriptionOfCondition": "I struggle with limited mobility, due to that I am unable to walk at a fast pace. I can only manage to walk 10 to 15 minutes and I feel exhausted. I dislocated my ankle in 2003 and also I have a joint condition known as Ehlers-Danlos syndrome which affects my joints causing dislocations. To the shoulder and the ankle. I also suffer with scoliosis since birth which causes severe pain in the lower back.",
@@ -344,7 +347,7 @@ module.exports = {
     },
     {
       "fullName": "Jane Koka",
-      "dateOfBirth": "01 Jan 1931",
+      "dateOfBirth": "9 May 1931",
       "nino": "YY6244445A",
       "gender": "Woman",
       "address": {
@@ -438,7 +441,7 @@ module.exports = {
     },
     {
       "fullName": "Michael Smith",
-      "dateOfBirth": "01 Jan 1963",
+      "dateOfBirth": "23 Feb 1963",
       "nino": "YY6244215A",
       "gender": "Man",
       "address": {
@@ -450,6 +453,7 @@ module.exports = {
       "mainPhoneNumber": "01331 252 226",
       "altPhoneNumber": "07938 232 989",
       "emailAddress": "mick.smith@gmail.com",
+      "existingBadgeNumber": "JNS23D",
       "eligibilityShort": "WALKD",
       "eligibility": "Cannot walk or finds walking very difficult",
       "descriptionOfCondition": "I suffer from COPD which is a form of lung disease which is degenerative. I also had a major lung operation over 20 years ago following a stab wound and this caused some problems with my breathing over the years",
@@ -515,7 +519,7 @@ module.exports = {
     },
     {
       "fullName": "Patty Jenkins",
-      "dateOfBirth": "01 Jan 1933",
+      "dateOfBirth": "2 Aug 1933",
       "nino": "YY6243498A",
       "gender": "Woman",
       "address": {
@@ -577,7 +581,7 @@ module.exports = {
     },
     {
       "fullName": "Eric Cole",
-      "dateOfBirth": "01 Jan 1936",
+      "dateOfBirth": "12 Dec 1936",
       "nino": "YY6246677A",
       "gender": "Man",
       "address": {
@@ -645,7 +649,7 @@ module.exports = {
     },
     {
       "fullName": "Deirdre Gaites",
-      "dateOfBirth": "01 Jan 1947",
+      "dateOfBirth": "11 Nov 1947",
       "nino": "YY6236824A",
       "gender": "Woman",
       "address": {
@@ -749,7 +753,7 @@ module.exports = {
     },
     {
       "fullName": "George Barnes",
-      "dateOfBirth": "01 Jan 1939",
+      "dateOfBirth": "9 Sep 1939",
       "nino": "YY6246532A",
       "gender": "Man",
       "address": {
@@ -762,6 +766,7 @@ module.exports = {
       "mainPhoneNumber": "01331 252 226",
       "altPhoneNumber": "07938 232 989",
       "emailAddress": "tim.barnes@gmail.com",
+      "existingBadgeNumber": "HJN23F",
       "eligibilityShort": "WALKD",
       "eligibility": "Cannot walk or finds walking very difficult",
       "descriptionOfCondition": "Due to 2 hip replacements David has trouble walking and needs to use 2 sticks as a walking aid and a wheelchair for further distances.",
@@ -824,7 +829,7 @@ module.exports = {
     },
     {
       "fullName": "Carol Hythe",
-      "dateOfBirth": "01 Jan 1929",
+      "dateOfBirth": "3 Apr 1929",
       "nino": "YY6245432A",
       "gender": "Woman",
       "address": {
@@ -837,6 +842,7 @@ module.exports = {
       "mainPhoneNumber": "01331 252 226",
       "altPhoneNumber": "07938 232 989",
       "emailAddress": "jane.hythe@gmail.com",
+      "existingBadgeNumber": "KKS23D",
       "eligibilityShort": "WALKD",
       "eligibility": "Cannot walk or finds walking very difficult",
       "descriptionOfCondition": "Osteoporosis, curvature of the spine which means she cannot walk very far as in pain and also needs some sort of support, ie. a walking stick or frame or person to hold on to",
@@ -914,7 +920,7 @@ module.exports = {
     },
     {
       "fullName": "Gerry Keane",
-      "dateOfBirth": "01 Jan 1943",
+      "dateOfBirth": "14 Aug 1943",
       "nino": "YY6287643A",
       "gender": "Man",
       "address": {
@@ -1029,7 +1035,7 @@ module.exports = {
     },
     {
       "fullName": "Sarah Bloggs",
-      "dateOfBirth": "01 Jan 1950",
+      "dateOfBirth": "12 Feb 1950",
       "nino": "YY6222345A",
       "gender": "Woman",
       "address": {

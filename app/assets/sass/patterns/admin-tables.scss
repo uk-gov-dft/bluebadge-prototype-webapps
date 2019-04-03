@@ -62,3 +62,16 @@
     float: right;
   }
 }
+
+.govuk-table__header,
+.govuk-table__cell {
+  &--align-right {
+    text-align: right;  
+  }
+  &--align-center {
+    text-align: center;  
+  }
+  .govuk-tag {
+    float: none;
+  }
+}

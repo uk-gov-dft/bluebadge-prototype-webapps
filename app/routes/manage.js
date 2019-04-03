@@ -96,7 +96,9 @@ router.get('/new-applications-generated', (req, res) => {
     var applicationRowObject = {
                                   "applicantName": application.fullName,
                                   "applicantNINO": application.nino,
+                                  "applicantDOB": application.dateOfBirth,
                                   "applicantEligibility": application.eligibilityShort,
+                                  "existingBadgeNumber": application.existingBadgeNumber,
                                   "applicantSubmittedDate": application.applicationDate
                                 };
 
@@ -104,7 +106,7 @@ router.get('/new-applications-generated', (req, res) => {
   });
 
   res.render('manage-blue-badges/new-applications-generated', 
-  {'title':'New applications','app_class':'active'})
+  {'title':'New applications','new_class':'active'})
 })
 
 router.get('/new-application-generated', (req, res) => {
@@ -114,7 +116,7 @@ router.get('/new-application-generated', (req, res) => {
   res.locals.application = application[0]
 
   res.render('manage-blue-badges/new-application-generated', 
-  {'title':'View application','app_class':'active'})
+  {'title':'View application','new_class':'active'})
 })
 
 router.get('/reset***REMOVED***', function (req, res) {

@@ -1,5 +1,4 @@
 {% extends "admin_layout.html" %}
-{% set disableSidebar = 'yes' %}
 
 {% block page_header %}
   <h1>{{title}}</h1><p class="count">36</p>
@@ -22,11 +21,15 @@
       
         <th class="govuk-table__header" scope="col">Name</th>
       
-        <th class="govuk-table__header" scope="col">NI number</th>
+        <th class="govuk-table__header" scope="col">Date of birth</th>
       
         <th class="govuk-table__header" scope="col">Eligibility</th>
+
+        <th class="govuk-table__header" scope="col">Existing badge</th>
       
         <th class="govuk-table__header" scope="col">Submitted date</th>
+
+        <th class="govuk-table__header govuk-table__header--align-center" scope="col">Status</th>
       
       </tr>
     </thead>
@@ -35,9 +38,11 @@
       {% for application in applicationsTableArray %}
       <tr class="govuk-table__row">
         <td class="govuk-table__cell"><a href="new-application-generated?application-gen-nino={{application.applicantNINO}}">{{application.applicantName}}</a></td>
-        <td class="govuk-table__cell ">{{application.applicantNINO}}</td>
+        <td class="govuk-table__cell ">{{application.applicantDOB}}</td>
         <td class="govuk-table__cell ">{{application.applicantEligibility}}</td>
+        <td class="govuk-table__cell ">{{application.existingBadgeNumber}}</td>
         <td class="govuk-table__cell ">{{application.applicantSubmittedDate}}</td>
+        <td class="govuk-table__cell govuk-table__cell--align-center"><strong class="govuk-tag app-task-list__task-completed">To do</strong></td>
       </tr>
       {% endfor %}
     </tbody>
