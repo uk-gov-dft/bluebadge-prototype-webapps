@@ -37,7 +37,7 @@ router.get('/sign-in-backend', function (req, res) {
   } else if (req.session.data['sign-in-email'].includes ('enforce2')) {
     res.redirect('/manage-blue-badges/search-for-a-badge?find-badge-url=search-for-a-badge');
   } else {
-    res.redirect('/manage-blue-badges/new-applications');
+    res.redirect('/manage-blue-badges/new-applications-generated');
   }
 });
 
