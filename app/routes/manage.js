@@ -98,7 +98,8 @@ router.get('/new-applications-generated', (req, res) => {
                                   "applicantNINO": application.nino,
                                   "applicantDOB": application.dateOfBirth,
                                   "applicantEligibility": application.eligibilityShort,
-                                  "existingBadgeNumber": application.existingBadgeNumber,
+                                  "applicationType": application.applicationType,
+                                  "badgeFlag": application.badgeFlag,
                                   "applicantSubmittedDate": application.applicationDate
                                 };
 
@@ -106,7 +107,7 @@ router.get('/new-applications-generated', (req, res) => {
   });
 
   res.render('manage-blue-badges/new-applications-generated', 
-  {'title':'New applications','new_class':'active'})
+  {'title':'Applications','new_class':'active'})
 })
 
 router.get('/new-application-generated', (req, res) => {
@@ -128,7 +129,7 @@ router.get('/reapplications', (req, res) => {
                                   "applicantNINO": application.nino,
                                   "applicantDOB": application.dateOfBirth,
                                   "applicantEligibility": application.eligibilityShort,
-                                  "existingBadgeNumber": application.existingBadgeNumber,
+                                  "applicationType": application.applicationType,
                                   "applicantSubmittedDate": application.applicationDate
                                 };
 

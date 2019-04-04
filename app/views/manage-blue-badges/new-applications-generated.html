@@ -3,19 +3,67 @@
 {% block page_header %}
   <h1>{{title}}</h1><p class="count">36</p>
   <div class="search-box-container">
-    <form action="" class="search-box">
-      {% include "includes/search.html" %}
+    <form action="" class="search-box applications-searchbox">
+      {{ govukSelect({
+        id: "search-filter",
+        name: "search-filter",
+        label: {
+          text: "Search by"
+        },
+        items: [
+          {
+            value: "select-option",
+            text: "Select option"
+          },
+          {
+            value: "name",
+            text: "Name"
+          },
+          {
+            value: "postcode",
+            text: "Postcode"
+          }
+        ]
+      }) }}
+      {{ govukInput({
+        label: {
+          text: "Name or postcode"
+        },
+        id: "search-term",
+        name: "search-term",
+        type: "search"
+      }) }}
+      {{ govukSelect({
+        id: "type-filter",
+        name: "type-filter",
+        label: {
+          text: "Type"
+        },
+        items: [
+          {
+            value: "all",
+            text: "All applications"
+          },
+          {
+            value: "new",
+            text: "New"
+          },
+          {
+            value: "reapplications",
+            text: "Reapplications"
+          }
+        ]
+      }) }}
+      {{ govukButton({
+        text: "Filter applications",
+        classes: "govuk-button--addition"
+      }) }}
     </form>
-    <div class="search-box__options">
-      <a href="/public/images/new-applications.csv">Export all</a>
-    </div>
   </div>
 {% endblock %}
 
 {% block content %}
   <table class="govuk-table">
-    
-    
     <thead class="govuk-table__head">
       <tr class="govuk-table__row">
       
@@ -24,10 +72,10 @@
         <th class="govuk-table__header" scope="col">Date of birth</th>
       
         <th class="govuk-table__header" scope="col">Eligibility</th>
-
-        <th class="govuk-table__header" scope="col">Existing badge</th>
       
         <th class="govuk-table__header" scope="col">Submitted date</th>
+
+        <th class="govuk-table__header" scope="col">Type</th>
 
         <th class="govuk-table__header govuk-table__header--align-center" scope="col">Status</th>
       
@@ -40,8 +88,13 @@
         <td class="govuk-table__cell"><a href="new-application-generated?application-gen-nino={{application.applicantNINO}}">{{application.applicantName}}</a></td>
         <td class="govuk-table__cell ">{{application.applicantDOB}}</td>
         <td class="govuk-table__cell ">{{application.applicantEligibility}}</td>
-        <td class="govuk-table__cell ">{{application.existingBadgeNumber}}</td>
         <td class="govuk-table__cell ">{{application.applicantSubmittedDate}}</td>
+        <td class="govuk-table__cell ">{{application.applicationType}}
+          {% if application.badgeFlag %}
+            <br>
+            ({{application.badgeFlag}})
+          {% endif %}
+        </td>
         <td class="govuk-table__cell govuk-table__cell--align-center"><strong class="govuk-tag app-task-list__task-completed">To do</strong></td>
       </tr>
       {% endfor %}
