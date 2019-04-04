@@ -119,6 +119,36 @@ router.get('/new-application-generated', (req, res) => {
   {'title':'View application','new_class':'active'})
 })
 
+router.get('/reapplications', (req, res) => {
+  const applications = req.session.data['badgeReApplications']
+
+  applications.forEach(function(application) {
+    var applicationRowObject = {
+                                  "applicantName": application.fullName,
+                                  "applicantNINO": application.nino,
+                                  "applicantDOB": application.dateOfBirth,
+                                  "applicantEligibility": application.eligibilityShort,
+                                  "existingBadgeNumber": application.existingBadgeNumber,
+                                  "applicantSubmittedDate": application.applicationDate
+                                };
+
+    res.locals.applicationsTableArray.push(applicationRowObject);
+  });
+
+  res.render('manage-blue-badges/reapplications', 
+  {'title':'Reapplications','renewals_class':'active'})
+})
+
+router.get('/reapplication', (req, res) => {
+  const appnino = req.session.data['application-gen-nino'].replace('%20','').toUpperCase()
+  const application = req.session.data['badgeReApplications'].filter(application => application.nino === appnino)
+
+  res.locals.application = application[0]
+
+  res.render('manage-blue-badges/new-application-generated', 
+  {'title':'View reapplication','renewals_class':'active'})
+})
+
 router.get('/reset***REMOVED***', function (req, res) {
   res.locals.formAction = '/manage-blue-badges/reset-email-sent';
   req.session.data['show'] = undefined;

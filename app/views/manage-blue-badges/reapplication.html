@@ -1,0 +1,376 @@
+{% extends "admin_layout.html" %}
+
+{% block back_link %}
+  <div class="dft-headline-wrapper">
+    <div class="back-link-container">
+      {{ govukBackLink({
+        "text": "Back",
+        "href": "javascript: window.history.go(-1)"
+      }) }}
+    </div>
+  </div>
+{% endblock %}
+
+{% block page_header %}
+  <div class="check-answers-heading-with-change">
+    <div class="check-answers-heading">
+      <p class="subtitle">1234542525</p>
+      <h1>{{title}}</h1>
+    </div>
+  
+    <div class="check-answers-change">
+      <p>
+        <a href="#applicationDetails">View application details &darr;</a>
+      </p>
+    </div>
+  
+  </div>
+  
+{% endblock %}
+
+{% block content %}
+
+{% include "includes/application-status-change.html" %}
+
+{% if application.existingBadgeNumber %}
+
+<section class="split-section">
+  
+  <h2 class="govuk-heading-m">Previous badge</h2>
+
+  <dl class="govuk-check-your-answers govuk-check-your-answers--short dft-data-list">
+    <div class="govuk-check-your-answers__contents dft-data-list__item">
+      <dt class="dft-data-list__dt govuk-check-your-answers__question">
+        Badge number
+      </dt>
+      <dd class="dft-data-list__dd govuk-check-your-answers__answer">
+        {{application.existingBadgeNumber}}
+      </dd>
+    </div>
+
+    <div class="govuk-check-your-answers__contents dft-data-list__item">
+      <dt class="dft-data-list__dt govuk-check-your-answers__question">
+        Badge expiry date
+      </dt>
+      <dd class="dft-data-list__dd govuk-check-your-answers__answer">
+        4 May 2019
+      </dd>
+    </div>
+
+    {% if application.badgeFlag %}
+
+      <div class="govuk-check-your-answers__contents dft-data-list__item">
+        <dt class="dft-data-list__dt govuk-check-your-answers__question">
+          Badge flag
+        </dt>
+        <dd class="dft-data-list__dd govuk-check-your-answers__answer">
+          {{application.badgeFlag}}
+        </dd>
+      </div>
+
+    {% endif %}
+  </dl>
+
+</section>
+
+{% endif %}
+
+<section class="split-section">
+  <h2 class="govuk-heading-m">
+    Personal details
+  </h2>
+  
+  <dl class="govuk-check-your-answers govuk-check-your-answers--short dft-data-list">
+    <div class="govuk-check-your-answers__contents dft-data-list__item">
+      <dt class="dft-data-list__dt govuk-check-your-answers__question">
+        Full name
+      </dt>
+      <dd class="dft-data-list__dd govuk-check-your-answers__answer">
+        {{application.fullName}}
+      </dd>
+    </div>
+
+    <div class="govuk-check-your-answers__contents dft-data-list__item">
+      <dt class="dft-data-list__dt govuk-check-your-answers__question">
+        Gender
+      </dt>
+      <dd class="dft-data-list__dd govuk-check-your-answers__answer">
+        {{application.gender}}
+      </dd>
+    </div>
+
+    <div class="govuk-check-your-answers__contents dft-data-list__item">
+      <dt class="dft-data-list__dt govuk-check-your-answers__question">
+        Date of birth
+      </dt>
+      <dd class="dft-data-list__dd govuk-check-your-answers__answer">
+        {{application.dateOfBirth}}
+      </dd>
+    </div>
+
+    <div class="govuk-check-your-answers__contents dft-data-list__item">
+      <dt class="dft-data-list__dt govuk-check-your-answers__question">
+        National Insurance number
+      </dt>
+      <dd class="dft-data-list__dd govuk-check-your-answers__answer">
+        {{application.nino}}
+      </dd>
+    </div>
+  
+    <div class="govuk-check-your-answers__contents dft-data-list__item">
+      <dt class="dft-data-list__dt govuk-check-your-answers__question">
+        Home address
+      </dt>
+      <dd class="dft-data-list__dd govuk-check-your-answers__answer">
+        {{ application.address.street }},
+        {% if application.address.street2 %}
+          {{ application.address.street2 }},
+        {% endif %}
+        {{ application.address.city }},
+        {{ application.address.postcode }}
+      </dd>
+    </div>
+  
+    <div class="govuk-check-your-answers__contents dft-data-list__item">
+      <dt class="dft-data-list__dt govuk-check-your-answers__question">
+        Contact details
+      </dt>
+      <dd class="dft-data-list__dd govuk-check-your-answers__answer">
+        {{application.contactName}}<br>
+        {{application.mainPhoneNumber}}<br>
+        {{application.emailAddress}}
+      </dd>
+    </div>
+  
+    <div class="govuk-check-your-answers__contents dft-data-list__item">
+      <dt class="dft-data-list__dt govuk-check-your-answers__question">
+        Proof of identity
+      </dt>
+      <dd class="dft-data-list__dd govuk-check-your-answers__answer">
+        <a href="">{{application.proofOfIdentity}}</a>
+      </dd>
+    </div>
+
+    <div class="govuk-check-your-answers__contents dft-data-list__item">
+      <dt class="dft-data-list__dt govuk-check-your-answers__question">
+        Proof of address
+      </dt>
+      <dd class="dft-data-list__dd govuk-check-your-answers__answer">
+        <a href="">{{application.proofOfIdentity}}</a>
+      </dd>
+    </div>
+  
+    <div class="govuk-check-your-answers__contents dft-data-list__item">
+      <dt class="dft-data-list__dt govuk-check-your-answers__question">
+        Photo
+      </dt>
+      <dd class="dft-data-list__dd govuk-check-your-answers__answer">
+        <img src="/public/images/{{application.photoPath}}" alt="Photo of Margaret Miller">
+      </dd>
+    </div>
+  </dl>
+</section>
+
+<section class="split-section">
+  <h2 class="govuk-heading-m">
+    Proof of eligibility
+  </h2>
+  
+  <dl class="govuk-check-your-answers govuk-check-your-answers--short">
+    <div class="govuk-check-your-answers__contents dft-data-list__item">
+      <dt class="dft-data-list__dt govuk-check-your-answers__question">
+        Reason for applying
+      </dt>
+      <dd class="dft-data-list__dd govuk-check-your-answers__answer">
+        {{application.eligibility}}
+      </dd>
+    </div>
+  
+    <div class="govuk-check-your-answers__contents dft-data-list__item">
+      <dt class="dft-data-list__dt govuk-check-your-answers__question">
+        Walking difficulty
+      </dt>
+      <dd class="dft-data-list__dd govuk-check-your-answers__answer">
+        {% for difficult in application.walkingDifficult %}
+          {{difficult}} <br>
+        {% endfor %}
+        {% if data['la-v'] !== "b" %}
+          <br>
+          -------------- <br> <br>
+          <b>Extra answers</b> <br> <br>
+
+
+          {% for extra in application.difficultExtras %}
+            {{extra | striptags(true) | escape | nl2br}} <br>
+          {% endfor %}
+        {% endif %}
+      </dd>
+    </div>
+
+    <div class="govuk-check-your-answers__contents dft-data-list__item">
+      <dt class="dft-data-list__dt govuk-check-your-answers__question">
+        When they get breathless
+      </dt>
+      <dd class="dft-data-list__dd govuk-check-your-answers__answer">
+        {% for breath in application.breathlessness %}
+          {{breath}} <br>
+        {% endfor %}
+      </dd>
+    </div>
+
+    <div class="govuk-check-your-answers__contents dft-data-list__item">
+      <dt class="dft-data-list__dt govuk-check-your-answers__question">
+        Mobility aids
+      </dt>
+      <dd class="dft-data-list__dd govuk-check-your-answers__answer">
+        {% for aid in application.mobilityAids %}
+          {{aid.name}}, {{aid.when}}, {{aid.provided}} <br>
+        {% endfor %}
+      </dd>
+    </div>
+    
+    <div class="govuk-check-your-answers__contents dft-data-list__item">
+      <dt class="dft-data-list__dt govuk-check-your-answers__question">
+        Walking duration
+      </dt>
+      <dd class="dft-data-list__dd govuk-check-your-answers__answer">
+        {{application.walkingDuration}}
+      </dd>
+    </div>
+  
+    <div class="govuk-check-your-answers__contents dft-data-list__item">
+      <dt class="dft-data-list__dt govuk-check-your-answers__question">
+        Description of conditions and other information
+      </dt>
+      <dd class="dft-data-list__dd govuk-check-your-answers__answer">
+        {{application.descriptionOfCondition}} <br>
+        ---------------- <br>
+        Able to walk to and from: <br>
+        {{application.whereWalkFromTo}} <br>
+        ---------------- <br>
+        How long it takes: <br>
+        {{application.howLongTakes}}
+      </dd>
+    </div>
+
+    <div class="govuk-check-your-answers__contents dft-data-list__item">
+      <dt class="dft-data-list__dt govuk-check-your-answers__question">
+        Medical evidence
+      </dt>
+      <dd class="dft-data-list__dd govuk-check-your-answers__answer">
+        <a href="">{{application.supportingDocuments}}</a>
+      </dd>
+    </div>
+
+    <div class="govuk-check-your-answers__contents dft-data-list__item">
+      <dt class="dft-data-list__dt govuk-check-your-answers__question">
+        Treatments
+      </dt>
+      <dd class="dft-data-list__dd govuk-check-your-answers__answer">
+        {% for treatment in application.treatments %}
+          {{treatment.name}}, {{treatment.when}} <br>
+        {% endfor %}
+      </dd>
+    </div>
+
+    <div class="govuk-check-your-answers__contents dft-data-list__item">
+      <dt class="dft-data-list__dt govuk-check-your-answers__question">
+        Medication
+      </dt>
+      <dd class="dft-data-list__dd govuk-check-your-answers__answer">
+        {% for med in application.medication %}
+          {{med.name}}, {{med.prescribed}}, {{med.dosage}}, {{med.often}} <br>
+        {% endfor %}
+      </dd>
+    </div>
+
+    <div class="govuk-check-your-answers__contents dft-data-list__item">
+      <dt class="dft-data-list__dt govuk-check-your-answers__question">
+        Healthcare professionals
+      </dt>
+      <dd class="dft-data-list__dd govuk-check-your-answers__answer">
+        {% for hcp in application.hcps %}
+          {{hcp.name}}, {{hcp.where}} <br>
+        {% endfor %}
+      </dd>
+    </div>
+  </dl>
+</section>
+
+<section class="split-section" id="applicationDetails">
+  <h2 class="govuk-heading-m">
+    Application details
+  </h2>
+
+  <dl class="govuk-check-your-answers govuk-check-your-answers--short">
+    <div class="govuk-check-your-answers__contents dft-data-list__item">
+      <dt class="dft-data-list__dt govuk-check-your-answers__question">
+        Reference
+      </dt>
+      <dd class="dft-data-list__dd govuk-check-your-answers__answer">
+        1234542525
+      </dd>
+    </div>
+  
+    <div class="govuk-check-your-answers__contents dft-data-list__item">
+      <dt class="dft-data-list__dt govuk-check-your-answers__question">
+        Submitted
+      </dt>
+      <dd class="dft-data-list__dd govuk-check-your-answers__answer">
+        {{application.applicationDate}}
+      </dd>
+    </div>
+  </dl>
+</section>
+
+{{ govukButton({
+    "text": "Order badge",
+    "href": "order-a-badge/processing"
+  }) }}
+
+  <div class="uniform-links">
+    <p><a href="">Export application</a></p>
+    
+    <details class="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">
+          Delete application
+        </span>
+      </summary>
+      <div class="govuk-details__text">
+        <form action="new-applications">
+          <p>Are you sure you want to delete this application?</p>
+          <input id="success" name="success" type="hidden" value="Application deleted">
+          <input value="Yes, delete application" type="submit" class="govuk-button">
+        </form>
+        <p class="govuk-body">
+          <a href="#">No, don't delete the application</a>
+        </p>
+      </div>
+    </details>
+    
+    <details class="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">
+          Transfer application
+        </span>
+      </summary>
+      <div class="govuk-details__text">
+        <form action="new-applications">
+          <input id="success" name="success" type="hidden" value="Application transferred">
+          <div class="govuk-form-group">
+            <label for="issuingAuthPicker" class="govuk-label">Choose local authority to transfer the application to</label>
+            <select name="issuing-auth" class="govuk-select" id="issuingAuthPicker">
+              {% include "includes/issuing-auth-options.html" %}
+            </select>
+          </div>
+          <input value="Transfer application" type="submit" class="govuk-button">
+        </form>
+        <p class="govuk-body">
+          <a href="#">No, don't transfer the application</a>
+        </p>
+      </div>
+    </details>
+  </div>
+
+{% endblock %}

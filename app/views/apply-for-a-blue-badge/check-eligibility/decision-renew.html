@@ -17,7 +17,7 @@
 
 {% block guidance_content %}
 <div class="middle-start-page">
-  <h1 class="govuk-heading-l">Renew {{ your }} {{organisationPronoun}} Blue Badge</h1>
+  <h1 class="govuk-heading-l">Reapplying for a Blue Badge</h1>
   
   <p class="govuk-body">We've found the badge <b>{{ data['existing-blue-badge-number'] }}</b>. {{ you | capitalize }} have to reapply for a Blue Badge as part of the renewal process.</p>
 
@@ -35,10 +35,10 @@
     <li>cancel or refuse applications for Blue Badges that are no longer needed</li>
   </ul>
 
-  <p class="govuk-body-l">What you'll need to provide</p>
+  <p class="govuk-body">{{you|capitalize}}'ll need to provide:</p>
 
   <ul class="govuk-list govuk-list--bullet">
-    <li>{{your | capitalize}} National Insurance number</li>
+    <li>{{your}} National Insurance number (if {{you}} have one)</li>
     {% if data['applicant'] !== 'organisation' %}
     <li>a recent digital photo of {{your}} face and shoulders</li>
     {% endif %}
