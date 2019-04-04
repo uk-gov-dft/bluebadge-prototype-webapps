@@ -37,7 +37,7 @@
     <tbody class="govuk-table__body">
       {% for application in applicationsTableArray %}
       <tr class="govuk-table__row">
-        <td class="govuk-table__cell"><a href="new-application-generated?application-gen-nino={{application.applicantNINO}}">{{application.applicantName}}</a></td>
+        <td class="govuk-table__cell"><a href="reapplication?application-gen-nino={{application.applicantNINO}}">{{application.applicantName}}</a></td>
         <td class="govuk-table__cell ">{{application.applicantDOB}}</td>
         <td class="govuk-table__cell ">{{application.applicantEligibility}}</td>
         <td class="govuk-table__cell ">{{application.existingBadgeNumber}}</td>
