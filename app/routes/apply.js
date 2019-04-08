@@ -32,7 +32,7 @@ router.use(function(req, res, next) {
       application = "application";
       break;
     case "renewal":
-      application = "renewal application";
+      application = "reapplication";
       break;
     default:
       application = "application";
@@ -120,6 +120,8 @@ router.get('/check-eligibility/existing-badge/index-backend', function (req, res
         res.redirect('/apply-for-a-blue-badge/check-eligibility/existing-badge/not-for-renewal');
       } else if (blueBadgeNumber.indexOf('3333') === 0 && blueBadgeNumber.lastIndexOf('3333') === blueBadgeNumber.length-4) {
         res.redirect('/apply-for-a-blue-badge/check-eligibility/existing-badge?show=errors&existing=yes');
+      } else if (blueBadgeNumber.indexOf('4444') === 0 && blueBadgeNumber.lastIndexOf('4444') === blueBadgeNumber.length-4) {
+        res.redirect('/apply-for-a-blue-badge/check-eligibility/existing-badge/need-to-reapply');
       } else {
         res.redirect('/apply-for-a-blue-badge/check-eligibility/decision-renew');
       }

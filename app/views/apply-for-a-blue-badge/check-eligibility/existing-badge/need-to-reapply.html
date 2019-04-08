@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+{% set pageHeading = 'Badge found' %}
+
+{% block pageTitle %}
+  {{pageHeading | capitalize}} - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block inner_content %}
+
+<form action="/apply-for-a-blue-badge/check-eligibility/enter-age">
+
+	<h1 class="govuk-heading-l">{{pageHeading}}</h1>
+
+	<p class="govuk-body">We've found the badge <b>{{ data['existing-blue-badge-number'] }}</b>. To get a new badge, you need to reapply.</p>
+	<p class="govuk-body">This is so that {{data['council-name']}} can:</p>
+	<ul class="govuk-list govuk-list--bullet">
+		<li>check {{your}} eligibility
+		<li>make sure {{your}} {{organisationPronoun}} details and photo are up to date</li>
+		<li>issue Blue Badges to 
+		  {% if data['applicant'] === 'organisation' %}
+		  organisations 
+		  {% else %}
+		  people 
+		  {% endif %}
+		  that need them
+		</li>
+		<li>cancel or refuse applications for Blue Badges that are no longer needed</li>
+	</ul>
+
+	{{ govukButton({
+	  "text": "Continue"
+	}) }}
+
+</form>
+
+{% endblock %}

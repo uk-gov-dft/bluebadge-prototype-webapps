@@ -36,7 +36,7 @@
       <a href="#next-section-to-complete" class="govuk-skip-link">Skip to next incomplete section</a>
 
       <ol class="app-task-list">
-        {% if data['renewal-or-new-application'] !== "renewal" %}
+        {% if data['renewal-or-new-application'] !== "renewal" or data['existing-blue-badge-number'] === "4444" %}
         <li>
           <h2 class="app-task-list__section">
             <span class="app-task-list__section-number">1. </span> Check before you start
@@ -59,10 +59,10 @@
         {% endif %}
         <li>
           <h2 class="app-task-list__section">
-            {% if data['renewal-or-new-application'] === "renewal" %}
-            <span class="app-task-list__section-number">1. </span> Prepare reapplication
+            {% if data['renewal-or-new-application'] === "renewal" and data['existing-blue-badge-number'] !== "4444" %}
+            <span class="app-task-list__section-number">1. </span> Prepare {{application}}
             {% else %}
-            <span class="app-task-list__section-number">2. </span> Prepare application
+            <span class="app-task-list__section-number">2. </span> Prepare {{application}}
             {% endif %}
           </h2>
           <ul class="app-task-list__items complete-before-submit">

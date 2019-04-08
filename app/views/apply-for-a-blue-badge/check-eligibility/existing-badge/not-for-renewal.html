@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 
-{% set pageHeading = you + ' don\'t need to renew yet' %}
+{% set pageHeading = you + ' don\'t need to reapply yet' %}
 
 {% block pageTitle %}
   {{pageHeading | capitalize}} - {% if serviceName %} {{ serviceName }} {% endif %}
@@ -16,7 +16,7 @@
 <!-- <p class="govuk-body-l">We couldn't find a badge matching the number you entered.</p> -->
 {{ govukWarningText(
   {
-    "text": "This badge isn't due for renewal until 8 June 2018",
+    "text": "This badge expires on 8 June 2021",
     "iconFallbackText": "Warning"
   })
 }}
@@ -24,13 +24,8 @@
 <h2 class="govuk-heading-m">What happens next?</h2>
 
 <div class="govuk-details__text govuk-body">
-  <p>Renew {{ your }} badge after 8 June 2018.</p>
-  <p>Alternatively, contact {{data['council-name']}} for assistance:</p>
-  <ul class="govuk-list">
-    <li>Website: <a href="#">www.{{data['council-name'] | lower}}.gov.uk</a></li>
-    <li>Email: <a href="#">bluebadge@{{data['council-name'] | lower}}.gov.uk</a></li>
-    <li>Phone: 0161 205 7321</li>
-  </ul>
+  <p>Reapply for a Blue Badge after 8 March 2021.</p>
+  <p>Alternatively, <a href="">contact {{data['council-name']}} for assistance</a>.</p>
 
 </div>
 

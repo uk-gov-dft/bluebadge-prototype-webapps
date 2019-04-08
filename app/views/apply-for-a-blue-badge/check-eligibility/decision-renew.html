@@ -38,14 +38,10 @@
       "href": '/apply-for-a-blue-badge/task-list'
     }) }}
     
-    <p class="govuk-body">It can take between 6 to 12 weeks for {{you}} to receive your badge from {{data['council-name']}}, if {{your}} application is successful.</p>
+    <p class="govuk-body">It can take up to 4 weeks for {{you}} to receive your badge from {{data['council-name']}}.</p>
 
     {% if data['nation'] !== "wales" %}
-      {% if data['takes-payment'] === "yes" %}
-      <p class="govuk-body">{{data['council-name']}} charges {{feePrice}} to issue the badge. You can pay by card at the end of the application. The fee will be refunded if {{your}} application is not successful.</p>
-      {% else %}
-      <p class="govuk-body">{{data['council-name']}} may charge up to {{feePrice}} to issue the badge. They'll contact you for payment after you submit the application.</p>
-      {% endif %}
+    <p class="govuk-body">{{data['council-name']}} charges {{feePrice}} to issue the badge. You can pay by card at the end of the application. The fee will be refunded if {{your}} application is not successful.</p>
     {% endif %}
 
     <h2 class="govuk-heading-m">Don't want to apply online?</h2>
