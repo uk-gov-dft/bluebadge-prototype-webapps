@@ -235,6 +235,8 @@
 
   <section class="form-section">
 
+    <h2 class="govuk-heading-m">Record eligibility</h2>
+
     {% set eligibilityHtmlAuto %}
 
       {{ govukSelect({
@@ -359,6 +361,27 @@
         ]
       }) }}
 
+      {{ govukCheckboxes({
+        idPrefix: "waste",
+        name: "waste",
+        fieldset: {
+          legend: {
+            text: "Do you want to mark this badge as not for reassessment?",
+            isPageHeading: false,
+            classes: "govuk-fieldset__legend--m"
+          }
+        },
+        hint: {
+          text: "This will add a flag to the badge record. Next time they apply they won't have to prove their eligibility."
+        },
+        items: [
+          {
+            value: "not-for-reassessment",
+            text: "Mark this badge as not for reassessment"
+          }
+        ]
+      }) }}
+
     {% endset -%}
 
     {{ govukRadios({
@@ -366,7 +389,7 @@
       "name": "eligibility-auto",
       "fieldset": {
         "legend": {
-          "text": "Eligibility",
+          "text": "Eligibility type",
           "isPageHeading": false,
           "classes": 'govuk-fieldset__legend--m'
         }
@@ -391,6 +414,7 @@
 
       ]
     }) }}
+
  </section>
 
  <section class="form-section">
