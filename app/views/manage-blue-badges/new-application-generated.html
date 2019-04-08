@@ -185,6 +185,10 @@
         {{application.eligibility}}
       </dd>
     </div>
+
+    {% if application.badgeFlag %}
+
+    {% else %}
   
     <div class="govuk-check-your-answers__contents dft-data-list__item">
       <dt class="dft-data-list__dt govuk-check-your-answers__question">
@@ -294,6 +298,8 @@
         {% endfor %}
       </dd>
     </div>
+
+    {% endif %}
   </dl>
 </section>
 
@@ -305,10 +311,19 @@
   <dl class="govuk-check-your-answers govuk-check-your-answers--short">
     <div class="govuk-check-your-answers__contents dft-data-list__item">
       <dt class="dft-data-list__dt govuk-check-your-answers__question">
-        Reference
+        Type
       </dt>
       <dd class="dft-data-list__dd govuk-check-your-answers__answer">
-        1234542525
+        Reapplication
+      </dd>
+    </div>
+
+    <div class="govuk-check-your-answers__contents dft-data-list__item">
+      <dt class="dft-data-list__dt govuk-check-your-answers__question">
+        Payment
+      </dt>
+      <dd class="dft-data-list__dd govuk-check-your-answers__answer">
+        P565YXAV4BEJ
       </dd>
     </div>
   
