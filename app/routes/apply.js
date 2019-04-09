@@ -677,14 +677,29 @@ router.get('/prove-eligibility/blind-consent-la', function(req, res) {
 
 router.get('/prove-eligibility/blind-consent-backend', function(req, res) {
   if (req.session.data['blind-consent'] === 'yes') {
-    res.redirect(proveEligibilityPath+'blind-select-council');
+    // res.redirect(proveEligibilityPath+'blind-select-council');
+    res.redirect(proveEligibilityPath+'blind-is-your-council');
   } else {
     res.redirect(proveEligibilityPath+'upload-blind-cvi');
   }
 });
 
+router.get('/prove-eligibility/blind-is-your-council', function(req, res) {
+  res.locals.formAction = '/apply-for-a-blue-badge/prove-eligibility/blind-is-council-backend';
+  res.render(proveEligibilityTemplatePath+'blind-is-your-council');
+});
+
+router.get('/prove-eligibility/blind-is-council-backend', function(req, res) {
+  if (req.session.data['blind-is-council'] === 'yes') {
+    res.redirect('/apply-for-a-blue-badge/task-list?blind-completed=true');
+  } else {
+    res.redirect(proveEligibilityPath+'blind-select-council');
+    
+  }
+});
+
 router.get('/prove-eligibility/blind-select-council', function(req, res) {
-  res.locals.formAction = proveEligibilityPath+'check-arms-blind';
+  res.locals.formAction = '/apply-for-a-blue-badge/task-list?blind-completed=true';
   res.render(proveEligibilityTemplatePath+'blind-select-council');
 });
 

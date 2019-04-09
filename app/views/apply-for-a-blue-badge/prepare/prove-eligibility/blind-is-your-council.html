@@ -1,0 +1,67 @@
+{% extends "layout.html" %}
+{% set hasSaveClass = 'yes' %}
+
+{% if data['council-name'] == 'your local council' %}
+
+{% set councilName = 'Aberdeenshire council' %}
+
+{% else %}
+
+{% set councilName = data['council-name'] %}
+
+{% endif %}
+
+{% set pageHeading = 'Are you registered as severely sight impaired (blind) in ' + councilName +'?' %}
+
+
+{% block pageTitle %}
+  {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block inner_content %}
+
+
+
+<form action="{{ formAction }}">
+  {{ govukRadios({
+    "idPrefix": "blind-is-council",
+    "name": "blind-is-council",
+    "attributes": {
+      "data-catchoption-label": true
+    },
+    "fieldset": {
+      "legend": {
+        "text": pageHeading,
+        "isPageHeading": true,
+        "classes": 'govuk-fieldset__legend--l'
+      }
+    },
+    "items": [
+      {
+        "value": "yes",
+        "text": "Yes",
+        "checked": data['blind-is-council'] === 'yes'
+      },
+      {
+        "value": "no",
+        "text": "No",
+        "checked": data['blind-is-council'] === 'no'
+      }
+
+    ]
+  }) }}
+
+  <div id="hiddenCaughtInputs"></div>
+  
+  {{ govukButton({
+    "text": "Continue"
+  }) }}
+
+  <!-- Has save -->
+</form>
+
+      
+
+
+
+{% endblock %}
