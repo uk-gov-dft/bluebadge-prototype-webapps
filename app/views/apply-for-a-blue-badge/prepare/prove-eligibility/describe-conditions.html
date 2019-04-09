@@ -3,15 +3,15 @@
 
 {% if data['disability'] === 'problems-walking' %}
 
-{% set pageHeading = 'Describe any health conditions or disabilities that affect ' + your + ' walking' %}
+{% set pageHeading = 'Name any health conditions or disabilities that affect ' + your + ' walking' %}
 
 {% elif data['disability'] === 'arms' %}
 
-{% set pageHeading = 'Describe any health conditions or disabilities that affect ' + your + ' arms' %}
+{% set pageHeading = 'Name any health conditions or disabilities that affect ' + your + ' arms' %}
 
 {% else %}
 
-{% set pageHeading = 'Describe ' + your + ' health conditions or disabilities' %}
+{% set pageHeading = 'Name ' + your + ' health conditions or disabilities' %}
 
 {% endif %}
 
@@ -25,19 +25,12 @@
 
 <h1 class="govuk-heading-l">{{pageHeading}}</h1>
 
-<div class="govuk-inset-text">
-  <p>
-    <!-- Take your time and write as much detail here as possible. <br> -->
-    {{your|capitalize}} local council will use this information, along with {{your}} other answers, to help them make a decision about {{your}} {{application}}.
-  </p>
-</div>
-
 {% if (data['disability'] === 'child-bulky-equipment') %}
-  {% set describeLabel = "Give details of the child's medical condition that means they'll always need to be accompanied by bulky medical equipment (1200 word limit)" %}
+  {% set describeLabel = "Give details of the child's medical condition that means they'll always need to be accompanied by bulky medical equipment" %}
 {% elif (data['disability'] === 'child-close-to-vehicle') %}
-  {% set describeLabel = 'Give details about the conditions that mean they need to have quick access to a vehicle (1200 word limit)' %}
+  {% set describeLabel = 'Give details about the conditions that mean they need to have quick access to a vehicle' %}
 {% else %}
-  {% set describeLabel = 'Try to use the correct medical terms, if you know them (1200 word limit)' %}
+  {% set describeLabel = 'Try to use the correct medical terms, if you know them' %}
 {% endif %}
 
 <form action="{{ formAction }}">
@@ -47,7 +40,7 @@
     "label": {
       "text": describeLabel
     },
-    "rows": 10,
+    "rows": 4,
     "value": data['describe-condition']
   }) }}
   

@@ -16,12 +16,12 @@
   {% set painHtml %}
     {{ govukTextarea({
       "label": {
-        "text": "Describe when " + you + " get excessive pain"
+        "text": "Describe the pain " + you + " get when walking. How severe is the pain?"
       },
       id: "pain-question",
       name: "pain-question",
       value: data['pain-question'],
-      rows: 2
+      rows: 3
     }) }}
   {% endset -%}
 
@@ -30,14 +30,40 @@
   {% endset -%}
 
   {% set balanceHtml %}
+    {{ govukRadios({
+      classes: "govuk-radios--inline",
+      idPrefix: "balance-radios",
+      name: "balance-radios",
+      fieldset: {
+        legend: {
+          text: "Have " + you + " seen a healthcare professional for any falls in the last 12 months?",
+          isPageHeading: false,
+          classes: "govuk-fieldset__legend--s"
+        }
+      },
+      items: [
+        {
+          value: "yes",
+          text: "Yes"
+        },
+        {
+          value: "no",
+          text: "No"
+        }
+      ]
+    }) }}
+
     {{ govukTextarea({
       "label": {
-        "text": "What affects " + your + " balance or coordination?"
+        "text": "Describe how the way " + you + " walk is affected by " + your + " condition"
+      },
+      "hint": {
+        "text": "For example, if " + your + " posture is affected or " + you + " struggle to take full steps" 
       },
       id: "balance-question",
       name: "balance-question",
       value: data['balance-question'],
-      rows: 2
+      rows: 3
     }) }}
   {% endset -%}
 
@@ -49,19 +75,42 @@
       id: "longtime-question",
       name: "longtime-question",
       value: data['longtime-question'],
-      rows: 2
+      rows: 3
     }) }}
   {% endset -%}
 
   {% set dangerHtml %}
+    {{ govukRadios({
+      classes: "govuk-radios--inline",
+      idPrefix: "pain-radios",
+      name: "pain-radios",
+      fieldset: {
+        legend: {
+          text: "Do " + you + " have a chest, lung or heart condition or epilepsy?",
+          isPageHeading: false,
+          classes: "govuk-fieldset__legend--s"
+        }
+      },
+      items: [
+        {
+          value: "yes",
+          text: "Yes"
+        },
+        {
+          value: "no",
+          text: "No"
+        }
+      ]
+    }) }}
+
     {{ govukTextarea({
       "label": {
-        "text": "How is walking dangerous?"
+        "text": "Describe how " + your + " condition makes walking dangerous to " + your + " health and safety"
       },
       id: "danger-question",
       name: "danger-question",
       value: data['danger-question'],
-      rows: 2
+      rows: 3
     }) }}
   {% endset -%}
 
@@ -73,7 +122,7 @@
       id: "planning-question",
       name: "planning-question",
       value: data['planning-question'],
-      rows: 2
+      rows: 3
     }) }}
   {% endset -%}
 
@@ -85,7 +134,7 @@
       id: "something-description",
       name: "something-description",
       value: data['something-description'],
-      rows: 2
+      rows: 3
     }) }}
   {% endset -%}
 
@@ -110,18 +159,10 @@
       },
       {
         "value": "balance",
-        "text": "Balance or coordination",
+        "text": "Balance, coordination or posture",
         "checked": checked('difficulty', 'balance'),
         "conditional": {
           "html": balanceHtml
-        }
-      },
-      {
-        "value": "longtime",
-        "text": "It takes " + me + " a long time" ,
-        "checked": checked('difficulty', 'longtime'),
-        "conditional": {
-          "html": longHtml
         }
       },
       {
@@ -172,18 +213,10 @@
       },
       {
         "value": "balance",
-        "text": "Balance or coordination",
+        "text": "Balance, coordination or posture",
         "checked": checked('difficulty', 'balance'),
         "conditional": {
           "html": balanceHtml
-        }
-      },
-      {
-        "value": "longtime",
-        "text": "It takes " + me + " a long time" ,
-        "checked": checked('difficulty', 'longtime'),
-        "conditional": {
-          "html": longHtml
         }
       },
       {
@@ -239,18 +272,10 @@
       },
       {
         "value": "balance",
-        "text": "Balance or coordination",
+        "text": "Balance, coordination or posture",
         "checked": checked('difficulty', 'balance'),
         "conditional": {
           "html": balanceHtml
-        }
-      },
-      {
-        "value": "longtime",
-        "text": "It takes " + me + " a long time" ,
-        "checked": checked('difficulty', 'longtime'),
-        "conditional": {
-          "html": longHtml
         }
       },
       {
