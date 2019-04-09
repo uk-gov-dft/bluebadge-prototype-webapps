@@ -35,57 +35,36 @@
   }) }}
 {% endset -%}
 
-
 <form action="{{ formAction }}" method="post" class="form" novalidate>
 
   <section class="form-section">
+
+    <!-- <h2 class="govuk-heading-m">Provide new credentials</h2> -->
 
     {{ govukRadios({
       "idPrefix": "govuk-pay",
       "name": "govuk-pay",
       "fieldset": {
         "legend": {
-          "text": "Do you have a GOV.UK Pay account?",
-          "isPageHeading": true,
+          "text": "Choose a service to provide credentials for",
+          "isPageHeading": false,
           "classes": 'govuk-fieldset__legend--l'
         }
       },
       "items": [
         {
-          "value": "yes",
-          "text": "Yes",
+          "value": "govuk-pay",
+          "text": "GOV.UK Pay",
           "conditional": {
             "html": govukPayHtml
           }
         },
         {
-          "value": "no",
-          "text": "No"
-        }
-      ]
-    }) }}
-
-    {{ govukRadios({
-      "idPrefix": "govuk-notify",
-      "name": "govuk-notify",
-      "fieldset": {
-        "legend": {
-          "text": "Do you have a GOV.UK Notify account?",
-          "isPageHeading": true,
-          "classes": 'govuk-fieldset__legend--l'
-        }
-      },
-      "items": [
-        {
-          "value": "nes",
-          "text": "Yes",
+          "value": "govuk-notify",
+          "text": "GOV.UK Notify",
           "conditional": {
             "html": govukNotifyHtml
           }
-        },
-        {
-          "value": "no",
-          "text": "No"
         }
       ]
     }) }}
