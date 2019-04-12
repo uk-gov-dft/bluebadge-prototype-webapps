@@ -220,9 +220,20 @@ router.get('/check-eligibility/pip-planning-backend', function (req, res) {
 router.get('/check-eligibility/pip-10-distress-backend', function (req, res) {
   switch (req.session.data['pip-10-distress']) {
     case "10-in-distress":
-      res.redirect('/apply-for-a-blue-badge/check-eligibility/decision');
+      res.redirect('/apply-for-a-blue-badge/check-eligibility/pip-10-distress-which');
       break;
     case "not-10-in-distress":
+      res.redirect('/apply-for-a-blue-badge/check-eligibility/disability');
+      break;
+    }
+});
+
+router.get('/check-eligibility/pip-10-distress-which-backend', function (req, res) {
+  switch (req.session.data['pip-10-distress-which']) {
+    case "10-in-distress-correct":
+      res.redirect('/apply-for-a-blue-badge/check-eligibility/decision');
+      break;
+    case "not-10-in-distress-false":
       res.redirect('/apply-for-a-blue-badge/check-eligibility/disability');
       break;
     }
@@ -291,6 +302,8 @@ router.get('/check-eligibility/pip-did-you-get-dla', function (req, res) {
 router.get('/check-eligibility/disability-backend', function (req, res) {
   if (req.session.data['disability'] === 'problems-walking') {
     res.redirect('/apply-for-a-blue-badge/check-eligibility/walking');
+  } else if (req.session.data['disability'] === 'non-physical') {
+    res.redirect('/apply-for-a-blue-badge/check-eligibility/non-physical');
   } else {
     if(req.session.data['disability'] === 'none') {
       res.render(checkEligibilityTemplatePath+'decision-not-eligible');
@@ -298,6 +311,14 @@ router.get('/check-eligibility/disability-backend', function (req, res) {
       res.render(checkEligibilityTemplatePath+'decision');  
     }
     
+  }
+});
+
+router.get('/check-eligibility/non-physical-backend', function (req, res) {
+  if (req.session.data['disability-non-physical'].includes('none')) {
+    res.render(checkEligibilityTemplatePath+'decision-not-eligible');
+  } else {
+    res.render(checkEligibilityTemplatePath+'decision');
   }
 });
 

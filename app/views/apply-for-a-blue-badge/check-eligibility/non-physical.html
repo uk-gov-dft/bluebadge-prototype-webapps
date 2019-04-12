@@ -1,0 +1,63 @@
+{% extends "layout.html" %}
+
+{% set pageHeading = 'What affects ' + youOrThem + ' taking a journey?' %}
+
+{% block pageTitle %}
+  {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block inner_content %}
+
+<form action="non-physical-backend">
+
+  {% set differentOptions = [
+    {
+      "value": "risk-traffic",
+      "text": iThey|capitalize + " " + am + " a risk in traffic"
+    },
+    {
+      "value": "planning",
+      "text": iThey|capitalize + " struggle planning or following a journey"
+    },
+    {
+      "value": "control",
+      "text": iThey | capitalize + " find it difficult or impossible to control " + my + " actions and lack awareness of the impact they could have on others"
+    },
+    {
+      "value": "regularly-protest",
+      "text": iThey | capitalize + " regularly have intense responses to overwhelming situations causing temporary loss of behavioural control (meltdown)"
+    },
+    {
+      "value": "anxiety",
+      "text": iThey | capitalize + " can become extremely anxious or fearful of public/open spaces"
+    },
+    {
+      "value": "none",
+      "text": "None of these"
+    }
+  ] %}
+    
+    {{ govukCheckboxes({
+      "idPrefix": "disability-non-physical",
+      "name": "disability-non-physical",
+      "attributes": {
+        "data-catchoption-label": true
+      },
+      "fieldset": {
+        "legend": {
+          "text": pageHeading,
+          "isPageHeading": true,
+          "classes": 'govuk-fieldset__legend--l'
+        }
+      },
+      "items": differentOptions
+    }) }}
+
+    <div id="hiddenCaughtInputs"></div>
+  
+  {{ govukButton({
+    "text": "Continue"
+  }) }}
+</form>
+
+{% endblock %}

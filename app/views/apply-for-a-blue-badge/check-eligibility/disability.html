@@ -43,6 +43,12 @@
     }
   %}
 
+  {% set cogReason = {
+      "value": "non-physical",
+      "text": iThey | capitalize + " have a non-physical condition or disability which is ongoing (likely to last 3 years) causing "+ me +" to struggle with journeys"
+    }
+  %}
+
   {% set armsReason = {
       "value": "arms",
       "text": iThey | capitalize + " have a severe disability in both arms and drive regularly, but cannot operate pay-and-display parking machines"
@@ -73,6 +79,7 @@
     {% set differentOptions = [
       terminalReason,
       walkReason,
+      cogReason,
       armsReason,
       noneReason
     ]

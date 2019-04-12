@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+{% set pageHeading = "What was the detail of the 10 points score?" %}
+
+{% block pageTitle %}
+  {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block inner_content %}
+    
+  <form action="pip-10-distress-which-backend">
+  
+    {{ govukRadios({
+      "idPrefix": "pip-10-distress-which",
+      "name": "pip-10-distress-which",
+      "attributes": {
+          "data-catchoption-label": true
+        },
+      "fieldset": {
+        "legend": {
+          "text": pageHeading,
+          "isPageHeading": true,
+          "classes": 'govuk-fieldset__legend--l'
+        }
+      },
+      "items": [
+          {
+            "value": "10-in-distress-correct",
+            "html": 'Cannot undertake any journey because it would cause overwhelming psychological distress to the claimant.'
+          },
+          {
+            "value": "not-10-in-distress-false",
+            "html": 'Cannot follow the route of an unfamiliar journey without another person, assistance dog or orientation aid.'
+          }
+        ]
+    }) }}
+  
+    <div id="hiddenCaughtInputs"></div>
+    
+    
+    {{ govukButton({
+      "text": "Continue"
+    }) }}
+  </form>
+
+{% endblock %}
