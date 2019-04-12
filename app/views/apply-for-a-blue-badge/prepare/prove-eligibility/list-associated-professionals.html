@@ -1,0 +1,100 @@
+{% extends "layout.html" %}
+{% set hasSaveClass = 'yes' %}
+
+{% set pageHeading = "Are there professionals we can contact that could provide further evidence if needed?" %}
+
+{% block pageTitle %}
+  {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block inner_content %}
+
+
+
+
+{% set asspHtml %}
+  {% if tableRows.length > 0 %}
+
+
+      {{ govukTable({
+        "head": [
+          {
+            "text": "Name"
+          },
+          {
+            "text": "Place of work"
+          },
+          {
+            "text": ""
+          }
+        ],
+        "rows": tableRows
+      }) }}
+
+    <p class="govuk-body"><a class="govuk-button govuk-button--addition" href="add-associated-professional">Add another professional</a></p>
+
+  {% else %}
+  
+
+  {{ govukTable({
+    "head": [
+      {
+        "text": "Name"
+      },
+      {
+        "text": "Place of work"
+      },
+      {
+        "text": ""
+      }
+    ],
+    "rows": ""
+  }) }}
+
+  <p class="govuk-body"><a class="govuk-button govuk-button--addition" href="add-associated-professional">Add first professional</a></p>
+
+  {% endif %}
+{% endset -%}
+
+{% set hcpHint = "Give the details of professionals involved in the treatment of " + your + " condition. This cannot <b>only</b> be " + your + " GP.<br />For example, consultants, teachers, therapists, neurologists, psychologists or psychiatrists." %}
+
+  {{ govukRadios({
+    "idPrefix": "assp-details",
+    "name": "assp-details",
+    "fieldset": {
+      "legend": {
+        "text": pageHeading,
+        "isPageHeading": true,
+        "classes": 'govuk-fieldset__legend--l'
+      }
+    },
+    "hint": {
+      "html": hcpHint
+    },
+    "items": [
+      {
+        "value": "yes",
+        "text": "Yes",
+        "checked": tableRows.length > 0,
+        "conditional": {
+          "html": asspHtml
+        }
+      },
+      {
+        "value": "no",
+        "text": "No"
+      }
+    ]
+  }) 
+}}
+
+{{ govukButton({
+  "text": "Continue",
+  "href": formAction
+}) }}
+
+<!-- Has save -->
+
+
+
+{% endblock %}

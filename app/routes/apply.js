@@ -1106,6 +1106,61 @@ router.get('/prove-eligibility/delete-hcp/:id', function(req, res) {
   res.redirect('/apply-for-a-blue-badge/prove-eligibility/list-healthcare-professionals');
 });
 
+// List associated professionals
+
+router.get('/prove-eligibility/list-associated-professionals', function(req, res) {
+  var hcps = req.session.data['assp-array'];
+  delete res.locals.tableRows;
+
+  if (hcps) {
+    var tableRows = [];
+    hcps.forEach(function(item,index) {
+    tableRows.push([
+        {
+          "text": item.name
+        },
+        {
+          "text": item.placeofwork
+        },
+        {
+          "html": "<a href='delete-assp/"+index+"'>Remove this</a>",
+          "format": "numeric"
+        }
+      ])
+    });
+  }
+
+  res.locals.tableRows = tableRows;
+  res.locals.formAction = '/apply-for-a-blue-badge/task-list?assp-completed=true'
+  res.render(proveEligibilityTemplatePath+'list-associated-professionals');
+});
+
+router.get('/prove-eligibility/add-associated-professional', function(req, res) {
+  res.locals.formAction = 'create-assp';
+  res.render(proveEligibilityTemplatePath+'add-associated-professional');
+});
+
+router.get('/prove-eligibility/create-assp', function(req, res) {
+  var assp = {
+    "name": req.session.data['assp-name'],
+    "placeofwork": req.session.data['assp-placeofwork']
+  }
+
+  if (req.session.data['assp-array']) {
+    req.session.data['assp-array'].push(assp);
+  } else {
+    req.session.data['assp-array'] = [assp];
+  }
+
+  delete req.session.data['assp-name','assp-placeofwork'];
+  res.redirect('/apply-for-a-blue-badge/prove-eligibility/list-associated-professionals');
+});
+
+router.get('/prove-eligibility/delete-assp/:id', function(req, res) {
+  req.session.data['assp-array'].splice(req.params.id, 1);
+  res.redirect('/apply-for-a-blue-badge/prove-eligibility/list-associated-professionals');
+});
+
 // Prove address
 
 router.get('/prove-your-address', function (req, res) {

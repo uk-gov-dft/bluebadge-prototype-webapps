@@ -279,7 +279,34 @@
               {% endif %}
             </li>
             {% endif %}
-            {% if data['disability'] === 'problems-walking' %}
+            {% if data['disability'] === 'non-physical' %}
+            <li class="app-task-list__item">
+              <a class="app-task-list__task-name" href="prove-eligibility/list-associated-professionals{% if data['assp-completed'] == 'true'%}?hcp-done=true{% endif %}" aria-describedby="hcp-completed" data-no-badge-link>
+                List associated professionals
+              </a>
+              {% if data['assp-completed'] == "true" or 
+                    data['all-completed'] == "true" or
+                    proofNotNeeded == true %}
+              {{ govukTag({
+                text: 'Completed',
+                classes: 'app-task-list__task-completed',
+                attributes: {
+                  'id': 'assp-completed'
+                }
+              }) }}
+              {% else %}
+              {{ govukTag({
+                text: 'Not started',
+                classes: 'app-task-list__task-not-started',
+                attributes: {
+                  'id': 'assp-not-started'
+                }
+              })}}
+              {% endif %}
+            </li>
+            {% endif %}
+            {% if data['disability'] === 'problems-walking' or
+                  data['disability'] === 'non-physical' %}
             <li class="app-task-list__item">
               <a class="app-task-list__task-name" href="prove-eligibility/list-medication{% if data['medication-completed'] == 'true'%}?medication-done=true{% endif %}" aria-describedby="medication-completed" data-no-badge-link>
                 List medication
