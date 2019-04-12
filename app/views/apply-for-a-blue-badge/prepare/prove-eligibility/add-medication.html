@@ -18,12 +18,14 @@
     "label": {
       "text": "Name of this medication or pain relief"
     },
-    "name": "medication-name"
+    "name": "medication-name",
+    "id": "medication-name"
   }) }}
 
   {{ govukRadios({
     "idPrefix": "medication-type",
     "name": "medication-type",
+    "id": "medication-type",
     "fieldset": {
       "legend": {
         "text": 'Has it been prescribed for ' + youOrThem +'?',
@@ -48,10 +50,11 @@
       "text": "How much do " + you + " take at a time? (Dosage)"
     },
     "hint": {
-      "html": "For example, 500mg, 50ml, 2 tablets"
+      "html": "For example, 500mg or 50ml"
     },
     "classes": 'govuk-!-width-two-thirds',
-    "name": "medication-dosage"
+    "name": "medication-dosage",
+    "id": "medication-dosage"
   }) }}
 
   {{ govukInput({
@@ -62,7 +65,8 @@
       "html": "For example, every 4 hours, twice a day or only when in severe pain"
     },
     "classes": 'govuk-!-width-two-thirds',
-    "name": "medication-regularity"
+    "name": "medication-regularity",
+    "id": "medication-regularity"
   }) }}
 
   {{ govukButton({
