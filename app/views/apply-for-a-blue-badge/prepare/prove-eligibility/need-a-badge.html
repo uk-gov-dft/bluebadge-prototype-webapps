@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+{% set hasSaveClass = 'yes' %}
+
+{% set pageHeading = 'How would a Blue Badge improve taking a journey for ' + youOrThem + '?' %}
+
+{% block pageTitle %}
+  {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block inner_content %}
+
+
+
+<h1 class="govuk-heading-l">{{pageHeading}}</h1>
+
+<form action="{{ formAction }}">
+  {{ govukTextarea({
+    "name": "need-a-badge",
+    "id": "need-a-badge",
+    "label": {
+      "text": "Describe the applicant's needs in detail"
+    },
+    "rows": 8,
+    "value": data['need-a-badge']
+  }) }}
+  
+  {{ govukButton({
+    "text": submitLabel
+  }) }}
+
+  <!-- Has save -->
+</form>
+
+
+
+{% endblock %}

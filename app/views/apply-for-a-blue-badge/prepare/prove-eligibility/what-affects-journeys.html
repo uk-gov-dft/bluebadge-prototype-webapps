@@ -1,0 +1,107 @@
+{% extends "layout.html" %}
+{% set hasSaveClass = 'yes' %}
+
+{% set pageHeading = 'What affects ' + youOrThem + ' taking a journey?' %}
+
+{% block pageTitle %}
+  {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block inner_content %}
+
+<form action="{{ formAction }}">
+
+  {% set accompaniedHtml %}
+    {{ govukTextarea({
+      "label": {
+        "text": "When " + you + " are accompanied, how does this affect the journey?"
+      },
+      id: "accompanied-description",
+      name: "accompanied-description",
+      value: data['accompanied-description'],
+      rows: 3
+    }) }}
+  {% endset -%}
+
+  {% set otherHtml %}
+    {{ govukTextarea({
+      "label": {
+        "text": "Describe what affects " + youOrThem + " taking a journey"
+      },
+      id: "something-np-description",
+      name: "something-np-description",
+      value: data['something-np-description'],
+      rows: 3
+    }) }}
+  {% endset -%}
+
+  {% set differentOptions = [
+    {
+      "value": "risk-traffic",
+      "text": iThey|capitalize + " " + am + " a risk near vehicles, in traffic or car parks",
+      "checked": checked('affects-journeys', 'risk-traffic')
+    },
+    {
+      "value": "planning",
+      "text": iThey|capitalize + " struggle to plan or follow a journey",
+      "checked": checked('affects-journeys', 'planning')
+    },
+    {
+      "value": "control",
+      "text": iThey | capitalize + " find it difficult or impossible to control " + my + " actions and lack awareness of the impact they could have on others",
+      "checked": checked('affects-journeys', 'control')
+    },
+    {
+      "value": "regularly-protest",
+      "text": iThey | capitalize + " regularly have intense responses to overwhelming situations causing temporary loss of behavioural control (meltdown)",
+      "checked": checked('affects-journeys', 'regularly-protest')
+    },
+    {
+      "value": "anxiety",
+      "text": iThey | capitalize + " can become extremely anxious or fearful of public/open spaces",
+      "checked": checked('affects-journeys', 'anxiety')
+    },
+    {
+      "value": "accompanied",
+      "text": iThey | capitalize + " always have to be accompanied by somebody",
+      "checked": checked('affects-journeys', 'accompanied'),
+      "conditional": {
+        "html": accompaniedHtml
+      }
+    },
+    {
+      "value": "other",
+      "text": "Something else",
+      "checked": checked('affects-journeys', 'other'),
+      "conditional": {
+        "html": otherHtml
+      }
+    }
+  ] %}
+
+  {{ govukCheckboxes({
+    "idPrefix": "affects-journeys",
+    "name": "affects-journeys",
+    "attributes": {
+      "data-catchoption-label": true
+    },
+    "fieldset": {
+      "legend": {
+        "text": pageHeading,
+        "isPageHeading": true,
+        "classes": 'govuk-fieldset__legend--l'
+      }
+    },
+    "items": differentOptions
+  }) }}
+
+  <div id="hiddenCaughtInputs"></div>
+  
+  {{ govukButton({
+    "text": submitLabel
+  }) }}
+
+  <!-- Has save -->
+</form>
+
+{% endblock %}

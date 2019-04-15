@@ -597,10 +597,14 @@ const proveEligibilityPath = '/apply-for-a-blue-badge/prove-eligibility/';
 const proveEligibilityTemplatePath = 'apply-for-a-blue-badge/prepare/prove-eligibility/';
 
 router.get('/prove-eligibility', function(req, res) {
-  if (req.session.data['benefit'] !== 'none' && req.session.data['disability'] !== 'blind') {
+  if (req.session.data['benefit'] !== 'none' && 
+      req.session.data['disability'] !== 'blind' && 
+      req.session.data['disability'] !== 'non-physical') {
   	res.redirect('/apply-for-a-blue-badge/prove-benefit');
   } else if (req.session.data['disability'] === 'blind') {
     res.redirect(proveEligibilityPath+'are-you-registered-blind');
+  } else if (req.session.data['disability'] === 'non-physical') {
+    res.redirect(proveEligibilityPath+'need-a-badge');
   } else {
     res.redirect(proveEligibilityPath+'describe-conditions');
   }
@@ -904,11 +908,27 @@ router.get('/prove-eligibility/describe-conditions', function(req, res) {
   res.render(proveEligibilityTemplatePath+'describe-conditions');
 });
 
+router.get('/prove-eligibility/need-a-badge', function(req, res) {
+  res.locals.formAction = '/apply-for-a-blue-badge/prove-eligibility/what-affects-journeys';
+  res.locals.submitLabel = 'Continue';
+  res.locals.change = req.query.change;
+  res.render(proveEligibilityTemplatePath+'need-a-badge');
+});
+
+router.get('/prove-eligibility/what-affects-journeys', function(req, res) {
+  res.locals.formAction = '/apply-for-a-blue-badge/prove-eligibility/check-non-physical';
+  res.locals.submitLabel = 'Continue';
+  res.locals.change = req.query.change;
+  res.render(proveEligibilityTemplatePath+'what-affects-journeys');
+});
 
 router.get('/prove-eligibility/check-walking', function(req, res) {
   res.render(proveEligibilityTemplatePath+'check-walking');
 });
 
+router.get('/prove-eligibility/check-non-physical', function(req, res) {
+  res.render(proveEligibilityTemplatePath+'check-non-physical');
+});
 
 router.get('/prove-eligibility/check-arms-blind', function(req, res) {
   res.render(proveEligibilityTemplatePath+'check-arms-blind');

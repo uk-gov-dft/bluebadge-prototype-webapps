@@ -141,6 +141,32 @@
               {% endif %}
             </li>
             {% endif %}
+            {% if data['disability'] === 'non-physical' %}
+            <li class="app-task-list__item">
+              <a class="app-task-list__task-name" href="prove-eligibility{% if data['non-physical-completed'] == 'true'%}/check-non-physical{% endif %}" aria-describedby="non-physical-completed" data-no-badge-link>
+                Describe {% if data['applicant'] == 'someone-else'%}the applicant's{%else%}your{% endif %} needs
+              </a>
+              {% if data['non-physical-completed'] == "true" or 
+                    data['all-completed'] == "true" or
+                    proofNotNeeded == true %}
+              {{ govukTag({
+                text: 'Completed',
+                classes: 'app-task-list__task-completed',
+                attributes: {
+                  'id': 'non-physical-completed'
+                }
+              }) }}
+              {% else %}
+              {{ govukTag({
+                text: 'Not started',
+                classes: 'app-task-list__task-not-started',
+                attributes: {
+                  'id': 'non-physical-not-started'
+                }
+              })}}
+              {% endif %}
+            </li>
+            {% endif %}
             {% if data['disability'] === 'arms' %}
             <li class="app-task-list__item">
               <a class="app-task-list__task-name" href="prove-eligibility/{% if data['arms-completed'] == 'true'%}check-arms-blind{% endif %}" aria-describedby="arms-completed" data-no-badge-link>
