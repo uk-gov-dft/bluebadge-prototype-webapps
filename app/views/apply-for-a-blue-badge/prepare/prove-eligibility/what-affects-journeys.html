@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% set hasSaveClass = 'yes' %}
 
-{% set pageHeading = 'What affects ' + youOrThem + ' taking a journey in a car?' %}
+{% set pageHeading = 'What affects ' + youOrThem + ' taking a car journey?' %}
 
 {% block pageTitle %}
   {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
@@ -173,7 +173,7 @@
   {% set accompaniedHtml %}
     {{ govukTextarea({
       "label": {
-        "text": "When " + you + " are accompanied, how does this affect the journey?"
+        "text": "When " + you + " are accompanied, describe getting from the car to the destination"
       },
       id: "accompanied-description",
       name: "accompanied-description",
