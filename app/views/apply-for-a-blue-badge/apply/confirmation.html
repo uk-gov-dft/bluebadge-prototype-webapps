@@ -33,7 +33,7 @@
 <h2 class="govuk-heading-m">What happens next</h2>
 
 {% if data['pay-when'] === 'later' %}
-<p class="govuk-body">Because {{you}}'ve chosen to pay later, {{data['council-name']}} will contact you for payment.</p>
+<p class="govuk-body">Because you've chosen to pay later, {{data['council-name']}} will contact you for payment.</p>
 {% endif %}
 
 {% if ((data['proofOfEligibility'] === 'notProvided' and (data['benefit'] === 'dla' or data['benefit'] === 'pip')) or
@@ -61,7 +61,7 @@
 {% else %}
   {% if data['renewal-or-new-application'] !== "renewal" %}
   <div id="all-evidence-present">
-    <p class=govuk-body>If {{data['council-name']}} needs to ask some more questions about {{your}} {{application}}, they may contact {{youOrThem}}.</p>
+    <p class=govuk-body>If {{data['council-name']}} needs to ask some more questions about {{your}} {{application}}, they may get in contact.</p>
   </div>
   {% endif %}
 {% endif %}
@@ -117,6 +117,6 @@
 
 <h2 class="govuk-heading-m">When to contact us</h2>
 
-<p class="govuk-body">If {{you}} think {{you}} have made a mistake, or need to change something in {{your}} {{application}}, {{you}} should <a href="https://www.localcouncil.gov.uk">contact {{data['council-name']}} through their website</a>.</p>
+<p class="govuk-body">If you think you have made a mistake, or need to change something in {{your}} {{application}}, you should <a href="https://www.localcouncil.gov.uk">contact {{data['council-name']}} through their website</a>.</p>
 
 {% endblock %}

@@ -910,16 +910,20 @@ router.get('/prove-eligibility/describe-conditions', function(req, res) {
 
 router.get('/prove-eligibility/need-a-badge', function(req, res) {
   res.locals.formAction = '/apply-for-a-blue-badge/prove-eligibility/what-affects-journeys';
-  res.locals.submitLabel = 'Continue';
-  res.locals.change = req.query.change;
+  Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/apply-for-a-blue-badge/prove-eligibility/what-affects-journeys','check-non-physical'))
   res.render(proveEligibilityTemplatePath+'need-a-badge');
 });
 
 router.get('/prove-eligibility/what-affects-journeys', function(req, res) {
-  res.locals.formAction = '/apply-for-a-blue-badge/prove-eligibility/check-non-physical';
-  res.locals.submitLabel = 'Continue';
-  res.locals.change = req.query.change;
+  res.locals.formAction = '/apply-for-a-blue-badge/prove-eligibility/coping-strategies';
+  Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/apply-for-a-blue-badge/prove-eligibility/coping-strategies','check-non-physical'))
   res.render(proveEligibilityTemplatePath+'what-affects-journeys');
+});
+
+router.get('/prove-eligibility/coping-strategies', function(req, res) {
+  res.locals.formAction = '/apply-for-a-blue-badge/prove-eligibility/check-non-physical';
+  Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/apply-for-a-blue-badge/prove-eligibility/check-non-physical','check-non-physical'))
+  res.render(proveEligibilityTemplatePath+'coping-strategies');
 });
 
 router.get('/prove-eligibility/check-walking', function(req, res) {

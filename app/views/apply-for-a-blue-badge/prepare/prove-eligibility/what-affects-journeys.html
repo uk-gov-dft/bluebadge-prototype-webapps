@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% set hasSaveClass = 'yes' %}
 
-{% set pageHeading = 'What affects ' + youOrThem + ' taking a journey?' %}
+{% set pageHeading = 'What affects ' + youOrThem + ' taking a journey in a car?' %}
 
 {% block pageTitle %}
   {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
@@ -10,6 +10,165 @@
 {% block inner_content %}
 
 <form action="{{ formAction }}">
+  {% set riskHtml %}
+  {{ govukRadios({
+    classes: "govuk-radios--inline",
+    idPrefix: "risk-when",
+    name: "risk-when",
+    fieldset: {
+      legend: {
+        text: "When are " + you + " a risk?",
+        isPageHeading: false,
+        classes: "govuk-fieldset__legend--s"
+      }
+    },
+    items: [
+      {
+        value: "sometimes",
+        text: "Sometimes",
+        checked: checked("risk-when", "sometimes")
+      },
+      {
+        value: "regularly",
+        text: "Regularly",
+        checked: checked("risk-when", "regularly")
+      },
+      {
+        value: "every",
+        text: "Every journey",
+        checked: checked("risk-when", "every")
+      }
+    ]
+  }) }}
+  {% endset -%}
+
+  {% set struggleHtml %}
+  {{ govukRadios({
+    classes: "govuk-radios--inline",
+    idPrefix: "struggle-when",
+    name: "struggle-when",
+    fieldset: {
+      legend: {
+        text: "What journeys does this apply to?",
+        isPageHeading: false,
+        classes: "govuk-fieldset__legend--s"
+      }
+    },
+    items: [
+      {
+        value: "unfamiliar",
+        text: "Unfamiliar",
+        checked: checked("struggle-when", "unfamiliar")
+      },
+      {
+        value: "some",
+        text: "Complex",
+        checked: checked("struggle-when", "some")
+      },
+      {
+        value: "every",
+        text: "Every journey",
+        checked: checked("struggle-when", "every")
+      }
+    ]
+  }) }}
+  {% endset -%}
+
+  {% set actionsHtml %}
+  {{ govukRadios({
+    classes: "govuk-radios--inline",
+    idPrefix: "actions-when",
+    name: "actions-when",
+    fieldset: {
+      legend: {
+        text: "How often does this happen?",
+        isPageHeading: false,
+        classes: "govuk-fieldset__legend--s"
+      }
+    },
+    items: [
+      {
+        value: "sometimes",
+        text: "Sometimes",
+        checked: checked("actions-when", "sometimes")
+      },
+      {
+        value: "regularly",
+        text: "Regularly",
+        checked: checked("actions-when", "regularly")
+      },
+      {
+        value: "every",
+        text: "Every journey",
+        checked: checked("actions-when", "every")
+      }
+    ]
+  }) }}
+  {% endset -%}
+
+  {% set meltdownHtml %}
+  {{ govukRadios({
+    classes: "govuk-radios--inline",
+    idPrefix: "meltdown-when",
+    name: "meltdown-when",
+    fieldset: {
+      legend: {
+        text: "How often does this happen?",
+        isPageHeading: false,
+        classes: "govuk-fieldset__legend--s"
+      }
+    },
+    items: [
+      {
+        value: "sometimes",
+        text: "Sometimes",
+        checked: checked("meltdown-when", "sometimes")
+      },
+      {
+        value: "regularly",
+        text: "Regularly",
+        checked: checked("meltdown-when", "regularly")
+      },
+      {
+        value: "every",
+        text: "Every journey",
+        checked: checked("meltdown-when", "every")
+      }
+    ]
+  }) }}
+  {% endset -%}
+
+  {% set anxiousHtml %}
+  {{ govukRadios({
+    classes: "govuk-radios--inline",
+    idPrefix: "anxious-when",
+    name: "anxious-when",
+    fieldset: {
+      legend: {
+        text: "When do " + you + " become extremely anxious/fearful?",
+        isPageHeading: false,
+        classes: "govuk-fieldset__legend--s"
+      }
+    },
+    items: [
+      {
+        value: "sometimes",
+        text: "Sometimes",
+        checked: checked("anxious-when", "sometimes")
+      },
+      {
+        value: "regularly",
+        text: "Regularly",
+        checked: checked("anxious-when", "regularly")
+      },
+      {
+        value: "every",
+        text: "Every journey",
+        checked: checked("anxious-when", "every")
+      }
+    ]
+  }) }}
+  {% endset -%}
 
   {% set accompaniedHtml %}
     {{ govukTextarea({
@@ -39,27 +198,42 @@
     {
       "value": "risk-traffic",
       "text": iThey|capitalize + " " + am + " a risk near vehicles, in traffic or car parks",
-      "checked": checked('affects-journeys', 'risk-traffic')
+      "checked": checked('affects-journeys', 'risk-traffic'),
+      "conditional": {
+        "html": riskHtml
+    }
     },
     {
       "value": "planning",
       "text": iThey|capitalize + " struggle to plan or follow a journey",
-      "checked": checked('affects-journeys', 'planning')
+      "checked": checked('affects-journeys', 'planning'),
+      "conditional": {
+        "html": struggleHtml
+    }
     },
     {
       "value": "control",
       "text": iThey | capitalize + " find it difficult or impossible to control " + my + " actions and lack awareness of the impact they could have on others",
-      "checked": checked('affects-journeys', 'control')
+      "checked": checked('affects-journeys', 'control'),
+      "conditional": {
+        "html": actionsHtml
+    }
     },
     {
       "value": "regularly-protest",
       "text": iThey | capitalize + " regularly have intense responses to overwhelming situations causing temporary loss of behavioural control (meltdown)",
-      "checked": checked('affects-journeys', 'regularly-protest')
+      "checked": checked('affects-journeys', 'regularly-protest'),
+      "conditional": {
+        "html": meltdownHtml
+    }
     },
     {
       "value": "anxiety",
       "text": iThey | capitalize + " can become extremely anxious or fearful of public/open spaces",
-      "checked": checked('affects-journeys', 'anxiety')
+      "checked": checked('affects-journeys', 'anxiety'),
+      "conditional": {
+        "html": anxiousHtml
+    }
     },
     {
       "value": "accompanied",

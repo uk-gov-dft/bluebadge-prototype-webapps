@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+{% set hasSaveClass = 'yes' %}
+
+{% set pageHeading = 'What coping strategies are currently used to try to improve journeys in a car?' %}
+
+{% block pageTitle %}
+  {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block inner_content %}
+
+
+
+<h1 class="govuk-heading-l">{{pageHeading}}</h1>
+
+<form action="{{ formAction }}">
+  {{ govukTextarea({
+    "name": "coping-strategies",
+    "id": "coping-strategies",
+    "label": {
+      "text": "List the strategies and tell us how effective they are"
+    },
+    "rows": 8,
+    "value": data['coping-strategies']
+  }) }}
+  
+  {{ govukButton({
+    "text": submitLabel
+  }) }}
+
+  <!-- Has save -->
+</form>
+
+
+
+{% endblock %}
