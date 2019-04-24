@@ -30,6 +30,19 @@
   {% endset -%}
 
   {% set balanceHtml %}
+    {{ govukTextarea({
+      "label": {
+        "text": "Describe how the way " + you + " walk is affected by " + your + " condition"
+      },
+      "hint": {
+        "text": "For example, if " + your + " posture is affected or " + you + " struggle to take full steps" 
+      },
+      id: "balance-question",
+      name: "balance-question",
+      value: data['balance-question'],
+      rows: 3
+    }) }}
+
     {{ govukRadios({
       classes: "govuk-radios--inline",
       idPrefix: "balance-radios",
@@ -52,19 +65,6 @@
         }
       ]
     }) }}
-
-    {{ govukTextarea({
-      "label": {
-        "text": "Describe how the way " + you + " walk is affected by " + your + " condition"
-      },
-      "hint": {
-        "text": "For example, if " + your + " posture is affected or " + you + " struggle to take full steps" 
-      },
-      id: "balance-question",
-      name: "balance-question",
-      value: data['balance-question'],
-      rows: 3
-    }) }}
   {% endset -%}
 
   {% set longHtml %}
@@ -80,6 +80,16 @@
   {% endset -%}
 
   {% set dangerHtml %}
+    {{ govukTextarea({
+      "label": {
+        "text": "Describe how " + your + " condition makes walking dangerous"
+      },
+      id: "danger-question",
+      name: "danger-question",
+      value: data['danger-question'],
+      rows: 3
+    }) }}
+
     {{ govukRadios({
       classes: "govuk-radios--inline",
       idPrefix: "pain-radios",
@@ -101,16 +111,6 @@
           text: "No"
         }
       ]
-    }) }}
-
-    {{ govukTextarea({
-      "label": {
-        "text": "Describe how " + your + " condition makes walking dangerous"
-      },
-      id: "danger-question",
-      name: "danger-question",
-      value: data['danger-question'],
-      rows: 3
     }) }}
   {% endset -%}
 
