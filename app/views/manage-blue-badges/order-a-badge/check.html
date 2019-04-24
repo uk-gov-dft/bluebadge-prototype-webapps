@@ -18,10 +18,54 @@
 
 {% block content %}
 
+{% if data['duplicate-badge-found']  === 'true' %}
+  {{ govukWarningText({
+    text: "At least one badge exists matching the details provided",
+    iconFallbackText: "Warning"
+  }) }}
+
+  <table class="govuk-table">
+    <thead class="govuk-table__head">
+      <tr class="govuk-table__row">
+        <th class="govuk-table__header" scope="col">Badge number</th>
+        <th class="govuk-table__header" scope="col">Name</th>
+        <th class="govuk-table__header" scope="col">Postcode</th>
+        <th class="govuk-table__header" scope="col">Local authority</th>
+        <th class="govuk-table__header" scope="col">Expiry date</th>
+        <th class="govuk-table__header" scope="col">Status</th>
+      </tr>
+    </thead>
+    <tbody class="govuk-table__body">
+      <tr class="govuk-table__row">
+        <th class="govuk-table__header" scope="row"><a href="../view-badge-full">KDW23D</a></th>
+        <td class="govuk-table__cell ">{{ data['fullName'] }}</td>
+        <td class="govuk-table__cell ">{{data['address-postcode']}}</td>
+        <td class="govuk-table__cell ">{{data['current-council']}}</td>
+        <td class="govuk-table__cell ">12 May 2020</td>
+        <td class="govuk-table__cell ">Issued</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2 class="govuk-heading-m">
+    Do you want to cancel this order?
+  </h2>
+
+  <p class="govuk-body">
+    <a href="../search-for-a-badge">Yes, cancel order</a>
+  </p>
+
+  <div class="govuk-inset-text">
+    <p class="govuk-body">You can still continue with the order.</p>
+    <p class="govuk-body">However, continuing with the order could create a duplicate Blue Badge.</p>
+  </div>
+
+{% endif %}
+
 <section class="split-section">
   <div class="check-answers-heading-with-change">
     <div class="check-answers-heading">
-      <h2 class="govuk-heading-m">
+      <h2 class="govuk-heading-m" id="personalDetailsSection">
         {% if data['badge-type']  === 'person' %}
         Personal details
         {% else %}
@@ -31,7 +75,7 @@
     </div>
   
     <div class="check-answers-change">
-      <a href="/admin/order-a-badge/change-details">Change<span class="visually-hidden"> details</span></a>
+      <a href="details">Change<span class="visually-hidden"> details</span></a>
     </div>
   
   </div>
