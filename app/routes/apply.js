@@ -604,7 +604,7 @@ router.get('/prove-eligibility', function(req, res) {
   } else if (req.session.data['disability'] === 'blind') {
     res.redirect(proveEligibilityPath+'are-you-registered-blind');
   } else if (req.session.data['disability'] === 'non-physical') {
-    res.redirect(proveEligibilityPath+'need-a-badge');
+    res.redirect(proveEligibilityPath+'what-affects-journeys');
   } else {
     res.redirect(proveEligibilityPath+'describe-conditions');
   }
@@ -908,16 +908,16 @@ router.get('/prove-eligibility/describe-conditions', function(req, res) {
   res.render(proveEligibilityTemplatePath+'describe-conditions');
 });
 
-router.get('/prove-eligibility/need-a-badge', function(req, res) {
-  res.locals.formAction = '/apply-for-a-blue-badge/prove-eligibility/what-affects-journeys';
-  Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/apply-for-a-blue-badge/prove-eligibility/what-affects-journeys','check-non-physical'))
-  res.render(proveEligibilityTemplatePath+'need-a-badge');
+router.get('/prove-eligibility/what-affects-journeys', function(req, res) {
+  res.locals.formAction = '/apply-for-a-blue-badge/prove-eligibility/need-a-badge';
+  Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/apply-for-a-blue-badge/prove-eligibility/need-a-badge','check-non-physical'))
+  res.render(proveEligibilityTemplatePath+'what-affects-journeys');
 });
 
-router.get('/prove-eligibility/what-affects-journeys', function(req, res) {
+router.get('/prove-eligibility/need-a-badge', function(req, res) {
   res.locals.formAction = '/apply-for-a-blue-badge/prove-eligibility/coping-strategies';
   Object.assign(res.locals,sendBackToCheckAnswers(req.query,'/apply-for-a-blue-badge/prove-eligibility/coping-strategies','check-non-physical'))
-  res.render(proveEligibilityTemplatePath+'what-affects-journeys');
+  res.render(proveEligibilityTemplatePath+'need-a-badge');
 });
 
 router.get('/prove-eligibility/coping-strategies', function(req, res) {
