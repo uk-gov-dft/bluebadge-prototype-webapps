@@ -173,7 +173,7 @@
   {% set accompaniedHtml %}
     {{ govukTextarea({
       "label": {
-        "text": "When " + you + " are accompanied, describe getting from the car to the destination"
+        "text": "Why do " + you + " always need to be accompanied?"
       },
       id: "accompanied-description",
       name: "accompanied-description",
@@ -221,7 +221,7 @@
     },
     {
       "value": "regularly-protest",
-      "text": iThey | capitalize + " regularly have intense responses to overwhelming situations causing temporary loss of behavioural control (meltdown)",
+      "text": iThey | capitalize + " have intense responses to overwhelming situations causing temporary loss of behavioural control (meltdown)",
       "checked": checked('affects-journeys', 'regularly-protest'),
       "conditional": {
         "html": meltdownHtml
