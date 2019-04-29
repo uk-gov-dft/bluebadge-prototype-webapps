@@ -80,13 +80,37 @@ router.get('/view-badge-full', (req, res) => {
 })
 
 router.get('/search-results-backend', (req, res) => {
-  const search = req.session.data['badge-search'].replace(/ /g,'').toUpperCase()
-  const badgeholder = req.session.data['badgeholders'].filter(badgeholder => badgeholder.shortcode === search)
+  let search = ''
+  let badgeholder = ''
 
-  res.locals.badgeholder = badgeholder[0]
+  if(req.session.data['badge-search-number'] !== "") {
+    search = req.session.data['badge-search-number'].replace(/ /g,'').toUpperCase()
+    badgeholder = req.session.data['badgeholders'].filter(badgeholder => badgeholder.shortcode === search)
 
-  res.render('manage-blue-badges/search-results', 
-    {'title':'Badge details','search_class':'active'})
+    res.locals.badgeholder = badgeholder[0]
+
+    res.render('manage-blue-badges/view-badge-full', 
+    {'title':'View badge','search_class':'active'})
+
+  } else if(req.session.data['badge-search'] !== "") {
+    search = req.session.data['badge-search'].replace(/ /g,'').toUpperCase()
+    badgeholder = req.session.data['badgeholders'].filter(badgeholder => badgeholder.shortcode === search)
+
+    res.locals.badgeholder = badgeholder[0]
+
+    res.render('manage-blue-badges/search-results', 
+      {'title':'Badge details','search_class':'active'})
+
+  } else {
+    search = req.session.data['badge-search-postcode'].replace(/ /g,'').toUpperCase()
+    badgeholder = req.session.data['badgeholders'].filter(badgeholder => badgeholder.shortcode === search)
+
+    res.locals.badgeholder = badgeholder[0]
+
+    res.render('manage-blue-badges/search-results', 
+      {'title':'Badge details','search_class':'active'})
+
+  }
 })
 
 router.get('/new-applications-generated', (req, res) => {
@@ -301,7 +325,7 @@ router.get('/reports', function (req, res) {
 })
 
 router.get('/search-for-a-badge', function (req, res) {
-  res.render('manage-blue-badges/search-for-a-badge', {'title':'Find a badge','search_class':'active'})
+  res.render('manage-blue-badges/search-for-a-badge', {'title':'Find a badge','search_class':'active', 'enforcerClass': 'enforcer-view'})
 })
 
 router.get('/search-results', function (req, res) {

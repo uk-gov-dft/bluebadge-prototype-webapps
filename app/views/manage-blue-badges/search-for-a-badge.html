@@ -10,6 +10,49 @@
 
 
 <form action="search-results-backend" novalidate>
+  {% set badgeNumberHtml%}
+    {{ govukInput({
+      "label": {
+        "text": "This is a 6-character code"
+      },
+      "hint": {
+        "text": "For example, 72B9HA"
+      },
+      classes: "govuk-!-width-one-half input-capitals",
+      id: "badge-search-number",
+      name: "badge-search-number",
+      type: "mixed",
+      attributes: {
+        autocapitalize: "characters",
+        autocorrect: "off",
+        autocomplete: "off",
+        maxlength: "6"
+      }
+    }) }}
+  {% endset -%}
+
+  {% set holderNameHtml%}
+    {{ govukInput({
+      "label": {
+        "text": "Enter first or last name"
+      },
+      classes: "govuk-!-width-one-half",
+      id: "badge-search",
+      name: "badge-search"
+    }) }}
+  {% endset -%}
+
+  {% set postCodeHtml%}
+    {{ govukInput({
+      "label": {
+        "text": "Enter full postcode"
+      },
+      classes: "govuk-!-width-one-half",
+      id: "badge-search-postcode",
+      name: "badge-search-postcode"
+    }) }}
+  {% endset -%}
+
   
   {{ govukRadios({
     "idPrefix": "search-by",
@@ -22,28 +65,28 @@
     "items": [
       {
         "value": "badge-number",
-        "text": "Badge number"
+        "text": "Badge number",
+        "checked": true,
+        "conditional": {
+          "html": badgeNumberHtml
+        }
       },
       {
         "value": "name",
-        "text": "Name"
+        "text": "Name",
+        "conditional": {
+          "html": holderNameHtml
+        }
       },
       {
         "value": "postcode",
-        "text": "Postcode"
+        "text": "Postcode",
+        "conditional": {
+          "html": postCodeHtml
+        }
       }
     ]
   }) }}
-
-  {{ govukInput({
-    "label": {
-      "text": "Enter keywords"
-    },
-    classes: "govuk-!-width-one-half",
-    id: "badge-search",
-    name: "badge-search"
-  }) }}
-
 
   {{ govukButton({
     "text": "Search"
