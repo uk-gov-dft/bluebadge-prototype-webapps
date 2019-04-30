@@ -26,6 +26,9 @@
     id: "govuk-notify-api-key",
     name: "govuk-notify-api-key"
   }) }}
+{% endset -%}
+
+{% set govukNotifyIDHtml %}
   {{ govukInput({
     "label": {
       "text": "What is the ID of the 'Application submitted' template?"
@@ -35,18 +38,18 @@
   }) }}
 {% endset -%}
 
-<form action="{{ formAction }}" method="post" class="form" novalidate>
+<form action="credentials-updated" method="post" class="form" novalidate>
 
   <section class="form-section">
 
     <!-- <h2 class="govuk-heading-m">Provide new credentials</h2> -->
 
-    {{ govukRadios({
+    {{ govukCheckboxes({
       "idPrefix": "govuk-pay",
       "name": "govuk-pay",
       "fieldset": {
         "legend": {
-          "text": "Choose a service to provide credentials for",
+          "text": "What would you like to update?",
           "isPageHeading": false,
           "classes": 'govuk-fieldset__legend--l'
         }
@@ -54,16 +57,23 @@
       "items": [
         {
           "value": "govuk-pay",
-          "text": "GOV.UK Pay",
+          "text": "GOV.UK Pay API key",
           "conditional": {
             "html": govukPayHtml
           }
         },
         {
           "value": "govuk-notify",
-          "text": "GOV.UK Notify",
+          "text": "GOV.UK Notify API key",
           "conditional": {
             "html": govukNotifyHtml
+          }
+        },
+        {
+          "value": "govuk-notify",
+          "text": "GOV.UK Notify 'Application submitted' template ID",
+          "conditional": {
+            "html": govukNotifyIDHtml
           }
         }
       ]
@@ -72,7 +82,7 @@
   </section>
     
   {{ govukButton({
-    "text": "Save"
+    "text": "Update"
   }) }}
 
 </form>

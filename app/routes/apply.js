@@ -502,8 +502,19 @@ router.get('/organisation-details/charity', function (req, res) {
 })
 
 router.get('/organisation-details/find-address', function (req, res) {
-  Object.assign(res.locals,sendBackToCheckAnswers(req.query,organisationDetailsPath+'select-address','check-organisation'))
-  res.render(personDetailsTemplatePath+'your-address')
+  if (req.session.data['postcode-for-council'] !== '') {
+    Object.assign(res.locals,sendBackToCheckAnswers(req.query,organisationDetailsPath+'contact-details','check-organisation'))
+    res.render(personDetailsPath+'select-your-address-list');
+  } else {
+    Object.assign(res.locals,sendBackToCheckAnswers(req.query,personDetailsTemplatePath+'your-address','check-organisation'))
+    if (req.query.change === 'true') {
+      res.locals.formAction = 'select-address?change=true';
+    } else {
+      res.locals.formAction = 'select-address';
+    }
+    res.locals.submitLabel = 'Find address';
+    res.render(personDetailsTemplatePath+'your-address');
+  }
 })
 
 router.get('/organisation-details/select-address', function (req, res) {

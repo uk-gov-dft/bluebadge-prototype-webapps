@@ -390,7 +390,11 @@ router.get('/renewal-walking', function (req, res) {
 })
 
 router.get('/settings', function (req, res) {
-  res.render('manage-blue-badges/settings', {'title':'Settings','settings_class':'active'})
+  res.render('manage-blue-badges/settings', {'title':'API credentials','settings_class':'active'})
+})
+
+router.get('/credentials-updated', function (req, res) {
+  res.render('manage-blue-badges/credentials-updated', {'settings_class':'active'})
 })
 
 
