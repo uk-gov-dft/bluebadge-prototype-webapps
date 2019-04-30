@@ -114,6 +114,75 @@
               }) }}
               {% endif %}
             </li>
+            <li class="app-task-list__item">
+              <a class="app-task-list__task-name" href="prove-your-identity{% if data['identity-completed'] == 'true'%}?identity-done=true{% endif %}" aria-describedby="identity-completed">
+                Prove identity
+              </a>
+              {% if data['identity-completed'] == "true" or 
+                    data['all-completed'] == "true" %}
+              {{ govukTag({
+                text: 'Completed',
+                classes: 'app-task-list__task-completed',
+                attributes: {
+                  'id': 'identity-completed'
+                }
+              }) }}
+              {% else %}
+              {{ govukTag({
+                text: 'Not started',
+                classes: 'app-task-list__task-not-started',
+                attributes: {
+                  'id': 'identity-not-started'
+                }
+              })}}
+              {% endif %}
+            </li>
+            <li class="app-task-list__item">
+              <a class="app-task-list__task-name" href="prove-your-address{% if data['address-completed'] == 'true'%}?address-done=true{% endif %}" aria-describedby="address-completed">
+                Prove address
+              </a>
+              {% if data['address-completed'] == "true" or 
+                    data['all-completed'] == "true" %}
+              {{ govukTag({
+                text: 'Completed',
+                classes: 'app-task-list__task-completed',
+                attributes: {
+                  'id': 'address-completed'
+                }
+              }) }}
+              {% else %}
+              {{ govukTag({
+                text: 'Not started',
+                classes: 'app-task-list__task-not-started',
+                attributes: {
+                  'id': 'address-not-started'
+                }
+              })}}
+              {% endif %}
+            </li>
+            <li class="app-task-list__item">
+              <a class="app-task-list__task-name" href="provide-photo{% if data['photo-completed'] == 'true'%}?photo-done=true{% endif %}" aria-describedby="photo-completed">
+                Add a {{ "new" if data['renewal-or-new-application'] === "renewal" or data['existing-blue-badge-number'] == "none" }} photo of {{yourself}}
+              </a>
+              {% if data['photo-completed'] == "true" or 
+                    data['all-completed'] == "true" %}
+              {{ govukTag({
+                text: 'Completed',
+                classes: 'app-task-list__task-completed',
+                attributes: {
+                  'id': 'photo-completed'
+                }
+              }) }}
+              {% else %}
+              {{ govukTag({
+                text: 'Not started',
+                classes: 'app-task-list__task-not-started',
+                attributes: {
+                  'id': 'photo-not-started'
+                }
+              })}}
+              {% endif %}
+            </li>
             <!-- Walking questions -->
             {% if data['disability'] === 'problems-walking' %}
             <li class="app-task-list__item">
@@ -440,75 +509,7 @@
             {% endif %}
             
 
-            <li class="app-task-list__item">
-              <a class="app-task-list__task-name" href="prove-your-identity{% if data['identity-completed'] == 'true'%}?identity-done=true{% endif %}" aria-describedby="identity-completed">
-                Prove identity
-              </a>
-              {% if data['identity-completed'] == "true" or 
-                    data['all-completed'] == "true" %}
-              {{ govukTag({
-                text: 'Completed',
-                classes: 'app-task-list__task-completed',
-                attributes: {
-                  'id': 'identity-completed'
-                }
-              }) }}
-              {% else %}
-              {{ govukTag({
-                text: 'Not started',
-                classes: 'app-task-list__task-not-started',
-                attributes: {
-                  'id': 'identity-not-started'
-                }
-              })}}
-              {% endif %}
-            </li>
-            <li class="app-task-list__item">
-              <a class="app-task-list__task-name" href="prove-your-address{% if data['address-completed'] == 'true'%}?address-done=true{% endif %}" aria-describedby="address-completed">
-                Prove address
-              </a>
-              {% if data['address-completed'] == "true" or 
-                    data['all-completed'] == "true" %}
-              {{ govukTag({
-                text: 'Completed',
-                classes: 'app-task-list__task-completed',
-                attributes: {
-                  'id': 'address-completed'
-                }
-              }) }}
-              {% else %}
-              {{ govukTag({
-                text: 'Not started',
-                classes: 'app-task-list__task-not-started',
-                attributes: {
-                  'id': 'address-not-started'
-                }
-              })}}
-              {% endif %}
-            </li>
-            <li class="app-task-list__item">
-              <a class="app-task-list__task-name" href="provide-photo{% if data['photo-completed'] == 'true'%}?photo-done=true{% endif %}" aria-describedby="photo-completed">
-                Add a {{ "new" if data['renewal-or-new-application'] === "renewal" or data['existing-blue-badge-number'] == "none" }} photo of {{yourself}}
-              </a>
-              {% if data['photo-completed'] == "true" or 
-                    data['all-completed'] == "true" %}
-              {{ govukTag({
-                text: 'Completed',
-                classes: 'app-task-list__task-completed',
-                attributes: {
-                  'id': 'photo-completed'
-                }
-              }) }}
-              {% else %}
-              {{ govukTag({
-                text: 'Not started',
-                classes: 'app-task-list__task-not-started',
-                attributes: {
-                  'id': 'photo-not-started'
-                }
-              })}}
-              {% endif %}
-            </li>
+            
             {% endif %}
           </ul>
         </li>
