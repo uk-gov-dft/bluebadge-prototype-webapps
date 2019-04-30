@@ -27,7 +27,7 @@
 
   {% else %}
 
-  {% set problemsWalkingText = iThey | capitalize + " have a permanent condition or disability which means " + iThey + " cannot walk or find walking very difficult"  %}
+  {% set problemsWalkingText = iThey | capitalize + " have a condition or disability which means " + iThey + " cannot walk or find walking very difficult"  %}
 
   {% endif %}
 
@@ -45,7 +45,7 @@
 
   {% set cogReason = {
       "value": "non-physical",
-      "text": iThey | capitalize + " have a “hidden” or “non-physical” condition or disability, causing "+ me +" to struggle with car journeys"
+      "text": iThey | capitalize + " have a “hidden” or “non-physical” condition or disability, causing "+ me +" to struggle with journeys"
     }
   %}
 
