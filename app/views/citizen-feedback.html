@@ -1,6 +1,6 @@
 {% extends "feedback_layout.html" %}
 
-{% set guidanceTitle =  'Citizen feedback (not moderated)' %}
+{% set guidanceTitle =  'How can we improve this service?' %}
 {% set isCitizenFeedback =  "true" %}
 {% set hideBackLink =  "yes" %}
 
@@ -20,7 +20,25 @@
   <p class="govuk-body">Loading responses</p>
 </div>
 
-<div id="feedbackContainer"></div>
+<div id="feedbackContainer" style="display: none;">
+  <p class="govuk-body-l feedback-response-selector">
+    <span class="feedback-response-count">
+      5 responses from <span id="dateOfResponses"></span>
+    </span>
+    -
+    {% if data['show'] === "all-time" %}
+      <span>
+        <a href="?show=last-1000">Show just the last 1,000</a>
+      </span>
+    {% else %}
+      <input type="hidden" id="showingJust1000">
+      <span>
+        <a href="?show=all-time">Show feedback from all time</a>
+      </span>
+    {% endif %}
+    
+  </p>
+</div>
 
 <p class="" id="feedbackDateRange"></p>
 
@@ -104,14 +122,16 @@
           sheetID = "{{googleSheetID}}",
           apiKey = "{{googleSheetApiKey}}",
           $feedbackContainer = $('#feedbackContainer'),
-          responsesURL = sheetsURL+sheetID+"/values/Satisfaction%20score!A4:B4?key=" + apiKey;
+          responsesURL = sheetsURL+sheetID+"/values/Satisfaction%20score!A4:B4?key=" + apiKey,
+          last1000 = $('#showingJust1000').length ? true : false;
 
       // Get total responses
       $.getJSON( responsesURL ).done(function( data ) {
         var total = data.values[0][0],
+            startInt = last1000 ? (total - 1005) : 2,
             score = data.values[0][1],
             maxResponses = total - 5,
-            rangeStart = randomIntFromInterval(2,maxResponses),
+            rangeStart = randomIntFromInterval(startInt,maxResponses),
             rangeEnd = rangeStart + 4,
             range = "A"+rangeStart+":C"+rangeEnd,
             feedbackURL = sheetsURL+sheetID+"/values/Feedback!"+range+"?key=" + apiKey,
@@ -129,8 +149,9 @@
               formattedDate = moment(reversedDate).format('ddd D MMM YYYY'); 
 
           $('#loadingContainer').hide();
+          $feedbackContainer.show();
 
-          $feedbackContainer.prepend('<p class="govuk-body-l"><small>5 responses from ' + formattedDate + '</small>');
+          $('#dateOfResponses').text(formattedDate);
 
           $.each( values, function( i, value ) {
             var feedback = value[2].replace('â€™', '\'');

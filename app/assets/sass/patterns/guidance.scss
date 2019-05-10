@@ -205,3 +205,10 @@
 			}
 	}
 }
+
+.feedback-response-selector {
+	@include govuk-font(19);
+	> span {
+		display: inline-block;
+	}
+}
