@@ -55,6 +55,11 @@
           }}
         </div>
       {% endif %}
+      {% if hasSaveAtTop === 'yes' %}
+        <div class="govuk-grid-column-one-half">
+          <p class="align-right govuk-body save-progress-container"><a href="/apply-for-a-blue-badge/save-enter" class="save-progress-link">Save and return later</a></p>
+        </div>
+      {% endif%}
     </div>
 
   </div>

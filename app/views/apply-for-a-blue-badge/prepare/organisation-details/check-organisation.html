@@ -26,7 +26,7 @@
         </dd>
         <dd class="govuk-check-your-answers__change">
           <a href="/apply-for-a-blue-badge/organisation-details/name?change=true">
-            Change<span class="govuk-visually-hidden"> organisation name</span>
+            Edit<span class="govuk-visually-hidden"> organisation name</span>
           </a>
         </dd>
       </div>
@@ -45,7 +45,7 @@
         </dd>
         <dd class="govuk-check-your-answers__change">
           <a href="/apply-for-a-blue-badge/organisation-details/charity?change=true">
-            Change<span class="govuk-visually-hidden"> charity status</span>
+            Edit<span class="govuk-visually-hidden"> charity status</span>
           </a>
         </dd>
       </div>
@@ -55,11 +55,15 @@
           Address
         </dt>
         <dd class="govuk-check-your-answers__answer">
-          {{ data['address'] }}
+          {% if data['address-line-1'] !== undefined %}
+            {{data['address-line-1']}}, {{data['address-line-2']}}, {{data['address-town']}}, {{ data['postcode-for-council']|upper }}
+          {% else %}
+            {{ data['address-from-postcode'] }}, {{ data['postcode-for-council']|upper }}
+          {% endif %}
         </dd>
         <dd class="govuk-check-your-answers__change">
-          <a href="/apply-for-a-blue-badge/organisation-details/select-address?change=true">
-            Change<span class="govuk-visually-hidden"> address</span>
+          <a href="/apply-for-a-blue-badge/organisation-details/enter-address?change=true">
+            Edit<span class="govuk-visually-hidden"> address</span>
           </a>
         </dd>
       </div>
@@ -76,7 +80,7 @@
         </dd>
         <dd class="govuk-check-your-answers__change">
           <a href="/apply-for-a-blue-badge/organisation-details/contact-details?change=true">
-            Change<span class="govuk-visually-hidden"> contact details</span>
+            Edit<span class="govuk-visually-hidden"> contact details</span>
           </a>
         </dd>
       </div>
@@ -92,7 +96,7 @@
         </dd>
         <dd class="govuk-check-your-answers__change">
           <a href="/apply-for-a-blue-badge/organisation-details/list-vehicles?change=true">
-            Change<span class="govuk-visually-hidden"> vehicles</span>
+            Edit<span class="govuk-visually-hidden"> vehicles</span>
           </a>
         </dd>
       </div>
