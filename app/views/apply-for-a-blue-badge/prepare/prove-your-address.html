@@ -28,13 +28,17 @@
 
   <ul class="govuk-list govuk-list--bullet">
     <li>a recent Council Tax or utility bill</li>
-    <li>{{ your }} driving licence</li>
+    {% if data['applicant'] !== "someone-else" %}
+      <li>{{ your }} driving licence</li>
+    {% endif %}
     <li>a recent letter from a government department such as HMRC or the Department for Work and Pensions</li>
   </ul>
 
   {% endif %}
 
-  </p>
+  {% if data['applicant'] === "someone-else" %}
+    <p class="govuk-body">If you don't have a document addressed to the applicant and you are their appointee, upload one addressed to you instead. The document must also include the applicant's name.</p>
+  {% endif %}
 
   {{ uploadComponentWidget.uploadComponent(
     'prove-your-address',
