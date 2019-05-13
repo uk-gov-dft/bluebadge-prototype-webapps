@@ -28,7 +28,7 @@
     -
     {% if data['show'] === "all-time" %}
       <span>
-        <a href="?show=last-1000">Show just the last 1,000</a>
+        <a href="?show=last-1000">Show just the last 1,500</a>
       </span>
     {% else %}
       <input type="hidden" id="showingJust1000">
@@ -128,7 +128,7 @@
       // Get total responses
       $.getJSON( responsesURL ).done(function( data ) {
         var total = data.values[0][0],
-            startInt = last1000 ? (total - 1005) : 2,
+            startInt = last1000 ? (total - 1505) : 2,
             score = data.values[0][1],
             maxResponses = total - 5,
             rangeStart = randomIntFromInterval(startInt,maxResponses),
@@ -157,7 +157,7 @@
             var feedback = '';
 
             if(value[2] !== undefined) {
-              feedback = value[2].replace('â€™', '\'');
+              feedback = value[2].replace('â€™', '\'').replace('â€˜', '\'');
             } else {
               feedback = value[1];
             }
