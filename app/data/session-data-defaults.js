@@ -129,7 +129,6 @@ module.exports = {
       "applicationChannel": "Online",
       "laReference": "123456432"
     },
-
     {
       "shortcode": "67FE38",
       "fullName": "Tracey Florence Smith",
@@ -186,6 +185,64 @@ module.exports = {
     }
   ],
   "badgeApplications": [
+    {
+      "fullName": "Carol Dawkins",
+      "dateOfBirth": "9 May 1931",
+      "nino": "AB9384445A",
+      "gender": "Woman",
+      "address": {
+        "street": "4 Jerry Drive",
+        "street2": "",
+        "city": "London",
+        "postcode": "E9 9DC"
+      },
+      "mainPhoneNumber": "01331 252 226",
+      "altPhoneNumber": "07938 232 989",
+      "emailAddress": "jane.koka@gmail.com",
+      "contactName": "Jane Koka (Daughter)",
+      "applicationType": "New",
+      "eligibilityShort": "Non-physical",
+      "eligibility": "Non-physical condition or disability which affects them taking journeys",
+      "affectsJourney": [
+        {
+          "name": "They are a risk near vehicles, in traffic or car parks",
+          "description": "Regularly"
+        },
+        {
+          "name": "They have intense responses to overwhelming situations causing temporary loss of behavioural control (meltdown)",
+          "description": "Regularly"
+        },
+        {
+          "name": "They always have to be accompanied by somebody",
+          "description": "Carol can’t do every journey she’d like to, she always has to go somewhere where we know we haven’t far to walk and has easy parking. Someone always has to be responsible for her on any trip"
+        }
+      ],
+      "describeApplicantNeeds": "She has quite advanced alzheimer’s disease. She forgets what she’s doing, she has short and long term memory loss. She isn’t able to plan or follow instructions. Becomes very anxious in unfamiliar surroundings and can easily wander away into the road, in different directions. She can become aggressive and often needs to be restrained. Carol is often a danger to herself and others because her demeanour changes so fast.",
+      "copingStrategies": "1. The journeys need to be short because she will take her seatbelt off which has been put on her after a while. It’s effective for about a 10 minutes journey. 2. We need to know that we can park in a quiet area of a car park or road, otherwise she can just jump out of the car. 3. (Probably the biggest one) - We need to be parked near to wherever we’re going ie. doctors, shops etc. to reduce the anxiety of walking from the car and the worry of her if yew wandering away, walking into the road or getting lost. It’s very effective if we can do it. But often can’t find a parking space.",
+      "medication": [
+        {
+          "name": "Memantine",
+          "prescribed": "Prescribed",
+          "dosage": "20mg",
+          "often": "Once a day"
+        }
+      ],
+      "hcps": [
+        {
+          "name": "Dr Michael (GP)",
+          "where": "Well St Surgery"
+        },
+        {
+          "name": "Sam (Mental Health nurse)",
+          "where": "Moore Hospital"
+        }
+      ],
+      "supportingDocuments": "Diagnosis-Letter.png, Memory-Clinic.png, Prescription.png",
+      "photoPath": "passport-photo.png",
+      "proofOfIdentity": "passport.png",
+      "applicationDate": "12 May 2019",
+      "applicationChannel": "Online"
+    },
     {
       "fullName": "Jeth Handocha",
       "dateOfBirth": "01 Jan 1931",

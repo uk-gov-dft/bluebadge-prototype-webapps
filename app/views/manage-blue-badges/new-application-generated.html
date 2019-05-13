@@ -189,73 +189,110 @@
     {% if application.badgeFlag %}
 
     {% else %}
+
+    {% if application.eligibilityShort == "Walking difficulty" %}
   
-    <div class="govuk-check-your-answers__contents dft-data-list__item">
-      <dt class="dft-data-list__dt govuk-check-your-answers__question">
-        Walking difficulty
-      </dt>
-      <dd class="dft-data-list__dd govuk-check-your-answers__answer">
-        {% for difficult in application.walkingDifficult %}
-          {{difficult}} <br>
-        {% endfor %}
-        {% if data['la-v'] !== "b" %}
-          <br>
-          -------------- <br> <br>
-          <b>Extra answers</b> <br> <br>
-
-
-          {% for extra in application.difficultExtras %}
-            {{extra | striptags(true) | escape | nl2br}} <br>
+      <div class="govuk-check-your-answers__contents dft-data-list__item">
+        <dt class="dft-data-list__dt govuk-check-your-answers__question">
+          Walking difficulty
+        </dt>
+        <dd class="dft-data-list__dd govuk-check-your-answers__answer">
+          {% for difficult in application.walkingDifficult %}
+            {{difficult}} <br>
           {% endfor %}
-        {% endif %}
-      </dd>
-    </div>
+          {% if data['la-v'] !== "b" %}
+            <br>
+            -------------- <br> <br>
+            <b>Extra answers</b> <br> <br>
 
-    <div class="govuk-check-your-answers__contents dft-data-list__item">
-      <dt class="dft-data-list__dt govuk-check-your-answers__question">
-        When they get breathless
-      </dt>
-      <dd class="dft-data-list__dd govuk-check-your-answers__answer">
-        {% for breath in application.breathlessness %}
-          {{breath}} <br>
-        {% endfor %}
-      </dd>
-    </div>
 
-    <div class="govuk-check-your-answers__contents dft-data-list__item">
-      <dt class="dft-data-list__dt govuk-check-your-answers__question">
-        Mobility aids
-      </dt>
-      <dd class="dft-data-list__dd govuk-check-your-answers__answer">
-        {% for aid in application.mobilityAids %}
-          {{aid.name}}, {{aid.when}}, {{aid.provided}} <br>
-        {% endfor %}
-      </dd>
-    </div>
+            {% for extra in application.difficultExtras %}
+              {{extra | striptags(true) | escape | nl2br}} <br>
+            {% endfor %}
+          {% endif %}
+        </dd>
+      </div>
+
+      <div class="govuk-check-your-answers__contents dft-data-list__item">
+        <dt class="dft-data-list__dt govuk-check-your-answers__question">
+          When they get breathless
+        </dt>
+        <dd class="dft-data-list__dd govuk-check-your-answers__answer">
+          {% for breath in application.breathlessness %}
+            {{breath}} <br>
+          {% endfor %}
+        </dd>
+      </div>
+
+      <div class="govuk-check-your-answers__contents dft-data-list__item">
+        <dt class="dft-data-list__dt govuk-check-your-answers__question">
+          Mobility aids
+        </dt>
+        <dd class="dft-data-list__dd govuk-check-your-answers__answer">
+          {% for aid in application.mobilityAids %}
+            {{aid.name}}, {{aid.when}}, {{aid.provided}} <br>
+          {% endfor %}
+        </dd>
+      </div>
+      
+      <div class="govuk-check-your-answers__contents dft-data-list__item">
+        <dt class="dft-data-list__dt govuk-check-your-answers__question">
+          Walking duration
+        </dt>
+        <dd class="dft-data-list__dd govuk-check-your-answers__answer">
+          {{application.walkingDuration}}
+        </dd>
+      </div>
     
-    <div class="govuk-check-your-answers__contents dft-data-list__item">
-      <dt class="dft-data-list__dt govuk-check-your-answers__question">
-        Walking duration
-      </dt>
-      <dd class="dft-data-list__dd govuk-check-your-answers__answer">
-        {{application.walkingDuration}}
-      </dd>
-    </div>
-  
-    <div class="govuk-check-your-answers__contents dft-data-list__item">
-      <dt class="dft-data-list__dt govuk-check-your-answers__question">
-        Description of conditions and other information
-      </dt>
-      <dd class="dft-data-list__dd govuk-check-your-answers__answer">
-        {{application.descriptionOfCondition}} <br>
-        ---------------- <br>
-        Able to walk to and from: <br>
-        {{application.whereWalkFromTo}} <br>
-        ---------------- <br>
-        How long it takes: <br>
-        {{application.howLongTakes}}
-      </dd>
-    </div>
+      <div class="govuk-check-your-answers__contents dft-data-list__item">
+        <dt class="dft-data-list__dt govuk-check-your-answers__question">
+          Description of conditions and other information
+        </dt>
+        <dd class="dft-data-list__dd govuk-check-your-answers__answer">
+          {{application.descriptionOfCondition}} <br>
+          ---------------- <br>
+          Able to walk to and from: <br>
+          {{application.whereWalkFromTo}} <br>
+          ---------------- <br>
+          How long it takes: <br>
+          {{application.howLongTakes}}
+        </dd>
+      </div>
+
+    {% else %}
+
+      <div class="govuk-check-your-answers__contents dft-data-list__item">
+        <dt class="dft-data-list__dt govuk-check-your-answers__question">
+          What affects them taking a journey?
+        </dt>
+        <dd class="dft-data-list__dd govuk-check-your-answers__answer">
+          {% for affect in application.affectsJourney %}
+            {{affect.name}}: <br>
+            {{affect.description}} <br>
+            -------- <br>
+          {% endfor %}
+        </dd>
+      </div>
+
+      <div class="govuk-check-your-answers__contents dft-data-list__item">
+        <dt class="dft-data-list__dt govuk-check-your-answers__question">
+          How would a Blue Badge improve taking a journey for them?
+        </dt>
+        <dd class="dft-data-list__dd govuk-check-your-answers__answer">
+          {{application.describeApplicantNeeds}}
+        </dd>
+      </div>
+
+      <div class="govuk-check-your-answers__contents dft-data-list__item">
+        <dt class="dft-data-list__dt govuk-check-your-answers__question">
+          What coping strategies are currently used to try to improve journeys?
+        </dt>
+        <dd class="dft-data-list__dd govuk-check-your-answers__answer">
+          {{application.copingStrategies}}
+        </dd>
+      </div>
+
+    {% endif %}
 
     <div class="govuk-check-your-answers__contents dft-data-list__item">
       <dt class="dft-data-list__dt govuk-check-your-answers__question">
@@ -314,7 +351,7 @@
         Type
       </dt>
       <dd class="dft-data-list__dd govuk-check-your-answers__answer">
-        Reapplication
+        {{application.applicationType}}
       </dd>
     </div>
 
