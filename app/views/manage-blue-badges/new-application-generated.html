@@ -269,7 +269,11 @@
           {% for affect in application.affectsJourney %}
             {{affect.name}}: <br>
             {{affect.description}} <br>
-            -------- <br>
+            {% if loop.last %}
+            
+            {%else%}
+              ----------- <br>
+            {%endif%}
           {% endfor %}
         </dd>
       </div>
