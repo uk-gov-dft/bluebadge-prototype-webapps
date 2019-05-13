@@ -154,7 +154,13 @@
           $('#dateOfResponses').text(formattedDate);
 
           $.each( values, function( i, value ) {
-            var feedback = value[2].replace('â€™', '\'');
+            var feedback = '';
+
+            if(value[2] !== undefined) {
+              feedback = value[2].replace('â€™', '\'');
+            } else {
+              feedback = value[1];
+            }
 
             if(feedback.indexOf('Rating of') >= 0 ||
                feedback.length < 4  ||
