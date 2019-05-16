@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% set pageHeading = "Online payment unavailable" %}
+
+{% block pageTitle %}
+  {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block inner_content %}
+
+
+<form action="/apply-for-a-blue-badge/payment-failed-backend" novalidate="">
+
+	<h1 class="govuk-heading-l">{{pageHeading}}</h1>
+
+	<p class="govuk-body">There is an issue with online payments at the moment.</p>
+	<p class="govuk-body">We are working to fix the issue. You can <a href="paying-for-your-blue-badge">try and pay again</a> or submit the application and pay later.</p>
+
+	{{ govukButton({
+	  text: "Submit and pay later",
+	  href: "/apply-for-a-blue-badge/paying-for-your-blue-badge-backend?pay-when=later"
+	}) }}
+
+</form>
+
+{% endblock %}

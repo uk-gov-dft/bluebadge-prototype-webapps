@@ -240,6 +240,7 @@ module.exports = {
       "supportingDocuments": "Diagnosis-Letter.png, Memory-Clinic.png, Prescription.png",
       "photoPath": "passport-photo.png",
       "proofOfIdentity": "passport.png",
+      "proofOfAddress": "council-tax.png",
       "applicationDate": "12 May 2019",
       "applicationChannel": "Online"
     },
@@ -265,15 +266,21 @@ module.exports = {
       "eligibility": "Cannot walk or finds walking very difficult",
       "descriptionOfCondition": "My father-in-law has had a stroke back in 2016. He's had a minor stroke followed by another stroke which took place in September 2018. He's aged 87 and lives with my brother-in-law and his wife. He recently lost his wife 3 years ago through dementia. Although he's not diagnosed with dementia, he has mental health issues. In terms of his mobility he finds it rather hard to do every day things. Although he's been issued with a walking stick, due to his stubborness he refused to use this. Although now going forward he has no option but to use this.",
       "walkingDifficult": [
-        "Excessive pain",
-        "Breathlessness",
-        "It takes a long time",
-        "Dangerous to health and safety"
-      ],
-      "difficultExtras": [
-        "Excessive pain: \n He has lots of pains on his kneecaps as well as his back of the legs",
-        "It takes a long time: \n He tends to walk very slow especially when crossing roads",
-        "Dangerous to health and safety: \n As per the above question - due to the fact he finds walking difficult it becomes a hazard and is dangerous crossing roads"
+        {
+          "name": "Excessive pain",
+          "description": "He has lots of pains on his kneecaps as well as his back of the legs"
+        },
+        {
+          "name": "Breathlessness"
+        },
+        {
+          "name": "It takes a long time",
+          "description": "He tends to walk very slow especially when crossing roads"
+        },
+        {
+          "name": "Dangerous to health and safety",
+          "description": "As per the above question - due to the fact he finds walking difficult it becomes a hazard and is dangerous crossing roads"
+        }
       ],
       "breathlessness": [
         "Walking up a slight hill",
@@ -334,6 +341,7 @@ module.exports = {
       "supportingDocuments": "doctor-appointments.png, outpatient-letters-stroke-doctor.png",
       "photoPath": "passport-photo.png",
       "proofOfIdentity": "passport.png",
+      "proofOfAddress": "council-tax.png",
       "applicationDate": "12 May 2019",
       "applicationChannel": "Online"
     },
@@ -357,15 +365,21 @@ module.exports = {
       "eligibility": "Cannot walk or finds walking very difficult",
       "descriptionOfCondition": "I struggle with limited mobility, due to that I am unable to walk at a fast pace. I can only manage to walk 10 to 15 minutes and I feel exhausted. I dislocated my ankle in 2003 and also I have a joint condition known as Ehlers-Danlos syndrome which affects my joints causing dislocations. To the shoulder and the ankle. I also suffer with scoliosis since birth which causes severe pain in the lower back.",
       "walkingDifficult": [
-        "Excessive pain",
-        "Breathlessness",
-        "Balance or coordination",
-        "It takes a long time"
-      ],
-      "difficultExtras": [
-        "Excessive pain: \n After walking 10 to 15 minutes I feel severe pain in my ankle",
-        "Balance or coordination: \n Due to my ankle being extremely weak my leg just gives way at times",
-        "It takes a long time: \n I’m unable to go at a fast pace"
+        {
+          "name": "Excessive pain",
+          "description": "After walking 10 to 15 minutes I feel severe pain in my ankle"
+        },
+        {
+          "name": "Breathlessness"
+        },
+        {
+          "name": "Balance, coordination or posture",
+          "description": "Due to my ankle being extremely weak my leg just gives way at times"
+        },
+        {
+          "name": "It takes a long time",
+          "description": "I’m unable to go at a fast pace"
+        }
       ],
       "breathlessness": [
         "Walking up a slight hill",
@@ -401,6 +415,7 @@ module.exports = {
       "supportingDocuments": "None",
       "photoPath": "passport-photo.png",
       "proofOfIdentity": "passport.png",
+      "proofOfAddress": "council-tax.png",
       "applicationDate": "12 May 2019",
       "applicationChannel": "Online"
     },
@@ -423,13 +438,17 @@ module.exports = {
       "eligibility": "Cannot walk or finds walking very difficult",
       "descriptionOfCondition": "COPD - Lung disease which makes walking difficult and I get breathless",
       "walkingDifficult": [
-        "Breathlessness",
-        "Balance or coordination",
-        "It takes a long time"
-      ],
-      "difficultExtras": [
-        "Balance or coordination: \n Dizzy",
-        "It takes a long time: \n  I have to stop and rest regularly"
+        {
+          "name": "Breathlessness"
+        },
+        {
+          "name": "Balance, coordination or posture",
+          "description": "Dizzy"
+        },
+        {
+          "name": "It takes a long time",
+          "description": "I have to stop and rest regularly"
+        }
       ],
       "breathlessness": [
         "Walking up a slight hill",
@@ -496,6 +515,7 @@ module.exports = {
       "supportingDocuments": "Physio-appointments.png, COPD-Reviews.png",
       "photoPath": "passport-photo.png",
       "proofOfIdentity": "passport.png",
+      "proofOfAddress": "council-tax.png",
       "applicationDate": "12 May 2019",
       "applicationChannel": "Online"
     },
@@ -519,15 +539,21 @@ module.exports = {
       "eligibility": "Cannot walk or finds walking very difficult",
       "descriptionOfCondition": "I suffer from COPD which is a form of lung disease which is degenerative. I also had a major lung operation over 20 years ago following a stab wound and this caused some problems with my breathing over the years",
       "walkingDifficult": [
-        "Excessive pain",
-        "Breathlessness",
-        "It takes a long time",
-        "Dangerous to my health and safety"
-      ],
-      "difficultExtras": [
-        "Excessive pain: \n Lungs are very sore",
-        "It takes a long time: \n   Must walk slowly and stop for regular breaks to catch my breath and slow my breathing",
-        "Dangerous to my health and safety: \n    I have been on busy staircases at railway stations or big events such as football grounds and have been very short of breath but not able to stop and take a break as the crowds behind do not allow that due to the crush effect. Also when crossing roads sometimes cars come at me from nowhere and I have to rush across the road which really debilitates me"
+        {
+          "name": "Excessive pain",
+          "description": "Lungs are very sore"
+        },
+        {
+          "name": "Breathlessness"
+        },
+        {
+          "name": "It takes a long time",
+          "description": "Must walk slowly and stop for regular breaks to catch my breath and slow my breathing"
+        },
+        {
+          "name": "Dangerous to health and safety",
+          "description": "I have been on busy staircases at railway stations or big events such as football grounds and have been very short of breath but not able to stop and take a break as the crowds behind do not allow that due to the crush effect. Also when crossing roads sometimes cars come at me from nowhere and I have to rush across the road which really debilitates me"
+        }
       ],
       "breathlessness": [
         "Walking up a slight hill",
@@ -575,6 +601,7 @@ module.exports = {
       "supportingDocuments": "Diagnosis-letters.png",
       "photoPath": "passport-photo.png",
       "proofOfIdentity": "driving-licence.png",
+      "proofOfAddress": "council-tax.png",
       "applicationDate": "12 May 2019",
       "applicationChannel": "Online"
     },
@@ -598,19 +625,22 @@ module.exports = {
       "eligibility": "Cannot walk or finds walking very difficult",
       "descriptionOfCondition": "Walks only with difficulty. Attends falls clinic and is in danger of suffering falls and breaking hip. Cannot walk more than 50 yards comfortably. Suffers from rheumatoid arthritis. ",
       "walkingDifficult": [
-        "Excessive pain",
-        "Balance or coordination",
-        "It takes a long time",
-        "Dangerous to my health and safety"
-      ],
-      "difficultExtras": [
-        "Excessive pain: \n Constant and wears morphine patches. Takes pain medication",
-        "Balance or coordination: \n  Frailty of old age",
-        "It takes a long time: \n  Frailty of old age",
-        "Dangerous to health and safety: \n  Frailty of old age"
-      ],
-      "breathlessness": [
-        ""
+        {
+          "name": "Excessive pain",
+          "description": "Constant and wears morphine patches. Takes pain medication"
+        },
+        {
+          "name": "Balance, coordination or posture",
+          "description": "Frailty of old age"
+        },
+        {
+          "name": "It takes a long time",
+          "description": "Frailty of old age"
+        },
+        {
+          "name": "Dangerous to health and safety",
+          "description": "Frailty of old age"
+        }
       ],
       "mobilityAids": [
         {
@@ -638,6 +668,8 @@ module.exports = {
       "whereWalkFromTo": "from the house to the car",
       "howLongTakes": "5 mins",
       "photoPath": "passport-photo.png",
+      "proofOfIdentity": "passport.png",
+      "proofOfAddress": "council-tax.png",
       "applicationDate": "12 May 2019",
       "applicationChannel": "Online"
     },
@@ -660,11 +692,13 @@ module.exports = {
       "eligibility": "Cannot walk or finds walking very difficult",
       "descriptionOfCondition": "Osteo arthritis - two knee replacements - angina shortish of breath",
       "walkingDifficult": [
-        "Breathlessness",
-        "Balance or coordination"
-      ],
-      "difficultExtras": [
-        "Balance or coordination: \n General condition"
+        {
+          "name": "Breathlessness"
+        },
+        {
+          "name": "Balance, coordination or posture",
+          "description": "General condition"
+        }
       ],
       "breathlessness": [
         "Walking up a slight hill",
@@ -707,6 +741,7 @@ module.exports = {
       "supportingDocuments": "Appointments at Christies, Diagnosis-letters.png",
       "photoPath": "passport-photo.png",
       "proofOfIdentity": "driving-licence.png",
+      "proofOfAddress": "council-tax.png",
       "applicationDate": "12 May 2019",
       "applicationChannel": "Online"
     },
@@ -730,15 +765,14 @@ module.exports = {
       "eligibility": "Cannot walk or finds walking very difficult",
       "descriptionOfCondition": "After stroke, no use of left arm, very limited use and strength in left leg. can stand for a few moments with tripod stand, needs help getting around the house and can’t leave the house without help and a wheelchair.",
       "walkingDifficult": [
-        "Balance or coordination",
-        "It takes a long time"
-      ],
-      "difficultExtras": [
-        "Balance or coordination: \n No strength on left side hence needs help with balance",
-        "It takes a long time: \n Little or no strength in left leg, foot curls in and can only stand long enough to transfer in and out of wheelchair and commode."
-      ],
-      "breathlessness": [
-        ""
+        {
+          "name": "Balance, coordination or posture",
+          "description": "No strength on left side hence needs help with balance"
+        },
+        {
+          "name": "It takes a long time",
+          "description": "Little or no strength in left leg, foot curls in and can only stand long enough to transfer in and out of wheelchair and commode."
+        }
       ],
       "mobilityAids": [
         {
@@ -812,6 +846,7 @@ module.exports = {
       "supportingDocuments": "Letters from physio, Letters from doctor, Botox appointments for hands, Sheet which has 9 or 10 medications on it",
       "photoPath": "passport-photo.png",
       "proofOfIdentity": "birth-certificate.png",
+      "proofOfAddress": "council-tax.png",
       "applicationDate": "12 May 2019",
       "applicationChannel": "Online"
     },
@@ -836,15 +871,21 @@ module.exports = {
       "eligibility": "Cannot walk or finds walking very difficult",
       "descriptionOfCondition": "Due to 2 hip replacements David has trouble walking and needs to use 2 sticks as a walking aid and a wheelchair for further distances.",
       "walkingDifficult": [
-        "Breathlessness",
-        "Balance or coordination",
-        "It takes a long time",
-        "Dangerous to my health and safety"
-      ],
-      "difficultExtras": [
-        "Balance or coordination: \n 2 hip replacements again",
-        "It takes a long time: \n Uses two walking sticks",
-        "Dangerous to health and safety: \n  Prone to fall when walking distances"
+        {
+          "name": "Breathlessness"
+        },
+        {
+          "name": "Balance, coordination or posture",
+          "description": "2 hip replacements again"
+        },
+        {
+          "name": "It takes a long time",
+          "description": "Uses two walking sticks"
+        },
+        {
+          "name": "Dangerous to health and safety",
+          "description": "Prone to fall when walking distances"
+        }
       ],
       "breathlessness": [
         "Walking on level ground at their own pace",
@@ -889,6 +930,7 @@ module.exports = {
       "supportingDocuments": "Diagnosis-letters.png",
       "photoPath": "passport-photo.png",
       "proofOfIdentity": "passport.png",
+      "proofOfAddress": "council-tax.png",
       "applicationDate": "12 May 2019",
       "applicationChannel": "Online"
     },
@@ -913,13 +955,17 @@ module.exports = {
       "eligibility": "Cannot walk or finds walking very difficult",
       "descriptionOfCondition": "Osteoporosis, curvature of the spine which means she cannot walk very far as in pain and also needs some sort of support, ie. a walking stick or frame or person to hold on to",
       "walkingDifficult": [
-        "Excessive pain",
-        "Breathlessness",
-        "Balance or coordination"
-      ],
-      "difficultExtras": [
-        "Excessive pain: \n Standing and walking for too long causes a lot of pain",
-        "Balance or coordination: \n Not having a person to hold onto even with a walking stick"
+        {
+          "name": "Excessive pain",
+          "description": "Standing and walking for too long causes a lot of pain"
+        },
+        {
+          "name": "Breathlessness"
+        },
+        {
+          "name": "Balance, coordination or posture",
+          "description": "Not having a person to hold onto even with a walking stick"
+        }
       ],
       "breathlessness": [
         "Trying to keep up with others on level ground",
@@ -981,6 +1027,7 @@ module.exports = {
       "supportingDocuments": "Appointment-letters.png",
       "photoPath": "passport-photo.png",
       "proofOfIdentity": "birth-certificate.png",
+      "proofOfAddress": "council-tax.png",
       "applicationDate": "12 May 2019",
       "applicationChannel": "Online"
     },
@@ -1004,13 +1051,17 @@ module.exports = {
       "eligibility": "Cannot walk or finds walking very difficult",
       "descriptionOfCondition": "Suffers with angina and cannot walk more than a few metres without feeling breathless. Also suffers with COPD which increases the breathlessness, the side effects of angina meds make him feel light headed which contributes to him being unsteady. Additionally he suffers from dementia which makes him confused and lost",
       "walkingDifficult": [
-        "Breathlessness",
-        "Balance or coordination",
-        "Dangerous to my health and safety"
-      ],
-      "difficultExtras": [
-        "Balance or coordination: \n Medication for angina makes him lightheaded, also suffers from breathlessness which makes him unsteady",
-        "Dangerous to my health and safety: \n He suffers with dementia and can get lost and confused and also stumble"
+        {
+          "name": "Breathlessness"
+        },
+        {
+          "name": "Balance, coordination or posture",
+          "description": "Medication for angina makes him lightheaded, also suffers from breathlessness which makes him unsteady"
+        },
+        {
+          "name": "Dangerous to health and safety",
+          "description": "He suffers with dementia and can get lost and confused and also stumble"
+        }
       ],
       "breathlessness": [
         "Walking up a slight hill",
@@ -1120,10 +1171,10 @@ module.exports = {
       "eligibility": "Cannot walk or finds walking very difficult",
       "descriptionOfCondition": "Arthritis with abnormal gait",
       "walkingDifficult": [
-        "Excessive pain"
-      ],
-      "difficultExtras": [
-        "Excessive pain: \n Multiple times per day"
+        {
+          "name": "Excessive pain",
+          "description": "Multiple times per day"
+        }
       ],
       "mobilityAids": [
         {
@@ -1159,6 +1210,7 @@ module.exports = {
       "supportingDocuments": "Diagnosis-letters.png",
       "photoPath": "passport-photo.png",
       "proofOfIdentity": "driving-licence.png",
+      "proofOfAddress": "council-tax.png",
       "applicationDate": "12 May 2019",
       "applicationChannel": "Online"
     }

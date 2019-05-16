@@ -156,7 +156,7 @@
         Proof of address
       </dt>
       <dd class="dft-data-list__dd govuk-check-your-answers__answer">
-        <a href="">{{application.proofOfIdentity}}</a>
+        <a href="">{{application.proofOfAddress}}</a>
       </dd>
     </div>
   
@@ -191,6 +191,21 @@
     {% else %}
 
     {% if application.eligibilityShort == "Walking difficulty" %}
+
+      <div class="govuk-check-your-answers__contents dft-data-list__item">
+        <dt class="dft-data-list__dt govuk-check-your-answers__question">
+          Description of conditions and other information
+        </dt>
+        <dd class="dft-data-list__dd govuk-check-your-answers__answer">
+          {{application.descriptionOfCondition}} <br>
+          ---------------- <br>
+          Able to walk to and from: <br>
+          {{application.whereWalkFromTo}} <br>
+          ---------------- <br>
+          How long it takes: <br>
+          {{application.howLongTakes}}
+        </dd>
+      </div>
   
       <div class="govuk-check-your-answers__contents dft-data-list__item">
         <dt class="dft-data-list__dt govuk-check-your-answers__question">
@@ -198,18 +213,21 @@
         </dt>
         <dd class="dft-data-list__dd govuk-check-your-answers__answer">
           {% for difficult in application.walkingDifficult %}
-            {{difficult}} <br>
+            {{difficult.name}}{% if difficult.description %}:<br>
+              {{difficult.description}}
+              {% if loop.last %}
+
+              {%else%}
+                <br>----------------<br>
+              {%endif%}
+            {% else %}
+            {% if loop.last %}
+
+            {%else%}
+              <br>----------------<br>
+            {%endif%}
+            {% endif %} 
           {% endfor %}
-          {% if data['la-v'] !== "b" %}
-            <br>
-            -------------- <br> <br>
-            <b>Extra answers</b> <br> <br>
-
-
-            {% for extra in application.difficultExtras %}
-              {{extra | striptags(true) | escape | nl2br}} <br>
-            {% endfor %}
-          {% endif %}
         </dd>
       </div>
 
@@ -243,21 +261,6 @@
           {{application.walkingDuration}}
         </dd>
       </div>
-    
-      <div class="govuk-check-your-answers__contents dft-data-list__item">
-        <dt class="dft-data-list__dt govuk-check-your-answers__question">
-          Description of conditions and other information
-        </dt>
-        <dd class="dft-data-list__dd govuk-check-your-answers__answer">
-          {{application.descriptionOfCondition}} <br>
-          ---------------- <br>
-          Able to walk to and from: <br>
-          {{application.whereWalkFromTo}} <br>
-          ---------------- <br>
-          How long it takes: <br>
-          {{application.howLongTakes}}
-        </dd>
-      </div>
 
     {% else %}
 
@@ -270,9 +273,9 @@
             {{affect.name}}: <br>
             {{affect.description}} <br>
             {% if loop.last %}
-            
+
             {%else%}
-              ----------- <br>
+              ----------------<br>
             {%endif%}
           {% endfor %}
         </dd>
