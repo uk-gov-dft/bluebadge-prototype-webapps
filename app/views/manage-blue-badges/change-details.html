@@ -46,16 +46,16 @@
       "items": [
         {
           "value": "Woman",
-          "text": "Woman",
-          "checked": "Woman"
+          "text": "Woman"
         },
         {
           "value": "Man",
-          "text": "Man"
+          "text": "Man",
+          "checked": "Man"
         },
         {
-          "value": "Unspecified",
-          "text": "Unspecified"
+          "value": "Identifies in a different way",
+          "text": "Identifies in a different way"
         }
 
       ]
@@ -135,7 +135,7 @@
     
       {{ govukInput({
         "label": {
-          "text": "Primary contact number"
+          "text": "Main phone number"
         },
         classes: "govuk-!-width-one-half",
         id: "primary-contact-number",
@@ -146,7 +146,7 @@
 
       {{ govukInput({
         "label": {
-          "text": "Secondary number"
+          "text": "Alternative phone number (optional)"
         },
         classes: "govuk-!-width-one-half",
         id: "secondary-contact-number",
@@ -163,13 +163,64 @@
         id: "email-address",
         name: "email-address",
         type: "email",
-        value: "footie_4_lyf@gmail.com"
+        value: "p.powell@gmail.com"
       }) }}
   
   </section>
 
+  <section class="form-section">
+    <h2 class="govuk-heading-m">Badge details</h2>
+
+    <dl class="govuk-check-your-answers govuk-check-your-answers--short">
+      <div class="govuk-check-your-answers__contents dft-data-list__item">
+        <dt class="dft-data-list__dt govuk-check-your-answers__question">
+          Badge number
+        </dt>
+        <dd class="dft-data-list__dd govuk-check-your-answers__answer">
+          E5B1AF
+        </dd>
+      </div>
+
+      <div class="govuk-check-your-answers__contents dft-data-list__item">
+        <dt class="dft-data-list__dt govuk-check-your-answers__question">
+          Issuing authority
+        </dt>
+        <dd class="dft-data-list__dd govuk-check-your-answers__answer">
+          Manchester City Council
+        </dd>
+      </div>
+    </dl>
+
+    <details class="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">
+          Transfer badge to a different local authority
+        </span>
+      </summary>
+      <div class="govuk-details__text">
+        <form action="new-applications">
+          <input id="success" name="success" type="hidden" value="Application transferred">
+          <div class="govuk-form-group">
+            <label for="issuingAuthPicker" class="govuk-label">Choose local authority to transfer the badge to</label>
+            <select name="issuing-auth" class="govuk-select" id="issuingAuthPicker">
+              {% include "includes/issuing-auth-options.html" %}
+            </select>
+          </div>
+        </form>
+
+        <div class="govuk-warning-text">
+          <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+          <strong class="govuk-warning-text__text">
+            <span class="govuk-warning-text__assistive">Warning</span>
+            The authority will need to accept the transfer after you update the badge details.
+          </strong>
+        </div>
+      </div>
+    </details>
+  </section>
+
   {{ govukButton({
-    "text": "Save",
+    "text": "Update badge details",
     "href": "view-badge.html"
   }) }}
 
