@@ -113,7 +113,10 @@
     // border-bottom: 1px solid $govuk-blue;
   }
   &.align-right {
-    text-align: right;
+    @include govuk-font(19);
+    @media (min-width: 640px) {
+      text-align: right;  
+    }
   }
 }
 
@@ -130,6 +133,18 @@
     width: 75px;
     background: url('../images/loading.gif') no-repeat 0 0;
     background-size: 100% 100%;
+  }
+}
+
+.citizen-info-panel {
+  background: govuk-colour(blue);
+  padding: govuk-spacing(4);
+  padding-bottom: 1px;
+  p, a {
+    color: govuk-colour(white);  
+  }
+  a:hover {
+    color: darken(govuk-colour(white), 10%);
   }
 }
 

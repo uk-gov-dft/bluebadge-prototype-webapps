@@ -36,6 +36,11 @@
 
       <a href="#next-section-to-complete" class="govuk-skip-link">Skip to next incomplete section</a>
 
+      <div class="citizen-info-panel">
+        <p class="govuk-body">For security, this application will be reset if you leave it for more than 60 minutes.</p>
+        <p class="govuk-body">If you need to leave, <a href="save-enter">save the application</a> and return to it later.</p>
+      </div>
+
       <ol class="app-task-list">
         {% if data['renewal-or-new-application'] !== "renewal" or data['existing-blue-badge-number'] === "4444" %}
         <li>
