@@ -107,7 +107,8 @@
         {{application.dateOfBirth}}
       </dd>
     </div>
-
+    
+    {% if application.ischild !== true %}
     <div class="govuk-check-your-answers__contents dft-data-list__item">
       <dt class="dft-data-list__dt govuk-check-your-answers__question">
         National Insurance number
@@ -116,6 +117,7 @@
         {{application.nino}}
       </dd>
     </div>
+    {% endif %}
   
     <div class="govuk-check-your-answers__contents dft-data-list__item">
       <dt class="dft-data-list__dt govuk-check-your-answers__question">
@@ -306,7 +308,9 @@
         Medical evidence
       </dt>
       <dd class="dft-data-list__dd govuk-check-your-answers__answer">
-        <a href="">{{application.supportingDocuments}}</a>
+        {% for document in application.supportingDocuments %}
+          <a href="/public/supporting/{{document}}">{{document}}</a> <br>
+        {% endfor %}
       </dd>
     </div>
 
