@@ -19,7 +19,7 @@
 {% block content %}
 
 
-<form action="{{ formAction }}" method="post" class="form" novalidate>
+<form action="badge-updated" novalidate>
 
   <section class="form-section">
 
@@ -198,21 +198,18 @@
         </span>
       </summary>
       <div class="govuk-details__text">
-        <form action="new-applications">
-          <input id="success" name="success" type="hidden" value="Application transferred">
-          <div class="govuk-form-group">
-            <label for="issuingAuthPicker" class="govuk-label">Choose local authority to transfer the badge to</label>
-            <select name="issuing-auth" class="govuk-select" id="issuingAuthPicker">
-              {% include "includes/issuing-auth-options.html" %}
-            </select>
-          </div>
-        </form>
+        <div class="govuk-form-group">
+          <label for="badgeTransferAuths" class="govuk-label">Choose local authority to transfer the badge to</label>
+          <select name="transferred-authority" class="govuk-select" id="badgeTransferAuths">
+            {% include "includes/issuing-auth-options.html" %}
+          </select>
+        </div>
 
         <div class="govuk-warning-text">
           <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
           <strong class="govuk-warning-text__text">
             <span class="govuk-warning-text__assistive">Warning</span>
-            The authority will need to accept the transfer after you update the badge details.
+            Badge will be transferred when you update badge details. <br> Make sure the authority you are transferring to is aware of the transfer.
           </strong>
         </div>
       </div>
@@ -220,8 +217,7 @@
   </section>
 
   {{ govukButton({
-    "text": "Update badge details",
-    "href": "view-badge.html"
+    "text": "Update badge details"
   }) }}
 
 </form>

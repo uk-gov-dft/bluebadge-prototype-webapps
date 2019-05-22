@@ -1,0 +1,26 @@
+{% extends "admin_layout.html" %}
+
+{% block page_header %}
+
+  <h1>{{title}}</h1>
+  
+{% endblock %}
+
+{% block content %}
+
+{{ govukPanel({
+  "titleText": "Badge details updated"
+})
+}}
+
+<br>
+
+<!-- <h3 class="govuk-heading-m"></h3> -->
+<p class="govuk-body">The new details are now stored.</p>
+<p class="govuk-body">Any changed personal details will be printed on a new badge.</p>
+{% if data['transferred-authority'] !== '' %}
+<h3 class="govuk-heading-m">Badge transferred</h3>
+<p class="govuk-body">You have transferred the badge to <b>{{data['transferred-authority']}}</b>. Make sure they are aware of the transfer.</p>
+{% endif %}
+
+{% endblock %}
