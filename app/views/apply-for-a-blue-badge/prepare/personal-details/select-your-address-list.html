@@ -27,9 +27,9 @@
     <p class="govuk-body" id="">
       Showing addresses for postcode <b>{{data['postcode-for-council']|upper}}</b>.
     </p>
-    <label for="addressFromPostcode" class="govuk-label">Start typing and select your address</label>
-    <select name="address-from-postcode" class="enhanced-select" name="" id="addressFromPostcode">
-      <option value=""></option>
+    <label for="addressFromPostcode" class="govuk-label">Select your address</label>
+    <select name="address-from-postcode" class="govuk-select" name="" id="addressFromPostcode">
+      <option value="">Select {{your}} address</option>
       
     </select>
   </div>
@@ -93,13 +93,13 @@
           addressesFoundCount++;
           $('#addressFromPostcode').append('<option ' + addressL1data + addressL2data + addressL3data + addressTCdata +' value="'+filteredAddressString+'">'+filteredAddressString+'</option>');
         });
-        govukGovernmentOrganisationsAutocomplete({
-          defaultValue: '',
-          placeholder: addressesFoundCount + ' addresses at this postcode',
-          autoselect: false,
-          showAllValues: true,
-          selectElement: document.getElementById('addressFromPostcode')
-        })
+        // govukGovernmentOrganisationsAutocomplete({
+        //   defaultValue: '',
+        //   placeholder: addressesFoundCount + ' addresses at this postcode',
+        //   autoselect: false,
+        //   showAllValues: true,
+        //   selectElement: document.getElementById('addressFromPostcode')
+        // })
       });
 
       $('#selectAddressForm').on('submit', function(e) {
