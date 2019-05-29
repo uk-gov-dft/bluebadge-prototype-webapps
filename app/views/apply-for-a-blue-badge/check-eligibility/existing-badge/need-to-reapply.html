@@ -1,6 +1,10 @@
 {% extends "layout.html" %}
 
-{% set pageHeading = 'Badge found' %}
+{% if data['existing-blue-badge-number'] !== 'none' %}
+	{% set pageHeading = 'Badge found' %}
+{% else %}
+	{% set pageHeading = 'You need to reapply' %}
+{% endif %}
 
 {% block pageTitle %}
   {{pageHeading | capitalize}} - {% if serviceName %} {{ serviceName }} {% endif %}
@@ -12,7 +16,12 @@
 
 	<h1 class="govuk-heading-l">{{pageHeading}}</h1>
 
-	<p class="govuk-body">We've found the badge <b>{{ data['existing-blue-badge-number'] }}</b>. To get a new badge, you need to reapply.</p>
+	{% if data['existing-blue-badge-number'] !== 'none' %}
+		<p class="govuk-body">We've found the badge <b>{{ data['existing-blue-badge-number'] }}</b>. To get a new badge, you need to reapply.</p>
+	{% else %}
+		<p class="govuk-body">If {{you}} have a Blue Badge, but you do not know the badge number, you'll need to reapply.</p>
+	{% endif %}
+	
 	<p class="govuk-body">This is so that {{data['council-name']}} can:</p>
 	<ul class="govuk-list govuk-list--bullet">
 		<li>check {{your}} eligibility
