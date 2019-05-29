@@ -29,8 +29,8 @@
   }) }}
 
   {{ govukDetails({
-    summaryText: iThey | capitalize + " don't have a National Insurance number",
-    html: "If " + you + " don't have a National Insurance number, " + you + " can still apply. <a href='" + formAction + "'>Continue without a National Insurance number</a>."
+    summaryText: "I cannot enter a National Insurance number",
+    html: "<p class='govuk-body'>If " + you + " don't have a National Insurance number, or if you are unable to enter it at the moment, " + you + " can still <a href='" + formAction + "'>apply without a National Insurance number</a>.</p><p class='govuk-body'>If "+ you +" do have a National Insurance number, entering it will help us find your application and potentially speed up the time it takes to process it.</p>"
   }) }}
   
   {{ govukButton({
