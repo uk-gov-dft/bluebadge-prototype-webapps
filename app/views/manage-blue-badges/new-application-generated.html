@@ -83,13 +83,18 @@
   <dl class="govuk-check-your-answers govuk-check-your-answers--short dft-data-list">
     <div class="govuk-check-your-answers__contents dft-data-list__item">
       <dt class="dft-data-list__dt govuk-check-your-answers__question">
+        {% if application.eligibilityShort !== "Organisation" %}
         Full name
+        {% else %}
+        Organisation name
+        {% endif %}
       </dt>
       <dd class="dft-data-list__dd govuk-check-your-answers__answer">
         {{application.fullName}}
       </dd>
     </div>
-
+    
+    {% if application.eligibilityShort !== "Organisation" %}
     <div class="govuk-check-your-answers__contents dft-data-list__item">
       <dt class="dft-data-list__dt govuk-check-your-answers__question">
         Gender
@@ -118,10 +123,11 @@
       </dd>
     </div>
     {% endif %}
+    {% endif %}
   
     <div class="govuk-check-your-answers__contents dft-data-list__item">
       <dt class="dft-data-list__dt govuk-check-your-answers__question">
-        Home address
+        Address
       </dt>
       <dd class="dft-data-list__dd govuk-check-your-answers__answer">
         {{ application.address.street }},
@@ -143,7 +149,8 @@
         {{application.emailAddress}}
       </dd>
     </div>
-  
+
+    {% if application.eligibilityShort !== "Organisation" %}
     <div class="govuk-check-your-answers__contents dft-data-list__item">
       <dt class="dft-data-list__dt govuk-check-your-answers__question">
         Proof of identity
@@ -152,6 +159,7 @@
         <a href="">{{application.proofOfIdentity}}</a>
       </dd>
     </div>
+    {% endif %}
 
     <div class="govuk-check-your-answers__contents dft-data-list__item">
       <dt class="dft-data-list__dt govuk-check-your-answers__question">
@@ -161,7 +169,8 @@
         <a href="">{{application.proofOfAddress}}</a>
       </dd>
     </div>
-  
+    
+    {% if application.eligibilityShort !== "Organisation" %}
     <div class="govuk-check-your-answers__contents dft-data-list__item">
       <dt class="dft-data-list__dt govuk-check-your-answers__question">
         Photo
@@ -170,9 +179,11 @@
         <img src="/public/images/{{application.photoPath}}" alt="Photo of Margaret Miller">
       </dd>
     </div>
+    {% endif %}
   </dl>
 </section>
 
+{% if application.eligibilityShort !== "Organisation" %}
 <section class="split-section">
   <h2 class="govuk-heading-m">
     Proof of eligibility
@@ -191,7 +202,7 @@
     {% if application.badgeFlag %}
 
     {% else %}
-
+    
     {% if application.eligibilityShort == "Walking difficulty" %}
 
       <div class="govuk-check-your-answers__contents dft-data-list__item">
@@ -264,7 +275,7 @@
         </dd>
       </div>
 
-    {% else %}
+    {% elif application.eligibilityShort == "Non-physical" %}
 
       <div class="govuk-check-your-answers__contents dft-data-list__item">
         <dt class="dft-data-list__dt govuk-check-your-answers__question">
@@ -301,7 +312,13 @@
         </dd>
       </div>
 
+    {% else %}
+
+
+
     {% endif %}
+
+    {% if application.eligibilityShort !== "Organisation" %}
 
     <div class="govuk-check-your-answers__contents dft-data-list__item">
       <dt class="dft-data-list__dt govuk-check-your-answers__question">
@@ -346,10 +363,46 @@
         {% endfor %}
       </dd>
     </div>
-
+    
+    {% endif %}
     {% endif %}
   </dl>
 </section>
+{% else %}
+<section class="split-section" id="applicationDetails">
+  <h2 class="govuk-heading-m">
+    Vehicles and badges required
+  </h2>
+
+  <dl class="govuk-check-your-answers govuk-check-your-answers--short">
+    <div class="govuk-check-your-answers__contents dft-data-list__item">
+      <dt class="dft-data-list__dt govuk-check-your-answers__question">
+        Vehicles to be used
+      </dt>
+      <dd class="dft-data-list__dd govuk-check-your-answers__answer">
+        {% for vehicle in application.orgVehicles %}
+          Registration Number: {{vehicle.regnumber}} <br>
+          Frequency used: {{vehicle.frequency}} <br>
+          {% if loop.last %}
+
+            {%else%}
+              ----------------<br>
+            {%endif%}
+        {% endfor %}
+      </dd>
+    </div>
+    <div class="govuk-check-your-answers__contents dft-data-list__item">
+      <dt class="dft-data-list__dt govuk-check-your-answers__question">
+        Number of badges required
+      </dt>
+      <dd class="dft-data-list__dd govuk-check-your-answers__answer">
+        {{application.badgesRequired}}
+      </dd>
+    </div>
+  </dl>
+</section>
+{% endif %}
+
 
 <section class="split-section" id="applicationDetails">
   <h2 class="govuk-heading-m">

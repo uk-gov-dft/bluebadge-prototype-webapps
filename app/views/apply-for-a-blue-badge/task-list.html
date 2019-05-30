@@ -86,6 +86,37 @@
                   'id': 'organisation-completed'
                 }
               }) }}
+              {% else %}
+              {{ govukTag({
+                text: 'Not started',
+                classes: 'app-task-list__task-not-started',
+                attributes: {
+                  'id': 'organisation-not-started'
+                }
+              })}}
+              {% endif %}
+            </li>
+            <li class="app-task-list__item">
+              <a class="app-task-list__task-name" href="prove-your-address{% if data['address-completed'] == 'true'%}?address-done=true{% endif %}" aria-describedby="address-completed">
+                Prove address
+              </a>
+              {% if data['address-completed'] == "true" or 
+                    data['all-completed'] == "true" %}
+              {{ govukTag({
+                text: 'Completed',
+                classes: 'app-task-list__task-completed',
+                attributes: {
+                  'id': 'address-completed'
+                }
+              }) }}
+              {% else %}
+              {{ govukTag({
+                text: 'Not started',
+                classes: 'app-task-list__task-not-started',
+                attributes: {
+                  'id': 'address-not-started'
+                }
+              })}}
               {% endif %}
             </li>
             {% else %}

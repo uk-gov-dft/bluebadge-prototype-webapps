@@ -186,6 +186,39 @@ module.exports = {
   ],
   "badgeApplications": [
     {
+      "fullName": "Manchester Dial-a-ride",
+      "dateOfBirth": "N/A",
+      "nino": "ORG123456A",
+      "isOrg": true,
+      "address": {
+        "street": "4 Jerry Drive",
+        "street2": "",
+        "city": "Manchester",
+        "postcode": "M4 2DF"
+      },
+      "mainPhoneNumber": "01331 252 226",
+      "altPhoneNumber": "07938 232 989",
+      "emailAddress": "jane.koka@dial-a-ride.com",
+      "contactName": "Jane Koka",
+      "applicationType": "New",
+      "eligibilityShort": "Organisation",
+      "eligibility": "Organisation",
+      "badgesRequired": "5",
+      "orgVehicles": [
+        {
+          "regnumber": "LP23 LDW",
+          "frequency": "Regularly"
+        },
+        {
+          "regnumber": "KJ23 OIJ",
+          "frequency": "Weekends"
+        }
+      ],
+      "proofOfAddress": "letterheaded-paper.png",
+      "applicationDate": "12 May 2019",
+      "applicationChannel": "Online"
+    },
+    {
       "fullName": "Carol Dawkins",
       "dateOfBirth": "9 May 1931",
       "nino": "AB9384445A",
