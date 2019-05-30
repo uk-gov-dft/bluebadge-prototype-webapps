@@ -2,7 +2,11 @@
 {% set hasSaveClass = 'yes' %}
 {% import "apply-for-a-blue-badge/macros/upload-component-new.html" as uploadComponentWidget %}
 
-{% set pageHeading = 'Prove ' + your + ' address' %}
+{% if data['applicant'] !== "organisation" %}
+  {% set pageHeading = 'Prove ' + your + ' address' %}
+{% else %}
+  {% set pageHeading = 'Prove your organisation\'s address' %}
+{% endif %}
 
 {% block pageTitle %}
   {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
@@ -45,7 +49,7 @@
 
     <ul class="govuk-list govuk-list--bullet">
       <li>a recent bill from a utility company</li>
-      <li>a recent benefit letter from a government department, such as HMRC</li>
+      <li>a recent letter from a government department, such as HMRC</li>
     </ul>
   {% endif %}
 
