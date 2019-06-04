@@ -155,7 +155,11 @@ router.get('/check-eligibility/existing-badge/review-backend', function (req, re
 router.get('/check-eligibility/benefits-backend', function (req, res) {
   switch (req.session.data['benefit']) {
     case "none":
-      res.render('apply-for-a-blue-badge/check-eligibility/disability');
+      if(req.session.data['nation'] === "scotland") {
+        res.redirect('/apply-for-a-blue-badge/check-eligibility/pip-did-you-get-dla');
+      } else {
+        res.render('apply-for-a-blue-badge/check-eligibility/disability');
+      }
       break;
     case "war-pensioners":
       res.redirect('/apply-for-a-blue-badge/check-eligibility/decision');
@@ -178,6 +182,22 @@ router.get('/check-eligibility/benefits-backend', function (req, res) {
 
 router.get('/check-eligibility/pip-dla-backend', function (req, res) {
   switch (req.session.data['pip-dla']) {
+    case "yes":
+      res.redirect('/apply-for-a-blue-badge/check-eligibility/decision');
+      break;
+    case "no":
+      // if(req.session.data['benefit'] == "none") {
+        res.redirect('/apply-for-a-blue-badge/check-eligibility/pip-mandatory-reconsideration');
+      // } else {
+      //   res.redirect('/apply-for-a-blue-badge/check-eligibility/disability');  
+      // }
+      break;
+    }
+});
+
+
+router.get('/check-eligibility/pip-mandatory-backend', function (req, res) {
+  switch (req.session.data['pip-mandatory']) {
     case "yes":
       res.redirect('/apply-for-a-blue-badge/check-eligibility/decision');
       break;

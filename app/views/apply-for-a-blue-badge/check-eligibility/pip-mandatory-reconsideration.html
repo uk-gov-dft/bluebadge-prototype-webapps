@@ -1,5 +1,5 @@
 {% extends "layout.html" %}
-{% set pageHeading = 'Have ' + you + ' previously been awarded Disability Living Allowance (DLA), indefinitely?' %}
+{% set pageHeading = 'Have ' + you + ' had a mandatory reconsideration for Personal Independence Payment (PIP) accepted by DWP?' %}
 
 {% block pageTitle %}
   {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
@@ -7,11 +7,11 @@
 
 {% block inner_content %}
     
-  <form action="pip-dla-backend">
+  <form action="pip-mandatory-backend">
   
     {{ govukRadios({
-      "idPrefix": "pip-dla",
-      "name": "pip-dla",
+      "idPrefix": "pip-mandatory",
+      "name": "pip-mandatory",
       "attributes": {
           "data-catchoption-label": true
         },
@@ -25,7 +25,7 @@
       "items": [
           {
             "value": "yes",
-            "text": 'Yes, and ' + iThey + ' received the higher rate for the mobility component'
+            "text": 'Yes'
           },
           {
             "value": "no",

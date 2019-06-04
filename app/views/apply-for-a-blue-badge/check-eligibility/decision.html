@@ -2,8 +2,11 @@
 {% set hidesSteps = "true" %}
 
 {% if data['benefit'] !== 'none' or data['disability'] === 'blind' %}
-  
-  {% set pageHeading =  you | capitalize + "'re eligible for a Blue Badge" %}
+  {% if data['pip-mandatory'] == 'yes' %}
+    {% set pageHeading =  you | capitalize + "'re eligible for a 1-year Blue Badge" %}
+  {% else %}
+    {% set pageHeading =  you | capitalize + "'re eligible for a Blue Badge" %}  
+  {% endif %}
 
 {% elif data['disability'] === 'terminal' %}
 
@@ -48,9 +51,14 @@
     <p class="govuk-body">To apply, you'll need a photo or scan of:</p>
 
     <ul class="govuk-list govuk-list--bullet">
+      {% if data['pip-mandatory'] == 'yes' %}
+        <li>{{your}} PIP mandatory reconsideration letter</li>
+      {% endif %}
       {% if data['existing-blue-badge-number'] !== "none" %}
-        {% if (data['pip-dla'] === 'yes') %}
+        {% if data['pip-dla'] === 'yes' and data['benefit'] === 'pip' %}
           <li>both {{your}} PIP and DLA award letters</li>
+        {% elif data['pip-dla'] === 'yes' and data['benefit'] !== 'pip' %}
+          <li>{{your}} DLA award letter</li>
         {% elif data['benefit'] === 'pip' %}
           <li>{{your}} PIP award letter</li>
         {% elif data['benefit'] === 'dla' %}
