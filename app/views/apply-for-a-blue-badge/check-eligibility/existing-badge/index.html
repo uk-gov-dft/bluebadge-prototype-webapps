@@ -36,13 +36,23 @@
 
   {% endif %}
 
+  {% if data['applicant'] === "organisation" %}
+
+    {% set badgeHintText = 'If your organisation has more than one badge, enter the badge number from one of the badges that is due to expire. For example, 242G48' %}
+
+  {% else %}
+
+    {% set badgeHintText = 'Enter the first 6 characters. For example, 242G48' %}    
+
+  {% endif %}
+
   {% set badgeHtml %}
     {{ govukInput({
       "label": {
-        "text": "Existing badge number"
+        "text": 'Existing badge number'
       },
       "hint": {
-        "text": "Enter the first 6 characters. For example, 242G48"
+        "text": badgeHintText
       },
       classes: "govuk-!-width-two-thirds input-capitals",
       errorMessage: errorArray.existingBadge,

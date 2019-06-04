@@ -2,7 +2,7 @@
 {% set hidesSteps = "true" %}
 
 
-{% set pageHeading =  "Your organisation may be eligible for a Blue Badge" %}
+{% set pageHeading =  "Reapplying for a Blue Badge" %}
 
 {% block pageTitle %}
   Decision - {% if serviceName %} {{ serviceName }} {% endif %}
@@ -13,12 +13,14 @@
 <div class="middle-start-page">
   <h1 class="govuk-heading-l">{{pageHeading}}</h1>
   
+  <p class="govuk-body">We've found the badge <b>{{ data['existing-blue-badge-number'] }}</b>. You need to provide us with some additional information about your organisation to reapply for a Blue Badge.</p>
       
   <p class="govuk-body">You'll need:</p>
 
   <ul class="govuk-list govuk-list--bullet">
     <li>a photo or scan of something that proves your organisation's address (dated within the last 12 months)</li>
-    <li>details of the vehicles to be used with the badge</li>
+    <li>details of the vehicles to be used</li>
+    <li>number of badges needed</li>
     <li>contact details (phone number and email address)</li>
     <li>a credit or debit card to pay a {{feePrice}} issue fee, per badge needed. The fee will be refunded if your application is not successful</li>
   </ul>

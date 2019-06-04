@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+{% set hasSaveClass = 'yes' %}
+
+{% set pageHeading = 'How many badges does your organisation need?' %}
+
+{% block pageTitle %}
+  {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block inner_content %}
+
+
+
+<!--    <h1 class="govuk-heading-l">{{pageHeading}}</h1> -->
+
+<form action="{{formAction}}">
+  {{ govukInput({
+    "label": {
+      "text": pageHeading,
+      "isPageHeading": true,
+      "classes": "govuk-label--l"
+    },
+    id: "badgesNeeded",
+    name: "badgesNeeded",
+    type: "tel",
+    "classes": 'govuk-input--width-10',
+    value: data['badgesNeeded']
+  }) }}
+
+  {{ govukButton({
+    "text": submitLabel
+  }) }}
+
+  <!-- Has save -->
+</form>
+
+      
+
+
+
+{% endblock %}

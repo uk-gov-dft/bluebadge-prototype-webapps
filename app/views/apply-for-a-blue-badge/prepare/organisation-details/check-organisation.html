@@ -100,6 +100,22 @@
           </a>
         </dd>
       </div>
+      
+      {% if data['badgesNeeded'] !== undefined %}
+      <div class="govuk-check-your-answers__contents">
+        <dt class="govuk-check-your-answers__question">
+          Number of badges needed
+        </dt>
+        <dd class="govuk-check-your-answers__answer">
+          {{ data['badgesNeeded'] }}
+        </dd>
+        <dd class="govuk-check-your-answers__change">
+          <a href="/apply-for-a-blue-badge/organisation-details/how-many-badges?change=true">
+            Edit<span class="govuk-visually-hidden"> number of badges needed</span>
+          </a>
+        </dd>
+      </div>
+      {% endif %}
     </dl>
   </section>
   

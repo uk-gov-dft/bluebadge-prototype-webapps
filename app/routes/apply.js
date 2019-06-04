@@ -123,7 +123,11 @@ router.get('/check-eligibility/existing-badge/index-backend', function (req, res
       } else if (blueBadgeNumber.indexOf('4444') === 0 && blueBadgeNumber.lastIndexOf('4444') === blueBadgeNumber.length-4) {
         res.redirect('/apply-for-a-blue-badge/check-eligibility/existing-badge/need-to-reapply');
       } else {
-        res.redirect('/apply-for-a-blue-badge/check-eligibility/decision-renew');
+        if (req.session.data['applicant'] === "organisation") {
+          res.redirect('/apply-for-a-blue-badge/check-eligibility/decision-organisation-renew');
+        } else {
+          res.redirect('/apply-for-a-blue-badge/check-eligibility/decision-renew');
+        }
       }
       break;
     case "new":
@@ -574,7 +578,7 @@ router.get('/organisation-details/list-vehicles', function(req, res) {
   }
 
   res.locals.tableRows = tableRows;
-  Object.assign(res.locals,sendBackToCheckAnswers(req.query,organisationDetailsPath+'check-organisation','check-organisation'))
+  Object.assign(res.locals,sendBackToCheckAnswers(req.query,organisationDetailsPath+'badges-needed-backend','check-organisation'))
   res.render(organisationDetailsTemplatePath+'list-vehicles');
 });
 
@@ -603,6 +607,20 @@ router.get('/organisation-details/delete-vehicle/:id', function(req, res) {
   req.session.data['vehicle-array'].splice(req.params.id, 1);
   res.redirect('/apply-for-a-blue-badge/organisation-details/list-vehicles');
 });
+
+router.get('/organisation-details/badges-needed-backend', function(req, res) {
+  if (req.session.data['vehicle-array'].length > 1) {
+    console.log('yeah')
+    res.redirect(organisationDetailsPath+'how-many-badges');
+  } else {
+    res.redirect(organisationDetailsPath+'check-organisation');
+  }
+});
+
+router.get('/organisation-details/how-many-badges', function (req, res) {
+  Object.assign(res.locals,sendBackToCheckAnswers(req.query,organisationDetailsPath+'check-organisation','check-organisation'))
+  res.render(organisationDetailsTemplatePath+'how-many-badges')
+})
 
 router.get('/organisation-details/check-organisation', function (req, res) {
   res.render(organisationDetailsTemplatePath+'check-organisation')
