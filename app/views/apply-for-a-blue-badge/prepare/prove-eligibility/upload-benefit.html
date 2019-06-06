@@ -6,6 +6,10 @@
 
 {% set pageHeading = 'Upload both of ' + your + ' PIP and DLA award letters' %}
 
+{% elif (data['disability'] === 'terminal') %}
+
+{% set pageHeading = 'Upload ' + your + ' DS1500 form' %}
+
 {% elif (data['benefit'] === 'dla') %}
 
 {% set pageHeading = 'Upload ' + your + ' DLA award letter from Department of Work and Pensions (DWP)' %}
@@ -21,6 +25,16 @@
 {% elif (data['benefit'] === 'war-pensioners') %}
 
 {% set pageHeading = 'Upload the latest letter from Ministry of Defence about ' + your + ' WPMS award' %}
+
+{% endif %}
+
+{% if (data['disability'] === 'terminal') %}
+
+  {% set isMultiple = 'no' %}
+
+{% else %}
+
+  {% set isMultiple = 'yes' %}
 
 {% endif %}
 
@@ -46,7 +60,10 @@
     <li>mobility rating (usually found on the first page of the DLA award letter)</li>
     <li>certificate of entitlement to DLA (usually found on the last page of the DLA award letter)</li>
   </ul>
+  
+  {% elif data['disability'] === 'terminal' %}
 
+  <p class="govuk-body">You'll need to upload a photo or scan of {{your}} DS1500 form, signed by a healthcare professional.</p>
 
   {% elif data['benefit'] === 'dla' %}
 
@@ -144,23 +161,19 @@
     your, 
     'provide proof of ' + your + ' benefit', 
     change, 
-    'yes',
+    'no',
     'benefit-proof-file-upload',
     'no',
     sampleBenefitLetter,
     data['benefit-done'],
     'benefit-done',
     data['benefit-proof-file-upload-shows-current-address'],
-    'yes'
+    isMultiple
   )}}
 
   <!-- Has save -->
   
 </form>
-
-      
-
-
 
 {% endblock %}
 

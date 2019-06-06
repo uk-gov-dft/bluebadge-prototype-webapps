@@ -197,6 +197,7 @@
               })}}
               {% endif %}
             </li>
+            {% if data['disability'] !== 'terminal' %}
             <li class="app-task-list__item">
               <a class="app-task-list__task-name" href="provide-photo{% if data['photo-completed'] == 'true'%}?photo-done=true{% endif %}" aria-describedby="photo-completed">
                 Add a {{ "new" if data['renewal-or-new-application'] === "renewal" or data['existing-blue-badge-number'] == "none" }} photo of {{yourself}}
@@ -220,6 +221,7 @@
               })}}
               {% endif %}
             </li>
+            {% endif %}
             <!-- Walking questions -->
             {% if data['disability'] === 'problems-walking' %}
             <li class="app-task-list__item">
@@ -328,6 +330,33 @@
 
             {% endif %}
 
+            {% if data['disability'] === 'terminal'  %}
+              <li class="app-task-list__item">
+                <a class="app-task-list__task-name" href="prove-eligibility/describe-conditions" aria-describedby="terminal-completed" data-no-badge-link>
+                  Describe {{your}} condition
+                </a>
+                {% if data['terminal-completed'] == "true" or
+                      proofNotNeeded == true %}
+                {{ govukTag({
+                  text: 'Completed',
+                  classes: 'app-task-list__task-completed',
+                  attributes: {
+                    'id': 'terminal-completed'
+                  }
+                }) }}
+                {% else %}
+                {{ govukTag({
+                  text: 'Not started',
+                  classes: 'app-task-list__task-not-started',
+                  attributes: {
+                    'id': 'terminal-not-started'
+                  }
+                })}}
+                {% endif %}
+              </li>
+
+            {% endif %}
+
             {% if data['disability'] === 'child-bulky-equipment' %}
               <li class="app-task-list__item">
                 <a class="app-task-list__task-name" href="prove-eligibility/{% if data['bulky-completed'] == 'true'%}check-child{%else%}medical-equipment{% endif %}" aria-describedby="bulky-completed" data-no-badge-link>
@@ -356,7 +385,7 @@
 
             {% endif %}
 
-            {% if data['disability'] !== 'blind' and data['benefit'] === 'none' %}
+            {% if data['disability'] !== 'blind' and data['benefit'] === 'none' and data['disability'] !== 'terminal' %}
             <li class="app-task-list__item">
               <a class="app-task-list__task-name" href="upload-medical-evidence{% if data['medical-evidence-completed'] == 'true'%}?medical-evidence-done=true{% endif %}" aria-describedby="medical-evidence-completed" data-no-badge-link>
                 Add supporting documents
@@ -491,10 +520,15 @@
 
             {% if data['benefit'] !== 'none' and 
                   data['renewal-or-new-application'] !== "renewal" and
-                  data['disability'] !== "blind" %}
+                  data['disability'] !== "blind" or
+                  data['disability'] === "terminal" %}
             <li class="app-task-list__item">
               <a class="app-task-list__task-name" href="prove-benefit{% if data['benefit-completed'] == 'true'%}?benefit-done=true{% endif %}" aria-describedby="benefit-completed" data-no-badge-link>
+                {% if data['disability'] !== "terminal" %}
                 Provide proof of benefit
+                {% else %}
+                Upload {{your}} DS1500 form
+                {% endif %}
               </a>
               {% if data['benefit-completed'] == "true" or 
                     data['all-completed'] == "true" or
@@ -583,7 +617,7 @@
               })}}
               {% endif %}
             </li>
-            {% if data['nation'] !== "wales" %}
+            {% if data['nation'] !== "wales" and data['disability'] !== 'terminal' %}
             <li class="app-task-list__item">
               <div class="task-list-deactivated-item"><p class="govuk-body-s">Submit and pay</p></div>
               <a class="app-task-list__task-name" href="apply/paying-for-your-blue-badge" aria-describedby="pay-completed">

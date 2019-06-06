@@ -563,6 +563,30 @@ module.exports = {
       "applicationChannel": "Online"
     },
     {
+      "fullName": "Gary Jenkins",
+      "dateOfBirth": "9 May 1931",
+      "nino": "GG12434563K",
+      "gender": "Man",
+      "address": {
+        "street": "4 Jerry Drive",
+        "street2": "",
+        "city": "London",
+        "postcode": "E9 9DC"
+      },
+      "mainPhoneNumber": "01331 252 226",
+      "altPhoneNumber": "07938 232 989",
+      "emailAddress": "gary.jenkins@gmail.com",
+      "applicationType": "Terminal",
+      "eligibilityShort": "Terminal illness",
+      "eligibility": "Has a terminal illness and cannot walk or finds walking very difficult",
+      "descriptionOfCondition": "I have stage 4 lung cancer which means I cannot leave my house without help and unable to walk for longer than 30 seconds.",
+      "proofOfIdentity": "passport.png",
+      "proofOfIllness": "ds1500.png",
+      "proofOfAddress": "council-tax.png",
+      "applicationDate": "12 May 2019",
+      "applicationChannel": "Online"
+    },
+    {
       "fullName": "Tunde Babaloa",
       "dateOfBirth": "1 July 1997",
       "nino": "LL23451234A",

@@ -144,7 +144,9 @@
         Contact details
       </dt>
       <dd class="dft-data-list__dd govuk-check-your-answers__answer">
-        {{application.contactName}}<br>
+        {% if application.contactName %}
+          {{application.contactName}}<br>
+        {% endif %}
         {{application.mainPhoneNumber}}<br>
         {{application.emailAddress}}
       </dd>
@@ -170,13 +172,25 @@
       </dd>
     </div>
     
-    {% if application.eligibilityShort !== "Organisation" %}
+    {% if application.eligibilityShort !== "Organisation" and
+          application.eligibilityShort !== "Terminal illness" %}
     <div class="govuk-check-your-answers__contents dft-data-list__item">
       <dt class="dft-data-list__dt govuk-check-your-answers__question">
         Photo
       </dt>
       <dd class="dft-data-list__dd govuk-check-your-answers__answer">
         <img src="/public/images/{{application.photoPath}}" alt="Photo of Margaret Miller">
+      </dd>
+    </div>
+    {% endif %}
+
+    {% if application.eligibilityShort === "Terminal illness" %}
+    <div class="govuk-check-your-answers__contents dft-data-list__item">
+      <dt class="dft-data-list__dt govuk-check-your-answers__question">
+        Uploaded DS1500
+      </dt>
+      <dd class="dft-data-list__dd govuk-check-your-answers__answer">
+        <p class="govuk-body"><a href="">{{application.proofOfIllness}}</a></p>
       </dd>
     </div>
     {% endif %}
@@ -318,7 +332,8 @@
 
     {% endif %}
 
-    {% if application.eligibilityShort !== "Organisation" %}
+    {% if application.eligibilityShort !== "Organisation" and
+          application.eligibilityShort !== "Terminal illness" %}
 
     <div class="govuk-check-your-answers__contents dft-data-list__item">
       <dt class="dft-data-list__dt govuk-check-your-answers__question">
@@ -363,7 +378,20 @@
         {% endfor %}
       </dd>
     </div>
-    
+
+    {% endif %}
+
+    {% if application.eligibilityShort === "Terminal illness" %}
+      
+      <div class="govuk-check-your-answers__contents dft-data-list__item">
+        <dt class="dft-data-list__dt govuk-check-your-answers__question">
+          How their condition affects their ability to walk
+        </dt>
+        <dd class="dft-data-list__dd govuk-check-your-answers__answer">
+          <p class="govuk-body">{{application.descriptionOfCondition}}</p>
+        </dd>
+      </div>
+
     {% endif %}
     {% endif %}
   </dl>
@@ -419,6 +447,7 @@
       </dd>
     </div>
 
+    {% if application.eligibilityShort !== "Terminal illness" %}
     <div class="govuk-check-your-answers__contents dft-data-list__item">
       <dt class="dft-data-list__dt govuk-check-your-answers__question">
         Payment
@@ -427,6 +456,7 @@
         P565YXAV4BEJ
       </dd>
     </div>
+    {% endif %}
   
     <div class="govuk-check-your-answers__contents dft-data-list__item">
       <dt class="dft-data-list__dt govuk-check-your-answers__question">

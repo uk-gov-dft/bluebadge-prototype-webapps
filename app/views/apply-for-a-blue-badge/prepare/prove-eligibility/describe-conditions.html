@@ -5,6 +5,10 @@
 
 {% set pageHeading = 'Name any health conditions or disabilities that affect ' + your + ' walking' %}
 
+{% elif data['disability'] === 'terminal' %}
+
+{% set pageHeading = 'How does ' + your + ' condition affect ' + your + ' ability to walk?' %}
+
 {% elif data['disability'] === 'arms' %}
 
 {% set pageHeading = 'Name any health conditions or disabilities that affect ' + your + ' arms' %}
@@ -15,13 +19,21 @@
 
 {% endif %}
 
+{% if data['disability'] === 'terminal' %}
+
+{% set textAreaRows = 8 %}
+
+{% else %}
+
+{% set textAreaRows = 4 %}
+
+{% endif %}
+
 {% block pageTitle %}
   {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
 {% endblock %}
 
 {% block inner_content %}
-
-
 
 <h1 class="govuk-heading-l">{{pageHeading}}</h1>
 
@@ -29,6 +41,9 @@
   {% set describeLabel = "Give details of the child's medical condition that means they'll always need to be accompanied by bulky medical equipment" %}
 {% elif (data['disability'] === 'child-close-to-vehicle') %}
   {% set describeLabel = 'Give details about the conditions that mean they need to have quick access to a vehicle' %}
+
+{% elif data['disability'] === 'terminal' %}  
+  {% set describeLabel = 'Try to be as descriptive as possible' %}
 {% else %}
   {% set describeLabel = 'Try to use the correct medical terms, if you know them' %}
 {% endif %}
@@ -40,9 +55,15 @@
     "label": {
       "text": describeLabel
     },
-    "rows": 4,
+    "rows": textAreaRows,
     "value": data['describe-condition']
   }) }}
+
+  {% if data['disability'] === 'terminal' %}
+
+  <input type="hidden" name="terminal-completed" value="true">
+
+  {% endif %}
   
   {{ govukButton({
     "text": submitLabel

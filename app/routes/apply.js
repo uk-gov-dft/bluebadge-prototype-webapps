@@ -659,7 +659,9 @@ router.get('/prove-eligibility', function(req, res) {
 });
 
 router.get('/prove-benefit', function(req, res) {
-  if (req.session.data['benefit'] === 'armed-forces' || req.session.data['benefit'] === 'war-pensioners') {
+  if (req.session.data['benefit'] === 'armed-forces' || 
+      req.session.data['benefit'] === 'war-pensioners' ||
+      req.session.data['disability'] === 'terminal') {
     res.redirect(proveEligibilityPath+'upload-benefit');
   } else {
     res.locals.formAction = proveEligibilityPath+'upload-benefit';
@@ -940,6 +942,9 @@ router.get('/prove-eligibility/describe-conditions', function(req, res) {
   if (req.session.data['disability'] == 'problems-walking') {
     thisFormAction = '/apply-for-a-blue-badge/prove-eligibility/what-makes-walking-difficult';
     thisCheckPage = '/apply-for-a-blue-badge/prove-eligibility/check-walking';
+  } else if (req.session.data['disability'] == 'terminal') {
+    thisFormAction = '/apply-for-a-blue-badge/task-list?terminal-completed=true';
+    thisCheckPage = '/apply-for-a-blue-badge/task-list?terminal-completed=true';
   } else if (req.session.data['disability'] == 'child-bulky-equipment') {
     thisFormAction = '/apply-for-a-blue-badge/prove-eligibility/medical-equipment';
     thisCheckPage = '/apply-for-a-blue-badge/prove-eligibility/check-child';
