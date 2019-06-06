@@ -26,6 +26,11 @@
       maxlength: "3"
     }
   }) }}
+
+  {{ govukDetails({
+    summaryText: "Applicant is a child less than 2 years old",
+    html: "<p class='govuk-body'>We'll only ask questions relevant to the age of the child.</p><p class='govuk-body'><a href='severely-sight-impaired?age=1'>Continue checking eligiblity</a></p>"
+  }) }}
   
   {{ govukButton({
     "text": "Continue"
