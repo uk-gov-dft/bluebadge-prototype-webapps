@@ -80,6 +80,16 @@
 
 <p class="govuk-body">You can close this window.</p>
 
+{% if data['benefit'] === 'pip' or data['benefit'] === 'dla' %}
+
+<h2 class="govuk-heading-m">Terminally ill applicants</h2>
+
+<p class="govuk-body">If {{you}} are terminally ill and have received a DS1500, it's advised that you <a href="https://www.localcouncil.gov.uk">contact {{data['council-name']}}</a> as soon as possible.</p>
+
+<p class="govuk-body">{{data['council-name']}} should be able to fast-track {{your}} application, so that {{you}} receive the badge sooner.</p>
+
+{% endif %}
+
 {% if data['disability'] === 'blind' %}
 
 <h2 class="govuk-heading-m">Other benefits {{you}} may be eligible for</h2>

@@ -188,7 +188,16 @@
   </p>
 
   {% endif %}
-  
+
+  {% if data['benefit'] === 'pip' or data['benefit'] === 'dla' %}
+
+  <h2 class="govuk-heading-m">Terminally ill applicants</h2>
+
+  <p class="govuk-body">If {{you}} are terminally ill and have received a DS1500, it's advised that you contact {{data['council-name']}} after you submit {{your}} application.</p>
+
+  <p class="govuk-body">{{data['council-name']}} should be able to fast-track {{your}} application, so that {{you}} receive the badge sooner.</p>
+
+  {% endif %}
 
   <h2 class="govuk-heading-m">Don't want to apply online?</h2>
 
