@@ -5,21 +5,18 @@
       Describe what affects {{youOrThem}} taking a journey
     </dt>
     <dd class="govuk-check-your-answers__answer">
-      {{data['affects-journeys-chosen-value'] | striptags(true) | escape | nl2br}}
-      {% if data['something-np-description'] !== "" or 
-            data['accompanied-description'] !== "" %}
-        <br><br>
-        Additional answers <br>
-        -------------- <br>
-      {% endif %}
-      {% if data['accompanied-description'] !== "" %}
-        Always accompanied: <br>
-        {{data['accompanied-description']}} <br>
-      {% endif %}
-      {% if data['something-np-description'] !== "" %}
-        Something else: <br>
-        {{data['something-np-description']}} <br>
-      {% endif %}
+      {% for affect in affectsJourneysArray %}
+        {{affect.name}} <br>
+        When: {{affect.childoption}}
+        {% if affect.childdesc %}
+          <br>Description: {{affect.childdesc}}
+        {% endif %}
+        {% if loop.last %}
+
+        {%else%}
+          <br>----------------<br>
+        {%endif%}
+      {% endfor %}
     </dd>
     <dd class="govuk-check-your-answers__change">
       <a href="/apply-for-a-blue-badge/prove-eligibility/what-affects-journeys?change=true">
@@ -44,10 +41,11 @@
 
   <div class="govuk-check-your-answers__contents">
     <dt class="govuk-check-your-answers__question">
-      Coping strategies
+      List the steps taken to try to improve journeys
     </dt>
     <dd class="govuk-check-your-answers__answer">
-      {{data['coping-strategies']}} <br>
+      Steps: {{data['coping-strategies']}} <br> <br>
+      Effectiveness: {{data['coping-strategies-effective']}}
     </dd>
     <dd class="govuk-check-your-answers__change">
       <a href="/apply-for-a-blue-badge/prove-eligibility/coping-strategies?change=true">

@@ -40,6 +40,16 @@
       }
     ]
   }) }}
+
+  {{ govukTextarea({
+    "label": {
+      "text": "If you can, please give an example of when " + you + " have been a risk near vehicles, in traffic or car parks"
+    },
+    id: "risk-description",
+    name: "risk-description",
+    value: data['risk-description'],
+    rows: 3
+  }) }}
   {% endset -%}
 
   {% set struggleHtml %}
@@ -99,6 +109,16 @@
       }
     ]
   }) }}
+
+  {{ govukTextarea({
+    "label": {
+      "text": "If you can, please describe the kinds of incidents that have happened or are likely to happen on journeys"
+    },
+    id: "action-description",
+    name: "action-description",
+    value: data['action-description'],
+    rows: 3
+  }) }}
   {% endset -%}
 
   {% set meltdownHtml %}
@@ -131,6 +151,16 @@
       }
     ]
   }) }}
+
+  {{ govukTextarea({
+    "label": {
+      "text": "If you can, please give examples of the situations that cause the meltdowns. What steps are taken to avoid or overcome them?"
+    },
+    id: "meltdown-description",
+    name: "meltdown-description",
+    value: data['meltdown-description'],
+    rows: 3
+  }) }}
   {% endset -%}
 
   {% set anxiousHtml %}
@@ -162,6 +192,16 @@
         checked: checked("anxious-when", "every")
       }
     ]
+  }) }}
+
+  {{ govukTextarea({
+    "label": {
+      "text": "If you can, please describe the levels of anxiety. What steps are currently taken to avoid this happening?"
+    },
+    id: "anxious-description",
+    name: "anxious-description",
+    value: data['anxious-description'],
+    rows: 3
   }) }}
   {% endset -%}
 
@@ -196,7 +236,7 @@
       "checked": checked('affects-journeys', 'risk-traffic'),
       "conditional": {
         "html": riskHtml
-    }
+      }
     },
     {
       "value": "planning",
@@ -204,7 +244,7 @@
       "checked": checked('affects-journeys', 'planning'),
       "conditional": {
         "html": struggleHtml
-    }
+      }
     },
     {
       "value": "control",
@@ -212,7 +252,7 @@
       "checked": checked('affects-journeys', 'control'),
       "conditional": {
         "html": actionsHtml
-    }
+      }
     },
     {
       "value": "regularly-protest",
@@ -220,7 +260,7 @@
       "checked": checked('affects-journeys', 'regularly-protest'),
       "conditional": {
         "html": meltdownHtml
-    }
+      }
     },
     {
       "value": "anxiety",
@@ -228,14 +268,6 @@
       "checked": checked('affects-journeys', 'anxiety'),
       "conditional": {
         "html": anxiousHtml
-    }
-    },
-    {
-      "value": "accompanied",
-      "text": iThey | capitalize + " always have to be accompanied by somebody",
-      "checked": checked('affects-journeys', 'accompanied'),
-      "conditional": {
-        "html": accompaniedHtml
       }
     },
     {
@@ -252,7 +284,7 @@
     "idPrefix": "affects-journeys",
     "name": "affects-journeys",
     "attributes": {
-      "data-catchoption-label": true
+      "data-optionstoarray": true
     },
     "fieldset": {
       "legend": {
@@ -263,8 +295,6 @@
     },
     "items": differentOptions
   }) }}
-
-  <div id="hiddenCaughtInputs"></div>
   
   {{ govukButton({
     "text": submitLabel

@@ -984,6 +984,8 @@ router.get('/prove-eligibility/check-walking', function(req, res) {
 });
 
 router.get('/prove-eligibility/check-non-physical', function(req, res) {
+  res.locals.affectsJourneysArray = JSON.parse(req.session.data['affects-journeys-array']);
+
   res.render(proveEligibilityTemplatePath+'check-non-physical');
 });
 

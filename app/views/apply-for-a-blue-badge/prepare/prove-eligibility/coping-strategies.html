@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% set hasSaveClass = 'yes' %}
 
-{% set pageHeading = 'What coping strategies are currently used to try to improve journeys?' %}
+{% set pageHeading = 'What steps are currently taken to try to improve journeys for ' + youOrThem + '?' %}
 
 {% block pageTitle %}
   {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
@@ -18,10 +18,20 @@
     "name": "coping-strategies",
     "id": "coping-strategies",
     "label": {
-      "text": "List the strategies and tell us how effective they are"
+      "text": "List the steps taken to try to improve journeys"
     },
     "rows": 8,
     "value": data['coping-strategies']
+  }) }}
+
+  {{ govukTextarea({
+    "name": "coping-strategies-effective",
+    "id": "coping-strategies-effective",
+    "label": {
+      "text": "How effective are these steps?"
+    },
+    "rows": 3,
+    "value": data['coping-strategies-effective']
   }) }}
   
   {{ govukButton({

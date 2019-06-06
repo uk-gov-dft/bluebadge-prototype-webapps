@@ -102,4 +102,43 @@ $(document).ready(function () {
 
   });
 
+  // Radio options to an array
+
+  var arrayOfCheckRadioValues = [];
+
+
+  if($('[data-optionstoarray]').length) {
+    var $form = $('form');
+
+    $form.submit(function(event) {
+      event.preventDefault();
+
+      var $checkedItems = $('[data-optionstoarray] > .govuk-checkboxes__item input:checked'),
+          groupName = $checkedItems.attr('name');
+
+      $checkedItems.each(function() {
+        var $this = $(this),
+            thisLabel = $this.next('label').text().trim(),
+            thisChildRadioText = $this.closest('.govuk-checkboxes__item')
+                                  .next('.govuk-checkboxes__conditional')
+                                  .find(':checked')
+                                  .next('label').text().trim(),
+            thisChildDescription = $this.closest('.govuk-checkboxes__item')
+                                         .next('.govuk-checkboxes__conditional')
+                                         .find('textarea').val();
+
+        arrayOfCheckRadioValues.push({
+                                      name: thisLabel, 
+                                      childoption: thisChildRadioText,
+                                      childdesc: thisChildDescription
+                                    });
+        
+      });
+
+      $form.prepend("<input type='hidden' name='" + groupName + "-array' value='" + JSON.stringify(arrayOfCheckRadioValues) + "'>");
+
+      $(this).unbind('submit').submit();
+    });
+  }
+
 });
