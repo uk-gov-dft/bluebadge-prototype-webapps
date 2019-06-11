@@ -2,7 +2,7 @@
 {% set hasSaveClass = 'yes' %}
 {% import "apply-for-a-blue-badge/macros/upload-component-new.html" as uploadComponentWidget %}
 
-{% if (data['pip-dla'] === 'yes') %}
+{% if data['benefit'] === 'pip' and data['pip-dla'] === 'yes' %}
 
 {% set pageHeading = 'Upload both of ' + your + ' PIP and DLA award letters' %}
 
@@ -14,9 +14,13 @@
 
 {% set pageHeading = 'Upload ' + your + ' DLA award letter from Department of Work and Pensions (DWP)' %}
 
-{% elif (data['benefit'] === 'pip') %}
+{% elif data['benefit'] === 'pip' and data['pip-mandatory'] !== "yes" %}
 
 {% set pageHeading = 'Upload proof of ' + your + ' PIP award from Department of Work and Pensions (DWP)' %}
+
+{% elif data['pip-mandatory'] === "yes" %}
+
+{% set pageHeading = 'Upload ' + your + ' PIP mandatory reconsideration letter from Department of Work and Pensions (DWP)' %}
 
 {% elif (data['benefit'] === 'armed-forces') %}
 
@@ -49,7 +53,7 @@
   <input type="hidden" id="change" name="benefit-completed" value="true">
   <h1 class="govuk-heading-l">{{pageHeading}}</h1>
 
-  {% if (data['pip-dla'] === 'yes') %}
+  {% if data['benefit'] === 'pip' and data['pip-dla'] === 'yes' %}
   
   <p class="govuk-body">{{you | capitalize}} need to upload {{your}} PIP and DLA award letters from Department of Work and Pensions (DWP).</p>
 
@@ -67,7 +71,11 @@
 
   {% elif data['benefit'] === 'dla' %}
 
+    {% if data['pip-dla'] !== 'yes' %}
     <p class="govuk-body">The letter needs to be dated within the last 12 months and must include {{your}}:</p>
+    {% else %}
+    <p class="govuk-body">The letter must include {{your}}:</p>
+    {% endif %}
 
     <ul class="govuk-list govuk-list--bullet">
       <li>mobility rating</li>
@@ -88,7 +96,7 @@
 
     {% set sampleBenefitLetter = 'dla_letter.png' %}
 
-  {% elif data['benefit'] === 'pip' %}
+  {% elif data['benefit'] === 'pip' and data['pip-mandatory'] !== "yes" %}
 
     <p class="govuk-body">You need to upload all the pages of your letter (usually three pages). They must clearly show {{your}}:</p>
 
@@ -116,6 +124,10 @@
     </details>
 
     {% set sampleBenefitLetter = 'pip-letter.jpg' %}
+
+  {% elif data['pip-mandatory'] === "yes" %}
+
+  <p class="govuk-body">You need to upload a letter, dated within the last 3 months, confirming that DWP have agreed to a mandatory reconsideration of {{your}} PIP award.</p>
 
   {% elif data['benefit'] === 'armed-forces' %}
 

@@ -524,7 +524,9 @@
                   data['disability'] === "terminal" %}
             <li class="app-task-list__item">
               <a class="app-task-list__task-name" href="prove-benefit{% if data['benefit-completed'] == 'true'%}?benefit-done=true{% endif %}" aria-describedby="benefit-completed" data-no-badge-link>
-                {% if data['disability'] !== "terminal" %}
+                {% if data['pip-mandatory'] === 'yes' %}
+                Upload {{your}} letter from DWP
+                {% elif data['disability'] !== "terminal" %}
                 Provide proof of benefit
                 {% else %}
                 Upload {{your}} DS1500 form

@@ -49,7 +49,7 @@
         <li>both {{your}} PIP and DLA award letters</li>
       {% elif data['pip-dla'] === 'yes' and data['benefit'] !== 'pip' %}
         <li>{{your}} DLA award letter</li>
-      {% elif data['benefit'] === 'pip' %}
+      {% elif data['benefit'] === 'pip' and data['pip-mandatory'] !== "yes" %}
         <li>{{your}} PIP award letter</li>
       {% elif data['benefit'] === 'dla' %}
         <li>{{your}} DLA award letter</li>

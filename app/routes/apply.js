@@ -187,6 +187,7 @@ router.get('/check-eligibility/benefits-backend', function (req, res) {
 router.get('/check-eligibility/pip-dla-backend', function (req, res) {
   switch (req.session.data['pip-dla']) {
     case "yes":
+      req.session.data['benefit'] = "dla";
       res.redirect('/apply-for-a-blue-badge/check-eligibility/decision');
       break;
     case "no":
@@ -661,7 +662,8 @@ router.get('/prove-eligibility', function(req, res) {
 router.get('/prove-benefit', function(req, res) {
   if (req.session.data['benefit'] === 'armed-forces' || 
       req.session.data['benefit'] === 'war-pensioners' ||
-      req.session.data['disability'] === 'terminal') {
+      req.session.data['disability'] === 'terminal' || 
+      req.session.data['pip-mandatory'] === 'yes') {
     res.redirect(proveEligibilityPath+'upload-benefit');
   } else {
     res.locals.formAction = proveEligibilityPath+'upload-benefit';
