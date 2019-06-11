@@ -71,7 +71,8 @@
 
   {% elif data['benefit'] === 'dla' %}
 
-    {% if data['pip-dla'] !== 'yes' %}
+    {% if data['pip-dla'] !== 'yes' and 
+          data['awarded-benefit-indefinitely-before'] !== 'yes' %}
     <p class="govuk-body">The letter needs to be dated within the last 12 months and must include {{your}}:</p>
     {% else %}
     <p class="govuk-body">The letter must include {{your}}:</p>
