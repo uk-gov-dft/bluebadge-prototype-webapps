@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+{% set hideBackLink = 'yes' %}
+{% set isFullWidth = 'yes' %}
+{% set activeStep = '2' %}
+{% set activeStepLink = '4' %}
+{% block pageTitle %}
+  {% if serviceName %} {{ serviceName }} {% endif %} - GOV.UK prototype kit
+{% endblock %}
+
+{% block inner_content %}
+<div class="govuk-grid-column-two-thirds">
+  <h1 class="govuk-heading-xl">
+    {% if serviceName %} {{ serviceName }} {% endif %}
+  </h1>
+
+  
+
+  <p class="govuk-body">Last updated: 4 April 2019</p>
+</div>
+<div class="govuk-grid-column-one-third">
+
+  {% include "includes/step-by-step.html" %}
+</div>
+
+
+{% endblock %}

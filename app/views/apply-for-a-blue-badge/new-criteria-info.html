@@ -1,54 +1,61 @@
 {% extends "layout.html" %}
 {% set hideBackLink = 'yes' %}
+{% set isFullWidth = 'yes' %}
+{% set activeStep = '1' %}
+{% set activeStepLink = '2' %}
 {% block pageTitle %}
   {% if serviceName %} {{ serviceName }} {% endif %} - GOV.UK prototype kit
 {% endblock %}
 
 {% block inner_content %}
+<div class="govuk-grid-column-two-thirds">
+  <h1 class="govuk-heading-xl">
+    {% if serviceName %} {{ serviceName }} {% endif %}
+  </h1>
 
-<h1 class="govuk-heading-xl">
-  {% if serviceName %} {{ serviceName }} {% endif %}
-</h1>
+  <h2 class="govuk-heading-m">“Hidden” / “non-physical” disabilities or conditions</h2>
 
-<h2 class="govuk-heading-m">“Hidden” or “non-physical” disabilities or conditions</h2>
+  <p class="govuk-body">At the start of September 2019, English local authorities are introducing a new criteria for Blue Badge applications.</p>
 
-<p class="govuk-body">Before applying for a Blue Badge, check that you understand the new eligibility criteria.</p>
+  <p class="govuk-body">To prepare for the new criteria, Department for Transport (DfT) conducted extensive research with an independent agency. This research included insights from multiple different specialists that care for people with relevant conditions and disabilities as well as local authorities that issue the badges.</p>
 
-<p class="govuk-body">To prepare for the new criteria, Department for Transport has done extensive research with an independent agency. As well as working with different specialists that care for people with various conditions and disabilities.</p>
+  <p class="govuk-body">Due to the nature of “hidden” or “non-physical” disabilities, applications will be assessed by looking at an applicant's needs. Having a certain condition or disability does not automatically entitle somebody to a Blue Badge.</p>
 
-<p class="govuk-body">Due to the nature of “hidden” or “non-physical” disabilities, applications will be assessed by looking at an applicant's needs. Having a specific condition/disability does not automatically entitle somebody to a Blue Badge.</p>
+  <h2 class="govuk-heading-m">If the applicant is at least 16 years old and receives Personal Independence Payment (PIP)</h2>
 
-<h2 class="govuk-heading-m">Applying with Personal Independence Payment (PIP)</h2>
+  <p class="govuk-body">An applicant could be automatically eligible under the new criteria if, in their PIP assessment:</p> 
+  <ul class="govuk-list govuk-list--bullet">
+    <li>they scored 10 points in “Planning and following a journey”</li>
+    <li><b>specifically</b> the 10 points which says “Cannot undertake any journey because it would cause overwhelming psychological distress to the claimant.”</li>
+  </ul>
 
-<p class="govuk-body">An applicant is automatically eligible under the new criteria if:</p> 
-<ul class="govuk-list govuk-list--bullet">
-  <li>they scored 10 points in “Planning and following a journey”</li>
-  <li>and <b>only</b> the 10 points which says “Cannot undertake any journey because it would cause overwhelming psychological distress to the claimant.”</li>
-</ul>
+  <p class="govuk-body">If the applicant did not score this, they can still apply without PIP and their application will be assessed by their local authority.</p>
 
-<p class="govuk-body">If the applicant did not score this, they can still apply without PIP and their application will be assessed.</p>
+  <h2 class="govuk-heading-m">Other applicants</h2>
 
-<h2 class="govuk-heading-m">Applying without PIP</h2>
+  <p class="govuk-body">Consider applying for a Blue Badge if the applicant has a “hidden” / “non-physical” condition or disability, causing them to severely struggle with journeys and either:</p>
 
-<p class="govuk-body">To help understand who might be eligible, consider applying for a Blue Badge if the applicant:</p>
+  <ul class="govuk-list govuk-list--bullet">
+    <li>is a risk near vehicles, in traffic or car parks</li>
+    <li>struggles to plan or follow a journey</li>
+    <li>finds it difficult or impossible to control their actions and lacks awareness of the impact they could have on others</li>
+    <li>regularly has intense responses to overwhelming situations causing temporary loss of behavioural control (meltdown)</li>
+    <li>can become extremely anxious or fearful of public/open spaces</li>
+  </ul>
 
-<ul class="govuk-list govuk-list--bullet">
-  <li>has a “hidden” or “non-physical” condition or disability, causing them to struggle with journeys</li>
-  <li>is a risk near vehicles, in traffic or car parks</li>
-  <li>struggles to plan or follow a journey</li>
-  <li>finds it difficult or impossible to control their actions and lacks awareness of the impact they could have on others</li>
-  <li>regularly has intense responses to overwhelming situations causing temporary loss of behavioural control (meltdown)</li>
-  <li>can become extremely anxious or fearful of public/open spaces</li>
-</ul>
+  <p class="govuk-body">If one or more of these are relevant to the applicant, apply using the online service.</p>
 
-<p class="govuk-body">If one or more of these are relevant to the applicant, apply using the online service.</p>
+  {{ govukButton({
+    "text": "Go to start page",
+    "href": "/apply-for-a-blue-badge/"
+  }) }}
 
-{{ govukButton({
-  "text": "Return to start page",
-  "href": "/apply-for-a-blue-badge/"
-}) }}
+  <p class="govuk-body">Last updated: 10 June 2019</p>
+</div>
+<div class="govuk-grid-column-one-third">
 
-<p class="govuk-body">Last updated: 4 April 2019</p>
+  {% include "includes/step-by-step.html" %}
+</div>
 
 
 {% endblock %}

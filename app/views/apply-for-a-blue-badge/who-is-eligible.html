@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% set hideBackLink = 'yes' %}
+{% set isFullWidth = 'yes' %}
+{% set activeStep = '1' %}
+{% set activeStepLink = '1' %}
+{% block pageTitle %}
+  Who is eligible for a Blue Badge?
+{% endblock %}
+
+{% block inner_content %}
+<div class="govuk-grid-column-two-thirds">
+  <h1 class="govuk-heading-xl">
+    Who is eligible for a Blue Badge?
+  </h1>
+
+  <h2 class="govuk-heading-l">
+    
+  </h2>
+
+  <p class="govuk-body">Last updated: 10 June 2019</p>
+</div>
+<div class="govuk-grid-column-one-third">
+
+  {% include "includes/step-by-step.html" %}
+</div>
+
+
+{% endblock %}
