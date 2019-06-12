@@ -4,18 +4,122 @@
 {% set activeStep = '1' %}
 {% set activeStepLink = '3' %}
 {% block pageTitle %}
-  {% if serviceName %} {{ serviceName }} {% endif %} - GOV.UK prototype kit
+  What you’ll need when you apply for a Blue Badge
 {% endblock %}
 
 {% block inner_content %}
 <div class="govuk-grid-column-two-thirds">
   <h1 class="govuk-heading-xl">
-    {% if serviceName %} {{ serviceName }} {% endif %}
+    What you’ll need when you apply for a Blue Badge
   </h1>
 
-  
+  <p class="govuk-body">Everybody that applies will need to provide:</p>
 
-  <p class="govuk-body">Last updated: 4 April 2019</p>
+  <ul class="govuk-list govuk-list--bullet">
+  	<li>proof of identity</li>
+  	<li>proof of address</li>
+  	<li>a recent digital photo of the applicant’s head and shoulders</li>
+  	<li>the applicant’s National Insurance number (if they have one)</li>
+  	<li>contact details (phone number, email and postal address)</li>
+  </ul>
+
+  <p class="govuk-body">To prove the applicant’s identity, you can provide a copy of either:</p>
+
+  <ul class="govuk-list govuk-list--bullet">
+  	<li>birth or adoption certificate</li>
+  	<li>passport</li>
+  	<li>driving licence</li>
+  	<li>marriage or civil partnership certificate</li>
+  	<li>divorce or dissolution certificate</li>
+  </ul>
+
+  <p class="govuk-body">To prove the applicant’s address, you can provide a copy of either:</p>
+
+  <ul class="govuk-list govuk-list--bullet">
+  	<li>a recent council tax bill</li>
+  	<li>a recent letter from a government department such as DWP</li>
+  	<li>driving licence</li>
+  	<li>a recent letter from a school (if the applicant is under 16)</li>
+  </ul>
+
+  <h2 class="govuk-heading-l" id="proofOfBenefits">Proof of benefits</h2>
+
+  <h3 class="govuk-heading-m">Personal Independence Payment (PIP)</h3>
+
+  <p class="govuk-body">You’ll need to know the scores from the mobility assessment and the award end date (if applicable). You’ll also be asked to provide proof of the PIP award. This would be the three pages from the letter from DWP, which clearly shows:</p>
+
+  <ul class="govuk-list govuk-list--bullet">
+  	<li>entitlement to PIP (front page)</li>
+  	<li>assessment scores (second to last page)</li>
+  	<li>mobility scores (last page)</li>
+  </ul>
+
+  <h3 class="govuk-heading-m">Disability Living Allowance (DLA)</h3>
+
+  <p class="govuk-body">You’ll need to know which rate of the mobility component the applicant receives and the award end date (if applicable). You’ll also be asked to provide proof of the DLA award. This should be the most recent letter from DWP, which clearly shows:</p>
+
+  <ul class="govuk-list govuk-list--bullet">
+  	<li>mobility rating</li>
+	<li>certificate of entitlement to DLA</li>
+  	<li>the date of the letter</li>
+  </ul>
+
+  <h3 class="govuk-heading-m">Armed Forces Compensation Sheme</h3>
+
+  <p class="govuk-body">You’ll be asked to provide proof of the benefit. This should be the most recent letter from the Ministry of Defence, which clearly shows that the applicant:</p>
+
+  <ul class="govuk-list govuk-list--bullet">
+  	<li>was injured in service on or after 6 April 2005</li>
+	<li>has been awarded a benefit by the Armed Forces Compensation Scheme, with a lump sum payment within Tariffs 1 to 8</li>
+	<li>is certified as having a permanent, substantial disability which causes inability to walk or very considerable difficulty in walking</li>
+  </ul>
+
+	<h3 class="govuk-heading-m">War Pensioners’ Mobility Scheme</h3>
+
+	<p class="govuk-body">You’ll be asked to provide proof of the benefit. This should be the most recent letter from the Ministry of Defence, which clearly shows that the applicant:</p>
+
+  <ul class="govuk-list govuk-list--bullet">
+  	<li>was injured in service before 6 April 2005</li>
+	<li>is in receipt of a War Pensioners’ Mobility Supplement</li>
+  </ul>
+
+  <h2 class="govuk-heading-l" id="proofOfEligibility">Proof of eligibility</h2>
+
+  <p class="govuk-body">If you are applying without one of the benefits, the application will need to be assessed by the issuing local authority. To help assess the application, you’ll be asked to provide extra information depending on the answers you give when you are checking eligibility.</p>
+
+  <p class="govuk-body">If you are applying for somebody that cannot walk or finds walking difficult or for somebody with a hidden” or “non-physical” disability, you will be asked to provide details of any:</p>
+
+	<ul class="govuk-list govuk-list--bullet">
+		<li>relevant medication that is taken</li>
+		<li>relevant treatments that the applicant has received or is due to receive</li>
+		<li>healthcare or associated professionals that have been involved with the treatment of the applicant’s condition</li>
+	</ul>
+
+	<p class="govuk-body">All applicants will be asked if they want to upload supporting documents. This could be prescriptions, diagnosis letters or correspondence between professionals that treat the applicant’s condition.</p>
+
+	<p class="govuk-body">If you are applying for somebody that cannot walk or finds walking difficult, you will also be asked questions around how the applicant’s condition affects their walking.</p>
+
+	<p class="govuk-body">If you are applying for somebody that has a hidden” or “non-physical” disability, you will also be asked questions around how journeys are affected by the applicant’s condition.</p>
+
+  <h2 class="govuk-heading-l" id="provideProof">How you can provide documents</h2>
+
+  <p class="govuk-body">When you are applying on the GOV.UK service, you’ll be able to upload a photo or scan of:</p>
+
+  <ul class="govuk-list govuk-list--bullet">
+  	<li>proof of benefit</li>
+	<li>proof of address</li>
+	<li>proof of identity</li>
+	<li>supporting documents</li>
+  </ul>
+
+  <p class="govuk-body">You can also upload a recent digital photo. Just make sure the photos or scans are good quality and include all of the relevant information.</p>
+
+  <p class="govuk-body">If you are applying on a mobile or tablet device, you can take a photo of the required documents and upload within the application itself.</p>
+
+  <p class="govuk-body">You can choose not to upload the documents when you’re applying. If you do this you’ll need to supply copies of the documents to the local authority. Find out how to <a href="https://www.gov.uk/blue-badge-scheme-information-council?">contact the relevant local authority</a>.</p>
+
+
+  <p class="govuk-body">Last updated: 10 June 2019</p>
 </div>
 <div class="govuk-grid-column-one-third">
 
