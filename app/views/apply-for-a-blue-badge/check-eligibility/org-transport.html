@@ -1,15 +1,12 @@
 {% extends "layout.html" %}
 
-{% set pageHeading = 'Does your organisation transport the people you care for?' %}
+{% set pageHeading = 'Does your organisation transport people who need a Blue Badge?' %}
 
 {% block pageTitle %}
   {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
 {% endblock %}
 
 {% block inner_content %}
-
-
-
 
 <form action="org-transport-backend">
     
