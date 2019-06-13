@@ -1,7 +1,13 @@
 {% extends "guidance_layout.html" %}
 
 {% set pageHeading = 'How to take a good photo'  %}
+
+{% if data['applicant'] === "someone-else" %}
+{% set guidanceTitle =  'Get them in a good position' %}
+{% else %}
 {% set guidanceTitle =  'Get in a good position' %}
+{% endif %}
+
 {% set guidancePageCount =  '4 of 5' %}
 
 {% block pageTitle %}
@@ -10,7 +16,14 @@
 
 {% block guidance_content %}
 
-<p class="govuk-body">To avoid shadows, be around 50 centimetres (1.5 feet) away from your plain background. The person taking your photo needs to be 1.5 metres (5 feet) away from you.</p>
+<p class="govuk-body">
+	To avoid shadows, 
+	{% if data['applicant'] === "someone-else" %}
+	they should 
+	{% else %}
+	
+	{% endif %}
+be around 50 centimetres (1.5 feet) away from a plain background. The person taking the photo needs to be 1.5 metres (5 feet) away from {{youOrThem}}.</p>
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-one-third">
 		&nbsp;
