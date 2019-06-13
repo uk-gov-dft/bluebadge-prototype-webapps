@@ -230,6 +230,29 @@
         type: "email",
         value: data['email-address']
       }) }}
+
+      {{ govukRadios({
+        idPrefix: "preferred-language",
+        name: "preferred-language",
+        fieldset: {
+          legend: {
+            text: "Preferred language",
+            isPageHeading: false,
+            classes: "govuk-fieldset__legend--s"
+          }
+        },
+        items: [
+          {
+            value: "English",
+            text: "English",
+            checked: true
+          },
+          {
+            value: "Welsh",
+            text: "Cymraeg (Welsh)"
+          }
+        ]
+      }) }}
   
   </section>
 
