@@ -9,7 +9,11 @@
 
 {% block inner_content %}
 
-
+{% if tableRows.length > 0 %}
+{% set hasItemsClass = "govuk-radios--has-items" %}
+{% else %}
+{% set hasItemsClass = "" %}
+{% endif%}
 
   {% set mobilityHtml %}
     {% if tableRows.length > 0 %}
@@ -56,6 +60,7 @@
   {{ govukRadios({
     "idPrefix": "use-mobility-aid",
     "name": "use-mobility-aid",
+    "classes": hasItemsClass,
     "fieldset": {
       "legend": {
         "text": pageHeading,

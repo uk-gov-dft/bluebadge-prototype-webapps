@@ -9,8 +9,11 @@
 
 {% block inner_content %}
 
-
-
+{% if tableRows.length > 0 %}
+{% set hasItemsClass = "govuk-radios--has-items" %}
+{% else %}
+{% set hasItemsClass = "" %}
+{% endif%}
 
 {% set medicationHtml %}
   {% if tableRows.length > 0 %}
@@ -63,6 +66,7 @@
   {{ govukRadios({
     "idPrefix": "use-medication",
     "name": "use-medication",
+    "classes": hasItemsClass,
     "fieldset": {
       "legend": {
         "text": pageHeading,
