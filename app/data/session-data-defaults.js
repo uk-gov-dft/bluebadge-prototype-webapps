@@ -252,6 +252,7 @@ module.exports = {
       ],
       "describeApplicantNeeds": "She has quite advanced alzheimer’s disease. She forgets what she’s doing, she has short and long term memory loss. She isn’t able to plan or follow instructions. Becomes very anxious in unfamiliar surroundings and can easily wander away into the road, in different directions. She can become aggressive and often needs to be restrained. Carol is often a danger to herself and others because her demeanour changes so fast.",
       "copingStrategies": "1. The journeys need to be short because she will take her seatbelt off which has been put on her after a while. It’s effective for about a 10 minutes journey. 2. We need to know that we can park in a quiet area of a car park or road, otherwise she can just jump out of the car. 3. (Probably the biggest one) - We need to be parked near to wherever we’re going ie. doctors, shops etc. to reduce the anxiety of walking from the car and the worry of her if yew wandering away, walking into the road or getting lost. It’s very effective if we can do it. But often can’t find a parking space.",
+      "benefits": "Selected '12' for PIP: Planning and following a journey",
       "medication": [
         {
           "name": "Memantine",
@@ -278,7 +279,7 @@ module.exports = {
       "photoPath": "passport-photo.png",
       "proofOfIdentity": "passport.png",
       "proofOfAddress": "council-tax.png",
-      "applicationDate": "12 May 2019 Transferred: 23 May 2019",
+      "applicationDate": "12 May 2019",
       "applicationChannel": "Online"
     },
     {
@@ -515,6 +516,7 @@ module.exports = {
           "when": "Monthly"
         }
       ],
+      "benefits": "Selected 'Attendance Allowance'",
       "medication": [
         {
           "name": "Fostair Nexthaler",

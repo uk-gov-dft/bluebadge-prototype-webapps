@@ -213,6 +213,19 @@
       </dd>
     </div>
 
+    {% if application.benefits %}
+
+    <div class="govuk-check-your-answers__contents dft-data-list__item">
+      <dt class="dft-data-list__dt govuk-check-your-answers__question">
+        Benefits in eligibility checker
+      </dt>
+      <dd class="dft-data-list__dd govuk-check-your-answers__answer">
+        {{application.benefits}}
+      </dd>
+    </div>
+
+    {% endif %}
+
     {% if application.badgeFlag %}
 
     {% else %}
