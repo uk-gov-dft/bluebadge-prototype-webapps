@@ -169,6 +169,31 @@
   </section>
 
   <section class="form-section">
+
+   <h2 class="govuk-heading-m">Upload new photo (optional)</h2>
+
+   <p class="govuk-body">
+     Photos should:
+   </p>
+
+   <ul class="govuk-list govuk-list--bullet">
+     <li>meet the <a href="">guidelines</a></li>  
+     <li>be either .JPEG, .PNG or .GIF format</li>
+     <li>not be bigger than 10MB</li>
+   </ul>
+
+    
+   {{ govukFileUpload({
+     id: 'file-input',
+     name: 'file-input',
+     label: {
+       text: 'Upload a file'
+     }
+   }) }}
+
+  </section>
+
+  <section class="form-section">
     <h2 class="govuk-heading-m">Badge details</h2>
 
     <dl class="govuk-check-your-answers govuk-check-your-answers--short">

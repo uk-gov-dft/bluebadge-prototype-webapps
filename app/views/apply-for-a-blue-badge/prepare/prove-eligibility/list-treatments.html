@@ -9,6 +9,16 @@
 
 {% block inner_content %}
 
+{% if data['disability'] === 'non-physical' %}
+
+{% set treatmentExamples = "For example, memory clinics, psychotherapy or other types of therapy." %}
+
+{% else %}
+
+{% set treatmentExamples = "For example, hip replacement operation, physiotherapy or  pain clinic." %}
+
+{% endif %}
+
 {% set treatmentHtml %}
   {% if tableRows.length > 0 %}
 
@@ -63,7 +73,17 @@
       }
     },
     "hint": {
-      "text": "These could have been in the last 10 years, ongoing or any treatment " + you + " have booked in the next 3 years. List any surgeries, treatments or clinics that are to do with " + your + " condition."
+      "html": 'These could have been in the last 10 years, ongoing or any treatment ' + you + ' have booked in the next 3 years. List any surgeries, treatments or clinics that are to do with ' + your + ' condition. <br> <br>
+      <details class="govuk-details" role="group">
+        <summary class="govuk-details__summary" role="button" aria-controls="details-content-e37673c5-a78f-4caa-9db8-5a7c35cd54c5" >
+          <span class="govuk-details__summary-text">
+            What counts as treatment?
+          </span>
+        </summary>
+        <div class="govuk-details__text" id="details-content-e37673c5-a78f-4caa-9db8-5a7c35cd54c5" aria-hidden="false">
+          Anything relevant to their condition that they\'ve seen (or are due to see) a professional for. ' + treatmentExamples + '
+        </div>
+      </details>'
     },
     "items": [
       {

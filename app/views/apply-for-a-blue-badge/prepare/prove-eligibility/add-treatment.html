@@ -9,7 +9,15 @@
 
 {% block inner_content %}
 
+{% if data['disability'] === 'non-physical' %}
 
+{% set treatmentExamples = "For example, memory clinics, psychotherapy or other types of therapy." %}
+
+{% else %}
+
+{% set treatmentExamples = "For example, hip replacement operation, physiotherapy or  pain clinic." %}
+
+{% endif %}
 
 <h1 class="govuk-heading-l">{{pageHeading}}</h1>
 
@@ -24,7 +32,7 @@
 
   {{ govukDetails({
     summaryText: "What counts as treatment?",
-    text: "Anything relevant to " + your + " condition that " + you + "'ve seen (or are due to see) a professional for. For example, hip replacement operation, physiotherapy or  pain clinic."
+    text: "Anything relevant to " + your + " condition that " + you + "'ve seen (or are due to see) a professional for. " + treatmentExamples
   }) }}
 
   {% set treatmentPastHtml %}
