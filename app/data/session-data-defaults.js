@@ -278,7 +278,7 @@ module.exports = {
       "photoPath": "passport-photo.png",
       "proofOfIdentity": "passport.png",
       "proofOfAddress": "council-tax.png",
-      "applicationDate": "12 May 2019",
+      "applicationDate": "12 May 2019 Transferred: 23 May 2019",
       "applicationChannel": "Online"
     },
     {

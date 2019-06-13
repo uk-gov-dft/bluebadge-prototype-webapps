@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% set pageHeading = 'Attendance Allowance' %}
+
+{% block pageTitle %}
+  {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% if data['nation'] === "scotland" %}
+	{% set nextPage = '/apply-for-a-blue-badge/check-eligibility/pip-did-you-get-dla' %}
+{% else %}
+	{% set nextPage = '/apply-for-a-blue-badge/check-eligibility/disability' %}
+{% endif %}
+
+{% block inner_content %}
+
+<form action="{{nextPage}}">
+
+	<h1 class="govuk-heading-l">{{pageHeading}}</h1>
+
+	<p class="govuk-body">As {{you}} get Attendance Allowance, we will need to assess {{your}} application by asking a set of questions.</p>
+
+	<p class="govuk-body">We'll ask you what the main reason {{you}} need a Blue Badge is. The local authority will also be informed that you receive Attendance Allowance.</p>
+
+	<p class="govuk-body">If you are asked to upload supporting documents, it is useful for you to add {{your}} award letter from DWP to support {{your}} application.</p>
+
+	{{ govukButton({
+	  "text": "Continue"
+	}) }}
+
+</form>
+
+{% endblock %}

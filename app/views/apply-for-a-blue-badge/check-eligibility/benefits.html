@@ -9,7 +9,37 @@
     
   <form action="benefits-backend">
   
-    {% if  data['age'] > 16 %}
+    {% if  data['age'] >= 65 %}
+    
+      {% set differentOptions = [
+            {
+              "value": "aa",
+              "text": 'Attendance Allowance'
+            },
+            {
+              "value": "pip",
+              "text": 'Personal Independence Payment (PIP)'
+            },
+            {
+              "value": "dla",
+              "text": 'Disability Living Allowance (DLA)'
+            },
+            {
+              "value": "armed-forces",
+              "text":  'Armed Forces Compensation scheme'
+            },
+            {
+              "value": "war-pensioners",
+              "text": 'War Pensioners’ Mobility Supplement'
+            },
+            {
+              "value": "none",
+              "text": 'None of these benefits'
+            }
+          ]
+      %}
+
+    {% elif  data['age'] > 16 %}
   
       {% set differentOptions = [
             {

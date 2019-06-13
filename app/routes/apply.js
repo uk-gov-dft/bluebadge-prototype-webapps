@@ -165,6 +165,11 @@ router.get('/check-eligibility/benefits-backend', function (req, res) {
         res.render('apply-for-a-blue-badge/check-eligibility/disability');
       }
       break;
+    case "aa":
+      req.session.data['benefit'] = "none";
+      req.session.data['attendance-allowance'] = "true";
+      res.redirect('/apply-for-a-blue-badge/check-eligibility/attendance-allowance');
+      break;
     case "war-pensioners":
       res.redirect('/apply-for-a-blue-badge/check-eligibility/decision');
       break;

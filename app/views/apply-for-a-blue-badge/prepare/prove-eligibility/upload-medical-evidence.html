@@ -24,6 +24,10 @@
   {% endif %}
   <p class="govuk-body">For example, prescriptions, diagnosis letters or correspondence from GPs, hospitals or healthcare professionals.</p>
 
+  {% if data['attendance-allowance'] == "true" %}
+  <p class="govuk-body">As {{you}} receive Attendance Allowance, it is useful to add {{your}} award letter from Department of Work and Pensions (DWP).</p>
+  {% endif %}
+
   {% set uploadHtml %}
     {{ uploadComponentWidget.uploadComponent(
       'prove-eligibility/upload-medical-evidence',
