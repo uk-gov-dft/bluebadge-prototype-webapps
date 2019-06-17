@@ -10,7 +10,7 @@
 
 {% elif data['disability'] === 'terminal' %}
 
-  {% set pageHeading =  you | capitalize + "'re eligible for a 6-month Blue Badge" %}  
+  {% set pageHeading =  you | capitalize + " may be eligible for a 6-month Blue Badge" %}  
 
 {% else %}
 
@@ -141,7 +141,7 @@
     {% if data['takes-payment'] === "yes" %}
     <p class="govuk-body">{{data['council-name']}} charges {{feePrice}} to issue the badge. You can pay by card at the end of the application. The fee will be refunded if {{your}} application is not successful.</p>
     {% elif data['disability'] === 'terminal' %}
-    <p class="govuk-body">You don't need to pay for the badge.</p>
+    <p class="govuk-body">{{your|capitalize}} local authority will contact you if you need to pay for the badge.</p>
     {% else %}
     <p class="govuk-body">{{data['council-name']}} may charge up to {{feePrice}} to issue the badge. They'll contact you for payment after you submit the application.</p>
     {% endif %}
