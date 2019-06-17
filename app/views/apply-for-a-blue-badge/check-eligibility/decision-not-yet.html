@@ -1,0 +1,20 @@
+{% extends "guidance_layout.html" %}
+{% set hidesSteps = "true" %}
+{% set pageHeading = "Applications open 30 August 2019" %}
+{% block pageTitle %}
+  {{pageHeading}} - {% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block guidance_content %}
+
+<div class="middle-start-page">
+	<h1 class="govuk-heading-l">{{pageHeading}}</h1>
+	<p class="govuk-body">You cannot apply under the new criteria yet.</p>
+	<p class="govuk-body">You will be able to apply for “hidden” or “non-physical” conditions or disabilities from 30 August 2019.</p>
+	<p class="govuk-body">For now, if one of the other options is relevant, you can apply and the application will be assessed by your local authority.</p>
+	{{ govukButton({
+	  "text": "Return to the start",
+	  "href": '/apply-for-a-blue-badge/'
+	}) }}
+</div>
+{% endblock %}
