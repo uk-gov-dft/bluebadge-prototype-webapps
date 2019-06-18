@@ -35,10 +35,10 @@
 }
 
 .govuk-radios--has-items {
-  .govuk-radios__item {
+  > .govuk-radios__item {
     display: none;
   }
-  .govuk-radios__conditional {
+  > .govuk-radios__conditional {
     border: none;
     margin-left: 0;
     padding-left: 0;

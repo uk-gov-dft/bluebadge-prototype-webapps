@@ -13,7 +13,8 @@
     triggerForDummy,
     triggerName,
     showsAddress,
-    handlesMultiple
+    handlesMultiple,
+    fileSelector
   )%}
 
 {{ chooseYourFile(
@@ -28,7 +29,8 @@
     triggerForDummy,
     triggerName,
     showsAddress,
-    handlesMultiple
+    handlesMultiple,
+    fileSelector
   ) 
 }}
 
@@ -47,6 +49,7 @@
 {% from "details/macro.njk" import govukDetails %}
 {% from 'button/macro.njk' import govukButton %}
 {% from "file-upload/macro.njk" import govukFileUpload %}
+{% from "input/macro.njk" import govukInput %}
 
 {% macro chooseYourFile(
   originPage,
@@ -60,7 +63,8 @@
   triggerForDummy,
   triggerName,
   showsAddress,
-  handlesMultiple
+  handlesMultiple,
+  fileSelector
   ) 
 %}
 
@@ -132,8 +136,65 @@
     </div>
   </div>
   {% endif %}
+  {% if fileSelector === "typeSelector" %}
+    {% set somethingElseHtml %}
+      {{ govukInput({
+        label: {
+          text: "Name the upload"
+        },
+        id: "file-name",
+        name: "file-name"
+      }) }}
+    {% endset -%}
+
+    {% set initiallyHideAddMore = "style=display:none;" %}
+
+    {{ govukRadios({
+      idPrefix: "select-file-type",
+      name: "select-file-type",
+      fieldset: {
+        legend: {
+          text: "What is in your upload?",
+          isPageHeading: false,
+          classes: "govuk-fieldset__legend--s"
+        }
+      },
+      items: [
+        {
+          value: "prescription",
+          text: "Prescription"
+        },
+        {
+          value: "diagnosis-letter",
+          text: "Diagnosis letter"
+        },
+        {
+          value: "correspondence",
+          text: "Healthcare correspondence"
+        },
+        {
+          value: "award-letter",
+          text: "Award letter"
+        },
+        {
+          value: "something-else",
+          text: "Something else",
+          conditional: {
+            html: somethingElseHtml
+          }
+        }
+      ]
+    }) }}
+
+    <div class="upload-finished-button" id="saveUploadTypeBtn">
+      {{ govukButton({
+        "text": "Save upload type",
+        "classes": "upload-label"
+      }) }}
+    </div>
+  {% endif %}
   {% if handlesMultiple === 'yes' %}
-    <div class="upload-finished-button">
+    <div class="upload-finished-button" id="addMoreBtnContainer" {{initiallyHideAddMore}}>
       <input type="file" class="govuk-visually-hidden" id="fileElem" multiple accept="image/*" onchange="handleFiles(this.files)">
       <label class="govuk-button upload-label" for="fileElem">
         Add another photo or scan

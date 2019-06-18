@@ -42,6 +42,7 @@ function handleDrop(e) {
 if ($('#dummiesToShow').attr('data-trigger') == "true") {
   $('#dragDropInstructions, #cantUploadDetails, #help-uploading, #drop-area').hide();
   $('#fileUploadedBox, #fileAlreadyUploaded').show();
+  $('[name="select-file-type"]').closest('.govuk-radios').addClass('govuk-radios--has-items');
 }
 
 let uploadProgress = []
@@ -96,6 +97,8 @@ function previewFile(file) {
     }
     
     document.getElementById('fileUploadedBox').classList.remove('hidden')
+    $('[name="select-file-type"]').closest('.govuk-radios').parent('fieldset').closest('.govuk-radios').addClass('govuk-radios--has-items');
+    $('.govuk-fieldset__legend--m').hide();
 
     if(document.getElementById('help-uploading')) {
       document.getElementById('cantUploadDetails').classList.add('hidden')  
@@ -141,3 +144,10 @@ function uploadFile(file, i) {
 $('.upload-arrow-container').on('click', function() {
   $('#fileElem').trigger('click');
 });
+
+$('#saveUploadTypeBtn button').on('click', function(e) {
+  e.preventDefault();
+  $(this).hide();
+  $('#addMoreBtnContainer').show();  
+  $('[name="select-file-type"]').prop('checked', false).closest('.govuk-form-group').hide();
+})
