@@ -142,3 +142,12 @@ $(document).ready(function () {
   }
 
 });
+
+$('#checkEligiblityBtn').on('click', function() {
+  $(this).attr('disabled', true).text('Checking with DWP');
+
+  setTimeout(function() {
+    $('#checkEligibilityDWPSection').hide();
+    $('#eligiblityCheckedSection').show();
+  }, 1500);
+});

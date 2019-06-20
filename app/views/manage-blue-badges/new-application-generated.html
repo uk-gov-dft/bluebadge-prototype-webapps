@@ -346,7 +346,9 @@
     {% endif %}
 
     {% if application.eligibilityShort !== "Organisation" and
-          application.eligibilityShort !== "Terminal illness" %}
+          application.eligibilityShort !== "Terminal illness" and
+          application.eligibilityShort !== "PIP" and
+          application.eligibilityShort !== "DLA" %}
 
     <div class="govuk-check-your-answers__contents dft-data-list__item">
       <dt class="dft-data-list__dt govuk-check-your-answers__question">
@@ -406,6 +408,61 @@
       </div>
 
     {% endif %}
+
+    {% if application.eligibilityShort === "PIP" %}
+      
+      <div class="govuk-check-your-answers__contents dft-data-list__item">
+        <dt class="dft-data-list__dt govuk-check-your-answers__question">
+          Check eligibility with DWP
+        </dt>
+        <dd class="dft-data-list__dd govuk-check-your-answers__answer">
+          <div id="checkEligibilityDWPSection">
+            <details class="govuk-details govuk-details--inside-check">
+              <summary class="govuk-details__summary">
+                <span class="govuk-details__summary-text">
+                  Check eligibility for PIP
+                </span>
+              </summary>
+              <div class="govuk-details__text">
+                <p class="govuk-body">Confirm you have checked the applicant's identity before their eligiblity is checked with DWP.</p>
+            
+                {{ govukCheckboxes({
+                  "idPrefix": "agree-dwp",
+                  "name": "agree-dwp",
+                  "fieldset": {
+                    "legend": {
+                      "text": 'Have you checked their identity?',
+                      "isPageHeading": false,
+                      "classes": 'govuk-visually-hidden'
+                    }
+                  },
+                  "items": [
+                    {
+                      "value": "true",
+                      "text": "Yes, I have verified the applicant's identity",
+                      "checked": checked('agree-dwp', 'true')
+                    }
+                  ]
+                }) }}
+            
+                <button class="govuk-button" id="checkEligiblityBtn">
+                  Check eligiblity
+                </button>
+              </div>
+            </details>
+          </div>
+          <div id="eligiblityCheckedSection" style="display: none;">
+            <div class="govuk-panel govuk-panel--confirmation govuk-panel--confirmation-in-application">
+              <div class="govuk-panel__body">
+                Applicant is eligible for a Blue Badge
+              </div>
+            </div>
+          </div>
+        </dd>
+      </div>
+
+    {% endif %}
+
     {% endif %}
   </dl>
 </section>

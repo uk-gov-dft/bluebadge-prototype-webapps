@@ -1471,6 +1471,35 @@ module.exports = {
       "proofOfAddress": "council-tax.png",
       "applicationDate": "12 May 2019",
       "applicationChannel": "Online"
+    },
+    {
+      "fullName": "Louise McClaine",
+      "dateOfBirth": "4 Mar 1967",
+      "nino": "YY6234567A",
+      "gender": "Woman",
+      "address": {
+        "street": "4 Market Street",
+        "street2": "",
+        "city": "Cheshire",
+        "postcode": "SK10 9NC"
+      },
+      "contactName": "Jerry McClaine (Husband)",
+      "mainPhoneNumber": "01331 252 226",
+      "altPhoneNumber": "07938 232 989",
+      "emailAddress": "mcclaines@gmail.com",
+      "applicationType": "New",
+      "eligibilityShort": "PIP",
+      "eligibility": "Personal Independence Payment (PIP)",
+      "proofOfBenefit": [
+        "pip-letter-1.png",
+        "pip-letter-2.png",
+        "pip-letter-3.png"
+      ],
+      "photoPath": "passport-photo.png",
+      "proofOfIdentity": "driving-licence.png",
+      "proofOfAddress": "council-tax.png",
+      "applicationDate": "12 May 2019",
+      "applicationChannel": "Online"
     }
   ]
 }

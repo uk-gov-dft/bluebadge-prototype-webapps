@@ -296,3 +296,14 @@
 		margin-bottom: 30px;
 	}
 }
+
+.govuk-details--inside-check {
+	@include govuk-font(16);
+	margin: 0;
+}
+
+.govuk-panel--confirmation-in-application {
+	.govuk-panel__body {
+		@include govuk-font(24);
+	}
+}

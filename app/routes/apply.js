@@ -410,6 +410,13 @@ function sendBackToCheckAnswers(query, nextAction, checkSection) {
       'submitLabel': 'Update',
       'pagechange': '?change=true'
     }
+  } else if (query.change === 'true-final') {
+    console.log('true');
+    locals = {
+      'formAction': checkSection,
+      'submitLabel': 'Update',
+      'pagechange': '?change=true&final=true'
+    }
   } else {
     console.log('false');
     locals = {
