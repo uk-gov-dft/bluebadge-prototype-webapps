@@ -595,30 +595,7 @@
             {% endif %}
           </h2>
           <ul class="app-task-list__items">
-            <li class="app-task-list__item">
-              <div class="task-list-deactivated-item"><p class="govuk-body-s">Check your answers</p></div>
-              <a class="app-task-list__task-name" href="check-answers" aria-describedby="check-answers-completed">
-                Check your answers
-              </a>
-              {% if data['check-answers-completed'] == "true" or 
-                    data['all-completed'] == "true" %}
-              {{ govukTag({
-                text: 'Completed',
-                classes: 'app-task-list__task-completed',
-                attributes: {
-                  'id': 'check-answers-completed'
-                }
-              }) }}
-              {% else %}
-              {{ govukTag({
-                text: 'Not started',
-                classes: 'app-task-list__task-not-started',
-                attributes: {
-                  'id': 'check-answers-not-started'
-                }
-              })}}
-              {% endif %}
-            </li>
+            
             <li class="app-task-list__item">
               <div class="task-list-deactivated-item"><p class="govuk-body-s">Agree to declaration</p></div>
               <a class="app-task-list__task-name" href="apply/declaration" aria-describedby="declaration-completed">
